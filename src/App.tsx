@@ -973,20 +973,34 @@ export default function App() {
                 type="text" 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    const element = document.getElementById("catalogo-tramites");
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }
+                }}
                 placeholder="Escribe jubilación, quirografario, afiliación voluntaria..."
                 className="w-full text-slate-800 bg-transparent py-2.5 focus:outline-none text-sm placeholder:text-slate-400 font-medium"
               />
               {searchQuery && (
                 <button 
                   onClick={() => setSearchQuery("")}
-                  className="p-1 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors"
+                  className="p-1 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
                 >
                   <X className="w-4 h-4" />
                 </button>
               )}
             </div>
             <button 
-              className="bg-[#0a1f42] hover:bg-[#123162] text-white text-xs sm:text-sm font-bold py-2.5 px-6 rounded-lg transition-colors shadow-lg active:scale-95 duration-100"
+              onClick={() => {
+                const element = document.getElementById("catalogo-tramites");
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+              className="bg-[#0a1f42] hover:bg-[#123162] text-white text-xs sm:text-sm font-bold py-2.5 px-6 rounded-lg transition-colors shadow-lg active:scale-95 duration-100 cursor-pointer"
             >
               Buscar
             </button>
@@ -994,19 +1008,30 @@ export default function App() {
 
           {/* Quick Filter Pill Badges */}
           <div className="mt-5 flex flex-wrap justify-center gap-1.5 sm:gap-2 max-w-2xl mx-auto">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`text-[11px] sm:text-xs font-bold px-3 py-1.5 rounded-full transition-all cursor-pointer ${
-                  selectedCategory === cat 
-                    ? "bg-[#c9a84c] text-[#0a1f42] shadow-md transform -translate-y-0.5" 
-                    : "bg-white/10 hover:bg-white/20 text-slate-200"
-                }`}
-              >
-                {cat === "All" ? "🔍 Todos los Temas" : cat}
-              </button>
-            ))}
+            {categories.map((cat) => {
+              const isSelected = selectedCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => {
+                    setSelectedCategory(cat);
+                    setTimeout(() => {
+                      const element = document.getElementById("catalogo-tramites");
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
+                    }, 50);
+                  }}
+                  className={`text-[11px] sm:text-xs font-bold px-4 py-2 rounded-full transition-all cursor-pointer ${
+                    isSelected 
+                      ? "bg-[#c9a84c] text-[#0a1f42] ring-2 ring-white border-2 border-[#0a1f42] shadow-md transform -translate-y-0.5" 
+                      : "bg-white/10 hover:bg-white/20 text-slate-200"
+                  }`}
+                >
+                  {cat === "All" ? "🔍 Todos los Temas" : cat}
+                </button>
+              );
+            })}
           </div>
 
           {/* 4 ESTADÍSTICAS GRID */}
@@ -1932,18 +1957,38 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
           </div>
           
           {/* PROCEDURES EXPLORER GRID */}
-          <div>
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-4">
+          <div id="catalogo-tramites" className="scroll-mt-24">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
               <div>
-                <h2 className="text-lg sm:text-xl font-bold text-[#0a1f42] flex items-center gap-2">
+                <h2 className="text-lg sm:text-xl font-extrabold text-[#0a1f42] flex items-center gap-2">
                   <BadgeInfo className="w-5 h-5 text-[#c9a84c]" />
-                  Catálogo de Trámites y Coberturas
+                  Catálogo de Trámites y Coberturas del IESS
                 </h2>
-                <p className="text-xs text-slate-500">Haz clic para ver requisitos completos y pasos oficiales paso a paso</p>
+                <p className="text-xs text-slate-500">Selecciona un tema o escribe en el buscador para ver requisitos y guías paso a paso.</p>
               </div>
-              <span className="text-xs font-bold bg-slate-100 text-slate-600 px-3 py-1 rounded-full">
+              <span className="text-xs font-black bg-slate-100 text-slate-700 px-3 py-1.5 rounded-full border border-slate-200">
                 Mostrando {filteredProcedures.length} de {PROCEDURES_DATA.length}
               </span>
+            </div>
+
+            {/* Inline Connected Categories / Themes Selector */}
+            <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-6 bg-slate-50 border border-slate-200 p-2 rounded-xl">
+              {categories.map((cat) => {
+                const isSelected = selectedCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`text-[11px] sm:text-xs font-extrabold px-3.5 py-2 rounded-lg transition-all cursor-pointer ${
+                      isSelected
+                        ? "bg-[#0a1f42] text-white shadow-sm ring-2 ring-[#c9a84c]/50"
+                        : "bg-white hover:bg-slate-100 text-slate-700 border border-slate-200"
+                    }`}
+                  >
+                    {cat === "All" ? "🔍 Todos los Temas" : cat}
+                  </button>
+                );
+              })}
             </div>
 
             {filteredProcedures.length === 0 ? (
