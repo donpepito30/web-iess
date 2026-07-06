@@ -1,0 +1,6 @@
+{
+  "name": "Guia IESS Ecuador",
+  "description": "Una guia interactiva y profesional para tramites, requisitos y consultas de la seguridad social en Ecuador con IESS Asistente.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
