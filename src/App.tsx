@@ -35,6 +35,9 @@ import ReactMarkdown from "react-markdown";
 import { PROCEDURES_DATA, Procedure } from "./data/procedures";
 import { OFICIOS_TEMPLATES } from "./data/templates";
 import { BLOG_POSTS, BlogPost } from "./data/blogPosts";
+import { SEO_CATEGORIES, SeoCategory } from "./data/seoCategories";
+import CategoryDetail from "./components/CategoryDetail";
+import Breadcrumbs from "./components/Breadcrumbs";
 
 interface FrequentProcedure {
   emoji: string;
@@ -262,8 +265,10 @@ const CIUDAD_FAQS: Record<string, { q: string; a: string }[]> = {
 
 export default function App() {
   // Advanced Router states
-  const [currentRoute, setCurrentRoute] = useState<'home' | 'procedure' | 'blog' | 'faq'>('home');
+  const [currentRoute, setCurrentRoute] = useState<'home' | 'procedure' | 'blog' | 'faq' | 'category'>('home');
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
+  const [selectedSeoCategory, setSelectedSeoCategory] = useState<SeoCategory | null>(null);
+  const [selectedSubcategorySlug, setSelectedSubcategorySlug] = useState<string | null>(null);
 
   // Search & Filter state
   const [searchQuery, setSearchQuery] = useState("");
@@ -442,6 +447,30 @@ export default function App() {
           setMainTab('consultas');
           setCurrentRoute('home');
         }
+      } else {
+        // Fallback to Category/Subcategory matching
+        const pathParts = path.split("/").filter(Boolean);
+        if (pathParts.length > 0) {
+          const matchedCategory = SEO_CATEGORIES.find(c => c.slug === pathParts[0]);
+          if (matchedCategory) {
+            setSelectedSeoCategory(matchedCategory);
+            if (pathParts.length > 1) {
+              const matchedSub = matchedCategory.subcategories.find(s => s.slug === pathParts[1]);
+              if (matchedSub) {
+                setSelectedSubcategorySlug(matchedSub.slug);
+              } else {
+                setSelectedSubcategorySlug(null);
+              }
+            } else {
+              setSelectedSubcategorySlug(null);
+            }
+            setCurrentRoute('category');
+            setMainTab('consultas');
+            setSelectedProcedure(null);
+            setSelectedPost(null);
+            setSelectedCity(null);
+          }
+        }
       }
     }
   }, []);
@@ -455,6 +484,8 @@ export default function App() {
         setSelectedProcedure(null);
         setSelectedPost(null);
         setSelectedCity(null);
+        setSelectedSeoCategory(null);
+        setSelectedSubcategorySlug(null);
         setMainTab('consultas');
       } else if (path.startsWith("/procedimiento/")) {
         const slug = path.split("/procedimiento/")[1];
@@ -462,6 +493,8 @@ export default function App() {
         if (proc) {
           setSelectedProcedure(proc);
           setSelectedCity(null);
+          setSelectedSeoCategory(null);
+          setSelectedSubcategorySlug(null);
           setCurrentRoute('procedure');
           setMainTab('consultas');
         }
@@ -471,6 +504,8 @@ export default function App() {
         if (post) {
           setSelectedPost(post);
           setSelectedCity(null);
+          setSelectedSeoCategory(null);
+          setSelectedSubcategorySlug(null);
           setCurrentRoute('blog');
           setMainTab('blog');
         }
@@ -480,6 +515,8 @@ export default function App() {
           setSelectedCity(city);
           setSelectedProcedure(null);
           setSelectedPost(null);
+          setSelectedSeoCategory(null);
+          setSelectedSubcategorySlug(null);
           setCurrentRoute('home');
           setMainTab('consultas');
         }
@@ -487,13 +524,41 @@ export default function App() {
         setCurrentRoute('blog');
         setSelectedPost(null);
         setSelectedCity(null);
+        setSelectedSeoCategory(null);
+        setSelectedSubcategorySlug(null);
         setMainTab('blog');
       } else if (path === "/faq") {
         setCurrentRoute('faq');
         setSelectedProcedure(null);
         setSelectedPost(null);
         setSelectedCity(null);
+        setSelectedSeoCategory(null);
+        setSelectedSubcategorySlug(null);
         setMainTab('consultas');
+      } else {
+        // Popstate check for Category/Subcategory matching
+        const pathParts = path.split("/").filter(Boolean);
+        if (pathParts.length > 0) {
+          const matchedCategory = SEO_CATEGORIES.find(c => c.slug === pathParts[0]);
+          if (matchedCategory) {
+            setSelectedSeoCategory(matchedCategory);
+            if (pathParts.length > 1) {
+              const matchedSub = matchedCategory.subcategories.find(s => s.slug === pathParts[1]);
+              if (matchedSub) {
+                setSelectedSubcategorySlug(matchedSub.slug);
+              } else {
+                setSelectedSubcategorySlug(null);
+              }
+            } else {
+              setSelectedSubcategorySlug(null);
+            }
+            setCurrentRoute('category');
+            setMainTab('consultas');
+            setSelectedProcedure(null);
+            setSelectedPost(null);
+            setSelectedCity(null);
+          }
+        }
       }
     };
 
@@ -665,6 +730,39 @@ export default function App() {
       description: "Consulta requisitos de jubilación, préstamos quirografarios, hipotecarios, afiliación voluntaria y genera oficios de ley automatizados.",
       url: "/"
     });
+  };
+
+  // Función para navegar a una categoría o subcategoría de la estructura SEO
+  const navigateToCategory = (categorySlug: string, subcategorySlug: string | null = null) => {
+    const cat = SEO_CATEGORIES.find(c => c.slug === categorySlug);
+    if (cat) {
+      setSelectedSeoCategory(cat);
+      setSelectedSubcategorySlug(subcategorySlug);
+      setCurrentRoute('category');
+      setMainTab('consultas');
+      setSelectedProcedure(null);
+      setSelectedPost(null);
+      setSelectedCity(null);
+
+      const url = subcategorySlug ? `/${categorySlug}/${subcategorySlug}` : `/${categorySlug}`;
+      const title = subcategorySlug 
+        ? `${cat.title} - ${cat.subcategories.find(s => s.slug === subcategorySlug)?.title || ''} | IESSAsistente`
+        : `${cat.metaTitle} | IESSAsistente`;
+
+      window.history.pushState(
+        { categorySlug, subcategorySlug },
+        title,
+        url
+      );
+
+      updateMetaTags({
+        title,
+        description: subcategorySlug 
+          ? cat.subcategories.find(s => s.slug === subcategorySlug)?.description || cat.metaDescription
+          : cat.metaDescription,
+        url
+      });
+    }
   };
 
   // Scroll to bottom of chat whenever messages list updates
@@ -855,7 +953,7 @@ export default function App() {
       
       {/* HEADER: deep navy `#0a1f42` with `#c9a84c` golden accent border */}
       <header id="app-header" className="bg-[#0a1f42] text-white sticky top-0 z-40 shadow-md border-b-4 border-[#c9a84c] transition-all">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#c9a84c] to-[#9a7e36] flex items-center justify-center shadow-lg transform rotate-3">
               <Building2 id="nav-icon" className="w-5 h-5 text-white" />
@@ -895,7 +993,7 @@ export default function App() {
 
       {/* BANNER DE ALERTA ROJO */}
       <div id="red-alert-banner" className="bg-gradient-to-r from-red-600 via-rose-600 to-red-700 text-white shadow-inner">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 flex flex-col md:flex-row items-center justify-between gap-2 text-center md:text-left transition-all">
+        <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 flex flex-col md:flex-row items-center justify-between gap-2 text-center md:text-left transition-all">
           <div className="flex items-center gap-2">
             <span className="bg-white shrink-0 text-red-700 text-[10px] sm:text-xs font-black px-2 py-0.5 rounded-full uppercase animate-pulse">
               Nuevo
@@ -924,7 +1022,7 @@ export default function App() {
       </div>
 
       {/* HERO SECTION DE AZUL */}
-      <section id="hero-section" className="bg-gradient-to-b from-[#0a1f42] via-[#0f2d5e] to-[#0a1f42] text-white pt-10 pb-12 sm:pb-16 px-4 relative overflow-hidden">
+      <section id="hero-section" className="bg-gradient-to-b from-[#0a1f42] via-[#0f2d5e] to-[#0a1f42] text-white pt-10 pb-16 sm:pb-24 px-4 relative overflow-hidden">
         {/* Subtle decorative background shapes */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#c9a84c]/5 rounded-full blur-3xl -z-10 pointer-events-none"></div>
@@ -975,10 +1073,22 @@ export default function App() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
-                    const element = document.getElementById("catalogo-tramites");
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (mainTab !== 'consultas' || currentRoute !== 'home' || selectedProcedure || selectedPost || selectedCity || selectedSeoCategory) {
+                      setMainTab('consultas');
+                      setCurrentRoute('home');
+                      setSelectedProcedure(null);
+                      setSelectedPost(null);
+                      setSelectedCity(null);
+                      setSelectedSeoCategory(null);
+                      setSelectedSubcategorySlug(null);
+                      window.history.pushState(null, "Asistente IESS Ecuador - Trámites y Requisitos", "/");
                     }
+                    setTimeout(() => {
+                      const element = document.getElementById("catalogo-tramites");
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
+                    }, 100);
                   }
                 }}
                 placeholder="Escribe jubilación, quirografario, afiliación voluntaria..."
@@ -995,10 +1105,22 @@ export default function App() {
             </div>
             <button 
               onClick={() => {
-                const element = document.getElementById("catalogo-tramites");
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (mainTab !== 'consultas' || currentRoute !== 'home' || selectedProcedure || selectedPost || selectedCity || selectedSeoCategory) {
+                  setMainTab('consultas');
+                  setCurrentRoute('home');
+                  setSelectedProcedure(null);
+                  setSelectedPost(null);
+                  setSelectedCity(null);
+                  setSelectedSeoCategory(null);
+                  setSelectedSubcategorySlug(null);
+                  window.history.pushState(null, "Asistente IESS Ecuador - Trámites y Requisitos", "/");
                 }
+                setTimeout(() => {
+                  const element = document.getElementById("catalogo-tramites");
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }, 100);
               }}
               className="bg-[#0a1f42] hover:bg-[#123162] text-white text-xs sm:text-sm font-bold py-2.5 px-6 rounded-lg transition-colors shadow-lg active:scale-95 duration-100 cursor-pointer"
             >
@@ -1014,13 +1136,23 @@ export default function App() {
                 <button
                   key={cat}
                   onClick={() => {
+                    if (mainTab !== 'consultas' || currentRoute !== 'home' || selectedProcedure || selectedPost || selectedCity || selectedSeoCategory) {
+                      setMainTab('consultas');
+                      setCurrentRoute('home');
+                      setSelectedProcedure(null);
+                      setSelectedPost(null);
+                      setSelectedCity(null);
+                      setSelectedSeoCategory(null);
+                      setSelectedSubcategorySlug(null);
+                      window.history.pushState(null, "Asistente IESS Ecuador - Trámites y Requisitos", "/");
+                    }
                     setSelectedCategory(cat);
                     setTimeout(() => {
                       const element = document.getElementById("catalogo-tramites");
                       if (element) {
                         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }
-                    }, 50);
+                    }, 100);
                   }}
                   className={`text-[11px] sm:text-xs font-bold px-4 py-2 rounded-full transition-all cursor-pointer ${
                     isSelected 
@@ -1060,11 +1192,11 @@ export default function App() {
 
       {/* PESTAÑAS PRINCIPALES DEL PORTAL CIUDADANO (Punto 5 y 6) */}
       <div id="main-portal-tabs" className="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex gap-4 sm:gap-8 overflow-x-auto scrollbar-none">
+        <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex gap-4 sm:gap-8 overflow-x-auto scrollbar-none pt-4 pb-1">
             <button
               onClick={handleConsultasTabClick}
-              className={`py-4 px-1 text-xs sm:text-sm font-extrabold border-b-4 transition-all whitespace-nowrap flex items-center gap-2 ${
+              className={`pt-2.5 pb-4 px-1 text-xs sm:text-sm font-extrabold border-b-4 transition-all whitespace-nowrap flex items-center gap-2 ${
                 mainTab === 'consultas'
                   ? 'border-[#0a1f42] text-[#0a1f42]'
                   : 'border-transparent text-slate-500 hover:text-slate-800'
@@ -1075,29 +1207,29 @@ export default function App() {
             </button>
             <button
               onClick={handleOficiosTabClick}
-              className={`py-4 px-1 text-xs sm:text-sm font-extrabold border-b-4 transition-all whitespace-nowrap flex items-center gap-2 relative ${
+              className={`pt-2.5 pb-4 px-1 text-xs sm:text-sm font-extrabold border-b-4 transition-all whitespace-nowrap flex items-center gap-1.5 sm:gap-2 ${
                 mainTab === 'oficios'
                   ? 'border-[#0a1f42] text-[#0a1f42]'
                   : 'border-transparent text-slate-500 hover:text-slate-800'
               }`}
             >
-              <FileText className="w-4 h-4 text-[#c9a84c]" />
-              FORMATOS Y OFICIOS DE LEY
-              <span className="bg-red-500 text-white font-black text-[8px] px-1.5 py-0.5 rounded-full uppercase absolute -top-1 -right-4 animate-bounce">
+              <FileText className="w-4 h-4 text-[#c9a84c] shrink-0" />
+              <span>FORMATOS Y OFICIOS DE LEY</span>
+              <span className="bg-red-500 text-white font-black text-[8px] sm:text-[9px] px-1.5 py-0.5 rounded-full uppercase animate-bounce shrink-0">
                 17 formatos
               </span>
             </button>
             <button
               onClick={handleBlogTabClick}
-              className={`py-4 px-1 text-xs sm:text-sm font-extrabold border-b-4 transition-all whitespace-nowrap flex items-center gap-2 relative ${
+              className={`pt-2.5 pb-4 px-1 text-xs sm:text-sm font-extrabold border-b-4 transition-all whitespace-nowrap flex items-center gap-1.5 sm:gap-2 ${
                 mainTab === 'blog'
                   ? 'border-[#0a1f42] text-[#0a1f42]'
                   : 'border-transparent text-slate-500 hover:text-slate-800'
               }`}
             >
-              <BookOpen className="w-4 h-4 text-[#c9a84c]" />
-              BLOG DE GUÍAS SEO
-              <span className="bg-emerald-500 text-white font-black text-[8px] px-1.5 py-0.5 rounded-full uppercase absolute -top-1 -right-4">
+              <BookOpen className="w-4 h-4 text-[#c9a84c] shrink-0" />
+              <span>BLOG DE GUÍAS SEO</span>
+              <span className="bg-emerald-500 text-white font-black text-[8px] sm:text-[9px] px-1.5 py-0.5 rounded-full uppercase shrink-0">
                 Nuevo
               </span>
             </button>
@@ -1106,100 +1238,74 @@ export default function App() {
       </div>
 
       {/* BREADCRUMBS SEO WIDGET */}
-      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-6 -mb-2">
-        <nav className="flex items-center flex-wrap gap-1 text-xs text-slate-500 font-semibold bg-white border border-slate-200 rounded-xl px-4 py-2.5 shadow-2xs">
-          <button 
-            onClick={() => { 
-              setMainTab('consultas'); 
-              setCurrentRoute('home'); 
-              setSelectedProcedure(null); 
-              setSelectedPost(null); 
-              setSelectedCity(null); 
-              window.history.pushState(null, "Asistente IESS Ecuador - Trámites y Requisitos", "/");
-            }} 
-            className="hover:text-[#0a1f42] flex items-center gap-1 cursor-pointer transition-colors"
-          >
-            🏠 Inicio
-          </button>
-          
-          <span className="text-slate-300">/</span>
-          
-          {mainTab === 'consultas' && currentRoute === 'home' && !selectedCity && (
-            <span className="text-[#0a1f42]">Consultas y Chatbot</span>
-          )}
-          
-          {mainTab === 'oficios' && (
-            <span className="text-[#0a1f42]">Formatos y Oficios de Ley</span>
-          )}
-
-          {mainTab === 'blog' && !selectedPost && (
-            <span className="text-[#0a1f42]">Blog de Guías SEO</span>
-          )}
-
-          {selectedCity && (
-            <>
-              <button 
-                onClick={() => { 
-                  setSelectedCity(null); 
-                  window.history.pushState(null, "Asistente IESS Ecuador - Trámites y Requisitos", "/");
-                }} 
-                className="hover:text-[#0a1f42] cursor-pointer transition-colors"
-              >
-                Ciudades
-              </button>
-              <span className="text-slate-300">/</span>
-              <span className="text-[#0a1f42]">IESS {selectedCity.charAt(0).toUpperCase() + selectedCity.slice(1)}</span>
-            </>
-          )}
-
-          {selectedProcedure && (
-            <>
-              <button 
-                onClick={() => { 
-                  setSelectedProcedure(null); 
-                  setCurrentRoute('home'); 
-                  window.history.pushState(null, "Asistente IESS Ecuador - Trámites y Requisitos", "/");
-                }} 
-                className="hover:text-[#0a1f42] cursor-pointer transition-colors"
-              >
-                Trámites
-              </button>
-              <span className="text-slate-300">/</span>
-              <span className="text-[#0a1f42] truncate max-w-[200px] sm:max-w-xs">{selectedProcedure.title}</span>
-            </>
-          )}
-
-          {selectedPost && (
-            <>
-              <button 
-                onClick={() => { 
-                  setSelectedPost(null); 
-                  setCurrentRoute('blog'); 
-                  window.history.pushState(null, "Blog Oficial IESS Ecuador - Guías de Seguridad Social", "/blog");
-                }} 
-                className="hover:text-[#0a1f42] cursor-pointer transition-colors"
-              >
-                Blog
-              </button>
-              <span className="text-slate-300">/</span>
-              <span className="text-[#0a1f42] truncate max-w-[200px] sm:max-w-xs">{selectedPost.title}</span>
-            </>
-          )}
-          
-          {currentRoute === 'faq' && (
-            <span className="text-[#0a1f42]">Preguntas Frecuentes</span>
-          )}
-        </nav>
+      <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-6 -mb-2">
+        <Breadcrumbs
+          currentRoute={currentRoute}
+          mainTab={mainTab}
+          selectedCity={selectedCity}
+          selectedProcedure={selectedProcedure}
+          selectedPost={selectedPost}
+          selectedCategory={selectedSeoCategory}
+          selectedSubcategorySlug={selectedSubcategorySlug}
+          onNavigateHome={() => {
+            setMainTab('consultas');
+            setCurrentRoute('home');
+            setSelectedProcedure(null);
+            setSelectedPost(null);
+            setSelectedCity(null);
+            setSelectedSeoCategory(null);
+            setSelectedSubcategorySlug(null);
+            window.history.pushState(null, "Asistente IESS Ecuador - Trámites y Requisitos", "/");
+          }}
+          onNavigateTab={(tab) => {
+            if (tab === 'consultas') handleConsultasTabClick();
+            else if (tab === 'oficios') handleOficiosTabClick();
+            else if (tab === 'blog') handleBlogTabClick();
+          }}
+          onNavigateCategory={navigateToCategory}
+          onClearProcedure={clearSelectedProcedure}
+          onClearPost={clearSelectedBlogPost}
+          onClearCity={clearSelectedCity}
+        />
       </div>
 
       {/* MAIN CONTAINER LAYOUT */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow flex flex-col lg:flex-row gap-8">
+      <main className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow flex flex-col gap-10">
         
-        {/* LEFT COLUMN: PROCEDURES LIST & SECTIONS */}
-        <section className="flex-1 flex flex-col gap-8 min-w-0">
+        {/* MAIN SECTIONS COLUMN */}
+        <section className="w-full flex flex-col gap-10 min-w-0">
           {mainTab === 'consultas' ? (
-            <>
-              {/* SECCIÓN SEO LOCAL: CIUDADES DE ECUADOR */}
+            currentRoute === 'category' && selectedSeoCategory ? (
+              <CategoryDetail
+                category={selectedSeoCategory}
+                activeSubcategorySlug={selectedSubcategorySlug}
+                onNavigateToCategory={navigateToCategory}
+                onNavigateToBlogPost={(slug) => {
+                  const post = BLOG_POSTS.find(p => p.slug === slug);
+                  if (post) {
+                    setSelectedPost(post);
+                    setCurrentRoute('blog');
+                    setMainTab('blog');
+                    window.history.pushState(null, post.title, `/blog/${post.slug}`);
+                  }
+                }}
+                onConsultChatbot={(query) => {
+                  sendMessage(query);
+                  if (chatSectionRef.current) {
+                    chatSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                onBackToHome={() => {
+                  setSelectedSeoCategory(null);
+                  setSelectedSubcategorySlug(null);
+                  setCurrentRoute('home');
+                  window.history.pushState(null, "Asistente IESS Ecuador - Trámites y Requisitos", "/");
+                }}
+                allCategories={SEO_CATEGORIES}
+              />
+            ) : (
+              <>
+                {/* SECCIÓN SEO LOCAL: CIUDADES DE ECUADOR */}
               <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
                   <div>
@@ -1439,6 +1545,63 @@ export default function App() {
                 </div>
               );
             })()}
+          </div>
+
+          {/* DIRECTORIO DE GUÍAS DE SEGURIDAD SOCIAL (15 PILARES SEO) */}
+          <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm">
+            <div className="mb-4">
+              <span className="inline-flex items-center gap-1 bg-amber-100 text-[#9c7d31] text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-2">
+                📂 Biblioteca Legal SEO
+              </span>
+              <h2 className="text-lg sm:text-xl font-extrabold text-[#0a1f42] flex items-center gap-2">
+                <span className="text-2xl leading-none">📂</span>
+                Directorio de Guías de Seguridad Social
+              </h2>
+              <p className="text-xs text-slate-500 mt-1">
+                Accede a las páginas pilar optimizadas con la normativa legal de 2026, requisitos actualizados del IESS/BIESS, errores comunes y herramientas integradas de ley.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5">
+              {SEO_CATEGORIES.map((cat) => {
+                const emojis: Record<string, string> = {
+                  afiliacion: "📂",
+                  "historia-laboral": "⏱️",
+                  "prestamos-biess": "💰",
+                  "fondos-reserva": "🛡️",
+                  cesantia: "🚪",
+                  jubilacion: "👴",
+                  salud: "🏥",
+                  certificados: "📜",
+                  empleadores: "🏢",
+                  herramientas: "🛠️",
+                  faq: "❓",
+                  noticias: "📰",
+                  blog: "✍️",
+                  tramites: "📋"
+                };
+                return (
+                  <div
+                    key={cat.id}
+                    onClick={() => navigateToCategory(cat.slug, null)}
+                    className="bg-slate-50/40 border border-slate-200/80 p-3.5 rounded-xl shadow-2xs hover:shadow hover:border-[#c9a84c] hover:bg-white transition-all cursor-pointer group flex gap-3 h-full items-start"
+                  >
+                    <span className="text-2xl shrink-0 mt-0.5">{emojis[cat.slug] || "📂"}</span>
+                    <div className="flex-grow">
+                      <h3 className="text-xs font-extrabold text-[#0a1f42] group-hover:text-[#c9a84c] transition-colors leading-snug">
+                        {cat.title}
+                      </h3>
+                      <p className="text-[10px] text-slate-500 mt-1 leading-normal line-clamp-2">
+                        {cat.description}
+                      </p>
+                      <span className="text-[9px] font-bold text-[#c9a84c] inline-flex items-center gap-0.5 mt-2.5 opacity-80 group-hover:opacity-100 transition-all uppercase tracking-wider">
+                        Ver Guía Pilar <ArrowRight className="w-2.5 h-2.5 shrink-0" />
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
           {/* GENERADOR DE SOLICITUDES Y OFICIOS DE LEY - EVITA TRAMITADORES (PUNTO 2 Y 3) */}
@@ -2344,7 +2507,8 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
             </div>
           </div>
             </>
-          ) : mainTab === 'oficios' ? (
+          )
+        ) : mainTab === 'oficios' ? (
             <div className="space-y-6">
               {/* BRANDING FORMULARIOS COMPLETOS */}
               <div className="bg-gradient-to-br from-slate-50 to-amber-50/20 border-2 border-[#c9a84c] rounded-2xl p-5 shadow-sm">
@@ -2921,11 +3085,11 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
           )}
         </section>
 
-        {/* RIGHT COLUMN: CHATBOT INTERACTIVO (embedded on desktop) */}
+        {/* CENTERED CHATBOT INTERACTIVO SECTION */}
         <section 
           ref={chatSectionRef}
           id="chatbot-section" 
-          className="w-full lg:w-[400px] bg-white border border-slate-200 rounded-2xl shadow-lg flex flex-col h-[580px] overflow-hidden sticky lg:top-24 select-none lg:select-text shrink-0"
+          className="w-full max-w-3xl mx-auto bg-white border border-slate-200 rounded-2xl shadow-lg flex flex-col h-[550px] overflow-hidden scroll-mt-24 select-none lg:select-text shrink-0"
         >
           {/* Top Panel Brand */}
           <div className="bg-[#0a1f42] p-4 text-white border-b border-slate-800 flex items-center justify-between">
@@ -2984,10 +3148,26 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
                       : "bg-white text-slate-800 border border-slate-100 rounded-tl-none leading-relaxed"
                   }`}
                 >
-                  {/* Process carriage returns into simple linebreaks */}
-                  <p className="whitespace-pre-line">
-                    {msg.content}
-                  </p>
+                  {msg.role === "user" ? (
+                    <p className="whitespace-pre-line">
+                      {msg.content}
+                    </p>
+                  ) : (
+                    <div className="prose prose-slate max-w-none text-xs leading-relaxed select-text">
+                      <ReactMarkdown
+                        components={{
+                          p: ({node, ...props}) => <p className="mb-2 last:mb-0 leading-relaxed whitespace-pre-line" {...props} />,
+                          strong: ({node, ...props}) => <strong className="font-extrabold text-[#0a1f42]" {...props} />,
+                          ul: ({node, ...props}) => <ul className="list-disc pl-4 mb-2 space-y-1" {...props} />,
+                          ol: ({node, ...props}) => <ol className="list-decimal pl-4 mb-2 space-y-1" {...props} />,
+                          li: ({node, ...props}) => <li className="leading-relaxed" {...props} />,
+                          a: ({node, ...props}) => <a className="text-[#c9a84c] hover:underline font-bold" target="_blank" rel="noreferrer" {...props} />,
+                        }}
+                      >
+                        {msg.content}
+                      </ReactMarkdown>
+                    </div>
+                  )}
                   <span className={`text-[9px] block text-right mt-1.5 font-mono ${
                     msg.role === "user" ? "text-slate-300" : "text-slate-400"
                   }`}>
@@ -3222,7 +3402,7 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
 
       {/* FOOTER: azul oscuro */}
       <footer id="app-footer" className="bg-[#030f24] text-white border-t border-slate-900 pt-10 pb-8 mt-auto">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-slate-800 text-slate-400 text-xs sm:text-sm">
             
@@ -3297,6 +3477,22 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
 
           </div>
 
+          {/* CATEGORÍAS PILLARS FOOTER LINKS */}
+          <div className="py-6 border-b border-slate-800">
+            <span className="block text-white font-extrabold text-xs uppercase tracking-wider mb-3">Guías Temáticas Especializadas del IESS</span>
+            <div className="flex flex-wrap gap-x-4 gap-y-2 text-[11px] text-slate-400">
+              {SEO_CATEGORIES.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => navigateToCategory(cat.slug, null)}
+                  className="hover:text-[#c9a84c] hover:underline cursor-pointer transition-colors text-left"
+                >
+                  📁 {cat.title}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center text-[11px] text-slate-500">
             <p>
               &copy; {new Date().getFullYear()} Guía IESS Ecuador. Todos los derechos reservados. Desarrollado con rigurosidad normativa.
@@ -3351,10 +3547,27 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
                       className={`max-w-[85%] rounded-2xl px-3 py-2 text-xs inline-block shadow-xs leading-relaxed ${
                         msg.role === "user"
                           ? "bg-[#0a1f42] text-white rounded-tr-none"
-                          : "bg-white text-slate-850 border border-slate-200 rounded-tl-none"
+                          : "bg-white text-slate-855 border border-slate-200 rounded-tl-none"
                       }`}
                     >
-                      <p className="whitespace-pre-line">{msg.content}</p>
+                      {msg.role === "user" ? (
+                        <p className="whitespace-pre-line">{msg.content}</p>
+                      ) : (
+                        <div className="prose prose-slate max-w-none text-xs leading-relaxed select-text">
+                          <ReactMarkdown
+                            components={{
+                              p: ({node, ...props}) => <p className="mb-2 last:mb-0 leading-relaxed whitespace-pre-line" {...props} />,
+                              strong: ({node, ...props}) => <strong className="font-extrabold text-[#0a1f42]" {...props} />,
+                              ul: ({node, ...props}) => <ul className="list-disc pl-4 mb-2 space-y-1" {...props} />,
+                              ol: ({node, ...props}) => <ol className="list-decimal pl-4 mb-2 space-y-1" {...props} />,
+                              li: ({node, ...props}) => <li className="leading-relaxed" {...props} />,
+                              a: ({node, ...props}) => <a className="text-[#c9a84c] hover:underline font-bold" target="_blank" rel="noreferrer" {...props} />,
+                            }}
+                          >
+                            {msg.content}
+                          </ReactMarkdown>
+                        </div>
+                      )}
                       <span className={`text-[8px] block text-right mt-1 font-mono ${
                         msg.role === "user" ? "text-slate-300" : "text-slate-400"
                       }`}>
