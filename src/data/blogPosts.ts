@@ -14,19 +14,19 @@ export interface BlogPost {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    id: 'jubilacion-2025',
-    slug: 'jubilacion-por-vejez-requisitos-2025',
-    title: 'Jubilación por Vejez IESS 2025: Guía Completa de Requisitos y Pasos',
-    metaDescription: 'Todo lo que necesitas saber sobre jubilación por vejez en IESS Ecuador 2025. Requisitos actualizados, pasos, montos y combinaciones de edad y aportes.',
+    id: 'jubilacion-2026',
+    slug: 'jubilacion-por-vejez-requisitos-2026',
+    title: 'Jubilación por Vejez IESS 2026: Guía Completa de Requisitos y Pasos',
+    metaDescription: 'Todo lo que necesitas saber sobre jubilación por vejez en IESS Ecuador 2026. Requisitos actualizados, pasos, montos y combinaciones de edad y aportes.',
     keywords: ['jubilación IESS', 'jubilación por vejez Ecuador', 'requisitos jubilación IESS', 'cómo jubilarme IESS'],
     content: `
-# Jubilación por Vejez IESS 2025: Guía Completa y Actualizada
+# Jubilación por Vejez IESS 2026: Guía Completa y Actualizada
 
 ¿Estás planificando tu retiro en el Ecuador? La **Jubilación por Vejez del IESS** es uno de los derechos más importantes para los trabajadores ecuatorianos y extranjeros residentes en el país. En esta guía completa, te explicamos al detalle los requisitos oficiales, las tablas de aportes vigentes y cómo realizar tu solicitud 100% en línea de manera rápida.
 
 ---
 
-## ¿Cuáles son los requisitos de Edad y Aportes en 2025?
+## ¿Cuáles son los requisitos de Edad y Aportes en 2026?
 
 Para calificar a la jubilación ordinaria por vejez, el Instituto Ecuatoriano de Seguridad Social (IESS) exige una relación proporcional entre tu edad cronológica y el número de aportes (llamadas "imposiciones"). 
 
@@ -88,19 +88,19 @@ Si quieres calcular de manera personalizada o necesitas ayuda redactando oficios
 *Nota legal: Este artículo es una guía interpretativa simplificada basada en la Ley de Seguridad Social de Ecuador y resoluciones vigentes del Consejo Directivo del IESS. Te sugerimos siempre validar tu estado de aportes de forma oficial.*
 `,
     author: 'IESS Asistente',
-    publishDate: '2025-01-15',
+    publishDate: '2026-01-15',
     readTime: 8,
     image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop',
     category: 'Jubilación'
   },
   {
-    id: 'prestamo-biess-2025',
-    slug: 'prestamo-quirografario-biess-requisitos-montos-2025',
-    title: 'Préstamo Quirografario BIESS 2025: Requisitos, Montos y Cómo Solicitarlo',
-    metaDescription: 'Guía actualizada 2025 sobre préstamo quirografario BIESS. Requisitos para afiliados activos y jubilados, montos máximos, pasos y plazos de desembolso.',
+    id: 'prestamo-biess-2026',
+    slug: 'prestamo-quirografario-biess-requisitos-montos-2026',
+    title: 'Préstamo Quirografario BIESS 2026: Requisitos, Montos y Cómo Solicitarlo',
+    metaDescription: 'Guía actualizada 2026 sobre préstamo quirografario BIESS. Requisitos para afiliados activos y jubilados, montos máximos, pasos y plazos de desembolso.',
     keywords: ['préstamo BIESS', 'préstamo quirografario Ecuador', 'crédito BIESS', 'BIESS requisitos'],
     content: `
-# Préstamo Quirografario BIESS 2025: Guía Completa de Solicitud
+# Préstamo Quirografario BIESS 2026: Guía Completa de Solicitud
 
 El **Préstamo Quirografario** del Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) es uno de los productos de financiamiento de consumo más demandados y con la tasa de interés más baja del mercado financiero ecuatoriano. 
 
@@ -117,7 +117,7 @@ El BIESS otorga este crédito a tres grupos principales de asegurados:
 
 ---
 
-## Requisitos Oficiales para Afiliados Activos (Vigente 2025)
+## Requisitos Oficiales para Afiliados Activos (Vigente 2026)
 
 Para que el sistema apruebe tu solicitud de préstamo quirografario, debes cumplir con las siguientes condiciones mínimas:
 
@@ -151,7 +151,7 @@ Si calificas, la pantalla te mostrará el **monto máximo preaprobado** calculad
 
 ### Paso 4: Confirmación y Desembolso
 1. Lee detenidamente el contrato de mutuo electrónico.
-2. Ingresa el código de seguridad que el BIESS te enviará por correo electrónico o SMS para firmar electrónicamente.
+2. Logea e ingresa el código de seguridad que el BIESS te enviará por correo electrónico o SMS para firmar electrónicamente.
 3. ¡Listo! El desembolso se realizará automáticamente a tu cuenta bancaria registrada en un lapso de **24 a 72 horas hábiles**.
 
 ---
@@ -162,31 +162,31 @@ La tasa de interés para los préstamos quirografarios es variable y se reajusta
 Si tienes problemas con retenciones de tu sueldo o necesitas justificar un reclamo formal por un descuento indebido del BIESS, te recomendamos revisar nuestra sección de formatos de oficios de ley donde podrás generar cartas de impugnación de forma 100% gratuita.
 `,
     author: 'IESS Asistente',
-    publishDate: '2025-01-10',
+    publishDate: '2026-01-10',
     readTime: 7,
     image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop',
     category: 'Préstamos'
   },
   {
-    id: 'afiliacion-voluntaria-2025',
-    slug: 'afiliacion-voluntaria-iess-requisitos-beneficios-2025',
-    title: 'Afiliación Voluntaria IESS 2025: Costos, Requisitos y Beneficios de Aportar por tu Cuenta',
-    metaDescription: 'Guía de afiliación voluntaria IESS Ecuador 2025. Descubre cuánto se paga mensualmente, requisitos para independientes, amas de casa y residentes en el exterior, y beneficios.',
+    id: 'afiliacion-voluntaria-2026',
+    slug: 'afiliacion-voluntaria-iess-requisitos-beneficios-2026',
+    title: 'Afiliación Voluntaria IESS 2026: Costos, Requisitos y Beneficios de Aportar por tu Cuenta',
+    metaDescription: 'Guía de afiliación voluntaria IESS Ecuador 2026. Descubre cuánto se paga mensualmente, requisitos para independientes, amas de casa y residentes en el exterior, y beneficios.',
     keywords: ['afiliación voluntaria IESS', 'iess independiente ecuador', 'cuánto se paga iess voluntario', 'seguro voluntario ecuador'],
     content: `
-# Afiliación Voluntaria IESS 2025: Guía Completa de Costos y Beneficios
+# Afiliación Voluntaria IESS 2026: Guía Completa de Costos y Beneficios
 
 ¿Eres profesional independiente, tienes un emprendimiento propio o resides fuera del Ecuador? La **Afiliación Voluntaria** del IESS es una alternativa ideal para contar con servicios de salud de calidad, cobertura ante accidentes, protección de jubilación y acceso a créditos del BIESS aportando por tu cuenta sin depender de un empleador.
 
-En este artículo, desglosamos los costos actualizados para 2025, el porcentaje de aportación y las ventajas de pertenecer al seguro social voluntario.
+En este artículo, desglosamos los costos actualizados para 2026, el porcentaje de aportación y las ventajas de pertenecer al seguro social voluntario.
 
 ---
 
-## ¿Cuánto se paga por la Afiliación Voluntaria en 2025?
+## ¿Cuánto se paga por la Afiliación Voluntaria en 2026?
 
 El valor mensual de la aportación voluntaria se calcula aplicando un porcentaje fijo sobre el salario o los ingresos mensuales que declares recibir. El ingreso mínimo declarado no puede ser inferior al **Salario Básico Unificado (SBU)** legal vigente en el Ecuador.
 
-Para el año 2025, considerando el Salario Básico Unificado, el cálculo se estructura así:
+Para el año 2026, considerando el Salario Básico Unificado, el cálculo se estructura así:
 
 * **Tasa General de Aportación**: **17.60%** del valor de tus ingresos declarados.
 * **Aporte mensual mínimo**: Con un SBU de $460, el aporte mensual mínimo de un afiliado voluntario es de **$80.96**.
@@ -237,19 +237,19 @@ Debes realizar el pago de tu aporte mensual **hasta el día 15 del mes siguiente
 Si en algún momento requieres solicitar la terminación o cese temporal de tu seguro voluntario para evitar acumular deudas, te invitamos a visitar nuestra herramienta de oficios legales donde podrás generar el documento de solicitud de cese de manera gratuita.
 `,
     author: 'IESS Asistente',
-    publishDate: '2025-01-05',
+    publishDate: '2026-01-05',
     readTime: 6,
     image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1200&auto=format&fit=crop',
     category: 'Trámites'
   },
   {
-    id: 'subsidio-maternidad-2025',
-    slug: 'subsidio-maternidad-iess-requisitos-calculo-2025',
-    title: 'Subsidio de Maternidad IESS 2025: Requisitos, Tiempos de Pago y Cómo Solicitarlo',
-    metaDescription: 'Toda la información sobre el subsidio de maternidad del IESS en Ecuador para el año 2025. Requisitos de aportación para afiliadas, cómo se calcula el pago de las 12 semanas y trámite en línea.',
+    id: 'subsidio-maternidad-2026',
+    slug: 'subsidio-maternidad-iess-requisitos-calculo-2026',
+    title: 'Subsidio de Maternidad IESS 2026: Requisitos, Tiempos de Pago y Cómo Solicitarlo',
+    metaDescription: 'Toda la información sobre el subsidio de maternidad del IESS en Ecuador para el año 2026. Requisitos de aportación para afiliadas, cómo se calcula el pago de las 12 semanas y trámite en línea.',
     keywords: ['subsidio maternidad IESS', 'licencia maternidad ecuador', 'cuánto paga el iess por maternidad', 'reposo prenatal iess'],
     content: `
-# Subsidio de Maternidad IESS 2025: Guía para Afiliadas
+# Subsidio de Maternidad IESS 2026: Guía para Afiliadas
 
 El **Subsidio de Maternidad** es un beneficio económico que concede el Instituto Ecuatoriano de Seguridad Social (IESS) a las afiliadas cotizantes que se encuentran bajo licencia de maternidad. Este subsidio cubre el salario de la madre durante su reposo por dar a luz, permitiéndole dedicarse enteramente al cuidado del recién nacido sin perder estabilidad financiera.
 
@@ -269,7 +269,7 @@ Durante este lapso, el salario de la trabajadora se cubre de forma compartida en
 
 ---
 
-## Requisitos de Aportaciones para Calificar en 2025
+## Requisitos de Aportaciones para Calificar en 2026
 
 Para acceder al subsidio económico por maternidad, el IESS exige un récord mínimo de cotización antes del parto:
 
@@ -283,7 +283,7 @@ Para acceder al subsidio económico por maternidad, el IESS exige un récord mí
 
 ### Paso 1: Validación del Certificado Médico (Si es de clínica privada)
 Si tu parto o reposo prenatal fue atendido en clínicas u hospitales particulares, debes validar el certificado dentro de los **8 días hábiles posteriores al nacimiento**:
-1. Ingresa a [iess.gob.ec](https://www.iess.gob.ec).
+1. Registrate e ingresa a [iess.gob.ec](https://www.iess.gob.ec).
 2. Selecciona **"Trámites Virtuales"** -> **"Asegurados"** -> **"Afiliados"** -> **"Validación de Certificados Médicos"**.
 3. Registra los datos del médico tratante, sube el PDF del certificado y el historial clínico.
 
@@ -307,7 +307,7 @@ El IESS toma como referencia el promedio de los sueldos percibidos durante los *
 Si tu empleador o el sistema presenta retrasos injustificados y necesitas emitir un oficio formal de reclamo para exigir la liquidación del subsidio por maternidad, puedes utilizar nuestro generador de formatos oficiales gratuito disponible en la pestaña principal del portal.
 `,
     author: 'IESS Asistente',
-    publishDate: '2025-01-08',
+    publishDate: '2026-01-08',
     readTime: 6,
     image: 'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=1200&auto=format&fit=crop',
     category: 'Salud'

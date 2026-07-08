@@ -103,7 +103,7 @@ export default function Breadcrumbs({
       });
     } else if (mainTab === "blog") {
       crumbs.push({
-        label: "Blog de Guías SEO",
+        label: "Blog de Guías Prácticas",
         onClick: () => {},
         isLast: true
       });

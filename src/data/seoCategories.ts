@@ -130,7 +130,7 @@ En el Ecuador existen distintas modalidades de aportación para adaptarse a la r
       "Afiliarse voluntariamente teniendo deudas activas o multas patronales pendientes en el sistema del IESS.",
       "Intentar desafiliarse de manera incorrecta dejando de pagar, en lugar de solicitar la suspensión formal en la plataforma web."
     ],
-    relatedPostsSlugs: ["afiliacion-voluntaria-iess-requisitos-beneficios-2025"]
+    relatedPostsSlugs: ["afiliacion-voluntaria-iess-requisitos-beneficios-2026"]
   },
   {
     id: "historia-laboral",
@@ -216,7 +216,7 @@ La consulta de tu historial de aportes está digitalizada y cuenta con todas las
       "Confundir aportaciones en mora con aportaciones perdidas. Las aportaciones en mora sí cuentan para el tiempo de jubilación una vez que el patrono cancele.",
       "No actualizar tus datos de contacto y correo electrónico dentro de la plataforma de historia laboral."
     ],
-    relatedPostsSlugs: ["jubilacion-por-vejez-requisitos-2025"]
+    relatedPostsSlugs: ["jubilacion-por-vejez-requisitos-2026"]
   },
   {
     id: "prestamos-biess",
@@ -298,7 +298,7 @@ El BIESS ofrece financiamientos destinados a cubrir necesidades inmediatas de co
       "No tener actualizadas o autorizadas las cuentas de correo electrónico y de banco, impidiendo la recepción del código de confirmación OTP durante la firma electrónica del pagaré.",
       "Exceder la capacidad de pago permitida del 30% de tus ingresos mensuales consolidados en el sistema."
     ],
-    relatedPostsSlugs: ["prestamo-quirografario-biess-requisitos-montos-2025"]
+    relatedPostsSlugs: ["prestamo-quirografario-biess-requisitos-montos-2026"]
   },
   {
     id: "fondos-reserva",
@@ -369,7 +369,7 @@ Si has acumulado tus fondos en el IESS y deseas retirarlos, puedes hacerlo de ma
     ],
     news: [
       {
-        title: "Fondos de Reserva generaron rendimiento récord de intereses en 2025",
+        title: "Fondos de Reserva generaron rendimiento récord de intereses en 2026",
         date: "28 de Enero de 2026",
         summary: "La tasa de rendimiento anual que paga el BIESS por los fondos de reserva acumulados superó el 6.2%, incentivando el ahorro de los afiliados."
       }
@@ -379,7 +379,7 @@ Si has acumulado tus fondos en el IESS y deseas retirarlos, puedes hacerlo de ma
       "Tener la cuenta bancaria bloqueada o inactiva en el sistema financiero al momento de realizar la solicitud de desembolso.",
       "Suponer que los fondos se acumulan de manera automática al cambiar de empresa; al ingresar a un nuevo empleo, se requiere completar nuevamente un año continuo de servicios."
     ],
-    relatedPostsSlugs: ["prestamo-quirografario-biess-requisitos-montos-2025"]
+    relatedPostsSlugs: ["prestamo-quirografario-biess-requisitos-montos-2026"]
   },
   {
     id: "cesantia",
@@ -453,7 +453,7 @@ Los afiliados que cumplan las condiciones para jubilarse por vejez, invalidez o 
       "Presentar la solicitud de cesantía teniendo deudas de aportes patronales rezagadas que impiden calificar la situación de desempleo formal del afiliado.",
       "Desconocer que el fondo de cesantía es retenido temporalmente si eres garante de un préstamo hipotecario o quirografario del BIESS en estado de mora."
     ],
-    relatedPostsSlugs: ["jubilacion-por-vejez-requisitos-2025"]
+    relatedPostsSlugs: ["jubilacion-por-vejez-requisitos-2026"]
   },
   {
     id: "jubilacion",
@@ -549,7 +549,7 @@ Es una pensión mensual que se concede a las familias de los jubilados o afiliad
       "No verificar que la empresa haya ingresado formalmente el Aviso de Salida al sistema del IESS, dejando al solicitante como un empleado activo ante el sistema.",
       "Creer que los aportes del seguro privado o de otros regímenes extranjeros se homologan automáticamente sin haber completado un convenio de portabilidad formal previa."
     ],
-    relatedPostsSlugs: ["jubilacion-por-vejez-requisitos-2025"]
+    relatedPostsSlugs: ["jubilacion-por-vejez-requisitos-2026"]
   },
   {
     id: "salud",
@@ -625,7 +625,7 @@ Cuando la red de hospitales propios del IESS no posee turnos disponibles para es
       "Acudir directamente a emergencias por dolencias de consulta general. Las urgencias se reservan exclusivamente para casos que pongan en riesgo la vida del paciente.",
       "No validar los descansos médicos de clínicas particulares en las ventanillas de salud del IESS dentro del plazo de 8 días hábiles posteriores a su emisión."
     ],
-    relatedPostsSlugs: ["subsidio-maternidad-iess-requisitos-calculo-2025"]
+    relatedPostsSlugs: ["subsidio-maternidad-iess-requisitos-calculo-2026"]
   },
   {
     id: "certificados",
@@ -697,7 +697,7 @@ Este certificado verifica si el afiliado o sus dependientes directos han acumula
       "Intentar descargar el certificado de no adeudar teniendo multas de tránsito con la ANT o glosas patronales que aún no se reflejan en tu portal web pero sí en la base de datos fiscal.",
       "No percatarse de la fecha de caducidad de los certificados; por seguridad, la mayoría de estos certificados de afiliación o deudas tienen una vigencia limitada de 30 días."
     ],
-    relatedPostsSlugs: ["afiliacion-voluntaria-iess-requisitos-beneficios-2025"]
+    relatedPostsSlugs: ["afiliacion-voluntaria-iess-requisitos-beneficios-2026"]
   },
   {
     id: "empleadores",
@@ -765,7 +765,7 @@ El incumplimiento de estas obligaciones patronales, el retraso en el pago de pla
       "Pagar el aporte correspondiente únicamente sobre el sueldo básico, omitiendo registrar comisiones o comisiones de ventas que forman parte legal de la materia gravable.",
       "Desconocer que el Representante Legal de la empresa asume la responsabilidad civil y penal personal por las deudas patronales vigentes del negocio."
     ],
-    relatedPostsSlugs: ["subsidio-maternidad-iess-requisitos-calculo-2025"]
+    relatedPostsSlugs: ["subsidio-maternidad-iess-requisitos-calculo-2026"]
   },
   {
     id: "herramientas",
@@ -835,7 +835,7 @@ Nuestra plataforma integra un **Generador Inteligente de Oficios de Ley** que cu
       "Omitir adjuntar los justificativos físicos o copias digitales complementarias detalladas al momento de presentar la carta formal en ventanilla.",
       "Presentar impugnaciones fuera de los plazos legales previstos por la ley de seguridad social ecuatoriana."
     ],
-    relatedPostsSlugs: ["prestamo-quirografario-biess-requisitos-montos-2025"]
+    relatedPostsSlugs: ["prestamo-quirografario-biess-requisitos-montos-2026"]
   },
   {
     id: "faq",
@@ -900,7 +900,7 @@ Explora nuestras secciones divididas por categorías temáticas para obtener ori
       "Acudir presencialmente a consultar dudas básicas que se resuelven en 10 segundos en el portal en línea de manera gratuita.",
       "Ignorar las notificaciones virtuales que envía el IESS a tu buzón oficial de afiliado, donde suelen alertar sobre deudas."
     ],
-    relatedPostsSlugs: ["afiliacion-voluntaria-iess-requisitos-beneficios-2025"]
+    relatedPostsSlugs: ["afiliacion-voluntaria-iess-requisitos-beneficios-2026"]
   },
   {
     id: "noticias",
@@ -966,7 +966,7 @@ Nuestra redacción monitorea permanentemente el Registro Oficial del Ecuador y l
       "Asumir que los cambios legislativos de jubilación son retroactivos; la ley protege el derecho adquirido de los actuales jubilados activos.",
       "No consultar periódicamente las alertas de mantenimiento del sistema web antes de programar trámites importantes de última hora."
     ],
-    relatedPostsSlugs: ["jubilacion-por-vejez-requisitos-2025"]
+    relatedPostsSlugs: ["jubilacion-por-vejez-requisitos-2026"]
   },
   {
     id: "blog",
@@ -1009,7 +1009,7 @@ Nuestros redactores preparan artículos minuciosos con base en la normativa lega
     tools: [
       {
         title: "Explorar Todo el Catálogo de Guías",
-        description: "Utiliza el menú de pestañas superiores para ingresar de inmediato al Blog Oficial de Guías SEO e inspeccionar los artículos completos.",
+        description: "Utiliza el menú de pestañas superiores para ingresar de inmediato al Blog Oficial de Guías e inspeccionar los artículos completos.",
         type: "oficio",
         actionLabel: "Ir al Catálogo",
         query: "Hola, deseo ver los últimos artículos e investigaciones de seguridad social que hay en el blog."
@@ -1027,7 +1027,7 @@ Nuestros redactores preparan artículos minuciosos con base en la normativa lega
       "No validar la fecha de redacción de los artículos del blog; asegúrate de consultar guías correspondientes al marco legal y salario básico vigente del año en curso.",
       "Omitir la lectura de las secciones de Errores Frecuentes, donde suele indicarse detalladamente por qué suelen bloquearse las solicitudes en línea."
     ],
-    relatedPostsSlugs: ["jubilacion-por-vejez-requisitos-2025", "prestamo-quirografario-biess-requisitos-montos-2025", "afiliacion-voluntaria-iess-requisitos-beneficios-2025", "subsidio-maternidad-iess-requisitos-calculo-2025"]
+    relatedPostsSlugs: ["jubilacion-por-vejez-requisitos-2026", "prestamo-quirografario-biess-requisitos-montos-2026", "afiliacion-voluntaria-iess-requisitos-beneficios-2026", "subsidio-maternidad-iess-requisitos-calculo-2026"]
   },
   {
     id: "tramites",
@@ -1088,6 +1088,6 @@ Aportes patronales, créditos inmediatos, jubilaciones vitalicias o solicitudes 
       "Iniciar trámites virtuales teniendo deudas de aportaciones activas, lo que provoca el bloqueo instantáneo del flujo informático en el sistema.",
       "Utilizar navegadores desactualizados o sin permisos de popups activados, lo que impide descargar los PDFs resultantes al finalizar el trámite."
     ],
-    relatedPostsSlugs: ["jubilacion-por-vejez-requisitos-2025", "prestamo-quirografario-biess-requisitos-montos-2025"]
+    relatedPostsSlugs: ["jubilacion-por-vejez-requisitos-2026", "prestamo-quirografario-biess-requisitos-montos-2026"]
   }
 ];

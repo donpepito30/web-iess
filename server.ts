@@ -76,16 +76,9 @@ app.get('/sitemap.xml', (req, res) => {
   });
 
   // URLs por cada artículo del Blog (slugs reales de BLOG_POSTS)
-  const blogSlugs = [
-    'jubilacion-por-vejez-requisitos-2025',
-    'prestamo-quirografario-biess-requisitos-montos-2025',
-    'afiliacion-voluntaria-iess-requisitos-beneficios-2025',
-    'subsidio-maternidad-iess-requisitos-calculo-2025'
-  ];
-
-  blogSlugs.forEach(slug => {
+  BLOG_POSTS.forEach(post => {
     urls.push({
-      url: `/blog/${slug}`,
+      url: `/blog/${post.slug}`,
       changefreq: 'weekly',
       priority: '0.8'
     });

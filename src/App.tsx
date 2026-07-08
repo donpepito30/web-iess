@@ -1228,7 +1228,7 @@ export default function App() {
               }`}
             >
               <BookOpen className="w-4 h-4 text-[#c9a84c] shrink-0" />
-              <span>BLOG DE GUÍAS SEO</span>
+              <span>BLOG DE GUÍAS PRÁCTICAS</span>
               <span className="bg-emerald-500 text-white font-black text-[8px] sm:text-[9px] px-1.5 py-0.5 rounded-full uppercase shrink-0">
                 Nuevo
               </span>
@@ -1551,7 +1551,7 @@ export default function App() {
           <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm">
             <div className="mb-4">
               <span className="inline-flex items-center gap-1 bg-amber-100 text-[#9c7d31] text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-2">
-                📂 Biblioteca Legal SEO
+                📂 Biblioteca Legal
               </span>
               <h2 className="text-lg sm:text-xl font-extrabold text-[#0a1f42] flex items-center gap-2">
                 <span className="text-2xl leading-none">📂</span>
@@ -1727,7 +1727,7 @@ export default function App() {
                           type="text"
                           value={aportesPeriodos}
                           onChange={(e) => setAportesPeriodos(e.target.value)}
-                          placeholder="Ej. Enero a Septiembre del 2024 (9 planillas impagas)"
+                          placeholder="Ej. Enero a Septiembre del 2026 (9 planillas impagas)"
                           className="w-full text-xs border border-slate-200 rounded px-2.5 py-1.5 focus:outline-none focus:border-[#0a1f42] focus:ring-1 focus:ring-[#0a1f42]"
                         />
                       </div>
@@ -2044,7 +2044,7 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
                             </p>
                             <p>
                               • <span className="font-semibold">Periodos impagos:</span> Al revisar mi historia laboral en el portal del IESS se constata la total falta de registro laboral retroactivo en: 
-                              {" "}<span className="font-bold text-red-700">{aportesPeriodos || "[Describa meses faltantes (ej: Enero a Noviembre 2024)]"}</span>.
+                              {" "}<span className="font-bold text-red-700">{aportesPeriodos || "[Describa meses faltantes (ej: Enero a Noviembre 2026)]"}</span>.
                             </p>
                           </div>
                           <p>
@@ -2879,7 +2879,7 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
 
                       <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-3">
                         <h4 className="text-xs font-black text-[#0a1f42] uppercase tracking-wider border-b pb-2">
-                          Palabras Clave SEO
+                          Temas Relacionados
                         </h4>
                         <div className="flex flex-wrap gap-1.5">
                           {selectedPost.keywords.map((kw, i) => (
@@ -2952,7 +2952,7 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
                         </p>
                       </div>
                       <span className="bg-[#0a1f42] text-white text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider font-mono shrink-0">
-                        SEO Optimizado 2026
+                        Actualizado 2026
                       </span>
                     </div>
 

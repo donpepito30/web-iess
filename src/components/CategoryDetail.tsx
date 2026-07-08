@@ -159,7 +159,7 @@ export default function CategoryDetail({
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-2.5">
               <span className="text-xs bg-[#c9a84c] text-[#0a1f42] font-black px-2.5 py-1 rounded uppercase tracking-wider">
-                Página Pilar SEO
+                Guía Oficial de Consulta
               </span>
               {activeSubcategory && (
                 <span className="text-xs bg-white/10 text-white font-bold px-2.5 py-1 rounded">
@@ -274,7 +274,7 @@ export default function CategoryDetail({
             {/* Localized keywords footer for search engines */}
             <div className="mt-8 pt-4 border-t border-slate-100 flex items-center gap-2 text-[10px] text-slate-400 font-semibold font-mono">
               <Bookmark className="w-3.5 h-3.5 text-slate-400" />
-              <span>Etiquetas de indexación SEO: {category.title.toLowerCase()}, {category.slug}, trámites iess, ecuador seguro social, iess 2026</span>
+              <span>Etiquetas de consulta: {category.title.toLowerCase()}, {category.slug}, trámites iess, ecuador seguro social, iess 2026</span>
             </div>
           </div>
 

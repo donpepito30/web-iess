@@ -370,7 +370,7 @@ export const PROCEDURES_DATA: Procedure[] = [
   },
   {
     id: "quejas-canales-denuncia",
-    title: "Canales de Denuncias Oficiales (Septiembre 2025)",
+    title: "Canales de Denuncias Oficiales (Septiembre 2026)",
     category: "Trámites y Afiliación",
     whoCanDo: "Todos los asegurados, afiliados, jubilados, dependientes y ciudadanos preocupados.",
     requirements: [
@@ -378,7 +378,7 @@ export const PROCEDURES_DATA: Procedure[] = [
       "Detalles del incidente: fecha, hospital, oficina, o nombre del funcionario (si aplica)."
     ],
     steps: [
-      "Saber que el IESS habilitó canales oficiales 24/7 en septiembre de 2025 para reportar irregularidades.",
+      "Saber que el IESS habilitó canales oficiales 24/7 en septiembre de 2026 para reportar irregularidades.",
       "Puedes ingresar en la web oficial a denuncias.iess.gob.ec.",
       "O enviar un mensaje interactivo de WhatsApp al chatbot 0962532338.",
       "Seguir el menú guiado en pantalla para ingresar tu denuncia de forma segura, confidencial y expedita."

@@ -108,8 +108,8 @@ RUC/C.C.: ${ruc}`;
       { id: "cedula", label: "Cédula de Identidad", type: "text", placeholder: "Ej. 1712345678" },
       { id: "empleador", label: "Empresa o Nombre del Empleador", type: "text", placeholder: "Ej. Almacenes S.A." },
       { id: "fechaInicio", label: "Fecha de Inicio de Labores", type: "date" },
-      { id: "fechaFin", label: "Fecha de Fin de Labores o indica (Sigue Activo)", type: "text", placeholder: "Ej. 30/11/2025 o 'Sigue Activo'" },
-      { id: "periodos", label: "Meses / Planillas Faltantes", type: "text", placeholder: "Ej. Junio a Noviembre de 2025" }
+      { id: "fechaFin", label: "Fecha de Fin de Labores o indica (Sigue Activo)", type: "text", placeholder: "Ej. 30/11/2026 o 'Sigue Activo'" },
+      { id: "periodos", label: "Meses / Planillas Faltantes", type: "text", placeholder: "Ej. Junio a Noviembre de 2026" }
     ],
     generateText: (values) => {
       const ciudad = values.ciudad || "Quito";
@@ -289,7 +289,7 @@ C.C.: ${cedulaC}`;
       { id: "cedula", label: "Cédula de Identidad", type: "text", placeholder: "Ej. 1723456789" },
       { id: "empleador", label: "Último Empleador", type: "text", placeholder: "Ej. Constructora del Norte" },
       { id: "fechaCese", label: "Fecha de Cese o Salida Laboral", type: "date" },
-      { id: "actaNum", label: "Acta de Finiquito / No. Registro de Cese", type: "text", placeholder: "Ej. MDT-2025-0814" },
+      { id: "actaNum", label: "Acta de Finiquito / No. Registro de Cese", type: "text", placeholder: "Ej. MDT-2026-0814" },
       { id: "tipoTram", label: "Tipo de Reclamo", type: "select", options: ["Solo Retiro de Cesantía Acumulada", "Acceso al Seguro de Desempleo (5 meses)", "Retiro de Cesantía por Jubilación"] }
     ],
     generateText: (values, formatFecha) => {
@@ -348,7 +348,7 @@ C.C.: ${cedula}`;
       { id: "nombre", label: "Nombre", type: "text", placeholder: "Ej. Laura Veloz" },
       { id: "cedula", label: "Cédula", type: "text", placeholder: "Ej. 1823456780" },
       { id: "tipoBeneficio", label: "Tipo de Beneficio Retrasado", type: "select", options: ["Pensión de Jubilación Vejez", "Pensión de Montepío", "Subsidio de Incapacidad Temporal (Enfermedad)", "Fondos de Reserva Retenidos"] },
-      { id: "solicitudNum", label: "No. Solicitud de Trámite Inicial", type: "text", placeholder: "Ej. SOL-2025-4569" },
+      { id: "solicitudNum", label: "No. Solicitud de Trámite Inicial", type: "text", placeholder: "Ej. SOL-2026-4569" },
       { id: "mesesImpagos", label: "Semanas / Meses Impagos", type: "text", placeholder: "Ej. Abril y Mayo del 2026" },
       { id: "cuenta", label: "Banco y No. de Cuenta", type: "text", placeholder: "Ej. Banco Pacífico Ahorros 1023456" }
     ],
