@@ -8,7 +8,6 @@ import {
   AlertTriangle, 
   Calendar, 
   ArrowLeft, 
-  Sparkles,
   ChevronDown,
   ChevronUp,
   Bookmark,
@@ -184,7 +183,6 @@ export default function CategoryDetail({
             }}
             className="shrink-0 bg-[#c9a84c] hover:bg-[#b5953d] text-[#0a1f42] font-black px-5 py-3 rounded-xl transition-all shadow-lg hover:-translate-y-0.5 active:translate-y-0 text-sm flex items-center justify-center gap-2 uppercase tracking-wide border border-[#e5c15e] cursor-pointer"
           >
-            <Sparkles className="w-4 h-4 text-white" />
             Asistente IESS IA 🤖
           </button>
         </div>
@@ -315,7 +313,7 @@ export default function CategoryDetail({
                               }}
                               className="text-[10px] bg-[#0a1f42] hover:bg-[#122e5b] text-white font-extrabold px-3 py-1.5 rounded-lg flex items-center gap-1 transition-all cursor-pointer uppercase tracking-wider"
                             >
-                              <Sparkles className="w-3 h-3 text-[#c9a84c]" /> Consultar al Chatbot
+                              Consultar al Chatbot
                             </button>
                           </div>
                         </div>
@@ -368,7 +366,7 @@ export default function CategoryDetail({
                       onClick={() => onConsultChatbot(tool.query)}
                       className="w-full mt-3 py-1.5 bg-[#0a1f42] text-white hover:bg-[#143263] font-bold text-[10px] rounded-lg shadow-2xs transition-all flex items-center justify-center gap-1 cursor-pointer uppercase tracking-wider"
                     >
-                      <Sparkles className="w-3 h-3 text-[#c9a84c]" /> {tool.actionLabel}
+                      {tool.actionLabel}
                     </button>
                   </div>
                 ))}

@@ -9,7 +9,6 @@ import {
   HelpCircle, 
   BadgeInfo,
   ShieldCheck, 
-  Sparkles, 
   CheckCircle, 
   CornerDownRight, 
   Info, 
@@ -1028,14 +1027,6 @@ export default function App() {
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#c9a84c]/5 rounded-full blur-3xl -z-10 pointer-events-none"></div>
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, y: -10 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            className="inline-flex items-center gap-1.5 bg-[#0f2e5c] border border-blue-400/20 px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-bold text-[#c9a84c] mb-4 uppercase tracking-widest mx-auto"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-[#c9a84c] shrink-0" />
-            Normativa Nacional Actualizada 2026
-          </motion.div>
 
           <motion.h1 
             initial={{ opacity: 0, y: 15 }}
@@ -2851,7 +2842,6 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
                           }}
                           className="w-full py-2.5 px-4 bg-[#0a1f42] text-white hover:bg-[#112d59] font-extrabold text-xs rounded-xl shadow transition-all flex items-center justify-center gap-2 border border-slate-800 hover:-translate-y-0.5 uppercase tracking-wider cursor-pointer"
                         >
-                          <Sparkles className="w-4 h-4 text-[#c9a84c]" />
                           Consultar al Asistente Virtual sobre este Post
                         </button>
                       </div>

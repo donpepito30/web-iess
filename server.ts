@@ -44,9 +44,16 @@ app.use((req, res, next) => {
   next();
 });
 
+// Helper function to dynamically obtain the site's base URL (e.g., on Vercel, Cloud Run, Localhost)
+function getBaseUrl(req: express.Request): string {
+  const host = req.get('host') || 'localhost:3000';
+  const protocol = req.secure || req.headers['x-forwarded-proto'] === 'https' ? 'https' : 'http';
+  return `${protocol}://${host}`;
+}
+
 // Sitemap dinámico
 app.get('/sitemap.xml', (req, res) => {
-  const baseUrl = 'https://ais-pre-lcespzc3y2p5yn5ey2rbly-34447954721.us-west2.run.app';
+  const baseUrl = getBaseUrl(req);
   
   // URLs principales
   const urls = [
@@ -114,6 +121,7 @@ app.get('/sitemap.xml', (req, res) => {
 
 // Robots.txt
 app.get('/robots.txt', (req, res) => {
+  const baseUrl = getBaseUrl(req);
   const robotsTxt = `
 User-agent: *
 Allow: /
@@ -121,7 +129,7 @@ Disallow: /admin
 Disallow: /api/
 Disallow: /private
 
-Sitemap: https://ais-pre-lcespzc3y2p5yn5ey2rbly-34447954721.us-west2.run.app/sitemap.xml
+Sitemap: ${baseUrl}/sitemap.xml
 
 # Google-specific directives
 User-agent: Googlebot
@@ -331,7 +339,7 @@ app.post("/api/chat", async (req, res) => {
 
       // We append the new message to contents or use chats.create
       const response = await ai.models.generateContent({
-        model: "gemini-3.5-flash",
+        model: "gemini-2.0-flash",
         contents: [
           ...formattedHistory,
           { role: "user", parts: [{ text: message }] }
@@ -347,7 +355,7 @@ app.post("/api/chat", async (req, res) => {
       res.json({ response: responseText, schema, simulator: false });
       return;
     } catch (error: any) {
-      console.error("Gemini API Error:", error);
+      console.log("Gemini API Error (falling back to contingency simulator):", error ? error.message || error : error);
       // Let it fall back gracefully to the offline simulation below if API has transient errors
     }
   }
@@ -653,7 +661,8 @@ app.get('/iess/:ciudad', (req, res) => {
   }
   
   const cityNameCap = locationData.fullName;
-  const url = `https://ais-pre-lcespzc3y2p5yn5ey2rbly-34447954721.us-west2.run.app/iess/${ciudad}`;
+  const baseUrl = getBaseUrl(req);
+  const url = `${baseUrl}/iess/${ciudad}`;
   
   const html = renderHtml({
     title: `IESS ${cityNameCap} - Trámites, Requisitos y Oficios | IESSAsistente`,
@@ -696,7 +705,8 @@ app.get("/procedimiento/:slug", (req, res) => {
   const proc = PROCEDURES_DATA.find(p => p.id.toLowerCase().replace(/\s+/g, '-') === slug.toLowerCase() || p.id.toLowerCase() === slug.toLowerCase());
 
   if (proc) {
-    const url = `https://ais-pre-lcespzc3y2p5yn5ey2rbly-34447954721.us-west2.run.app/procedimiento/${slug}`;
+    const baseUrl = getBaseUrl(req);
+    const url = `${baseUrl}/procedimiento/${slug}`;
     const html = renderHtml({
       title: `${proc.title} - Requisitos y Pasos Oficiales | IESSAsistente`,
       description: `Guía detallada paso a paso sobre ${proc.title} en Ecuador. Conoce los requisitos mínimos de aportes, documentos de respaldo, pasos de trámite en línea y errores comunes a evitar.`,
@@ -729,7 +739,8 @@ app.get("/blog/:slug", (req, res) => {
   const post = BLOG_POSTS.find(p => p.slug === slug || p.id === slug);
 
   if (post) {
-    const url = `https://ais-pre-lcespzc3y2p5yn5ey2rbly-34447954721.us-west2.run.app/blog/${slug}`;
+    const baseUrl = getBaseUrl(req);
+    const url = `${baseUrl}/blog/${slug}`;
     const html = renderHtml({
       title: `${post.title} | Blog IESSAsistente`,
       description: post.metaDescription,
@@ -758,7 +769,8 @@ app.get("/blog/:slug", (req, res) => {
 
 // SSR Routing for Blog Section List
 app.get("/blog", (req, res) => {
-  const url = `https://ais-pre-lcespzc3y2p5yn5ey2rbly-34447954721.us-west2.run.app/blog`;
+  const baseUrl = getBaseUrl(req);
+  const url = `${baseUrl}/blog`;
   const html = renderHtml({
     title: "Blog Oficial IESS Ecuador - Guías de Seguridad Social y Trámites",
     description: "Encuentra explicaciones sencillas, normativas legales vigentes y guías detalladas para jubilaciones, préstamos BIESS, subsidio de maternidad y aportación independiente.",
@@ -772,7 +784,8 @@ app.get("/blog", (req, res) => {
 
 // SSR Routing for FAQ / Consultas Section
 app.get("/faq", (req, res) => {
-  const url = `https://ais-pre-lcespzc3y2p5yn5ey2rbly-34447954721.us-west2.run.app/faq`;
+  const baseUrl = getBaseUrl(req);
+  const url = `${baseUrl}/faq`;
   const html = renderHtml({
     title: "Preguntas Frecuentes IESS - Respuestas Rápidas de Seguridad Social",
     description: "Resuelve de forma inmediata tus dudas de trámites, requisitos de afiliación voluntaria, cobro de fondos de reserva, cesantías y cálculo de pensiones.",
@@ -809,4 +822,8 @@ async function startServer() {
   });
 }
 
-startServer();
+if (process.env.NODE_ENV !== "production" || !process.env.VERCEL) {
+  startServer();
+}
+
+export default app;

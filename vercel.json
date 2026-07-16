@@ -1,0 +1,46 @@
+{
+  "version": 2,
+  "functions": {
+    "api/index.ts": {
+      "includeFiles": "dist/**"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/index.ts"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/index.ts"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/api/index.ts"
+    },
+    {
+      "source": "/iess/:path*",
+      "destination": "/api/index.ts"
+    },
+    {
+      "source": "/procedimiento/:path*",
+      "destination": "/api/index.ts"
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/api/index.ts"
+    },
+    {
+      "source": "/blog",
+      "destination": "/api/index.ts"
+    },
+    {
+      "source": "/faq",
+      "destination": "/api/index.ts"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/api/index.ts"
+    }
+  ]
+}
