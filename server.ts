@@ -147,26 +147,30 @@ Request-rate: 30/60
   res.send(robotsTxt);
 });
 
-// Initialize Gemini Client safely
-let ai: GoogleGenAI | null = null;
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+// Lazy initialization of Gemini Client for Serverless and Container environments
+let cachedAiClient: GoogleGenAI | null = null;
 
-if (GEMINI_API_KEY && GEMINI_API_KEY !== "MY_GEMINI_API_KEY" && GEMINI_API_KEY.trim() !== "") {
-  try {
-    ai = new GoogleGenAI({
-      apiKey: GEMINI_API_KEY,
-      httpOptions: {
-        headers: {
-          'User-Agent': 'aistudio-build',
-        }
-      }
-    });
-    console.log("Gemini client initialized successfully.");
-  } catch (error) {
-    console.error("Failed to initialize Gemini client:", error);
+function getGeminiClient(): GoogleGenAI | null {
+  const key = process.env.GEMINI_API_KEY;
+  if (!key || key === "MY_GEMINI_API_KEY" || key.trim() === "") {
+    return null;
   }
-} else {
-  console.log("No GEMINI_API_KEY detected in env variables. Running in local assistant simulation mode.");
+  if (!cachedAiClient) {
+    try {
+      cachedAiClient = new GoogleGenAI({
+        apiKey: key,
+        httpOptions: {
+          headers: {
+            'User-Agent': 'aistudio-build',
+          }
+        }
+      });
+      console.log("Gemini client lazy-initialized successfully in request handler.");
+    } catch (error) {
+      console.log("Failed lazy-initializing Gemini client:", error);
+    }
+  }
+  return cachedAiClient;
 }
 
 const SYSTEM_INSTRUCTION = `
@@ -312,10 +316,11 @@ function detectAndGenerateSchema(message: string, text: string): string {
 
 // API routes first
 app.get("/api/health", (req, res) => {
+  const aiClient = getGeminiClient();
   res.json({
     status: "ok",
     timestamp: new Date().toISOString(),
-    api_configured: !!ai
+    api_configured: !!aiClient
   });
 });
 
@@ -328,7 +333,8 @@ app.post("/api/chat", async (req, res) => {
   }
 
   // 1. If Gemini client is ready, call it!
-  if (ai) {
+  const aiClient = getGeminiClient();
+  if (aiClient) {
     try {
       // Map history to Google GenAI format if provided
       // history syntax: [{ role: 'user' | 'model', content: string }]
@@ -338,7 +344,7 @@ app.post("/api/chat", async (req, res) => {
       }));
 
       // We append the new message to contents or use chats.create
-      const response = await ai.models.generateContent({
+      const response = await aiClient.models.generateContent({
         model: "gemini-2.0-flash",
         contents: [
           ...formattedHistory,
