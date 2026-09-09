@@ -1,7 +1,6 @@
 import express from "express";
 import path from "path";
 import fs from "fs";
-import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
 import compression from "compression";
@@ -807,6 +806,7 @@ app.get("/faq", (req, res) => {
 async function startServer() {
   if (process.env.NODE_ENV !== "production") {
     // In dev mode, mount Vite middleware to serve resources dynamically
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
