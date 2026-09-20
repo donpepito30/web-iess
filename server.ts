@@ -90,6 +90,16 @@ app.get('/sitemap.xml', (req, res) => {
     });
   });
 
+  // URLs de paginación del Blog (distribución de Link Equity y rastreo de archivos)
+  const totalBlogPages = Math.ceil(BLOG_POSTS.length / 4);
+  for (let p = 2; p <= totalBlogPages; p++) {
+    urls.push({
+      url: `/blog/page/${p}`,
+      changefreq: 'daily',
+      priority: '0.7'
+    });
+  }
+
   // URLs por cada Ciudad para SEO local
   const cities = ['quito', 'guayaquil', 'cuenca', 'ambato', 'machala'];
   cities.forEach(city => {
@@ -344,7 +354,7 @@ app.post("/api/chat", async (req, res) => {
 
       // We append the new message to contents or use chats.create
       const response = await aiClient.models.generateContent({
-        model: "gemini-2.0-flash",
+        model: "gemini-3.6-flash",
         contents: [
           ...formattedHistory,
           { role: "user", parts: [{ text: message }] }
@@ -579,6 +589,46 @@ Recuerda que si deseas registrar un reclamo, los canales oficiales 24/7 son **de
   res.json({ response: responseText, schema, simulator: true });
 });
 
+// API: Paginated Blog Guides & Search Endpoint
+app.get("/api/blog", (req, res) => {
+  const page = Math.max(1, parseInt(req.query.page as string, 10) || 1);
+  const limit = Math.min(20, Math.max(1, parseInt(req.query.limit as string, 10) || 4));
+  const category = (req.query.category as string) || "All";
+  const search = ((req.query.search as string) || "").trim().toLowerCase();
+
+  let filtered = BLOG_POSTS;
+  if (category && category !== "All") {
+    filtered = filtered.filter(p => p.category.toLowerCase() === category.toLowerCase());
+  }
+  if (search) {
+    filtered = filtered.filter(p =>
+      p.title.toLowerCase().includes(search) ||
+      p.metaDescription.toLowerCase().includes(search) ||
+      p.keywords.some(kw => kw.toLowerCase().includes(search))
+    );
+  }
+
+  const totalPosts = filtered.length;
+  const totalPages = Math.ceil(totalPosts / limit) || 1;
+  const validPage = Math.min(page, totalPages);
+  const offset = (validPage - 1) * limit;
+  const posts = filtered.slice(offset, offset + limit);
+
+  res.json({
+    posts,
+    pagination: {
+      currentPage: validPage,
+      totalPages,
+      totalPosts,
+      limit,
+      hasNextPage: validPage < totalPages,
+      hasPrevPage: validPage > 1,
+      nextPage: validPage < totalPages ? validPage + 1 : null,
+      prevPage: validPage > 1 ? validPage - 1 : null
+    }
+  });
+});
+
 // Helper function to render HTML dynamically with server-side meta tags & structured data
 function renderHtml(meta: {
   title: string;
@@ -588,6 +638,10 @@ function renderHtml(meta: {
   dataAttr?: string;
   dataVal?: string;
   geoTags?: { position: string; placename: string; region: string };
+  robots?: string;
+  prevUrl?: string;
+  nextUrl?: string;
+  extraDataAttrs?: Record<string, string>;
 }) {
   const isProd = process.env.NODE_ENV === "production";
   const htmlPath = isProd
@@ -612,7 +666,7 @@ function renderHtml(meta: {
     html = html.replace('</head>', `<meta name="description" content="${meta.description}">\n</head>`);
   }
 
-  // 3. Replace Canonical link
+  // 3. Replace Canonical link (CRITICAL: Self-referencing canonical tag)
   if (html.includes('<link rel="canonical"')) {
     html = html.replace(/<link rel="canonical" href=".*?"\s*\/?>/, `<link rel="canonical" href="${meta.url}">`);
   } else {
@@ -623,8 +677,28 @@ function renderHtml(meta: {
   const ogTitle = `<meta property="og:title" content="${meta.title}">`;
   const ogDesc = `<meta property="og:description" content="${meta.description}">`;
   const ogUrl = `<meta property="og:url" content="${meta.url}">`;
-  
   html = html.replace('</head>', `${ogTitle}\n${ogDesc}\n${ogUrl}\n</head>`);
+
+  // 4b. Inject Robots meta tag if specified (e.g., 'noindex, follow' for deep pages)
+  if (meta.robots) {
+    if (html.includes('<meta name="robots"')) {
+      html = html.replace(/<meta name="robots" content=".*?"\s*\/?>/, `<meta name="robots" content="${meta.robots}">`);
+    } else {
+      html = html.replace('</head>', `<meta name="robots" content="${meta.robots}">\n</head>`);
+    }
+  }
+
+  // 4c. Inject Pagination link tags (rel="prev" & rel="next" for search engine crawling)
+  let paginationLinks = '';
+  if (meta.prevUrl) {
+    paginationLinks += `<link rel="prev" href="${meta.prevUrl}">\n`;
+  }
+  if (meta.nextUrl) {
+    paginationLinks += `<link rel="next" href="${meta.nextUrl}">\n`;
+  }
+  if (paginationLinks) {
+    html = html.replace('</head>', `${paginationLinks}</head>`);
+  }
 
   // 5. Inject JSON-LD structured schema
   if (meta.jsonLd) {
@@ -640,9 +714,18 @@ function renderHtml(meta: {
     html = html.replace('</head>', `${geoPos}\n${geoPlace}\n${geoRegion}\n</head>`);
   }
 
-  // 7. Hydrate initial state by putting a data-attribute on #root
+  // 7. Hydrate initial state by putting data-attributes on #root
+  let rootAttrs = '';
   if (meta.dataAttr && meta.dataVal) {
-    html = html.replace('<div id="root"></div>', `<div id="root" ${meta.dataAttr}="${meta.dataVal}"></div>`);
+    rootAttrs += ` ${meta.dataAttr}="${meta.dataVal}"`;
+  }
+  if (meta.extraDataAttrs) {
+    for (const [k, v] of Object.entries(meta.extraDataAttrs)) {
+      rootAttrs += ` ${k}="${v}"`;
+    }
+  }
+  if (rootAttrs) {
+    html = html.replace('<div id="root"></div>', `<div id="root"${rootAttrs}></div>`);
   }
 
   return html;
@@ -738,6 +821,108 @@ app.get("/procedimiento/:slug", (req, res) => {
   }
 });
 
+// SSR Helper for Blog Paginated Archive Pages
+function renderBlogPage(req: express.Request, res: express.Response, requestedPage: number) {
+  const baseUrl = getBaseUrl(req);
+  const limit = 4;
+  const totalPosts = BLOG_POSTS.length;
+  const totalPages = Math.ceil(totalPosts / limit) || 1;
+
+  // Bound check page number
+  const safePage = Math.max(1, Math.min(requestedPage, totalPages));
+  const isFirstPage = safePage === 1;
+
+  // SEO: Self-referencing canonical URL
+  // Page 1: /blog
+  // Page 2+: /blog/page/:page
+  const canonicalUrl = isFirstPage ? `${baseUrl}/blog` : `${baseUrl}/blog/page/${safePage}`;
+
+  // SEO: Rel prev & next links for crawler pagination traversal
+  const prevUrl = safePage === 2
+    ? `${baseUrl}/blog`
+    : safePage > 2
+      ? `${baseUrl}/blog/page/${safePage - 1}`
+      : undefined;
+
+  const nextUrl = safePage < totalPages
+    ? `${baseUrl}/blog/page/${safePage + 1}`
+    : undefined;
+
+  // SEO: Dynamic title and description to prevent duplicate metadata
+  const title = isFirstPage
+    ? "Blog Oficial IESS Ecuador - Guías de Seguridad Social y Trámites"
+    : `Blog Oficial IESS Ecuador - Guías de Seguridad Social - Página ${safePage} | IESS Asistente`;
+
+  const description = isFirstPage
+    ? "Encuentra explicaciones sencillas, normativas legales vigentes y guías detalladas para jubilaciones, préstamos BIESS, cesantías y trámites paso a paso."
+    : `Página ${safePage} del archivo y blog de guías oficiales del IESS Ecuador. Normativas legales vigentes, requisitos actualizados 2026 y resoluciones.`;
+
+  // SEO: Crawl budget optimization for deep pages (pages > 5 set to noindex, follow)
+  const robots = safePage > 5 ? "noindex, follow" : "index, follow";
+
+  // Slice posts for this specific page
+  const offset = (safePage - 1) * limit;
+  const pagePosts = BLOG_POSTS.slice(offset, offset + limit);
+
+  // Structured Data (JSON-LD): CollectionPage with ItemList for this page
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": title,
+    "description": description,
+    "url": canonicalUrl,
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": pagePosts.length,
+      "itemListElement": pagePosts.map((post, index) => ({
+        "@type": "ListItem",
+        "position": offset + index + 1,
+        "name": post.title,
+        "description": post.metaDescription,
+        "url": `${baseUrl}/blog/${post.slug}`
+      }))
+    }
+  };
+
+  const html = renderHtml({
+    title,
+    description,
+    url: canonicalUrl,
+    robots,
+    prevUrl,
+    nextUrl,
+    jsonLd,
+    dataAttr: "data-tab",
+    dataVal: "blog",
+    extraDataAttrs: {
+      "data-blog-page": String(safePage)
+    }
+  });
+
+  res.header("Content-Type", "text/html");
+  res.send(html);
+}
+
+// SSR Routing for Blog Pagination: /blog/page/:page (MUST come before /blog/:slug)
+app.get("/blog/page/:page", (req, res) => {
+  const pageNum = parseInt(req.params.page, 10);
+  if (isNaN(pageNum) || pageNum < 1) {
+    return res.redirect(301, "/blog");
+  }
+  if (pageNum === 1) {
+    // 301 Redirect page 1 parameter to root /blog for strict canonical URL cleanliness
+    return res.redirect(301, "/blog");
+  }
+  renderBlogPage(req, res, pageNum);
+});
+
+// SSR Routing for Blog Section List: /blog (supports query string ?page=X or defaults to page 1)
+app.get("/blog", (req, res) => {
+  const pageParam = req.query.page ? parseInt(req.query.page as string, 10) : 1;
+  const pageNum = isNaN(pageParam) || pageParam < 1 ? 1 : pageParam;
+  renderBlogPage(req, res, pageNum);
+});
+
 // SSR Routing for Blog Articles (for SEO indexability)
 app.get("/blog/:slug", (req, res) => {
   const slug = req.params.slug;
@@ -770,21 +955,6 @@ app.get("/blog/:slug", (req, res) => {
   } else {
     res.redirect("/blog");
   }
-});
-
-// SSR Routing for Blog Section List
-app.get("/blog", (req, res) => {
-  const baseUrl = getBaseUrl(req);
-  const url = `${baseUrl}/blog`;
-  const html = renderHtml({
-    title: "Blog Oficial IESS Ecuador - Guías de Seguridad Social y Trámites",
-    description: "Encuentra explicaciones sencillas, normativas legales vigentes y guías detalladas para jubilaciones, préstamos BIESS, subsidio de maternidad y aportación independiente.",
-    url,
-    dataAttr: "data-tab",
-    dataVal: "blog"
-  });
-  res.header('Content-Type', 'text/html');
-  res.send(html);
 });
 
 // SSR Routing for FAQ / Consultas Section

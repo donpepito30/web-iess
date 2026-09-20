@@ -37,6 +37,7 @@ import { BLOG_POSTS, BlogPost } from "./data/blogPosts";
 import { SEO_CATEGORIES, SeoCategory } from "./data/seoCategories";
 import CategoryDetail from "./components/CategoryDetail";
 import Breadcrumbs from "./components/Breadcrumbs";
+import Pagination from "./components/Pagination";
 
 interface FrequentProcedure {
   emoji: string;
@@ -207,6 +208,9 @@ function updateMetaTags(config: {
   description: string;
   url: string;
   image?: string;
+  robots?: string;
+  prevUrl?: string;
+  nextUrl?: string;
 }) {
   // Title
   document.title = config.title;
@@ -227,7 +231,7 @@ function updateMetaTags(config: {
   }
   descMeta.setAttribute('content', config.description);
   
-  // Canonical
+  // Canonical (Self-referencing canonical tag)
   let canonical = document.querySelector('link[rel="canonical"]');
   if (!canonical) {
     canonical = document.createElement('link');
@@ -236,6 +240,45 @@ function updateMetaTags(config: {
   }
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://ais-pre-lcespzc3y2p5yn5ey2rbly-34447954721.us-west2.run.app';
   canonical.setAttribute('href', `${origin}${config.url}`);
+
+  // Robots meta tag
+  let robotsMeta = document.querySelector('meta[name="robots"]');
+  if (config.robots) {
+    if (!robotsMeta) {
+      robotsMeta = document.createElement('meta');
+      robotsMeta.setAttribute('name', 'robots');
+      document.head.appendChild(robotsMeta);
+    }
+    robotsMeta.setAttribute('content', config.robots);
+  } else if (robotsMeta) {
+    robotsMeta.setAttribute('content', 'index, follow');
+  }
+
+  // Rel prev
+  let prevTag = document.querySelector('link[rel="prev"]');
+  if (config.prevUrl) {
+    if (!prevTag) {
+      prevTag = document.createElement('link');
+      prevTag.setAttribute('rel', 'prev');
+      document.head.appendChild(prevTag);
+    }
+    prevTag.setAttribute('href', `${origin}${config.prevUrl}`);
+  } else if (prevTag) {
+    prevTag.remove();
+  }
+
+  // Rel next
+  let nextTag = document.querySelector('link[rel="next"]');
+  if (config.nextUrl) {
+    if (!nextTag) {
+      nextTag = document.createElement('link');
+      nextTag.setAttribute('rel', 'next');
+      document.head.appendChild(nextTag);
+    }
+    nextTag.setAttribute('href', `${origin}${config.nextUrl}`);
+  } else if (nextTag) {
+    nextTag.remove();
+  }
 }
 
 const CIUDAD_FAQS: Record<string, { q: string; a: string }[]> = {
@@ -318,6 +361,8 @@ export default function App() {
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [blogSearch, setBlogSearch] = useState("");
   const [selectedBlogCategory, setSelectedBlogCategory] = useState<string>("All");
+  const [blogCurrentPage, setBlogCurrentPage] = useState<number>(1);
+  const blogPostsPerPage = 4;
 
   // Estado del nuevo Generador integral de 17 Oficios de Ley
   const [selectedOficioId, setSelectedOficioId] = useState<string>("glosa");
@@ -415,7 +460,19 @@ export default function App() {
       setSelectedCity(dataLocation);
       setMainTab('consultas');
       setCurrentRoute('home');
-    } else if (dataTab === "blog" || path === "/blog") {
+    } else if (dataTab === "blog" || path === "/blog" || path.startsWith("/blog/page/")) {
+      const dataBlogPage = rootEl?.getAttribute("data-blog-page");
+      if (dataBlogPage) {
+        const p = parseInt(dataBlogPage, 10);
+        if (!isNaN(p) && p >= 1) setBlogCurrentPage(p);
+      } else if (path.startsWith("/blog/page/")) {
+        const p = parseInt(path.split("/blog/page/")[1], 10);
+        if (!isNaN(p) && p >= 1) setBlogCurrentPage(p);
+      } else {
+        const urlParams = new URLSearchParams(window.location.search);
+        const p = parseInt(urlParams.get("page") || "1", 10);
+        if (!isNaN(p) && p >= 1) setBlogCurrentPage(p);
+      }
       setMainTab('blog');
       setCurrentRoute('blog');
     } else if (dataTab === "consultas" || path === "/faq") {
@@ -431,6 +488,11 @@ export default function App() {
           setCurrentRoute('procedure');
           setMainTab('consultas');
         }
+      } else if (path.startsWith("/blog/page/")) {
+        const p = parseInt(path.split("/blog/page/")[1], 10);
+        if (!isNaN(p) && p >= 1) setBlogCurrentPage(p);
+        setCurrentRoute('blog');
+        setMainTab('blog');
       } else if (path.startsWith("/blog/")) {
         const slug = path.split("/blog/")[1];
         const post = BLOG_POSTS.find(p => p.slug === slug || p.id === slug);
@@ -497,6 +559,21 @@ export default function App() {
           setCurrentRoute('procedure');
           setMainTab('consultas');
         }
+      } else if (path.startsWith("/blog/page/") || path === "/blog") {
+        let p = 1;
+        if (path.startsWith("/blog/page/")) {
+          p = parseInt(path.split("/blog/page/")[1], 10) || 1;
+        } else {
+          const urlParams = new URLSearchParams(window.location.search);
+          p = parseInt(urlParams.get("page") || "1", 10) || 1;
+        }
+        setBlogCurrentPage(p);
+        setCurrentRoute('blog');
+        setSelectedPost(null);
+        setSelectedCity(null);
+        setSelectedSeoCategory(null);
+        setSelectedSubcategorySlug(null);
+        setMainTab('blog');
       } else if (path.startsWith("/blog/")) {
         const slug = path.split("/blog/")[1];
         const post = BLOG_POSTS.find(p => p.slug === slug || p.id === slug);
@@ -628,17 +705,54 @@ export default function App() {
     setSelectedPost(null);
     setCurrentRoute('blog');
     
+    const targetUrl = blogCurrentPage > 1 ? `/blog/page/${blogCurrentPage}` : "/blog";
     window.history.pushState(
       null,
-      "Blog Oficial IESS Ecuador - Guías de Seguridad Social",
-      "/blog"
+      blogCurrentPage > 1 ? `Blog Oficial IESS Ecuador - Guías de Seguridad Social - Página ${blogCurrentPage}` : "Blog Oficial IESS Ecuador - Guías de Seguridad Social",
+      targetUrl
     );
     
     updateMetaTags({
-      title: "Blog Oficial IESS Ecuador - Guías de Seguridad Social",
+      title: blogCurrentPage > 1 ? `Blog Oficial IESS Ecuador - Guías de Seguridad Social - Página ${blogCurrentPage} | IESS Asistente` : "Blog Oficial IESS Ecuador - Guías de Seguridad Social",
       description: "Encuentra explicaciones sencillas, normativas legales vigentes y guías detalladas para jubilaciones, préstamos BIESS y aportaciones.",
-      url: "/blog"
+      url: targetUrl
     });
+  };
+
+  // Función para navegar entre páginas del archivo de Blog con SEO dinámico
+  const navigateToBlogPage = (page: number) => {
+    const targetPage = Math.max(1, page);
+    setBlogCurrentPage(targetPage);
+    const targetUrl = targetPage <= 1 ? "/blog" : `/blog/page/${targetPage}`;
+    window.history.pushState({ tab: "blog", page: targetPage }, "", targetUrl);
+
+    const title = targetPage <= 1
+      ? "Blog Oficial IESS Ecuador - Guías de Seguridad Social y Trámites"
+      : `Blog Oficial IESS Ecuador - Guías de Seguridad Social - Página ${targetPage} | IESS Asistente`;
+    const description = targetPage <= 1
+      ? "Encuentra explicaciones sencillas, normativas legales vigentes y guías detalladas para jubilaciones, préstamos BIESS, cesantías y trámites paso a paso."
+      : `Página ${targetPage} del archivo y blog de guías oficiales del IESS Ecuador. Normativas legales vigentes y trámites actualizados 2026.`;
+
+    const totalPages = Math.ceil(BLOG_POSTS.length / blogPostsPerPage) || 1;
+    const prevUrl = targetPage === 2 ? "/blog" : targetPage > 2 ? `/blog/page/${targetPage - 1}` : undefined;
+    const nextUrl = targetPage < totalPages ? `/blog/page/${targetPage + 1}` : undefined;
+    const robots = targetPage > 5 ? "noindex, follow" : "index, follow";
+
+    updateMetaTags({
+      title,
+      description,
+      url: targetUrl,
+      robots,
+      prevUrl,
+      nextUrl
+    });
+
+    const blogAnchor = document.getElementById("blog-header-anchor");
+    if (blogAnchor) {
+      blogAnchor.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 320, behavior: "smooth" });
+    }
   };
 
   // Click handlers for tab navigation with history state
@@ -673,11 +787,12 @@ export default function App() {
     setSelectedPost(null);
     setSelectedCity(null);
     setCurrentRoute('blog');
-    window.history.pushState(null, "Blog Oficial IESS Ecuador - Guías de Seguridad Social", "/blog");
+    const targetUrl = blogCurrentPage > 1 ? `/blog/page/${blogCurrentPage}` : "/blog";
+    window.history.pushState(null, "Blog Oficial IESS Ecuador - Guías de Seguridad Social", targetUrl);
     updateMetaTags({
-      title: "Blog Oficial IESS Ecuador - Guías de Seguridad Social",
+      title: blogCurrentPage > 1 ? `Blog Oficial IESS Ecuador - Guías de Seguridad Social - Página ${blogCurrentPage} | IESS Asistente` : "Blog Oficial IESS Ecuador - Guías de Seguridad Social",
       description: "Encuentra explicaciones sencillas, normativas legales vigentes y guías detalladas para jubilaciones, préstamos BIESS y aportaciones.",
-      url: "/blog"
+      url: targetUrl
     });
   };
 
@@ -2759,12 +2874,16 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
                 /* MOSTRAR DETALLE DEL ARTÍCULO */
                 <article className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden animate-fade-in">
                   <div className="p-6 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <button
-                      onClick={clearSelectedBlogPost}
+                    <a
+                      href={blogCurrentPage > 1 ? `/blog/page/${blogCurrentPage}` : "/blog"}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        clearSelectedBlogPost();
+                      }}
                       className="text-xs font-bold text-[#0a1f42] hover:text-[#c9a84c] transition-colors flex items-center gap-1.5 uppercase tracking-wider cursor-pointer"
                     >
                       ← Volver al listado de guías
-                    </button>
+                    </a>
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-extrabold px-2.5 py-1 rounded bg-[#0a1f42]/5 text-[#0a1f42] uppercase">
                         {selectedPost.category}
@@ -2928,7 +3047,7 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
                 </article>
               ) : (
                 /* MOSTRAR LISTADO DE ARTÍCULOS */
-                <div className="space-y-6 animate-fade-in">
+                <div id="blog-header-anchor" className="space-y-6 animate-fade-in">
                   {/* Buscador y Filtros del Blog */}
                   <div className="bg-gradient-to-br from-slate-50 to-amber-50/20 border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-4">
                     <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
@@ -2952,13 +3071,22 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
                         <input
                           type="text"
                           value={blogSearch}
-                          onChange={(e) => setBlogSearch(e.target.value)}
+                          onChange={(e) => {
+                            setBlogSearch(e.target.value);
+                            setBlogCurrentPage(1);
+                            if (blogCurrentPage > 1) {
+                              window.history.replaceState({ tab: 'blog', page: 1 }, '', '/blog');
+                            }
+                          }}
                           placeholder="Buscar guías por palabra clave (ej. jubilación, quirografario)..."
                           className="w-full text-xs font-bold text-[#0a1f42] placeholder-slate-400 bg-transparent focus:outline-none"
                         />
                         {blogSearch && (
                           <button
-                            onClick={() => setBlogSearch("")}
+                            onClick={() => {
+                              setBlogSearch("");
+                              setBlogCurrentPage(1);
+                            }}
                             className="p-1 rounded-full hover:bg-slate-100 text-slate-400"
                           >
                             <X className="w-3.5 h-3.5" />
@@ -2971,7 +3099,13 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
                         {["All", "Jubilación", "Préstamos", "Trámites", "Salud"].map((cat) => (
                           <button
                             key={cat}
-                            onClick={() => setSelectedBlogCategory(cat)}
+                            onClick={() => {
+                              setSelectedBlogCategory(cat);
+                              setBlogCurrentPage(1);
+                              if (blogCurrentPage > 1) {
+                                window.history.replaceState({ tab: 'blog', page: 1 }, '', '/blog');
+                              }
+                            }}
                             className={`px-3 py-1.5 text-xs font-extrabold rounded-xl border transition-all whitespace-nowrap h-11 cursor-pointer ${
                               selectedBlogCategory === cat
                                 ? "bg-[#0a1f42] text-white border-[#0a1f42]"
@@ -2985,7 +3119,7 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
                     </div>
                   </div>
 
-                  {/* Grid de Artículos */}
+                  {/* Grid de Artículos con Paginación SEO */}
                   {(() => {
                     const filteredPosts = BLOG_POSTS.filter(post => {
                       const matchesSearch = blogSearch === "" || 
@@ -3010,6 +3144,7 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
                             onClick={() => {
                               setBlogSearch("");
                               setSelectedBlogCategory("All");
+                              setBlogCurrentPage(1);
                             }}
                             className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-[#0a1f42] font-bold text-xs rounded-xl transition-all cursor-pointer"
                           >
@@ -3019,53 +3154,78 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
                       );
                     }
 
+                    const totalItems = filteredPosts.length;
+                    const totalPages = Math.ceil(totalItems / blogPostsPerPage) || 1;
+                    const safePage = Math.min(Math.max(1, blogCurrentPage), totalPages);
+
+                    const offset = (safePage - 1) * blogPostsPerPage;
+                    const paginatedPosts = filteredPosts.slice(offset, offset + blogPostsPerPage);
+
                     return (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {filteredPosts.map((post) => (
-                          <article
-                            key={post.id}
-                            onClick={() => {
-                              navigateToBlogPost(post);
-                              window.scrollTo({ top: 350, behavior: 'smooth' });
-                            }}
-                            className="bg-white border border-slate-200 hover:border-[#c9a84c] rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-all duration-150 cursor-pointer group flex flex-col h-full"
-                          >
-                            <div className="relative h-40 w-full overflow-hidden bg-slate-100">
-                              <img
-                                src={post.image}
-                                alt={post.title}
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                referrerPolicy="no-referrer"
-                                loading="lazy"
-                                decoding="async"
-                              />
-                              <span className="absolute top-3 left-3 bg-[#0a1f42] text-white font-black text-[9px] uppercase px-2 py-0.5 rounded shadow">
-                                {post.category}
-                              </span>
-                            </div>
-
-                            <div className="p-4 flex-grow flex flex-col justify-between space-y-3">
-                              <div className="space-y-1.5">
-                                <span className="text-[10px] text-slate-450 font-mono block">
-                                  📅 {post.publishDate} • ⏱️ {post.readTime} min lectura
-                                </span>
-                                <h3 className="text-xs sm:text-sm font-extrabold text-[#0a1f42] leading-snug group-hover:text-[#c9a84c] transition-colors line-clamp-2">
-                                  {post.title}
-                                </h3>
-                                <p className="text-[11px] text-slate-550 leading-normal line-clamp-3">
-                                  {post.metaDescription}
-                                </p>
-                              </div>
-
-                              <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] font-medium">
-                                <span className="text-slate-450">Por: {post.author}</span>
-                                <span className="font-extrabold text-[#0a1f42] group-hover:translate-x-0.5 transition-transform flex items-center gap-0.5">
-                                  Ver Guía <ArrowRight className="w-3.5 h-3.5" />
+                      <div className="space-y-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          {paginatedPosts.map((post) => (
+                            <a
+                              key={post.id}
+                              href={`/blog/${post.slug}`}
+                              onClick={(e) => {
+                                if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                                  e.preventDefault();
+                                  navigateToBlogPost(post);
+                                  window.scrollTo({ top: 350, behavior: 'smooth' });
+                                }
+                              }}
+                              className="bg-white border border-slate-200 hover:border-[#c9a84c] rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-all duration-150 cursor-pointer group flex flex-col h-full text-left"
+                            >
+                              <div className="relative h-40 w-full overflow-hidden bg-slate-100">
+                                <img
+                                  src={post.image}
+                                  alt={post.title}
+                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                  referrerPolicy="no-referrer"
+                                  loading="lazy"
+                                  decoding="async"
+                                />
+                                <span className="absolute top-3 left-3 bg-[#0a1f42] text-white font-black text-[9px] uppercase px-2 py-0.5 rounded shadow">
+                                  {post.category}
                                 </span>
                               </div>
-                            </div>
-                          </article>
-                        ))}
+
+                              <div className="p-4 flex-grow flex flex-col justify-between space-y-3">
+                                <div className="space-y-1.5">
+                                  <span className="text-[10px] text-slate-450 font-mono block">
+                                    📅 {post.publishDate} • ⏱️ {post.readTime} min lectura
+                                  </span>
+                                  <h3 className="text-xs sm:text-sm font-extrabold text-[#0a1f42] leading-snug group-hover:text-[#c9a84c] transition-colors line-clamp-2">
+                                    {post.title}
+                                  </h3>
+                                  <p className="text-[11px] text-slate-550 leading-normal line-clamp-3">
+                                    {post.metaDescription}
+                                  </p>
+                                </div>
+
+                                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] font-medium">
+                                  <span className="text-slate-450">Por: {post.author}</span>
+                                  <span className="font-extrabold text-[#0a1f42] group-hover:translate-x-0.5 transition-transform flex items-center gap-0.5">
+                                    Ver Guía <ArrowRight className="w-3.5 h-3.5" />
+                                  </span>
+                                </div>
+                              </div>
+                            </a>
+                          ))}
+                        </div>
+
+                        {/* Componente Modular de Paginación SEO */}
+                        <Pagination
+                          currentPage={safePage}
+                          totalPages={totalPages}
+                          totalItems={totalItems}
+                          itemsPerPage={blogPostsPerPage}
+                          onPageChange={(page) => navigateToBlogPage(page)}
+                          getPageUrl={(page) => (page <= 1 ? "/blog" : `/blog/page/${page}`)}
+                          ariaLabel="Paginación de artículos del blog IESS"
+                          baseUrl="/blog"
+                        />
                       </div>
                     );
                   })()}

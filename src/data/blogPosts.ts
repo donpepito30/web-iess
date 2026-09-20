@@ -311,5 +311,242 @@ Si tu empleador o el sistema presenta retrasos injustificados y necesitas emitir
     readTime: 6,
     image: 'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=1200&auto=format&fit=crop',
     category: 'Salud'
+  },
+  {
+    id: 'prestamo-hipotecario-2026',
+    slug: 'prestamo-hipotecario-biess-requisitos-tasas-2026',
+    title: 'Préstamo Hipotecario BIESS 2026: Requisitos, Tasas de Interés y Montos de Vivienda',
+    metaDescription: 'Guía detallada para solicitar un préstamo hipotecario BIESS en 2026. Conoce las tasas de interés preferenciales desde el 5.99%, plazos de hasta 25 años y montos de financiamiento.',
+    keywords: ['préstamo hipotecario BIESS', 'casa propia BIESS', 'crédito vivienda ecuador', 'tasa interés BIESS'],
+    content: `
+# Préstamo Hipotecario BIESS 2026: Tu Casa Propia con Tasa Preferencial
+
+El **Préstamo Hipotecario del BIESS** financia la compra de viviendas terminadas, construcción en terreno propio, adquisición de terrenos o sustitución de hipotecas en otras entidades bancarias.
+
+Con plazos de hasta **25 años** y tasas subsidiadas para vivienda de interés social (VIS y VIP), se mantiene como la opción más accesible de crédito inmobiliario en Ecuador.
+
+---
+
+## Requisitos Esenciales 2026
+
+1. **Aportaciones**: Mínimo 36 aportaciones en total, de las cuales las últimas 12 deben ser consecutivas.
+2. **Capacidad de Pago**: Tu cuota mensual no puede superar el 40% de tus ingresos netos familiares demostrables.
+3. **Edad Máxima**: La suma de la edad del afiliado más el plazo del crédito no puede exceder los 75 años al momento de finalizar el préstamo.
+4. **No tener créditos en mora**: Sin obligaciones pendientes en IESS o BIESS.
+5. **Historial crediticio**: Calificación "A" o "B" en el buró de crédito nacional.
+
+---
+
+## Montos y Cobertura
+* **Vivienda de Interés Público (hasta $90,000)**: Financiamiento del 100% del avalúo con tasas desde el 5.99% anual.
+* **Vivienda General (hasta $200,000)**: Financiamiento de hasta el 90% con tasas competitivas del 7.9% al 8.5%.
+* **Terrenos o Construcción**: Financiamiento de hasta el 80% del valor comercial.
+`,
+    author: 'IESS Asistente',
+    publishDate: '2026-01-20',
+    readTime: 9,
+    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop',
+    category: 'Préstamos'
+  },
+  {
+    id: 'cesantia-desempleo-2026',
+    slug: 'cesantia-seguro-desempleo-iess-como-retirar-2026',
+    title: 'Cesantía y Seguro de Desempleo IESS 2026: Cómo Retirar Fondos y Cobrar la Prestación',
+    metaDescription: 'Aprende a retirar tus fondos de cesantía acumulados y a solicitar el seguro de desempleo del IESS en 2026. Plazos de 60 días, requisitos del C.D. 515 y montos.',
+    keywords: ['cesantía IESS', 'seguro de desempleo Ecuador', 'retiro cesantía en línea', 'fondos cesantía IESS'],
+    content: `
+# Cesantía y Seguro de Desempleo IESS: Guía de Retiro en Caso de Cese Laboral
+
+Cuando una persona pierde su empleo en relación de dependencia en Ecuador, el IESS ofrece dos mecanismos de protección económica inmediata: el **Fondo de Cesantía** y el **Seguro de Desempleo**.
+
+---
+
+## 1. Fondo de Cesantía
+Es un fondo de ahorro individual obligatorio conformado por el 2% o 3% del salario mensual de aportación del trabajador.
+
+### Requisitos para el Retiro:
+* Estar cesante al menos **60 días consecutivos**.
+* Contar con al menos **24 aportaciones mensuales no simultáneas**.
+* Registro del aviso de salida patronal en el sistema.
+* No tener préstamos quirografarios garantizados por la cesantía en estado de impago.
+
+---
+
+## 2. Seguro de Desempleo (Prestación Temporal)
+Si el despido fue intempestivo o involuntario, el asegurado puede optar por el seguro de desempleo, que entrega hasta **5 pagos mensuales equivalentes al 70% del salario básico unificado**.
+`,
+    author: 'IESS Asistente',
+    publishDate: '2026-01-25',
+    readTime: 7,
+    image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1200&auto=format&fit=crop',
+    category: 'Trámites'
+  },
+  {
+    id: 'fondos-reserva-2026',
+    slug: 'fondos-de-reserva-iess-consulta-acumulacion-retiro-2026',
+    title: 'Fondos de Reserva IESS 2026: Consulta de Saldos, Retiro en Línea y Acumulación',
+    metaDescription: 'Descubre cómo consultar y retirar tus Fondos de Reserva en el IESS en 2026. Reglas de 36 aportes, pago mensualizado vs acumulado y solicitud bancaria.',
+    keywords: ['fondos de reserva IESS', 'consultar fondos reserva', 'retirar fondos de reserva', 'acumulación fondos reserva'],
+    content: `
+# Fondos de Reserva IESS 2026: Todo lo que debes saber
+
+El **Fondo de Reserva** es un beneficio de ley equivalente a un mes de sueldo por cada año completo trabajado para el mismo empleador (o el 8.33% de la remuneración mensual).
+
+---
+
+## ¿Mensualizar o Acumular en el IESS?
+* **Pago Mensualizado**: El empleador deposita el 8.33% directamente en tu rol de pagos mensual.
+* **Acumulación en el IESS**: Si presentas la solicitud de acumulación en el portal web, el empleador transfiere el dinero al IESS para que gane intereses y sirva como garantía crediticia.
+
+---
+
+## ¿Cuándo puedo retirar mis fondos acumulados?
+1. **Afiliados activos**: Tras cumplir al menos 36 aportaciones mensuales acumuladas (pueden ser continuas o discontinuas).
+2. **Jubilados o mayores de 60 años**: Pueden retirar el saldo total disponible en cualquier momento sin esperar las 36 aportaciones.
+3. **Cesantes**: Tras haber transcurrido al menos dos meses de cesantía legal certificada.
+`,
+    author: 'IESS Asistente',
+    publishDate: '2026-02-02',
+    readTime: 6,
+    image: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=1200&auto=format&fit=crop',
+    category: 'Trámites'
+  },
+  {
+    id: 'montepio-pension-2026',
+    slug: 'pension-montepio-iess-requisitos-sobrevivientes-2026',
+    title: 'Pensión de Montepío IESS 2026: Beneficios para Viudez, Orfandad y Trámite Legal',
+    metaDescription: 'Requisitos y pasos para solicitar la pensión de montepío por viudez u orfandad ante el IESS en 2026. Porcentajes de pensión y documentos necesarios.',
+    keywords: ['pensión montepío IESS', 'viudez IESS', 'orfandad IESS', 'muerte de afiliado IESS'],
+    content: `
+# Pensión de Montepío IESS: Cobertura Integral para Viudas, Viudos e Hijos
+
+El **Montepío** es la prestación económica mensual que entrega el IESS a los derechohabientes (cónyuge, conviviente en unión de hecho e hijos) tras el fallecimiento de un afiliado activo o jubilado.
+
+---
+
+## ¿Quiénes tienen derecho al Montepío?
+1. **Cónyuge o Conviviente**: Debe acreditar matrimonio o unión de hecho legalmente inscrita.
+2. **Hijos menores de 18 años**: Tienen derecho automático a la cuota de orfandad.
+3. **Hijos de hasta 21 años**: Si demuestran que se encuentran cursando estudios regulares en universidades o institutos superiores.
+4. **Hijos con discapacidad total**: Tienen derecho a la pensión de forma vitalicia sin importar su edad.
+
+---
+
+## Porcentajes de Distribución de la Pensión
+* La viuda o conviviente recibe hasta el **60%** de la pensión calculada si no hay hijos concurrentes (o el 40% si concurren con hijos).
+* Los hijos con derecho a orfandad se distribuyen el **40% restante** en partes iguales.
+`,
+    author: 'IESS Asistente',
+    publishDate: '2026-02-10',
+    readTime: 8,
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop',
+    category: 'Jubilación'
+  },
+  {
+    id: 'jubilacion-invalidez-2026',
+    slug: 'jubilacion-invalidez-iess-requisitos-comecap-2026',
+    title: 'Jubilación por Invalidez y Enfermedad Catastrófica IESS 2026: Evaluación Comecap',
+    metaDescription: 'Cómo tramitar la jubilación por invalidez del IESS en 2026. Evaluación de la Comisión Médica (Comecap), grados de incapacidad laboral y aportaciones mínimas.',
+    keywords: ['jubilación por invalidez IESS', 'comecap iess', 'enfermedad catastrófica iess jubilación', 'incapacidad permanente iess'],
+    content: `
+# Jubilación por Invalidez en el IESS: Proceso y Dictamen Médico
+
+La **Jubilación por Invalidez** protege a los trabajadores que, a causa de un accidente común o enfermedad no laboral, sufren una alteración física o psíquica que les incapacita de forma permanente para continuar ejerciendo su profesión.
+
+---
+
+## Requisitos para Calificar ante la Comecap
+1. **Aportaciones previas**: Acreditar al menos **60 imposiciones mensuales** (5 años de aportes), de las cuales al menos 6 deben ser continuas e inmediatamente anteriores a la incapacidad.
+2. **Dictamen de Incapacidad**: La Comisión de Valuación de Incapacidades (Comecap) debe emitir un informe que certifique un porcentaje de pérdida de capacidad laboral igual o superior al **65%**.
+3. **Enfermedades Catastróficas**: Los afiliados diagnosticados con enfermedades oncológicas o insuficiencia renal crónica reciben atención prioritaria y reducción en los plazos reglamentarios de calificación.
+`,
+    author: 'IESS Asistente',
+    publishDate: '2026-02-18',
+    readTime: 7,
+    image: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?q=80&w=1200&auto=format&fit=crop',
+    category: 'Salud'
+  },
+  {
+    id: 'glosas-patronales-2026',
+    slug: 'impugnacion-glosas-mora-patronal-iess-convenio-pago-2026',
+    title: 'Impugnación de Glosas y Mora Patronal IESS 2026: Plazos y Convenios de Pago',
+    metaDescription: 'Guía legal para empleadores y afiliados sobre glosas patronales del IESS en 2026. Plazo de 20 días de impugnación, acuerdos de purga de mora y Resolución C.D. 677.',
+    keywords: ['glosas patronales IESS', 'mora patronal ecuador', 'impugnar glosa IESS', 'convenio de pago IESS'],
+    content: `
+# Impugnación de Glosas y Resolución de Mora Patronal ante el IESS
+
+Las **Glosas Patronales** son determinaciones de deuda económica emitidas por el IESS contra empleadores por presuntas faltas en aportaciones, diferencias salariales o falta de afiliación oportuna.
+
+---
+
+## Plazo Fatal para Impugnar: 20 Días
+De acuerdo con el Código Tributario y el Reglamento de Coactivas del IESS:
+* El empleador notificado tiene exactamente **20 días hábiles** para presentar su escrito de impugnación formal adjuntando roles de pago firmados, comprobantes bancarios y descargos.
+* Si no se impugna en este lapso, la glosa adquiere fuerza coactiva y puede derivar en bloqueos de cuentas bancarias y prohibición de enajenar bienes.
+
+---
+
+## Convenios de Pago y Exoneraciones
+Los empleadores que mantengan moras pueden acogerse a los **Convenios de Purga de Mora** hasta a 36 meses plazo, levantando de inmediato los bloqueos crediticios para sus colaboradores.
+`,
+    author: 'IESS Asistente',
+    publishDate: '2026-02-24',
+    readTime: 8,
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop',
+    category: 'Trámites'
+  },
+  {
+    id: 'aviso-entrada-salida-2026',
+    slug: 'aviso-entrada-salida-iess-plazos-multas-empleadores-2026',
+    title: 'Avisos de Entrada y Salida IESS 2026: Plazos Obligatorios y Sanciones Patronales',
+    metaDescription: 'Conoce los plazos legales para registrar el aviso de entrada (primer día) y aviso de salida (15 días) en el IESS para 2026. Evita multas y responsabilidad patronal.',
+    keywords: ['aviso de entrada IESS', 'aviso de salida IESS', 'afiliación de trabajadores ecuador', 'multas IESS empleador'],
+    content: `
+# Avisos de Entrada y Salida en el IESS: Marco Legal para Empleadores y Trabajadores
+
+El registro correcto del inicio y fin de la relación laboral es una de las obligaciones patronales más estrictas de la Ley de Seguridad Social.
+
+---
+
+## Plazos Reglamentarios
+* **Aviso de Entrada**: Debe registrarse desde el **primer día de labores** del trabajador (hasta un máximo de 15 días posteriores sin recargo retroactivo).
+* **Aviso de Salida**: Debe ingresarse dentro de los **15 días hábiles posteriores al cese de la relación laboral**.
+
+---
+
+## Peligros de la Falta de Registro
+* Si no se registra la salida, la plataforma continúa facturando planillas mensuales al empleador con intereses de mora acumulados.
+* La falta de aviso de salida bloquea al extrabajador para solicitar su jubilación, cesantía o fondo de reserva.
+`,
+    author: 'IESS Asistente',
+    publishDate: '2026-03-01',
+    readTime: 5,
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop',
+    category: 'Trámites'
+  },
+  {
+    id: 'actualizacion-datos-cau-2026',
+    slug: 'actualizacion-datos-cuenta-bancaria-cau-iess-2026',
+    title: 'Actualización de Datos y Registro de Cuenta Bancaria IESS 2026: Trámite Virtual',
+    metaDescription: 'Cómo actualizar tu correo, teléfono y validar tu cuenta bancaria en el IESS en 2026 sin acudir a ventanillas. Requisitos de la Resolución C.D. 625.',
+    keywords: ['actualizar datos IESS', 'registrar cuenta bancaria IESS', 'clave IESS desbloqueo', 'CAU iess turnos'],
+    content: `
+# Actualización de Datos Personales y Registro de Cuenta Bancaria en el IESS
+
+Mantener actualizados tus datos de contacto y tu cuenta bancaria es indispensable para recibir a tiempo los desembolsos de quirografarios, fondos de reserva y subsidios de maternidad o enfermedad.
+
+---
+
+## Pasos para Registrar o Cambiar tu Cuenta Bancaria en Línea:
+1. Accede a [iess.gob.ec](https://www.iess.gob.ec) -> **"Servicios en Línea"** -> **"Asegurados"** -> **"Afiliados"** -> **"Actualización de Datos de Afiliado"**.
+2. Ingresa tu cédula y clave de usuario.
+3. Dirígete a la sección de **"Cuenta Bancaria"** e introduce el banco, tipo de cuenta (ahorros/corriente) y número completo.
+4. El sistema cruzará información con el Banco Central del Ecuador (BCE) para validar que la cuenta esté activa y a nombre exclusivo del titular.
+`,
+    author: 'IESS Asistente',
+    publishDate: '2026-03-05',
+    readTime: 6,
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop',
+    category: 'Trámites'
   }
 ];
