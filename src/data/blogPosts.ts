@@ -189,7 +189,7 @@ El valor mensual de la aportación voluntaria se calcula aplicando un porcentaje
 Para el año 2026, considerando el Salario Básico Unificado, el cálculo se estructura así:
 
 * **Tasa General de Aportación**: **17.60%** del valor de tus ingresos declarados.
-* **Aporte mensual mínimo**: Con un SBU de $460, el aporte mensual mínimo de un afiliado voluntario es de **$80.96**.
+* **Aporte mensual mínimo**: Con un SBU de $482, el aporte mensual mínimo de un afiliado voluntario es de **$84.83**.
 * Si declaras un ingreso mayor (por ejemplo, $1,000 mensuales), el aporte mensual correspondiente será de **$176.00**.
 
 > 💡 **Nota para Trabajadores del Hogar / Amas de Casa**: El IESS mantiene convenios específicos de subsidio estatal con tasas menores para la afiliación de personas dedicadas exclusivamente al trabajo del hogar no remunerado, calculadas proporcionalmente a los ingresos de la unidad familiar.
