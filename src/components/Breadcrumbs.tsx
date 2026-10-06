@@ -1,6 +1,9 @@
 import React from "react";
 import { ChevronRight, Home } from "lucide-react";
 import { SeoCategory } from "../data/seoCategories";
+import { Link } from "./Link";
+import { urlProcedure, urlBlogPost, urlCategory, urlCity } from "../lib/routes";
+import { getSiteUrl } from "../config/site";
 
 interface BreadcrumbsProps {
   currentRoute: string;
@@ -38,79 +41,79 @@ export default function Breadcrumbs({
     (sub) => sub.slug === selectedSubcategorySlug
   );
 
-  // Generate structured schema
+  // Generate breadcrumb items with label and crawleable URL
   const getCrumbs = () => {
-    const crumbs = [{ label: "Inicio", onClick: onNavigateHome, isLast: false }];
+    const crumbs = [{ label: "Inicio", to: "/", isLast: false }];
 
     if (selectedCategory) {
       crumbs.push({
         label: selectedCategory.title,
-        onClick: () => onNavigateCategory(selectedCategory.slug, null),
+        to: urlCategory(selectedCategory.slug),
         isLast: !selectedSubcategorySlug
       });
 
       if (activeSubcategory) {
         crumbs.push({
           label: activeSubcategory.title,
-          onClick: () => onNavigateCategory(selectedCategory.slug, activeSubcategory.slug),
+          to: urlCategory(selectedCategory.slug, activeSubcategory.slug),
           isLast: true
         });
       }
     } else if (selectedProcedure) {
       crumbs.push({
         label: "Trámites",
-        onClick: () => onNavigateTab("consultas"),
+        to: "/",
         isLast: false
       });
       crumbs.push({
         label: selectedProcedure.title,
-        onClick: () => {},
+        to: urlProcedure(selectedProcedure.id),
         isLast: true
       });
     } else if (selectedPost) {
       crumbs.push({
         label: "Blog",
-        onClick: () => onNavigateTab("blog"),
+        to: "/blog",
         isLast: false
       });
       crumbs.push({
         label: selectedPost.title,
-        onClick: () => {},
+        to: urlBlogPost(selectedPost.slug),
         isLast: true
       });
     } else if (selectedCity) {
       crumbs.push({
         label: "Ciudades",
-        onClick: onClearCity,
+        to: "/",
         isLast: false
       });
       crumbs.push({
         label: `IESS ${selectedCity.charAt(0).toUpperCase() + selectedCity.slice(1)}`,
-        onClick: () => {},
+        to: urlCity(selectedCity),
         isLast: true
       });
     } else if (mainTab === "oficios") {
       crumbs.push({
         label: "Formatos y Oficios de Ley",
-        onClick: () => {},
+        to: "/oficios",
         isLast: true
       });
     } else if (currentRoute === "faq") {
       crumbs.push({
         label: "Preguntas Frecuentes",
-        onClick: () => {},
+        to: "/faq",
         isLast: true
       });
     } else if (mainTab === "blog") {
       crumbs.push({
         label: "Blog de Guías Prácticas",
-        onClick: () => {},
+        to: "/blog",
         isLast: true
       });
     } else {
       crumbs.push({
         label: "Consultas y Chatbot",
-        onClick: () => {},
+        to: "/",
         isLast: true
       });
     }
@@ -124,8 +127,9 @@ export default function Breadcrumbs({
   };
 
   const crumbs = getCrumbs();
+  const siteUrl = getSiteUrl();
 
-  // JSON-LD structured data for Google crawler
+  // JSON-LD structured data with actual exact sub-urls for perfect search engine indexation
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -133,7 +137,7 @@ export default function Breadcrumbs({
       "@type": "ListItem",
       "position": index + 1,
       "name": crumb.label,
-      "item": typeof window !== "undefined" ? window.location.origin : "https://iessasistente.com"
+      "item": `${siteUrl}${crumb.to}`
     }))
   };
 
@@ -143,23 +147,23 @@ export default function Breadcrumbs({
         {JSON.stringify(jsonLd)}
       </script>
 
-      <nav className="max-w-5xl w-full mx-auto flex items-center flex-wrap gap-1.5 text-xs font-semibold text-slate-500">
+      <nav aria-label="Migas de pan" className="max-w-5xl w-full mx-auto flex items-center flex-wrap gap-1.5 text-xs font-semibold text-slate-500">
         {crumbs.map((crumb, idx) => (
           <React.Fragment key={idx}>
             {idx > 0 && <ChevronRight className="w-3.5 h-3.5 text-slate-300 shrink-0" />}
             
             {crumb.isLast ? (
-              <span className="text-[#0a1f42] font-bold truncate max-w-[180px] sm:max-w-xs md:max-w-md">
+              <span className="text-[#0a1f42] font-bold truncate max-w-[180px] sm:max-w-xs md:max-w-md" aria-current="page">
                 {crumb.label}
               </span>
             ) : (
-              <button
-                onClick={crumb.onClick}
-                className="hover:text-[#0a1f42] flex items-center gap-1 transition-colors cursor-pointer"
+              <Link
+                to={crumb.to}
+                className="hover:text-[#0a1f42] flex items-center gap-1 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0a1f42] rounded-md px-1 py-0.5"
               >
                 {idx === 0 && <Home className="w-3.5 h-3.5 text-[#c9a84c] shrink-0" />}
                 {crumb.label}
-              </button>
+              </Link>
             )}
           </React.Fragment>
         ))}

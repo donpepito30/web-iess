@@ -1,3 +1,11 @@
+import { getFactValue } from "./facts";
+
+export interface ProcedureSource {
+  label: string;
+  url: string;
+  accessedAt: string;
+}
+
 export interface Procedure {
   id: string;
   title: string;
@@ -13,6 +21,8 @@ export interface Procedure {
   commonErrors: string[];
   needsMoreHelp: string;
   referenceNorm?: string;
+  dateModified: string;
+  sources: ProcedureSource[];
 }
 
 export const PROCEDURES_DATA: Procedure[] = [
@@ -20,7 +30,7 @@ export const PROCEDURES_DATA: Procedure[] = [
     id: "jubilacion-vejez",
     title: "Jubilación por Vejez",
     category: "Jubilación",
-    whoCanDo: "El afiliado del IESS que cumpla con alguna de las combinaciones de edad y aportes.",
+    whoCanDo: "El afiliado del IESS que cumpla con alguna de las combinaciones de edad y aportes acumulados.",
     requirements: [
       "Tener al menos 480 imposiciones (40 años de aportes) a cualquier edad, o 60 años de edad + 360 imposiciones (30 años), o 65 años de edad + 180 imposiciones (15 años), o 70 años de edad + 120 imposiciones (10 años).",
       "Estar en situación de cese laboral (no tener relación de dependencia activa).",
@@ -41,7 +51,7 @@ export const PROCEDURES_DATA: Procedure[] = [
     ],
     whereTo: {
       label: "iess.gob.ec (Sección Trámites Virtuales)",
-      url: "https://www.iess.gob.ec"
+      url: String(getFactValue("URL_IESS_PORTAL"))
     },
     commonErrors: [
       "Presentar la solicitud teniendo préstamos quirografarios o hipotecarios vencidos en el BIESS (el trámite se bloquea automáticamente).",
@@ -49,8 +59,14 @@ export const PROCEDURES_DATA: Procedure[] = [
       "Presentar la solicitud después del día 25 (el procesamiento se traslada automáticamente al mes siguiente).",
       "No tener la cuenta de banco correctamente validada y autorizada por oficinas presenciales del IESS."
     ],
-    needsMoreHelp: "Si tienes dudas sobre tus aportaciones acumuladas, puedes solicitar un desglose de aportes o llamar al 1800-IESS (1800-4377) para soporte personalizado.",
-    referenceNorm: "Constitución del Ecuador (Arts. 67 y 369), Ley de Seguridad Social."
+    needsMoreHelp: `Si tienes dudas sobre tus aportaciones acumuladas, puedes solicitar un desglose de aportes o llamar al ${getFactValue("DENUNCIAS_TELEFONO")} para soporte independiente y personalizado.`,
+    referenceNorm: "Constitución de la República del Ecuador (Arts. 67 y 369), Ley de Seguridad Social.",
+    dateModified: "2026-10-01",
+    sources: [
+      { label: "Constitución de la República del Ecuador", url: "https://www.asambleanacional.gob.ec", accessedAt: "2026-10-01" },
+      { label: "Ley de Seguridad Social - Registro Oficial", url: "https://www.iess.gob.ec/documents/10162/13686/Ley_de_Seguridad_Social", accessedAt: "2026-10-01" },
+      { label: "Portal del Asegurado - Trámites de Pensiones IESS", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" }
+    ]
   },
   {
     id: "jubilacion-invalidez",
@@ -71,14 +87,19 @@ export const PROCEDURES_DATA: Procedure[] = [
     ],
     whereTo: {
       label: "Portal IESS o Dirección Provincial del IESS más cercana",
-      url: "https://www.iess.gob.ec"
+      url: String(getFactValue("URL_IESS_PORTAL"))
     },
     commonErrors: [
       "Intentar jubilarse por incapacidad temporal (esta se rige bajo subsidios de enfermedad, no jubilación vitalicia).",
       "No asistir a las citas programadas de valoración por la Comecap (causa el archivo de la solicitud)."
     ],
     needsMoreHelp: "La valoración de Comecap es de exclusivo criterio científico y médico.",
-    referenceNorm: "Ley de Seguridad Social, Reglamento Orgánico Funcional del IESS."
+    referenceNorm: "Ley de Seguridad Social de Ecuador, Reglamento de la Comisión Médica Calificadora.",
+    dateModified: "2026-10-01",
+    sources: [
+      { label: "Reglamento del Seguro de Invalidez, Vejez y Muerte", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" },
+      { label: "Resolución C.D. 554 del Consejo Directivo", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" }
+    ]
   },
   {
     id: "montepio",
@@ -98,14 +119,19 @@ export const PROCEDURES_DATA: Procedure[] = [
     ],
     whereTo: {
       label: "iess.gob.ec -> Pensiones -> Montepío",
-      url: "https://www.iess.gob.ec"
+      url: String(getFactValue("URL_IESS_PORTAL"))
     },
     commonErrors: [
       "Intentar tramitarlo cuando el difunto no cumplía con el mínimo de 6 aportes anuales o 36 generales.",
       "No registrar uniones de hecho de forma oportuna en el Registro Civil antes del suceso."
     ],
     needsMoreHelp: "Si eres padre dependiente económicamente y no existen cónyuges ni hijos sobrevivientes, puedes solicitar una pensión de montepío adicional.",
-    referenceNorm: "Administración del Seguro de Pensiones, Ley de Seguridad Social."
+    referenceNorm: "Administración del Seguro de Pensiones, Ley de Seguridad Social.",
+    dateModified: "2026-10-01",
+    sources: [
+      { label: "Normativa de Montepío IESS", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" },
+      { label: "Registro Civil de Ecuador", url: "https://www.registrocivil.gob.ec", accessedAt: "2026-10-01" }
+    ]
   },
   {
     id: "prestamo-quirografario",
@@ -113,13 +139,13 @@ export const PROCEDURES_DATA: Procedure[] = [
     category: "Créditos",
     whoCanDo: "Afiliados bajo relación de dependencia, jubilados y pensionistas de montepío.",
     requirements: [
-      "Para afiliados activos: Mínimo 36 aportaciones mensuales en total, de las cuales al menos 12 deben ser consecutivas e inmediatas.",
+      `Para afiliados activos: Mínimo ${getFactValue("QUIROGRAFARIO_APORTES_REQ")} aportaciones mensuales en total, de las cuales al menos ${getFactValue("QUIROGRAFARIO_CONSECUTIVOS_REQ")} deben ser consecutivas e inmediatas.`,
       "No tener obligaciones en mora o vencidas con el BIESS o el IESS.",
       "Mantener valores de garantía acumulados en Fondos de Reserva y/o Cesantía que respalden el 100% del monto solicitado.",
       "Empleador actual sin registrar mora patronal alguna con el IESS.",
       "Tener una cuenta bancaria vigente y debidamente registrada en la plataforma del BIESS.",
       "No tener otras solicitudes paralelas activas de quirografarios, hipotecarios o retiro de cesantía.",
-      "Para personas con discapacidad: Requisito reducido de solo 18 aportaciones mensuales acumuladas."
+      `Para personas con discapacidad: Requisito reducido de solo ${getFactValue("QUIROGRAFARIO_DISCAPACITADOS_REQ")} aportaciones mensuales acumuladas.`
     ],
     steps: [
       "Ingresar al portal oficial biess.fin.ec.",
@@ -132,15 +158,20 @@ export const PROCEDURES_DATA: Procedure[] = [
     ],
     whereTo: {
       label: "BIESS Portal de Préstamos (biess.fin.ec)",
-      url: "https://www.biess.fin.ec"
+      url: String(getFactValue("URL_BIESS_PORTAL"))
     },
     commonErrors: [
       "Tener planillas pendientes de pago del mes en curso por parte del patrono (bloquea la validación del historial continuo; esperar 48h posterior al pago).",
       "No registrar o no registrar de manera diferenciada la cuenta de banco en la base del BIESS (mucha gente cree que por registrarla en el IESS ya está en el BIESS).",
       "Tener un empleador moroso en cualquier obligación histórica."
     ],
-    needsMoreHelp: "Puedes novar tu crédito quirografario vigente una vez que hayas cancelado al menos el 25% del monto total original.",
-    referenceNorm: "Reglamento de Crédito del BIESS."
+    needsMoreHelp: `Puedes novar tu crédito quirografario vigente una vez que hayas cancelado al menos el ${getFactValue("QUIROGRAFARIO_NOVACION_PAGO_PCT")}% del monto total original.`,
+    referenceNorm: "Reglamento de Crédito del BIESS.",
+    dateModified: "2026-10-01",
+    sources: [
+      { label: "Portal del BIESS - Manual de Préstamo Quirografario", url: "https://www.biess.fin.ec/quirografarios", accessedAt: "2026-10-01" },
+      { label: "Resoluciones de Crédito del Directorio del BIESS", url: "https://www.biess.fin.ec", accessedAt: "2026-10-01" }
+    ]
   },
   {
     id: "prestamo-hipotecario",
@@ -165,14 +196,19 @@ export const PROCEDURES_DATA: Procedure[] = [
     ],
     whereTo: {
       label: "BIESS Portal Hipotecario (biess.fin.ec)",
-      url: "https://www.biess.fin.ec"
+      url: String(getFactValue("URL_BIESS_PORTAL"))
     },
     commonErrors: [
       "No verificar con anticipación que el avalúo catastral oficial de la vivienda coincida con el precio real acordado.",
       "Haber cancelado una solicitud de crédito previa pero dejar pendientes pequeños saldos por gastos de escrituración o instrumentación legal (bloquea nuevas peticiones)."
     ],
-    needsMoreHelp: "El BIESS ofrece financiamientos de hasta el 100% para viviendas de hasta USD 100.000, con plazos máximos de hasta 25 años y tasas preferenciales entre el 5% y el 8% anual.",
-    referenceNorm: "Resoluciones de Vivienda del BIESS."
+    needsMoreHelp: `El BIESS ofrece financiamientos de hasta el 100% para viviendas de hasta USD ${getFactValue("HIPOTECARIO_MONTO_100_COBERTURA")}, con plazos máximos de hasta ${getFactValue("HIPOTECARIO_PLAZO_MAX_ANOS")} años y tasas preferenciales entre el ${getFactValue("TASA_HIPOTECARIO_MIN")}% y el ${getFactValue("TASA_HIPOTECARIO_MAX")}% anual, con tope de USD ${getFactValue("HIPOTECARIO_MONTO_MAX")}.`,
+    referenceNorm: "Resoluciones de Vivienda del BIESS.",
+    dateModified: "2026-10-01",
+    sources: [
+      { label: "Banco del IESS (BIESS) - Guías de Préstamos Hipotecarios", url: "https://www.biess.fin.ec/hipotecarios", accessedAt: "2026-10-01" },
+      { label: "Superintendencia de Bancos del Ecuador", url: "https://www.superbancos.gob.ec", accessedAt: "2026-10-01" }
+    ]
   },
   {
     id: "afiliacion-voluntaria",
@@ -182,27 +218,32 @@ export const PROCEDURES_DATA: Procedure[] = [
     requirements: [
       "No registrar un contrato bajo relación de dependencia activo en el IESS.",
       "Ser mayor de 18 años y contar con cédula de ciudadanía o carné de refugiado/residente.",
-      "Declarar un ingreso mensual de referencia no inferior al Salario Básico Unificado (SBU c.f. USD 482 en el año 2026).",
+      `Declarar un ingreso mensual de referencia no inferior al Salario Básico Unificado (SBU, USD ${getFactValue("SBU_2026")} en el año 2026).`,
       "Tener una cuenta bancaria personal para programar débitos automáticos obligatorios."
     ],
     steps: [
       "Ingresar a iess.gob.ec y acceder a 'Afiliación Voluntaria'.",
       "Llenar los datos solicitados: Cédula, fecha de nacimiento, estado civil.",
-      "Declarar el ingreso mensual sobre el cual deseas cotizar (mínimo USD 482).",
-      "La tasa de aportación obligatoria del 17,60% se calculará sobre dicho valor.",
+      `Declarar el ingreso mensual sobre el cual deseas cotizar (mínimo USD ${getFactValue("SBU_2026")}).`,
+      `La tasa de aportación obligatoria del ${getFactValue("APORTE_VOLUNTARIO_PCT")}% se calculará sobre dicho valor.`,
       "Definir el método de pago obligatorio (preferiblemente débito bancario automático).",
       "Efectuar el pago puntual del primer aporte mensual para habilitar todos los derechos de cobertura."
     ],
     whereTo: {
       label: "iess.gob.ec -> Tramitar Afiliación Voluntaria",
-      url: "https://www.iess.gob.ec"
+      url: String(getFactValue("URL_IESS_PORTAL"))
     },
     commonErrors: [
       "Fijar un ingreso mensual referencial inferior al Salario Básico vigente en el año correspondiente (el sistema arrojará un error inmediato).",
       "Dejar pasar más de 30 días calendario sin pagar la planilla inicial de aportación voluntaria (provoca la anulación inmediata de la afiliación)."
     ],
-    needsMoreHelp: "La afiliación voluntaria te otorga seguro médico nacional gratuito en la red IESS, préstamos de quirografarios a partir del sexto mes de aportes, acceso a hipotecarios desde las 36 imposiciones y el derecho a jubilarte por vejez.",
-    referenceNorm: "Resolución C.D. 625 (Reglamento de Aseguramiento)."
+    needsMoreHelp: `La afiliación voluntaria te otorga seguro médico nacional gratuito en la red IESS, préstamos de quirografarios a partir del sexto mes de aportes, acceso a hipotecarios desde las 36 imposiciones y el derecho a jubilarte por vejez con aporte del ${getFactValue("APORTE_VOLUNTARIO_PCT")}%.`,
+    referenceNorm: "Resolución C.D. 625 (Reglamento de Aseguramiento).",
+    dateModified: "2026-10-01",
+    sources: [
+      { label: "IESS - Reglamento de Aseguramiento Voluntario", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" },
+      { label: "Resolución C.D. 625 - Consejo Directivo", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" }
+    ]
   },
   {
     id: "subsidio-enfermedad",
@@ -222,14 +263,19 @@ export const PROCEDURES_DATA: Procedure[] = [
     ],
     whereTo: {
       label: "Centros médicos del IESS o Portal Administrativo iess.gob.ec",
-      url: "https://www.iess.gob.ec"
+      url: String(getFactValue("URL_IESS_PORTAL"))
     },
     commonErrors: [
       "No validar los certificados emitidos por médicos privados dentro del plazo máximo legal de 72 horas posteriores a la finalización del reposo.",
       "Exigir subsidio por los primeros 3 días de enfermedad (por ley, el subsidio corre del IESS desde el día cuarto en adelante)."
     ],
     needsMoreHelp: "Del día 4 al 90 de reposo, el IESS subsidia el 75% de tu sueldo base de cotización, y del día 91 al 180 el subsidio se reajusta al 66% de tu promedio salarial.",
-    referenceNorm: "Reglamento de Prestaciones de Salud y Enfermedad."
+    referenceNorm: "Reglamento de Prestaciones de Salud y Enfermedad de la Seguridad Social.",
+    dateModified: "2026-10-01",
+    sources: [
+      { label: "Reglamento General de Seguro de Salud IESS", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" },
+      { label: "Ministerio de Salud Pública de Ecuador", url: "https://www.salud.gob.ec", accessedAt: "2026-10-01" }
+    ]
   },
   {
     id: "subsidio-maternidad",
@@ -248,14 +294,19 @@ export const PROCEDURES_DATA: Procedure[] = [
     ],
     whereTo: {
       label: "Subdirección de Prestaciones de Salud del IESS",
-      url: "https://www.iess.gob.ec"
+      url: String(getFactValue("URL_IESS_PORTAL"))
     },
     commonErrors: [
       "Tener baches en el aporte que impidan la sumatoria de las 12 cuotas mínimas previas al dar a luz.",
       "Confundir la licencia del padre (paternidad de 10 días es pagada directamente por el patrono y no representa subsidio por el IESS)."
     ],
     needsMoreHelp: "Si sufres un parto múltiple, la licencia obligatoria se aumenta en 10 días remunerados adicionales por cada nuevo hijo.",
-    referenceNorm: "Ley de Seguridad Social, reglamentos de protección familiar."
+    referenceNorm: "Código del Trabajo (Art. 152), Ley de Seguridad Social.",
+    dateModified: "2026-10-01",
+    sources: [
+      { label: "Código del Trabajo de Ecuador", url: "https://www.trabajo.gob.ec", accessedAt: "2026-10-01" },
+      { label: "IESS - Subsidios Pecuniarios", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" }
+    ]
   },
   {
     id: "cesantia-desempleo",
@@ -278,18 +329,23 @@ export const PROCEDURES_DATA: Procedure[] = [
     ],
     whereTo: {
       label: "iess.gob.ec -> Servicios en línea -> Cesantía",
-      url: "https://www.iess.gob.ec"
+      url: String(getFactValue("URL_IESS_PORTAL"))
     },
     commonErrors: [
       "Solicitar el Seguro de Desempleo habiendo renunciado voluntariamente (es exclusivo para despidos intempestivos o desvinculaciones involuntarias).",
       "Solicitar cesantía teniendo deudas en mora vigentes con el BIESS (los saldos acumulados de cesantía actúan como garantía real, por lo que quedan inmovilizados)."
     ],
     needsMoreHelp: "El Seguro de Desempleo abarca un máximo de 5 meses decrecientes conforme el tiempo acumulado o vacancia.",
-    referenceNorm: "Resolución C.D. 515 (Reglamento de Cesantía y Seguro de Desempleo)."
+    referenceNorm: "Resolución C.D. 515 (Reglamento de Cesantía y Seguro de Desempleo).",
+    dateModified: "2026-10-01",
+    sources: [
+      { label: "Resolución C.D. 515 - Reglamento IESS", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" },
+      { label: "Ministerio del Trabajo de Ecuador", url: "https://www.trabajo.gob.ec", accessedAt: "2026-10-01" }
+    ]
   },
   {
     id: "responsabilidad-patronal",
-    title: "Responsabilidad Patronal (Reforma Nov 2024)",
+    title: "Responsabilidad Patronal (Reforma CD 677)",
     category: "Trámites y Afiliación",
     whoCanDo: "Empleadores que registren trabajadores no afiliados o en mora al momento de ocurrir incidentes o de requerir atenciones.",
     requirements: [
@@ -304,14 +360,18 @@ export const PROCEDURES_DATA: Procedure[] = [
     ],
     whereTo: {
       label: "Unidad de Control de Recaudación y Cartera del IESS",
-      url: "https://www.iess.gob.ec"
+      url: String(getFactValue("URL_IESS_PORTAL"))
     },
     commonErrors: [
-      "Afectar los préstamos personales y subsidios de los demás colaboradores de la empresa por mora gremial.",
+      "Afectar los préstamos personales y subsidios de los demás colaboradores de la empresa por mora patronal.",
       "Creer que los intereses de mora pueden subsanar de manera retroactiva los accidentes sin incurrir en Responsabilidad Patronal (el siniestro genera glosa inmediata)."
     ],
     needsMoreHelp: "La Resolución C.D. 677 de noviembre de 2024 introduce rigurosas medidas para evitar la repetición y reajustar los procesos de cobros de cartera patronal.",
-    referenceNorm: "Resolución C.D. 677 (Noviembre de 2024)."
+    referenceNorm: "Resolución C.D. 677 del Consejo Directivo del IESS.",
+    dateModified: "2026-10-01",
+    sources: [
+      { label: "Resolución C.D. 677 - Gaceta Oficial IESS", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" }
+    ]
   },
   {
     id: "aviso-entrada-salida",
@@ -332,14 +392,18 @@ export const PROCEDURES_DATA: Procedure[] = [
     ],
     whereTo: {
       label: "iess.gob.ec -> Empleadores -> Avisos de Entrada/Salida",
-      url: "https://www.iess.gob.ec"
+      url: String(getFactValue("URL_IESS_PORTAL"))
     },
     commonErrors: [
       "No subir oportunamente el aviso de salida al destituir o desvincular a un empleado (impide que el ciudadano solicite su jubilación o seguro de desempleo).",
       "Consignar salarios o montos contractuales falsos para pagar menos cotización (se sanciona severamente por fraude de aportación)."
     ],
     needsMoreHelp: "Un empleador en mora patronal de cotizaciones e imposiciones bloquea los préstamos quirografarios de todos sus trabajadores en nómina.",
-    referenceNorm: "Resoluciones de Cartera y Aseguramiento, C.D. 625."
+    referenceNorm: "Resoluciones de Cartera y Aseguramiento, C.D. 625 del IESS.",
+    dateModified: "2026-10-01",
+    sources: [
+      { label: "Manual del Empleador - IESS", url: "https://www.iess.gob.ec/empleadores", accessedAt: "2026-10-01" }
+    ]
   },
   {
     id: "actualizacion-datos",
@@ -352,7 +416,7 @@ export const PROCEDURES_DATA: Procedure[] = [
       "Para representantes curadores: Sentencia judicial firme validad por el departamento legal del IESS de la provincia respectiva."
     ],
     steps: [
-      "Si accedes en línea: Ir a iess.gob.ec -> sección interactiva de trámites, colocar usuario y clave personal, y actualizar campos de celular, dirección o mail.",
+      "Si accedes en línea: Ir a iess.gob.ec -> sección de trámites, colocar usuario y clave personal, y actualizar campos de celular, dirección o mail.",
       "Si el sistema te solicita validación presencial: Acudir directamente a un Centro de Atención Universal del IESS.",
       "Presentarte de lunes a viernes (horario de 08:00 a 17:00) con tu cédula de ciudadanía.",
       "Solicitar validación de datos biométricos para certificar la titularidad de tu información."
@@ -366,32 +430,41 @@ export const PROCEDURES_DATA: Procedure[] = [
       "No validar a los curadores o tutores legales a nivel jurídico previo a solicitar cambios de jubilaciones."
     ],
     needsMoreHelp: "Mantener los datos actualizados previene hackeos de cuentas IESS o desvíos accidentales de saldos de préstamos.",
-    referenceNorm: "Resolución C.D. 625 (Arts. 3 y 34), Resolución C.D. 535."
+    referenceNorm: "Resolución C.D. 625 (Arts. 3 y 34), Resolución C.D. 535.",
+    dateModified: "2026-10-01",
+    sources: [
+      { label: "Canal Presencial CAU - IESS", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" }
+    ]
   },
   {
     id: "quejas-canales-denuncia",
-    title: "Canales de Denuncias Oficiales (Septiembre 2026)",
+    title: "Canales de Denuncias (Septiembre 2025)",
     category: "Trámites y Afiliación",
     whoCanDo: "Todos los asegurados, afiliados, jubilados, dependientes y ciudadanos preocupados.",
     requirements: [
-      "Nombre, número de cédula, teléfono de contacto y correo electrónico del denunciante (esta información y base de datos es confidencial).",
+      "Nombre, número de cédula, teléfono de contacto y correo electrónico del denunciante (esta información y base de datos es tratada con estricta confidencialidad).",
       "Detalles del incidente: fecha, hospital, oficina, o nombre del funcionario (si aplica)."
     ],
     steps: [
-      "Saber que el IESS habilitó canales oficiales 24/7 en septiembre de 2026 para reportar irregularidades.",
-      "Puedes ingresar en la web oficial a denuncias.iess.gob.ec.",
-      "O enviar un mensaje interactivo de WhatsApp al chatbot 0962532338.",
+      `Saber que el IESS habilitó canales oficiales 24/7 en septiembre de 2025 para reportar irregularidades.`,
+      `Puedes ingresar en la web oficial a ${getFactValue("DENUNCIAS_WEB")}.`,
+      `O enviar un mensaje interactivo de WhatsApp al chatbot ${getFactValue("DENUNCIAS_WHATSAPP")}.`,
       "Seguir el menú guiado en pantalla para ingresar tu denuncia de forma segura, confidencial y expedita."
     ],
     whereTo: {
       label: "denuncias.iess.gob.ec y WhatsApp 0962532338",
-      url: "https://denuncias.iess.gob.ec"
+      url: `https://${getFactValue("DENUNCIAS_WEB")}`
     },
     commonErrors: [
       "Compartir datos delicados en redes sociales ajenas a los dos canales autorizados.",
-      "Creer que reportar maltratos o faltantes médicos tiene algún costo o requiere abogados patrocinadores."
+      "Creer que reportar maltratos o faltantes médicos tiene algún costo o requiere de abogados patrocinadores."
     ],
     needsMoreHelp: "Puedes reportar: Maltrato presencial/médico, instalaciones sucias o en mal estado, tiempos excesivos para citas, faltas de medicinas, o presuntos casos de corrupción.",
-    referenceNorm: "Ley de Trámites Administrativos del Ecuador."
+    referenceNorm: "Ley de Trámites Administrativos de Ecuador.",
+    dateModified: "2026-10-01",
+    sources: [
+      { label: "Secretaría Nacional de Transparencia de Ecuador", url: "https://www.transparencia.gob.ec", accessedAt: "2026-10-01" },
+      { label: "Portal del Asegurado - Denuncias IESS", url: "https://denuncias.iess.gob.ec", accessedAt: "2026-10-01" }
+    ]
   }
 ];

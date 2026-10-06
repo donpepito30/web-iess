@@ -41,7 +41,7 @@ export const SEO_CATEGORIES: SeoCategory[] = [
     slug: "afiliacion",
     description: "Guía completa sobre las modalidades de afiliación al IESS en Ecuador. Conoce los costos, porcentajes de aportación y los beneficios de estar asegurado.",
     metaTitle: "Afiliación IESS Voluntaria e Independiente - Requisitos y Costos 2026",
-    metaDescription: "Todo sobre la afiliación al IESS en Ecuador. Requisitos para afiliación voluntaria, afiliados bajo relación de dependencia, costos mensuales y beneficios de salud.",
+    metaDescription: "Todo sobre la afiliación al IESS en Ecuador. Requisitos para la afiliación voluntaria, costos de aportes mensuales, cobertura de salud y jubilación.",
     pilarText: `## La Importancia de la Afiliación al Seguro Social en Ecuador
 
 La afiliación al **Instituto Ecuatoriano de Seguridad Social (IESS)** es un derecho constitucional de los trabajadores ecuatorianos y un pilar fundamental para garantizar la tranquilidad de las familias. Estar afiliado te da acceso directo a un sistema integral de protección que cubre contingencias como enfermedad, maternidad, paternidad, riesgos del trabajo, cesantía, desempleo, invalidez y vejez.

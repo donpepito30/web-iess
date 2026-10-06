@@ -27,7 +27,8 @@ import {
   Copy,
   FileText,
   Check,
-  BookOpen
+  BookOpen,
+  ArrowLeft
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import ReactMarkdown from "react-markdown";
@@ -38,6 +39,27 @@ import { SEO_CATEGORIES, SeoCategory } from "./data/seoCategories";
 import CategoryDetail from "./components/CategoryDetail";
 import Breadcrumbs from "./components/Breadcrumbs";
 import Pagination from "./components/Pagination";
+import { getSiteUrl, CURRENT_YEAR } from "./config/site";
+import { Link } from "./components/Link";
+import {
+  getHomeGraph,
+  getProcedureGraph,
+  getArticleGraph,
+  getCategoryGraph,
+  getCityGraph,
+  getBlogArchiveGraph
+} from "./server/schema";
+import { ECUADOR_LOCATIONS } from "./server/seoHtml";
+import { 
+  registerNavigationListener, 
+  unregisterNavigationListener, 
+  urlProcedure, 
+  urlBlogPost, 
+  urlBlogPage, 
+  urlCategory, 
+  urlCity, 
+  navigate 
+} from "./lib/routes";
 
 interface FrequentProcedure {
   emoji: string;
@@ -211,50 +233,59 @@ function updateMetaTags(config: {
   robots?: string;
   prevUrl?: string;
   nextUrl?: string;
+  jsonLd?: any;
 }) {
-  // Title
-  document.title = config.title;
-  let titleMeta = document.querySelector('meta[property="og:title"]');
-  if (!titleMeta) {
-    titleMeta = document.createElement('meta');
-    titleMeta.setAttribute('property', 'og:title');
-    document.head.appendChild(titleMeta);
-  }
-  titleMeta.setAttribute('content', config.title);
-  
-  // Description
-  let descMeta = document.querySelector('meta[name="description"]');
-  if (!descMeta) {
-    descMeta = document.createElement('meta');
-    descMeta.setAttribute('name', 'description');
-    document.head.appendChild(descMeta);
-  }
-  descMeta.setAttribute('content', config.description);
-  
-  // Canonical (Self-referencing canonical tag)
+  const siteUrl = getSiteUrl();
+  const fullUrl = `${siteUrl}${config.url}`;
+  const escTitle = config.title;
+  const escDesc = config.description;
+  const escImage = config.image || "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop";
+
+  // 1. Title
+  document.title = escTitle;
+
+  // Helper helper to query or create meta tag
+  const setMeta = (query: string, attrName: string, attrVal: string, content: string) => {
+    let el = document.querySelector(query);
+    if (!el) {
+      el = document.createElement('meta');
+      el.setAttribute(attrName, attrVal);
+      document.head.appendChild(el);
+    }
+    el.setAttribute('content', content);
+  };
+
+  // 2. Standard Description
+  setMeta('meta[name="description"]', 'name', 'description', escDesc);
+
+  // 3. Canonical Link
   let canonical = document.querySelector('link[rel="canonical"]');
   if (!canonical) {
     canonical = document.createElement('link');
     canonical.setAttribute('rel', 'canonical');
     document.head.appendChild(canonical);
   }
-  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://ais-pre-lcespzc3y2p5yn5ey2rbly-34447954721.us-west2.run.app';
-  canonical.setAttribute('href', `${origin}${config.url}`);
+  canonical.setAttribute('href', fullUrl);
 
-  // Robots meta tag
-  let robotsMeta = document.querySelector('meta[name="robots"]');
-  if (config.robots) {
-    if (!robotsMeta) {
-      robotsMeta = document.createElement('meta');
-      robotsMeta.setAttribute('name', 'robots');
-      document.head.appendChild(robotsMeta);
-    }
-    robotsMeta.setAttribute('content', config.robots);
-  } else if (robotsMeta) {
-    robotsMeta.setAttribute('content', 'index, follow');
-  }
+  // 4. Robots
+  setMeta('meta[name="robots"]', 'name', 'robots', config.robots || 'index, follow');
 
-  // Rel prev
+  // 5. OpenGraph Tags
+  setMeta('meta[property="og:title"]', 'property', 'og:title', escTitle);
+  setMeta('meta[property="og:description"]', 'property', 'og:description', escDesc);
+  setMeta('meta[property="og:url"]', 'property', 'og:url', fullUrl);
+  setMeta('meta[property="og:image"]', 'property', 'og:image', escImage);
+  setMeta('meta[property="og:type"]', 'property', 'og:type', config.image ? 'article' : 'website');
+  setMeta('meta[property="og:locale"]', 'property', 'og:locale', 'es_EC');
+
+  // 6. Twitter Tags
+  setMeta('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
+  setMeta('meta[name="twitter:title"]', 'name', 'twitter:title', escTitle);
+  setMeta('meta[name="twitter:description"]', 'name', 'twitter:description', escDesc);
+  setMeta('meta[name="twitter:url"]', 'name', 'twitter:url', fullUrl);
+  setMeta('meta[name="twitter:image"]', 'name', 'twitter:image', escImage);
+
+  // 7. Rel Prev & Next
   let prevTag = document.querySelector('link[rel="prev"]');
   if (config.prevUrl) {
     if (!prevTag) {
@@ -262,12 +293,11 @@ function updateMetaTags(config: {
       prevTag.setAttribute('rel', 'prev');
       document.head.appendChild(prevTag);
     }
-    prevTag.setAttribute('href', `${origin}${config.prevUrl}`);
+    prevTag.setAttribute('href', `${siteUrl}${config.prevUrl}`);
   } else if (prevTag) {
     prevTag.remove();
   }
 
-  // Rel next
   let nextTag = document.querySelector('link[rel="next"]');
   if (config.nextUrl) {
     if (!nextTag) {
@@ -275,9 +305,22 @@ function updateMetaTags(config: {
       nextTag.setAttribute('rel', 'next');
       document.head.appendChild(nextTag);
     }
-    nextTag.setAttribute('href', `${origin}${config.nextUrl}`);
+    nextTag.setAttribute('href', `${siteUrl}${config.nextUrl}`);
   } else if (nextTag) {
     nextTag.remove();
+  }
+
+  // 8. Dynamic JSON-LD Structured Data mirroring
+  // Remove any client-side dynamic schema to prevent duplicates (except the chat widget one)
+  const existingSchemas = document.querySelectorAll('script[type="application/ld+json"]:not([data-dynamic-schema="chat"])');
+  existingSchemas.forEach(el => el.remove());
+
+  if (config.jsonLd) {
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    const jsonStr = JSON.stringify(config.jsonLd, null, 2).replace(/</g, '\\u003c');
+    script.text = jsonStr;
+    document.head.appendChild(script);
   }
 }
 
@@ -311,6 +354,7 @@ export default function App() {
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [selectedSeoCategory, setSelectedSeoCategory] = useState<SeoCategory | null>(null);
   const [selectedSubcategorySlug, setSelectedSubcategorySlug] = useState<string | null>(null);
+  const [activeLegalPage, setActiveLegalPage] = useState<'about' | 'editorial' | 'contact' | 'privacy' | 'terms' | 'legal' | null>(null);
 
   // Search & Filter state
   const [searchQuery, setSearchQuery] = useState("");
@@ -432,451 +476,284 @@ export default function App() {
       });
   }, []);
 
-  // Advanced dynamic hydration from URL or data attribute on startup
-  useEffect(() => {
-    const rootEl = document.getElementById("root");
-    const dataProcId = rootEl?.getAttribute("data-procedure");
-    const dataBlogSlug = rootEl?.getAttribute("data-blog-slug");
-    const dataLocation = rootEl?.getAttribute("data-location");
-    const dataTab = rootEl?.getAttribute("data-tab");
+  // Advanced unified route handler that handles routing, legal sub-pages, state syncing, and meta tags
+  const handleUrlNavigation = (url: string) => {
+    const path = url.toLowerCase();
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: "smooth" });
 
-    const path = window.location.pathname.toLowerCase();
-
-    if (dataProcId) {
-      const proc = PROCEDURES_DATA.find(p => p.id === dataProcId);
+    // Reset sub-routes by default, then override selectively
+    setSelectedProcedure(null);
+    setSelectedPost(null);
+    setSelectedCity(null);
+    setSelectedSeoCategory(null);
+    setSelectedSubcategorySlug(null);
+    setActiveLegalPage(null);
+    
+    if (path === "/" || path === "/home") {
+      setCurrentRoute('home');
+      setMainTab('consultas');
+      updateMetaTags({
+        title: "IESS Ecuador: trámites y requisitos " + CURRENT_YEAR + " | IESS Asistente",
+        description: "Consulta requisitos de jubilación, préstamos quirografarios, hipotecarios, afiliación voluntaria y genera oficios de ley de forma gratuita.",
+        url: "/",
+        jsonLd: getHomeGraph(getSiteUrl(), PROCEDURES_DATA)
+      });
+    } else if (path === "/oficios") {
+      setCurrentRoute('home');
+      setMainTab('oficios');
+      updateMetaTags({
+        title: "Formatos y Oficios de Ley IESS " + CURRENT_YEAR + " | IESS Asistente",
+        description: "Generador inteligente y gratuito de 17 oficios, apelaciones e impugnaciones de glosas para afiliados y empleadores del IESS en Ecuador.",
+        url: "/oficios",
+        jsonLd: getCategoryGraph(getSiteUrl(), SEO_CATEGORIES.find(c => c.slug === "herramientas") || { slug: "herramientas", title: "Herramientas de Ley", metaTitle: "Herramientas de Ley", metaDescription: "Herramientas", faqs: [] }, null)
+      });
+    } else if (path === "/faq") {
+      setCurrentRoute('faq');
+      setMainTab('consultas');
+      updateMetaTags({
+        title: "Preguntas Frecuentes IESS: respuestas " + CURRENT_YEAR + " | IESS Asistente",
+        description: "Respuestas inmediatas a tus dudas de jubilación, préstamos BIESS, afiliación voluntaria y cobro de fondos en el IESS de Ecuador.",
+        url: "/faq",
+        jsonLd: getCategoryGraph(getSiteUrl(), SEO_CATEGORIES.find(c => c.slug === "faq") || { slug: "faq", title: "Preguntas Frecuentes", metaTitle: "FAQ", metaDescription: "Preguntas Frecuentes IESS", faqs: [] }, null)
+      });
+    } else if (path === "/sobre-nosotros") {
+      setActiveLegalPage("about");
+      setCurrentRoute('home');
+      updateMetaTags({
+        title: "Sobre Nosotros | Guía IESS Ciudadano",
+        description: "Conoce más sobre el portal independiente de orientación y asistencia ciudadana para trámites del IESS en Ecuador.",
+        url: "/sobre-nosotros"
+      });
+    } else if (path === "/editorial") {
+      setActiveLegalPage("editorial");
+      setCurrentRoute('home');
+      updateMetaTags({
+        title: "Metodología Editorial | Guía IESS Ciudadano",
+        description: "Descubre nuestro riguroso proceso de verificación y contraste normativo para asegurar la fidelidad legal de nuestras guías del IESS.",
+        url: "/editorial"
+      });
+    } else if (path === "/contacto") {
+      setActiveLegalPage("contact");
+      setCurrentRoute('home');
+      updateMetaTags({
+        title: "Contacto | Guía IESS Ciudadano",
+        description: "Ponte en contacto con el equipo editorial de Guía IESS Ciudadano para sugerencias, reportes o consultas generales.",
+        url: "/contacto"
+      });
+    } else if (path === "/privacidad") {
+      setActiveLegalPage("privacy");
+      setCurrentRoute('home');
+      updateMetaTags({
+        title: "Política de Privacidad | Guía IESS Ciudadano",
+        description: "Detalles sobre cómo tratamos la información en nuestro portal de asistencia y simuladores del IESS.",
+        url: "/privacidad"
+      });
+    } else if (path === "/terminos") {
+      setActiveLegalPage("terms");
+      setCurrentRoute('home');
+      updateMetaTags({
+        title: "Términos y Condiciones | Guía IESS Ciudadano",
+        description: "Términos de uso de la plataforma informativa y de orientación para afiliados del IESS en Ecuador.",
+        url: "/terminos"
+      });
+    } else if (path === "/aviso-legal") {
+      setActiveLegalPage("legal");
+      setCurrentRoute('home');
+      updateMetaTags({
+        title: "Aviso Legal | Guía IESS Ciudadano",
+        description: "Declaración de independencia informativa respecto al Instituto Ecuatoriano de Seguridad Social.",
+        url: "/aviso-legal"
+      });
+    } else if (path.startsWith("/procedimiento/")) {
+      const slug = path.split("/procedimiento/")[1];
+      const proc = PROCEDURES_DATA.find(p => p.id.toLowerCase().replace(/\s+/g, '-') === slug || p.id.toLowerCase() === slug);
       if (proc) {
         setSelectedProcedure(proc);
         setCurrentRoute('procedure');
         setMainTab('consultas');
+        updateMetaTags({
+          title: proc.title + ": requisitos y pasos " + CURRENT_YEAR + " | IESS Asistente",
+          description: "Requisitos indispensables, guía paso a paso y errores a evitar para tramitar " + proc.title + " en el IESS de Ecuador. Genera tu oficio gratis.",
+          url: `/procedimiento/${slug}`,
+          jsonLd: getProcedureGraph(getSiteUrl(), proc)
+        });
       }
-    } else if (dataBlogSlug) {
-      const post = BLOG_POSTS.find(p => p.slug === dataBlogSlug);
+    } else if (path.startsWith("/blog/page/") || path === "/blog") {
+      let p = 1;
+      if (path.startsWith("/blog/page/")) {
+        p = parseInt(path.split("/blog/page/")[1], 10) || 1;
+      }
+      setBlogCurrentPage(p);
+      setCurrentRoute('blog');
+      setMainTab('blog');
+      
+      const title = p <= 1
+        ? "Blog de Guías Prácticas del IESS " + CURRENT_YEAR + " | IESS Asistente"
+        : "Blog de Guías de Seguridad Social - Página " + p + " | IESS Asistente";
+      const description = p <= 1
+        ? "Encuentra explicaciones sencillas, normativas vigentes y guías detalladas de jubilaciones, préstamos BIESS y trámites del IESS de Ecuador."
+        : "Página " + p + " del archivo de guías y normativas del IESS de Ecuador. Información de requisitos y resoluciones del Consejo Directivo.";
+      
+      const totalPages = Math.ceil(BLOG_POSTS.length / blogPostsPerPage) || 1;
+      const prevUrl = p === 2 ? "/blog" : p > 2 ? `/blog/page/${p - 1}` : undefined;
+      const nextUrl = p < totalPages ? `/blog/page/${p + 1}` : undefined;
+      const robots = p > 5 ? "noindex, follow" : "index, follow";
+
+      const limit = blogPostsPerPage;
+      const offset = (p - 1) * limit;
+      const pagePosts = BLOG_POSTS.slice(offset, offset + limit);
+
+      updateMetaTags({
+        title,
+        description,
+        url: p <= 1 ? "/blog" : `/blog/page/${p}`,
+        robots,
+        prevUrl,
+        nextUrl,
+        jsonLd: getBlogArchiveGraph(getSiteUrl(), p, pagePosts)
+      });
+    } else if (path.startsWith("/blog/")) {
+      const slug = path.split("/blog/")[1];
+      const post = BLOG_POSTS.find(p => p.slug === slug || p.id === slug);
       if (post) {
         setSelectedPost(post);
         setCurrentRoute('blog');
         setMainTab('blog');
+        updateMetaTags({
+          title: post.title + " | IESS Asistente",
+          description: post.metaDescription,
+          url: `/blog/${post.slug}`,
+          image: post.image,
+          jsonLd: getArticleGraph(getSiteUrl(), post)
+        });
       }
-    } else if (dataLocation) {
-      setSelectedCity(dataLocation);
-      setMainTab('consultas');
-      setCurrentRoute('home');
-    } else if (dataTab === "blog" || path === "/blog" || path.startsWith("/blog/page/")) {
-      const dataBlogPage = rootEl?.getAttribute("data-blog-page");
-      if (dataBlogPage) {
-        const p = parseInt(dataBlogPage, 10);
-        if (!isNaN(p) && p >= 1) setBlogCurrentPage(p);
-      } else if (path.startsWith("/blog/page/")) {
-        const p = parseInt(path.split("/blog/page/")[1], 10);
-        if (!isNaN(p) && p >= 1) setBlogCurrentPage(p);
-      } else {
-        const urlParams = new URLSearchParams(window.location.search);
-        const p = parseInt(urlParams.get("page") || "1", 10);
-        if (!isNaN(p) && p >= 1) setBlogCurrentPage(p);
+    } else if (path.startsWith("/iess/")) {
+      const city = path.split("/iess/")[1];
+      const locData = ECUADOR_LOCATIONS[city];
+      if (locData) {
+        setSelectedCity(city);
+        setCurrentRoute('home');
+        setMainTab('consultas');
+        const cityNameCap = locData.fullName;
+        updateMetaTags({
+          title: "IESS " + cityNameCap + ": oficinas, turnos y trámites " + CURRENT_YEAR + " | IESS Asistente",
+          description: "Guía local para IESS " + cityNameCap + ". Consulta el horario de atención, ubicación física, requisitos de afiliación y trámites en tu provincia.",
+          url: `/iess/${city}`,
+          jsonLd: getCityGraph(getSiteUrl(), city, locData)
+         });
       }
-      setMainTab('blog');
-      setCurrentRoute('blog');
-    } else if (dataTab === "consultas" || path === "/faq") {
-      setMainTab('consultas');
-      setCurrentRoute('faq');
     } else {
-      // Fallback parsing of URL pathname directly
-      if (path.startsWith("/procedimiento/")) {
-        const slug = path.split("/procedimiento/")[1];
-        const proc = PROCEDURES_DATA.find(p => p.id.toLowerCase().replace(/\s+/g, '-') === slug || p.id.toLowerCase() === slug);
-        if (proc) {
-          setSelectedProcedure(proc);
-          setCurrentRoute('procedure');
-          setMainTab('consultas');
-        }
-      } else if (path.startsWith("/blog/page/")) {
-        const p = parseInt(path.split("/blog/page/")[1], 10);
-        if (!isNaN(p) && p >= 1) setBlogCurrentPage(p);
-        setCurrentRoute('blog');
-        setMainTab('blog');
-      } else if (path.startsWith("/blog/")) {
-        const slug = path.split("/blog/")[1];
-        const post = BLOG_POSTS.find(p => p.slug === slug || p.id === slug);
-        if (post) {
-          setSelectedPost(post);
-          setCurrentRoute('blog');
-          setMainTab('blog');
-        }
-      } else if (path.startsWith("/iess/")) {
-        const city = path.split("/iess/")[1];
-        if (['quito', 'guayaquil', 'cuenca', 'ambato', 'machala'].includes(city)) {
-          setSelectedCity(city);
-          setMainTab('consultas');
-          setCurrentRoute('home');
-        }
-      } else {
-        // Fallback to Category/Subcategory matching
-        const pathParts = path.split("/").filter(Boolean);
-        if (pathParts.length > 0) {
-          const matchedCategory = SEO_CATEGORIES.find(c => c.slug === pathParts[0]);
-          if (matchedCategory) {
-            setSelectedSeoCategory(matchedCategory);
-            if (pathParts.length > 1) {
-              const matchedSub = matchedCategory.subcategories.find(s => s.slug === pathParts[1]);
-              if (matchedSub) {
-                setSelectedSubcategorySlug(matchedSub.slug);
-              } else {
-                setSelectedSubcategorySlug(null);
-              }
-            } else {
-              setSelectedSubcategorySlug(null);
+      // Category/Subcategory matching
+      const pathParts = path.split("/").filter(Boolean);
+      if (pathParts.length > 0) {
+        const matchedCategory = SEO_CATEGORIES.find(c => c.slug === pathParts[0]);
+        if (matchedCategory) {
+          setSelectedSeoCategory(matchedCategory);
+          let matchedSub = null;
+          if (pathParts.length > 1) {
+            matchedSub = matchedCategory.subcategories.find(s => s.slug === pathParts[1]) || null;
+            if (matchedSub) {
+              setSelectedSubcategorySlug(matchedSub.slug);
             }
-            setCurrentRoute('category');
-            setMainTab('consultas');
-            setSelectedProcedure(null);
-            setSelectedPost(null);
-            setSelectedCity(null);
           }
+          setCurrentRoute('category');
+          setMainTab('consultas');
+          
+          const url = pathParts.length > 1 ? `/${pathParts[0]}/${pathParts[1]}` : `/${pathParts[0]}`;
+          const title = pathParts.length > 1 && matchedSub
+            ? matchedSub.title + " - " + matchedCategory.title + " | IESS Asistente"
+            : matchedCategory.title + " en el IESS: guía " + CURRENT_YEAR;
+            
+          updateMetaTags({
+            title,
+            description: pathParts.length > 1 
+              ? matchedCategory.subcategories.find(s => s.slug === pathParts[1])?.description || matchedCategory.metaDescription
+              : matchedCategory.metaDescription,
+            url,
+            jsonLd: getCategoryGraph(getSiteUrl(), matchedCategory, pathParts.length > 1 ? pathParts[1] : null)
+          });
         }
       }
     }
-  }, []);
+  };
 
-  // Popstate history listener for Back/Forward navigation
+  // Synchronize startup routes, history states, and program navigation events
   useEffect(() => {
-    const handlePopState = (event: PopStateEvent) => {
-      const path = window.location.pathname.toLowerCase();
-      if (path === "/" || path === "/home") {
-        setCurrentRoute('home');
-        setSelectedProcedure(null);
-        setSelectedPost(null);
-        setSelectedCity(null);
-        setSelectedSeoCategory(null);
-        setSelectedSubcategorySlug(null);
-        setMainTab('consultas');
-      } else if (path.startsWith("/procedimiento/")) {
-        const slug = path.split("/procedimiento/")[1];
-        const proc = PROCEDURES_DATA.find(p => p.id.toLowerCase().replace(/\s+/g, '-') === slug || p.id.toLowerCase() === slug);
-        if (proc) {
-          setSelectedProcedure(proc);
-          setSelectedCity(null);
-          setSelectedSeoCategory(null);
-          setSelectedSubcategorySlug(null);
-          setCurrentRoute('procedure');
-          setMainTab('consultas');
-        }
-      } else if (path.startsWith("/blog/page/") || path === "/blog") {
-        let p = 1;
-        if (path.startsWith("/blog/page/")) {
-          p = parseInt(path.split("/blog/page/")[1], 10) || 1;
-        } else {
-          const urlParams = new URLSearchParams(window.location.search);
-          p = parseInt(urlParams.get("page") || "1", 10) || 1;
-        }
-        setBlogCurrentPage(p);
-        setCurrentRoute('blog');
-        setSelectedPost(null);
-        setSelectedCity(null);
-        setSelectedSeoCategory(null);
-        setSelectedSubcategorySlug(null);
-        setMainTab('blog');
-      } else if (path.startsWith("/blog/")) {
-        const slug = path.split("/blog/")[1];
-        const post = BLOG_POSTS.find(p => p.slug === slug || p.id === slug);
-        if (post) {
-          setSelectedPost(post);
-          setSelectedCity(null);
-          setSelectedSeoCategory(null);
-          setSelectedSubcategorySlug(null);
-          setCurrentRoute('blog');
-          setMainTab('blog');
-        }
-      } else if (path.startsWith("/iess/")) {
-        const city = path.split("/iess/")[1];
-        if (['quito', 'guayaquil', 'cuenca', 'ambato', 'machala'].includes(city)) {
-          setSelectedCity(city);
-          setSelectedProcedure(null);
-          setSelectedPost(null);
-          setSelectedSeoCategory(null);
-          setSelectedSubcategorySlug(null);
-          setCurrentRoute('home');
-          setMainTab('consultas');
-        }
-      } else if (path === "/blog") {
-        setCurrentRoute('blog');
-        setSelectedPost(null);
-        setSelectedCity(null);
-        setSelectedSeoCategory(null);
-        setSelectedSubcategorySlug(null);
-        setMainTab('blog');
-      } else if (path === "/faq") {
-        setCurrentRoute('faq');
-        setSelectedProcedure(null);
-        setSelectedPost(null);
-        setSelectedCity(null);
-        setSelectedSeoCategory(null);
-        setSelectedSubcategorySlug(null);
-        setMainTab('consultas');
-      } else {
-        // Popstate check for Category/Subcategory matching
-        const pathParts = path.split("/").filter(Boolean);
-        if (pathParts.length > 0) {
-          const matchedCategory = SEO_CATEGORIES.find(c => c.slug === pathParts[0]);
-          if (matchedCategory) {
-            setSelectedSeoCategory(matchedCategory);
-            if (pathParts.length > 1) {
-              const matchedSub = matchedCategory.subcategories.find(s => s.slug === pathParts[1]);
-              if (matchedSub) {
-                setSelectedSubcategorySlug(matchedSub.slug);
-              } else {
-                setSelectedSubcategorySlug(null);
-              }
-            } else {
-              setSelectedSubcategorySlug(null);
-            }
-            setCurrentRoute('category');
-            setMainTab('consultas');
-            setSelectedProcedure(null);
-            setSelectedPost(null);
-            setSelectedCity(null);
-          }
-        }
-      }
+    // Run parser on mount
+    handleUrlNavigation(window.location.pathname);
+    
+    // Register routing listener
+    registerNavigationListener(handleUrlNavigation);
+    
+    // Listen for browser popstate
+    const handlePopState = () => {
+      handleUrlNavigation(window.location.pathname);
     };
-
     window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+    
+    return () => {
+      unregisterNavigationListener();
+      window.removeEventListener('popstate', handlePopState);
+    };
   }, []);
 
   // Función para navegar a un procedimiento con pushState y meta tags
   const navigateToProcedure = (procedure: Procedure) => {
-    setSelectedProcedure(procedure);
-    setCurrentRoute('procedure');
-    
-    // Update URL para que sea indexable
-    window.history.pushState(
-      { procedure: procedure.id },
-      procedure.title,
-      `/procedimiento/${procedure.id.toLowerCase().replace(/\s+/g, '-')}`
-    );
-    
-    // Update meta tags dinámicamente
-    updateMetaTags({
-      title: `${procedure.title} - IESS Asistente Ecuador`,
-      description: `Guía completa sobre ${procedure.title}. Requisitos, pasos y respuestas a dudas frecuentes.`,
-      url: `/procedimiento/${procedure.id.toLowerCase().replace(/\s+/g, '-')}`
-    });
+    navigate(urlProcedure(procedure.id));
   };
 
   // Función para borrar el procedimiento seleccionado y restaurar URL
   const clearSelectedProcedure = () => {
-    setSelectedProcedure(null);
-    setCurrentRoute('home');
-    
-    // Restore URL
-    window.history.pushState(
-      null,
-      "Asistente IESS Ecuador - Trámites y Requisitos",
-      "/"
-    );
-    
-    // Restore Meta Tags
-    updateMetaTags({
-      title: "Asistente IESS Ecuador - Trámites y Requisitos",
-      description: "Consulta requisitos de jubilación, préstamos quirografarios, hipotecarios, afiliación voluntaria y genera oficios de ley automatizados.",
-      url: "/"
-    });
+    navigate("/");
   };
 
   // Función para navegar a un post de blog con pushState y meta tags
   const navigateToBlogPost = (post: BlogPost) => {
-    setSelectedPost(post);
-    setCurrentRoute('blog');
-    
-    window.history.pushState(
-      { blogSlug: post.slug },
-      post.title,
-      `/blog/${post.slug}`
-    );
-    
-    updateMetaTags({
-      title: `${post.title} | Blog IESSAsistente`,
-      description: post.metaDescription,
-      url: `/blog/${post.slug}`
-    });
+    navigate(urlBlogPost(post.slug));
   };
 
   // Función para borrar el post seleccionado y restaurar URL del blog
   const clearSelectedBlogPost = () => {
-    setSelectedPost(null);
-    setCurrentRoute('blog');
-    
-    const targetUrl = blogCurrentPage > 1 ? `/blog/page/${blogCurrentPage}` : "/blog";
-    window.history.pushState(
-      null,
-      blogCurrentPage > 1 ? `Blog Oficial IESS Ecuador - Guías de Seguridad Social - Página ${blogCurrentPage}` : "Blog Oficial IESS Ecuador - Guías de Seguridad Social",
-      targetUrl
-    );
-    
-    updateMetaTags({
-      title: blogCurrentPage > 1 ? `Blog Oficial IESS Ecuador - Guías de Seguridad Social - Página ${blogCurrentPage} | IESS Asistente` : "Blog Oficial IESS Ecuador - Guías de Seguridad Social",
-      description: "Encuentra explicaciones sencillas, normativas legales vigentes y guías detalladas para jubilaciones, préstamos BIESS y aportaciones.",
-      url: targetUrl
-    });
+    navigate(urlBlogPage(blogCurrentPage));
   };
 
   // Función para navegar entre páginas del archivo de Blog con SEO dinámico
   const navigateToBlogPage = (page: number) => {
-    const targetPage = Math.max(1, page);
-    setBlogCurrentPage(targetPage);
-    const targetUrl = targetPage <= 1 ? "/blog" : `/blog/page/${targetPage}`;
-    window.history.pushState({ tab: "blog", page: targetPage }, "", targetUrl);
-
-    const title = targetPage <= 1
-      ? "Blog Oficial IESS Ecuador - Guías de Seguridad Social y Trámites"
-      : `Blog Oficial IESS Ecuador - Guías de Seguridad Social - Página ${targetPage} | IESS Asistente`;
-    const description = targetPage <= 1
-      ? "Encuentra explicaciones sencillas, normativas legales vigentes y guías detalladas para jubilaciones, préstamos BIESS, cesantías y trámites paso a paso."
-      : `Página ${targetPage} del archivo y blog de guías oficiales del IESS Ecuador. Normativas legales vigentes y trámites actualizados 2026.`;
-
-    const totalPages = Math.ceil(BLOG_POSTS.length / blogPostsPerPage) || 1;
-    const prevUrl = targetPage === 2 ? "/blog" : targetPage > 2 ? `/blog/page/${targetPage - 1}` : undefined;
-    const nextUrl = targetPage < totalPages ? `/blog/page/${targetPage + 1}` : undefined;
-    const robots = targetPage > 5 ? "noindex, follow" : "index, follow";
-
-    updateMetaTags({
-      title,
-      description,
-      url: targetUrl,
-      robots,
-      prevUrl,
-      nextUrl
-    });
-
-    const blogAnchor = document.getElementById("blog-header-anchor");
-    if (blogAnchor) {
-      blogAnchor.scrollIntoView({ behavior: "smooth" });
-    } else {
-      window.scrollTo({ top: 320, behavior: "smooth" });
-    }
+    navigate(urlBlogPage(page));
   };
 
   // Click handlers for tab navigation with history state
   const handleConsultasTabClick = () => {
-    setMainTab('consultas');
-    setSelectedPost(null);
-    setSelectedCity(null);
-    setCurrentRoute('home');
-    window.history.pushState(null, "Asistente IESS Ecuador - Trámites y Requisitos", "/");
-    updateMetaTags({
-      title: "Asistente IESS Ecuador - Trámites y Requisitos",
-      description: "Consulta requisitos de jubilación, préstamos quirografarios, hipotecarios, afiliación voluntaria y genera oficios de ley automatizados.",
-      url: "/"
-    });
+    navigate("/");
   };
 
   const handleOficiosTabClick = () => {
-    setMainTab('oficios');
-    setSelectedPost(null);
-    setSelectedCity(null);
-    setCurrentRoute('home');
-    window.history.pushState(null, "Formatos y Oficios de Ley IESS - IESSAsistente", "/oficios");
-    updateMetaTags({
-      title: "Formatos y Oficios de Ley IESS - IESSAsistente",
-      description: "Generador inteligente de 17 oficios, apelaciones e impugnaciones de glosas para afiliados y empleadores del IESS.",
-      url: "/oficios"
-    });
+    navigate("/oficios");
   };
 
   const handleBlogTabClick = () => {
-    setMainTab('blog');
-    setSelectedPost(null);
-    setSelectedCity(null);
-    setCurrentRoute('blog');
-    const targetUrl = blogCurrentPage > 1 ? `/blog/page/${blogCurrentPage}` : "/blog";
-    window.history.pushState(null, "Blog Oficial IESS Ecuador - Guías de Seguridad Social", targetUrl);
-    updateMetaTags({
-      title: blogCurrentPage > 1 ? `Blog Oficial IESS Ecuador - Guías de Seguridad Social - Página ${blogCurrentPage} | IESS Asistente` : "Blog Oficial IESS Ecuador - Guías de Seguridad Social",
-      description: "Encuentra explicaciones sencillas, normativas legales vigentes y guías detalladas para jubilaciones, préstamos BIESS y aportaciones.",
-      url: targetUrl
-    });
+    navigate("/blog");
   };
 
   const handleFaqClick = () => {
-    setMainTab('consultas');
-    setSelectedPost(null);
-    setSelectedCity(null);
-    setCurrentRoute('faq');
-    window.history.pushState(null, "Preguntas Frecuentes IESS - Respuestas Rápidas de Seguridad Social", "/faq");
-    updateMetaTags({
-      title: "Preguntas Frecuentes IESS - Respuestas Rápidas de Seguridad Social",
-      description: "Resuelve de forma inmediata tus dudas de trámites, requisitos de afiliación voluntaria, cobro de fondos de reserva, cesantías y cálculo de pensiones.",
-      url: "/faq"
-    });
+    navigate("/faq");
   };
 
   // Función para navegar a una ciudad para SEO local
   const navigateToCity = (city: string) => {
-    setSelectedCity(city);
-    setSelectedProcedure(null);
-    setSelectedPost(null);
-    setMainTab('consultas');
-    setCurrentRoute('home');
-
-    const cityNameCap = city.charAt(0).toUpperCase() + city.slice(1);
-    window.history.pushState(
-      { city },
-      `IESS ${cityNameCap} - Trámites y Asesoría | IESSAsistente`,
-      `/iess/${city}`
-    );
-
-    updateMetaTags({
-      title: `IESS ${cityNameCap} - Trámites, Requisitos y Oficios | IESSAsistente`,
-      description: `Asesoría oficial IESS en ${cityNameCap}. Requisitos de jubilación por vejez, préstamos BIESS, subsidio de maternidad, afiliación voluntaria y oficios automatizados.`,
-      url: `/iess/${city}`
-    });
+    navigate(urlCity(city));
   };
 
   // Función para limpiar la ciudad seleccionada y volver a la home
   const clearSelectedCity = () => {
-    setSelectedCity(null);
-    window.history.pushState(
-      null,
-      "Asistente IESS Ecuador - Trámites y Requisitos",
-      "/"
-    );
-    updateMetaTags({
-      title: "Asistente IESS Ecuador - Trámites y Requisitos",
-      description: "Consulta requisitos de jubilación, préstamos quirografarios, hipotecarios, afiliación voluntaria y genera oficios de ley automatizados.",
-      url: "/"
-    });
+    navigate("/");
   };
 
   // Función para navegar a una categoría o subcategoría de la estructura SEO
   const navigateToCategory = (categorySlug: string, subcategorySlug: string | null = null) => {
-    const cat = SEO_CATEGORIES.find(c => c.slug === categorySlug);
-    if (cat) {
-      setSelectedSeoCategory(cat);
-      setSelectedSubcategorySlug(subcategorySlug);
-      setCurrentRoute('category');
-      setMainTab('consultas');
-      setSelectedProcedure(null);
-      setSelectedPost(null);
-      setSelectedCity(null);
-
-      const url = subcategorySlug ? `/${categorySlug}/${subcategorySlug}` : `/${categorySlug}`;
-      const title = subcategorySlug 
-        ? `${cat.title} - ${cat.subcategories.find(s => s.slug === subcategorySlug)?.title || ''} | IESSAsistente`
-        : `${cat.metaTitle} | IESSAsistente`;
-
-      window.history.pushState(
-        { categorySlug, subcategorySlug },
-        title,
-        url
-      );
-
-      updateMetaTags({
-        title,
-        description: subcategorySlug 
-          ? cat.subcategories.find(s => s.slug === subcategorySlug)?.description || cat.metaDescription
-          : cat.metaDescription,
-        url
-      });
-    }
+    navigate(urlCategory(categorySlug, subcategorySlug));
   };
 
   // Scroll to bottom of chat whenever messages list updates
@@ -1065,43 +942,45 @@ export default function App() {
   return (
     <div id="app-root" className="min-h-screen bg-[#f8fafc] text-[#1e293b] font-sans antialiased flex flex-col selection:bg-[#c9a84c] selection:text-white overflow-x-hidden w-full">
       
-      {/* HEADER: deep navy `#0a1f42` with `#c9a84c` golden accent border */}
+      {/* HEADER: single row, three zones matching Top Bar Contract perfectly */}
       <header id="app-header" className="bg-[#0a1f42] text-white sticky top-0 z-40 shadow-md border-b-4 border-[#c9a84c] transition-all">
-        <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#c9a84c] to-[#9a7e36] flex items-center justify-center shadow-lg transform rotate-3">
-              <Building2 id="nav-icon" className="w-5 h-5 text-white" />
+        <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center justify-between gap-4">
+          {/* Zone 1: Single element wordmark brand as a Link */}
+          <Link to="/" className="flex items-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c9a84c] rounded-md px-1 hover:no-underline">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#c9a84c] to-[#9a7e36] flex items-center justify-center shadow-md transform rotate-3 group-hover:rotate-12 transition-transform shrink-0">
+              <Building2 className="w-4 h-4 text-white" />
             </div>
-            <div>
-              <span className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-[#c9a84c] bg-clip-text text-transparent">
+            <div className="leading-tight">
+              <span className="text-sm sm:text-base font-black tracking-tight block bg-gradient-to-r from-white via-slate-100 to-[#c9a84c] bg-clip-text text-transparent">
                 IESS GUÍA
               </span>
-              <span className="text-xs block text-slate-300 font-medium tracking-widest pl-0.5">
-                CIUDADANO ECUADOR
+              <span className="text-[9px] block text-slate-350 font-bold tracking-widest leading-none">
+                CIUDADANO
               </span>
             </div>
-          </div>
+          </Link>
           
-          <nav className="flex items-center gap-4 text-xs sm:text-sm font-semibold">
-            <a 
-              href="https://www.iess.gob.ec" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="text-slate-300 hover:text-[#c9a84c] transition-colors flex items-center gap-1 py-1"
-            >
-              IESS Portal
-              <span className="text-[10px] bg-[#0d2a58] px-1.5 py-0.5 rounded text-white font-mono">Oficial</span>
-            </a>
-            <a 
-              href="https://www.biess.fin.ec" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="text-slate-300 hover:text-[#c9a84c] transition-colors flex items-center gap-1 py-1"
-            >
-              BIESS Portal
-              <span className="text-[10px] bg-[#0d2a58] px-1.5 py-0.5 rounded text-white font-mono">Préstamos</span>
-            </a>
+          {/* Zone 2: Crawleable navigation simple-menu */}
+          <nav className="hidden lg:flex items-center gap-4 text-xs font-bold text-slate-300">
+            <Link to="/" className="hover:text-[#c9a84c] transition-colors py-1 hover:no-underline">Trámites</Link>
+            <Link to="/jubilacion" className="hover:text-[#c9a84c] transition-colors py-1 hover:no-underline">Jubilación</Link>
+            <Link to="/prestamos-biess" className="hover:text-[#c9a84c] transition-colors py-1 hover:no-underline">Préstamos BIESS</Link>
+            <Link to="/afiliacion" className="hover:text-[#c9a84c] transition-colors py-1 hover:no-underline">Afiliación</Link>
+            <Link to="/fondos-reserva" className="hover:text-[#c9a84c] transition-colors py-1 hover:no-underline">Fondos de reserva</Link>
+            <Link to="/herramientas" className="hover:text-[#c9a84c] transition-colors py-1 hover:no-underline">Herramientas</Link>
+            <Link to="/blog" className="hover:text-[#c9a84c] transition-colors py-1 hover:no-underline">Blog</Link>
+            <Link to="/faq" className="hover:text-[#c9a84c] transition-colors py-1 hover:no-underline">FAQ</Link>
           </nav>
+          
+          {/* Zone 3: Primary Action */}
+          <div className="flex items-center gap-2 shrink-0">
+            <button 
+              onClick={() => setIsFabChatOpen(true)}
+              className="px-3.5 py-2 text-[10px] sm:text-xs font-black text-[#0a1f42] bg-[#c9a84c] rounded-xl hover:bg-white transition-all shadow-md active:scale-95 duration-100 uppercase tracking-wider cursor-pointer border border-[#d8b556] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              Asistente IA 🤖
+            </button>
+          </div>
         </div>
       </header>
 
@@ -1379,8 +1258,94 @@ export default function App() {
       <main className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow flex flex-col gap-10">
         
         {/* MAIN SECTIONS COLUMN */}
-        <section className="w-full flex flex-col gap-10 min-w-0">
-          {mainTab === 'consultas' ? (
+        {activeLegalPage ? (
+          <article className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm max-w-3xl mx-auto w-full select-text leading-relaxed">
+            <Link to="/" className="inline-flex items-center gap-1.5 text-xs text-[#0a1f42] hover:text-[#c9a84c] mb-6 font-extrabold transition-colors cursor-pointer hover:no-underline">
+              <ArrowLeft className="w-3.5 h-3.5" /> Volver al Inicio
+            </Link>
+            
+            {activeLegalPage === 'about' && (
+              <div className="space-y-4">
+                <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0a1f42] border-b pb-3 uppercase tracking-tight">Sobre Nosotros</h1>
+                <p className="text-sm text-slate-700 leading-relaxed">
+                  <strong>Guía IESS Ciudadano</strong> es un portal independiente de orientación y asistencia ciudadana diseñado exclusivamente para educar y facilitar el entendimiento de la seguridad social en el Ecuador.
+                </p>
+                <p className="text-sm text-slate-700 leading-relaxed">
+                  Nuestra misión es democratizar el acceso a la información pública, traduciendo reglamentos complejos y boletines técnicos a un lenguaje claro, sencillo y accionable para afiliados, jubilados, pensionistas y empleadores del país. Creemos firmemente que una ciudadanía informada es capaz de ejercer y defender sus derechos de forma más autónoma y justa.
+                </p>
+              </div>
+            )}
+            
+            {activeLegalPage === 'editorial' && (
+              <div className="space-y-4">
+                <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0a1f42] border-b pb-3 uppercase tracking-tight">Metodología Editorial</h1>
+                <p className="text-sm text-slate-700 leading-relaxed">
+                  En <strong>Guía IESS Ciudadano</strong> nos tomamos la fidelidad informativa con la máxima rigurosidad normativa. Todos nuestros artículos, tutoriales y bases de datos son redactados, revisados y contrastados de forma manual por profesionales con amplio entendimiento en la legislación laboral y seguridad social de Ecuador.
+                </p>
+                <h2 className="text-lg font-bold text-[#0a1f42] mt-4">Fuentes de Contraste</h2>
+                <ul className="list-disc pl-5 space-y-1 text-sm text-slate-700">
+                  <li>Ley Orgánica de Seguridad Social vigente.</li>
+                  <li>Código del Trabajo de la República del Ecuador.</li>
+                  <li>Boletines de prensa y resoluciones del Consejo Directivo del IESS.</li>
+                  <li>Reglamentos de crédito emitidos por el BIESS.</li>
+                </ul>
+              </div>
+            )}
+            
+            {activeLegalPage === 'contact' && (
+              <div className="space-y-4">
+                <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0a1f42] border-b pb-3 uppercase tracking-tight">Contacto</h1>
+                <p className="text-sm text-slate-700 leading-relaxed">
+                  ¿Tienes dudas, sugerencias sobre nuestras guías, o deseas reportar alguna inconsistencia técnica en nuestros simuladores de oficios? Nuestro equipo editorial te escuchará con gusto.
+                </p>
+                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 mt-4 text-sm text-[#0a1f42] font-semibold space-y-2">
+                  <p>📧 Correo Electrónico: <a href="mailto:contacto@iessasistente.com" className="text-[#c9a84c] hover:underline">contacto@iessasistente.com</a></p>
+                  <p>🕒 Horario de Atención: Lunes a Viernes de 08:30 a 17:30 (GMT-5)</p>
+                </div>
+              </div>
+            )}
+            
+            {activeLegalPage === 'privacy' && (
+              <div className="space-y-4">
+                <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0a1f42] border-b pb-3 uppercase tracking-tight">Política de Privacidad</h1>
+                <p className="text-sm text-slate-700 leading-relaxed">
+                  Tu privacidad es de absoluta importancia para nosotros. Garantizamos plenamente la confidencialidad de tu información personal en nuestro portal:
+                </p>
+                <h2 className="text-lg font-bold text-[#0a1f42] mt-4">Procesamiento Local Seguro</h2>
+                <p className="text-sm text-slate-700 leading-relaxed">
+                  Toda la información personal e identificativa ingresada en nuestros generadores de oficios de ley o calculadoras interactivas (como cédulas, nombres, empleadores o saldos bancarios) se procesa <strong>única y exclusivamente de forma local en tu propio navegador web</strong>. Estos datos jamás se almacenan, registran ni transfieren a servidores externos.
+                </p>
+              </div>
+            )}
+            
+            {activeLegalPage === 'terms' && (
+              <div className="space-y-4">
+                <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0a1f42] border-b pb-3 uppercase tracking-tight">Términos y Condiciones</h1>
+                <p className="text-sm text-slate-700 leading-relaxed">
+                  El acceso y uso de este portal web independiente de orientación implica la aceptación de los siguientes términos:
+                </p>
+                <h2 className="text-lg font-bold text-[#0a1f42] mt-4">Servicio Informativo Gratuito</h2>
+                <p className="text-sm text-slate-700 leading-relaxed">
+                  <strong>Guía IESS Ciudadano</strong> es un servicio libre de costo. No realizamos trámites de cobro ni poseemos intermediarios patronales. La plataforma se ofrece "tal cual" para fines educativos y cívicos, instando al afiliado a verificar siempre sus datos directamente en la entidad oficial correspondiente.
+                </p>
+              </div>
+            )}
+            
+            {activeLegalPage === 'legal' && (
+              <div className="space-y-4">
+                <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0a1f42] border-b pb-3 uppercase tracking-tight">Aviso Legal</h1>
+                <p className="text-sm text-slate-700 leading-relaxed">
+                  <strong>Guía IESS Ciudadano</strong> es una plataforma informativa independiente y autónoma. No posee afiliación oficial, patrocinio comercial, delegación legal ni vinculación directa alguna con el Instituto Ecuatoriano de Seguridad Social (IESS), con el Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) ni con el Gobierno de la República del Ecuador.
+                </p>
+                <p className="text-sm text-slate-750 leading-relaxed">
+                  Todos los isotipos, logotipos y marcas de propiedad institucional mostrados en las guías se utilizan estrictamente para fines de ilustración pública identificativa conforme a los derechos de libre acceso a la información ciudadana.
+                </p>
+              </div>
+            )}
+          </article>
+        ) : (
+          <section className="w-full flex flex-col gap-10 min-w-0">
+            {mainTab === 'consultas' ? (
             currentRoute === 'category' && selectedSeoCategory ? (
               <CategoryDetail
                 category={selectedSeoCategory}
@@ -1687,10 +1652,10 @@ export default function App() {
                   tramites: "📋"
                 };
                 return (
-                  <div
+                  <Link
                     key={cat.id}
-                    onClick={() => navigateToCategory(cat.slug, null)}
-                    className="bg-slate-50/40 border border-slate-200/80 p-3.5 rounded-xl shadow-2xs hover:shadow hover:border-[#c9a84c] hover:bg-white transition-all cursor-pointer group flex gap-3 h-full items-start"
+                    to={urlCategory(cat.slug)}
+                    className="bg-slate-50/40 border border-slate-200/80 p-3.5 rounded-xl shadow-2xs hover:shadow hover:border-[#c9a84c] hover:bg-white transition-all cursor-pointer group flex gap-3 h-full items-start block hover:no-underline text-left"
                   >
                     <span className="text-2xl shrink-0 mt-0.5">{emojis[cat.slug] || "📂"}</span>
                     <div className="flex-grow">
@@ -1704,7 +1669,7 @@ export default function App() {
                         Ver Guía Pilar <ArrowRight className="w-2.5 h-2.5 shrink-0" />
                       </span>
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
             </div>
@@ -2277,11 +2242,10 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {filteredProcedures.map((proc) => (
-                  <motion.div 
-                    layout
+                  <Link 
                     key={proc.id}
-                    onClick={() => navigateToProcedure(proc)}
-                    className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5 hover:border-[#c9a84c] shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group h-full relative overflow-hidden"
+                    to={urlProcedure(proc.id)}
+                    className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5 hover:border-[#c9a84c] shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group h-full relative overflow-hidden block hover:no-underline text-left"
                   >
                     {/* Badge of category */}
                     <div>
@@ -2306,7 +2270,7 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
                         <ChevronRight className="w-4 h-4 shrink-0 text-[#c9a84c]" />
                       </span>
                     </div>
-                  </motion.div>
+                  </Link>
                 ))}
               </div>
             )}
@@ -3008,13 +2972,10 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
                         </h4>
                         <div className="space-y-2.5">
                           {BLOG_POSTS.filter(p => p.id !== selectedPost.id).slice(0, 3).map(p => (
-                            <div
+                            <Link
                               key={p.id}
-                              onClick={() => {
-                                navigateToBlogPost(p);
-                                window.scrollTo({ top: 350, behavior: 'smooth' });
-                              }}
-                              className="group cursor-pointer block border-b border-slate-100 last:border-0 pb-2.5 last:pb-0"
+                              to={urlBlogPost(p.slug)}
+                              className="group cursor-pointer block border-b border-slate-100 last:border-0 pb-2.5 last:pb-0 hover:no-underline text-left"
                             >
                               <h5 className="text-[11px] font-bold text-slate-750 group-hover:text-[#c9a84c] transition-colors leading-tight line-clamp-2">
                                 {p.title}
@@ -3022,7 +2983,7 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
                               <span className="text-[9px] text-slate-450 mt-1 block font-mono">
                                 {p.category} • {p.readTime} min
                               </span>
-                            </div>
+                            </Link>
                           ))}
                         </div>
                       </div>
@@ -3165,17 +3126,10 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
                       <div className="space-y-6">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           {paginatedPosts.map((post) => (
-                            <a
+                            <Link
                               key={post.id}
-                              href={`/blog/${post.slug}`}
-                              onClick={(e) => {
-                                if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
-                                  e.preventDefault();
-                                  navigateToBlogPost(post);
-                                  window.scrollTo({ top: 350, behavior: 'smooth' });
-                                }
-                              }}
-                              className="bg-white border border-slate-200 hover:border-[#c9a84c] rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-all duration-150 cursor-pointer group flex flex-col h-full text-left"
+                              to={urlBlogPost(post.slug)}
+                              className="bg-white border border-slate-200 hover:border-[#c9a84c] rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-all duration-150 cursor-pointer group flex flex-col h-full text-left hover:no-underline"
                             >
                               <div className="relative h-40 w-full overflow-hidden bg-slate-100">
                                 <img
@@ -3211,7 +3165,7 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
                                   </span>
                                 </div>
                               </div>
-                            </a>
+                            </Link>
                           ))}
                         </div>
 
@@ -3234,6 +3188,7 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
             </div>
           )}
         </section>
+      )}
 
         {/* CENTERED CHATBOT INTERACTIVO SECTION */}
         <section 
@@ -3506,6 +3461,64 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
                   </ul>
                 </section>
 
+                {/* Enlazado Contextual Interno (Requisitos SEO) */}
+                <section className="space-y-4">
+                  <h4 className="text-slate-900 font-bold flex items-center gap-1.5 border-b border-slate-100 pb-1.5 text-xs sm:text-sm uppercase tracking-wide text-[#0a1f42]">
+                    <span>🔗</span>
+                    Contenidos y Recursos Relacionados
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    
+                    {/* Col 1: Trámites Relacionados */}
+                    <div className="bg-slate-50/50 p-3 rounded-xl border border-slate-150">
+                      <span className="text-[10px] font-extrabold uppercase text-[#0a1f42] block mb-2 font-mono">📁 Trámites de Apoyo</span>
+                      <div className="space-y-2">
+                        {PROCEDURES_DATA.filter(p => p.id !== selectedProcedure.id && (p.category === selectedProcedure.category || p.category === "Trámites y Afiliación")).slice(0, 3).map(p => (
+                          <Link 
+                            key={p.id} 
+                            to={urlProcedure(p.id)} 
+                            className="block p-2 bg-white rounded-lg border border-slate-200 hover:border-[#c9a84c] transition-colors text-[11px] font-bold text-slate-700 hover:text-[#0a1f42] hover:no-underline leading-tight"
+                          >
+                            {p.title}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Col 2: Guías Recomendadas */}
+                    <div className="bg-slate-50/50 p-3 rounded-xl border border-slate-150">
+                      <span className="text-[10px] font-extrabold uppercase text-[#0a1f42] block mb-2 font-mono">✍️ Guías Prácticas</span>
+                      <div className="space-y-2">
+                        {BLOG_POSTS.filter(post => post.category === selectedProcedure.category || post.keywords.some(kw => selectedProcedure.title.toLowerCase().includes(kw.toLowerCase()))).slice(0, 2).concat(BLOG_POSTS.slice(0, 1)).slice(0, 2).map(p => (
+                          <Link 
+                            key={p.id} 
+                            to={urlBlogPost(p.slug)} 
+                            className="block p-2 bg-white rounded-lg border border-slate-200 hover:border-[#c9a84c] transition-colors text-[11px] font-bold text-slate-700 hover:text-[#0a1f42] hover:no-underline leading-tight truncate"
+                            title={p.title}
+                          >
+                            {p.title}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Col 3: Herramientas Patronales / Afiliados */}
+                    <div className="bg-slate-50/50 p-3 rounded-xl border border-slate-150">
+                      <span className="text-[10px] font-extrabold uppercase text-[#0a1f42] block mb-2 font-mono">🛠️ Formato de Ley</span>
+                      <div className="p-2.5 bg-white rounded-lg border border-slate-200 space-y-2">
+                        <p className="text-[10px] text-slate-500 leading-snug">Genera gratis cartas formales de reclamo patronal o subsidios de ley en segundos.</p>
+                        <Link 
+                          to="/oficios" 
+                          className="block text-center py-1.5 bg-[#0a1f42] hover:bg-[#152e55] text-white rounded-md text-[9px] font-black uppercase tracking-wider hover:no-underline"
+                        >
+                          Generar Oficio Libre
+                        </Link>
+                      </div>
+                    </div>
+
+                  </div>
+                </section>
+
                 {/* 6. Normativa & Más ayuda */}
                 <section className="bg-slate-50 rounded-xl p-4 border border-dotted border-slate-200">
                   <div className="flex items-start gap-2.5">
@@ -3550,105 +3563,101 @@ C.C.: ${maternidadCedula || "[Tu Cédula]"}
         )}
       </AnimatePresence>
 
-      {/* FOOTER: azul oscuro */}
-      <footer id="app-footer" className="bg-[#030f24] text-white border-t border-slate-900 pt-10 pb-8 mt-auto">
+      {/* FOOTER: grande con 4 columnas, enlaces de navegación Link e información autoritativa */}
+      <footer id="app-footer" className="bg-[#030f24] text-slate-300 border-t border-slate-900 pt-12 pb-8 mt-auto text-xs">
         <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-slate-800 text-slate-400 text-xs sm:text-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 pb-10 border-b border-slate-800">
             
-            {/* Col 1 */}
+            {/* Col 1: Trámites más buscados (10 links) */}
             <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <Building2 className="w-5 h-5 text-[#c9a84c]" />
-                <span className="text-white font-extrabold pb-0.5 tracking-wider">GUÍA IESS ECUADOR</span>
-              </div>
-              <p className="leading-relaxed">
-                Plataforma interactiva gratuita de orientación cívica. Diseñada para educar a los afiliados y jubilados ecuatorianos garantizando el fácil acceso a la información pública preestablecida.
-              </p>
-              <div className="text-[10px] text-slate-500 font-mono">
-                Actualizado con las reformas vigentes en Ecuador (Año 2026).
-              </div>
-            </div>
-
-            {/* Col 2 */}
-            <div className="space-y-3">
-              <span className="text-white font-extrabold uppercase tracking-wider">Enlaces Directos Oficiales</span>
-              <ul className="space-y-2">
-                <li>
-                  <a 
-                    href="https://www.iess.gob.ec" 
-                    target="_blank" 
-                    rel="noreferrer" 
-                    className="hover:text-white hover:underline transition-all flex items-center gap-1.5"
-                  >
-                    <CornerDownRight className="w-3.5 h-3.5 text-[#c9a84c]" />
-                    iess.gob.ec - Trámites en línea
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="https://www.biess.fin.ec" 
-                    target="_blank" 
-                    rel="noreferrer" 
-                    className="hover:text-white hover:underline transition-all flex items-center gap-1.5"
-                  >
-                    <CornerDownRight className="w-3.5 h-3.5 text-[#c9a84c]" />
-                    biess.fin.ec - Quirografarios e Hipotecarios
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="https://www.gob.ec/iess" 
-                    target="_blank" 
-                    rel="noreferrer" 
-                    className="hover:text-white hover:underline transition-all flex items-center gap-1.5"
-                  >
-                    <CornerDownRight className="w-3.5 h-3.5 text-[#c9a84c]" />
-                    gob.ec/iess - Guía de trámites oficial
-                  </a>
-                </li>
+              <span className="text-white font-extrabold uppercase tracking-wider block text-xs border-b border-slate-800 pb-1">
+                Trámites más Buscados
+              </span>
+              <ul className="space-y-1.5 font-medium">
+                <li><Link to="/procedimiento/jubilacion-vejez" className="hover:text-white transition-colors">👴 Jubilación por Vejez</Link></li>
+                <li><Link to="/procedimiento/jubilacion-invalidez" className="hover:text-white transition-colors">🏥 Jubilación por Invalidez</Link></li>
+                <li><Link to="/procedimiento/montepio" className="hover:text-white transition-colors">📜 Pensión de Montepío</Link></li>
+                <li><Link to="/procedimiento/prestamo-quirografario" className="hover:text-white transition-colors">💰 Préstamo Quirografario</Link></li>
+                <li><Link to="/procedimiento/prestamo-hipotecario" className="hover:text-white transition-colors">🏠 Préstamo Hipotecario</Link></li>
+                <li><Link to="/procedimiento/afiliacion-voluntaria" className="hover:text-white transition-colors">📝 Afiliación Voluntaria</Link></li>
+                <li><Link to="/procedimiento/subsidio-maternidad" className="hover:text-white transition-colors">🤱 Subsidio de Maternidad</Link></li>
+                <li><Link to="/procedimiento/cesantia-desempleo" className="hover:text-white transition-colors">💼 Seguro de Desempleo</Link></li>
+                <li><Link to="/procedimiento/responsabilidad-patronal" className="hover:text-white transition-colors">🏢 Responsabilidad Patronal</Link></li>
+                <li><Link to="/procedimiento/quejas-canales-denuncia" className="hover:text-white transition-colors">📞 Canales de Denuncias</Link></li>
               </ul>
             </div>
 
-            {/* Col 3 */}
+            {/* Col 2: Categorías */}
             <div className="space-y-3">
-              <span className="text-white font-extrabold uppercase tracking-wider">Línea de Denuncias 24/7</span>
-              <div className="p-3 bg-red-950/40 rounded-xl border border-red-900 text-slate-300 space-y-2">
-                <p className="leading-snug">
-                  ¿Experimentas maltrato, falta de fármacos o sobornos en el IESS? Denuncia de forma anónima y segura:
+              <span className="text-white font-extrabold uppercase tracking-wider block text-xs border-b border-slate-800 pb-1">
+                Categorías de Guías
+              </span>
+              <ul className="space-y-1.5 font-medium">
+                <li><Link to="/afiliacion" className="hover:text-white transition-colors">📁 Afiliación y Seguros</Link></li>
+                <li><Link to="/historia-laboral" className="hover:text-white transition-colors">⏱️ Historia Laboral</Link></li>
+                <li><Link to="/prestamos-biess" className="hover:text-white transition-colors">💰 Préstamos BIESS</Link></li>
+                <li><Link to="/fondos-reserva" className="hover:text-white transition-colors">🛡️ Fondos de Reserva</Link></li>
+                <li><Link to="/cesantia" className="hover:text-white transition-colors">🚪 Seguro de Cesantía</Link></li>
+                <li><Link to="/jubilacion" className="hover:text-white transition-colors">👴 Jubilaciones IESS</Link></li>
+                <li><Link to="/salud" className="hover:text-white transition-colors">🏥 Cobertura de Salud</Link></li>
+                <li><Link to="/certificados" className="hover:text-white transition-colors">📜 Certificados de Ley</Link></li>
+                <li><Link to="/empleadores" className="hover:text-white transition-colors">🏢 Obligaciones Patronales</Link></li>
+                <li><Link to="/herramientas" className="hover:text-white transition-colors">🛠️ Herramientas de Ley</Link></li>
+              </ul>
+            </div>
+
+            {/* Col 3: Ciudades */}
+            <div className="space-y-3">
+              <span className="text-white font-extrabold uppercase tracking-wider block text-xs border-b border-slate-800 pb-1">
+                Oficinas por Ciudad
+              </span>
+              <ul className="space-y-1.5 font-medium">
+                <li><Link to="/iess/quito" className="hover:text-white transition-colors">🏢 IESS Quito (Pichincha)</Link></li>
+                <li><Link to="/iess/guayaquil" className="hover:text-white transition-colors">🏢 IESS Guayaquil (Guayas)</Link></li>
+                <li><Link to="/iess/cuenca" className="hover:text-white transition-colors">🏢 IESS Cuenca (Azuay)</Link></li>
+                <li><Link to="/iess/ambato" className="hover:text-white transition-colors">🏢 IESS Ambato (Tungurahua)</Link></li>
+                <li><Link to="/iess/machala" className="hover:text-white transition-colors">🏢 IESS Machala (El Oro)</Link></li>
+              </ul>
+              
+              <div className="pt-2">
+                <span className="text-slate-400 font-extrabold uppercase block text-[10px] mb-1">Línea Directa IESS</span>
+                <p className="text-[11px] leading-snug text-slate-400">
+                  Llama sin costo al <span className="font-extrabold text-white">1800-4377</span> (de lunes a viernes) para turnos médicos y soporte.
                 </p>
-                <div className="pt-1.5 border-t border-red-900 text-xs">
-                  <span className="font-bold text-white block">🌐 denuncias.iess.gob.ec</span>
-                  <span className="font-bold text-white block">📱 WhatsApp: 0962532338</span>
-                  <span className="font-bold text-[#c9a84c] block">📞 Central: 1800-4377 (Opción 4)</span>
-                </div>
+              </div>
+            </div>
+
+            {/* Col 4: Legal y Confianza */}
+            <div className="space-y-3">
+              <span className="text-white font-extrabold uppercase tracking-wider block text-xs border-b border-slate-800 pb-1">
+                Legal y Confianza
+              </span>
+              <ul className="space-y-1.5 font-medium">
+                <li><Link to="/sobre-nosotros" className="hover:text-white transition-colors">ℹ️ Sobre Nosotros</Link></li>
+                <li><Link to="/editorial" className="hover:text-white transition-colors">✍️ Metodología Editorial</Link></li>
+                <li><Link to="/contacto" className="hover:text-white transition-colors">📧 Contacto Directo</Link></li>
+                <li><Link to="/privacidad" className="hover:text-white transition-colors">🔒 Política de Privacidad</Link></li>
+                <li><Link to="/terminos" className="hover:text-white transition-colors">⚖️ Términos y Condiciones</Link></li>
+                <li><Link to="/aviso-legal" className="hover:text-white transition-colors">⚠️ Aviso Legal</Link></li>
+              </ul>
+              
+              <div className="p-3 bg-slate-900/50 rounded-xl border border-slate-800 space-y-1 text-[10px] text-slate-400">
+                <span className="font-extrabold text-white uppercase block tracking-wider">Compromiso Cívico</span>
+                <p className="leading-relaxed">
+                  Este portal es una herramienta informativa 100% gratuita que busca educar y guiar de forma clara y transparente al afiliado ecuatoriano.
+                </p>
               </div>
             </div>
 
           </div>
 
-          {/* CATEGORÍAS PILLARS FOOTER LINKS */}
-          <div className="py-6 border-b border-slate-800">
-            <span className="block text-white font-extrabold text-xs uppercase tracking-wider mb-3">Guías Temáticas Especializadas del IESS</span>
-            <div className="flex flex-wrap gap-x-4 gap-y-2 text-[11px] text-slate-400">
-              {SEO_CATEGORIES.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => navigateToCategory(cat.slug, null)}
-                  className="hover:text-[#c9a84c] hover:underline cursor-pointer transition-colors text-left"
-                >
-                  📁 {cat.title}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center text-[11px] text-slate-500">
+          <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left text-[11px] text-slate-500">
             <p>
-              &copy; {new Date().getFullYear()} Guía IESS Ecuador. Todos los derechos reservados. Desarrollado con rigurosidad normativa.
+              &copy; {new Date().getFullYear()} Guía IESS Ciudadano. Todos los derechos reservados. Información actualizada 2026.
             </p>
-            <p className="max-w-md sm:text-right leading-relaxed font-light">
-              Nota: Este portal es una herramienta informativa independiente. No representa ni sustituye al portal gubernamental oficial del Instituto Ecuatoriano de Seguridad Social.
+            <p className="max-w-md md:text-right leading-relaxed font-light">
+              Nota: Este portal es de carácter divulgativo e independiente y no sustituye de ninguna forma al sitio gubernamental oficial del Instituto Ecuatoriano de Seguridad Social (iess.gob.ec).
             </p>
           </div>
 

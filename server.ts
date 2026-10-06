@@ -6,6 +6,35 @@ import dotenv from "dotenv";
 import compression from "compression";
 import { PROCEDURES_DATA } from "./src/data/procedures";
 import { BLOG_POSTS } from "./src/data/blogPosts";
+import { SEO_CATEGORIES } from "./src/data/seoCategories";
+import { getSiteUrl, CURRENT_YEAR } from "./src/config/site";
+import {
+  generateHomeSeoHtml,
+  generateProcedureSeoHtml,
+  generateBlogArchiveSeoHtml,
+  generateBlogPostSeoHtml,
+  generateCategorySeoHtml,
+  generateCitySeoHtml,
+  generateFaqPageSeoHtml,
+  findProcedureBySlug,
+  ECUADOR_LOCATIONS,
+  generateAboutSeoHtml,
+  generateEditorialSeoHtml,
+  generateContactSeoHtml,
+  generatePrivacySeoHtml,
+  generateTermsSeoHtml,
+  generateLegalSeoHtml,
+  generateCookiesSeoHtml,
+  generateAuthorSeoHtml
+} from "./src/server/seoHtml";
+import {
+  getHomeGraph,
+  getProcedureGraph,
+  getArticleGraph,
+  getCategoryGraph,
+  getCityGraph,
+  getBlogArchiveGraph
+} from "./src/server/schema";
 
 dotenv.config();
 
@@ -16,6 +45,31 @@ const PORT = 3000;
 app.use(compression());
 
 app.use(express.json());
+
+// Redirection middleware to enforce primary SITE_URL in production (Task 2)
+app.use((req, res, next) => {
+  const siteUrlEnv = process.env.SITE_URL;
+  const isProd = process.env.NODE_ENV === "production";
+  
+  if (siteUrlEnv && isProd && req.path !== "/api/health") {
+    let targetHost = "";
+    try {
+      const parsed = new URL(siteUrlEnv);
+      targetHost = parsed.host;
+    } catch (e) {
+      targetHost = siteUrlEnv.replace(/^https?:\/\//, "");
+    }
+    
+    const requestHost = req.get("host");
+    
+    if (requestHost && requestHost !== targetHost) {
+      const queryStr = Object.keys(req.query).length > 0 ? `?${new URLSearchParams(req.query as any).toString()}` : "";
+      const targetUrl = `${siteUrlEnv.endsWith('/') ? siteUrlEnv.slice(0, -1) : siteUrlEnv}${req.path}${queryStr}`;
+      return res.redirect(301, targetUrl);
+    }
+  }
+  next();
+});
 
 // Caching headers middleware
 app.use((req, res, next) => {
@@ -44,10 +98,8 @@ app.use((req, res, next) => {
 });
 
 // Helper function to dynamically obtain the site's base URL (e.g., on Vercel, Cloud Run, Localhost)
-function getBaseUrl(req: express.Request): string {
-  const host = req.get('host') || 'localhost:3000';
-  const protocol = req.secure || req.headers['x-forwarded-proto'] === 'https' ? 'https' : 'http';
-  return `${protocol}://${host}`;
+function getBaseUrl(req?: express.Request): string {
+  return getSiteUrl();
 }
 
 // Sitemap dinámico
@@ -330,6 +382,53 @@ app.get("/api/health", (req, res) => {
     status: "ok",
     timestamp: new Date().toISOString(),
     api_configured: !!aiClient
+  });
+});
+
+const contactIpCache = new Map<string, { count: number, resetTime: number }>();
+
+app.post("/api/contact", (req, res) => {
+  const ip = (req.ip || req.headers["x-forwarded-for"] || "anonymous") as string;
+  const now = Date.now();
+  
+  // Rate Limit check: 3 submissions per hour
+  const ipRecord = contactIpCache.get(ip);
+  if (ipRecord) {
+    if (now < ipRecord.resetTime) {
+      if (ipRecord.count >= 3) {
+        return res.status(429).json({ error: "Demasiadas solicitudes. Por favor, intenta de nuevo en una hora." });
+      }
+      ipRecord.count++;
+    } else {
+      contactIpCache.set(ip, { count: 1, resetTime: now + 3600000 });
+    }
+  } else {
+    contactIpCache.set(ip, { count: 1, resetTime: now + 3600000 });
+  }
+
+  const { name, email, message, website_hp } = req.body;
+
+  // Spam Honeypot validation
+  if (website_hp && website_hp.trim() !== "") {
+    console.log(`[Anti-Spam] Honeypot triggered for IP: ${ip}`);
+    return res.status(200).json({ success: true, message: "Mensaje recibido exitosamente (Honeypot)." });
+  }
+
+  // Input Validation
+  if (!name || !name.trim() || !email || !email.trim() || !message || !message.trim()) {
+    return res.status(400).json({ error: "Todos los campos obligatorios (nombre, correo, mensaje) son requeridos." });
+  }
+
+  // Email format validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ error: "El formato de correo electrónico ingresado no es válido." });
+  }
+
+  console.log(`[Contact Form] Nuevo mensaje de: ${name} <${email}>`);
+  return res.status(200).json({
+    success: true,
+    message: "¡Muchas gracias! Tu mensaje ha sido enviado exitosamente al equipo editorial. Te responderemos en un plazo de menos de 48 horas laborables."
   });
 });
 
@@ -629,7 +728,23 @@ app.get("/api/blog", (req, res) => {
   });
 });
 
-// Helper function to render HTML dynamically with server-side meta tags & structured data
+function escapeHtml(unsafe: string): string {
+  if (!unsafe) return "";
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function escapeJsonLd(jsonObj: any): string {
+  if (!jsonObj) return "";
+  const rawStr = JSON.stringify(jsonObj, null, 2);
+  return rawStr.replace(/</g, "\\u003c");
+}
+
+// Helper function to render HTML dynamically with server-side meta tags & structured data (Tasks 4, 7, SSR)
 function renderHtml(meta: {
   title: string;
   description: string;
@@ -642,6 +757,9 @@ function renderHtml(meta: {
   prevUrl?: string;
   nextUrl?: string;
   extraDataAttrs?: Record<string, string>;
+  image?: string;
+  isArticle?: boolean;
+  bodyHtml?: string;
 }) {
   const isProd = process.env.NODE_ENV === "production";
   const htmlPath = isProd
@@ -656,65 +774,85 @@ function renderHtml(meta: {
     html = `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>${meta.title}</title><meta name="description" content="${meta.description}"></head><body><div id="root"></div></body></html>`;
   }
 
-  // 1. Replace title
-  html = html.replace(/<title>.*?<\/title>/, `<title>${meta.title}</title>`);
+  // Task 4: Replace site url placeholder first
+  html = html.replace(/%SITE_URL%/g, getSiteUrl());
 
-  // 2. Replace meta description
-  if (html.includes('<meta name="description"')) {
-    html = html.replace(/<meta name="description" content=".*?"\s*\/?>/, `<meta name="description" content="${meta.description}">`);
-  } else {
-    html = html.replace('</head>', `<meta name="description" content="${meta.description}">\n</head>`);
-  }
+  // Remove pre-existing JSON-LD tags to prevent duplicate schemas
+  html = html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/gi, "");
 
-  // 3. Replace Canonical link (CRITICAL: Self-referencing canonical tag)
-  if (html.includes('<link rel="canonical"')) {
-    html = html.replace(/<link rel="canonical" href=".*?"\s*\/?>/, `<link rel="canonical" href="${meta.url}">`);
-  } else {
-    html = html.replace('</head>', `<link rel="canonical" href="${meta.url}">\n</head>`);
-  }
+  // Task 7: Remove pre-existing SEO-related tags to prevent duplication
+  html = html.replace(/<title>.*?<\/title>/gi, "");
+  html = html.replace(/<meta name="description"[^>]*>/gi, "");
+  html = html.replace(/<link rel="canonical"[^>]*>/gi, "");
+  html = html.replace(/<meta property="og:title"[^>]*>/gi, "");
+  html = html.replace(/<meta property="og:description"[^>]*>/gi, "");
+  html = html.replace(/<meta property="og:url"[^>]*>/gi, "");
+  html = html.replace(/<meta name="robots"[^>]*>/gi, "");
+  html = html.replace(/<meta name="twitter:title"[^>]*>/gi, "");
+  html = html.replace(/<meta name="twitter:description"[^>]*>/gi, "");
+  html = html.replace(/<meta name="twitter:url"[^>]*>/gi, "");
+  html = html.replace(/<link rel="prev"[^>]*>/gi, "");
+  html = html.replace(/<link rel="next"[^>]*>/gi, "");
+  html = html.replace(/<meta property="og:image"[^>]*>/gi, "");
+  html = html.replace(/<meta name="twitter:image"[^>]*>/gi, "");
+  html = html.replace(/<meta property="og:locale"[^>]*>/gi, "");
+  html = html.replace(/<meta property="og:type"[^>]*>/gi, "");
 
-  // 4. Update / Inject Open Graph tags
-  const ogTitle = `<meta property="og:title" content="${meta.title}">`;
-  const ogDesc = `<meta property="og:description" content="${meta.description}">`;
-  const ogUrl = `<meta property="og:url" content="${meta.url}">`;
-  html = html.replace('</head>', `${ogTitle}\n${ogDesc}\n${ogUrl}\n</head>`);
+  // Task 7: Escape parameters before injecting them into attributes
+  const escTitle = escapeHtml(meta.title);
+  const escDesc = escapeHtml(meta.description);
+  const escUrl = escapeHtml(meta.url);
+  const escPrev = meta.prevUrl ? escapeHtml(meta.prevUrl) : undefined;
+  const escNext = meta.nextUrl ? escapeHtml(meta.nextUrl) : undefined;
+  const escImage = meta.image ? escapeHtml(meta.image) : "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop";
+  const ogTypeVal = meta.isArticle ? "article" : "website";
 
-  // 4b. Inject Robots meta tag if specified (e.g., 'noindex, follow' for deep pages)
+  let newTags = "";
+  newTags += `<title>${escTitle}</title>\n`;
+  newTags += `<meta name="description" content="${escDesc}">\n`;
+  newTags += `<link rel="canonical" href="${escUrl}">\n`;
+  
+  newTags += `<meta property="og:title" content="${escTitle}">\n`;
+  newTags += `<meta property="og:description" content="${escDesc}">\n`;
+  newTags += `<meta property="og:url" content="${escUrl}">\n`;
+  newTags += `<meta property="og:image" content="${escImage}">\n`;
+  newTags += `<meta property="og:locale" content="es_EC">\n`;
+  newTags += `<meta property="og:type" content="${ogTypeVal}">\n`;
+
+  newTags += `<meta name="twitter:title" content="${escTitle}">\n`;
+  newTags += `<meta name="twitter:description" content="${escDesc}">\n`;
+  newTags += `<meta name="twitter:url" content="${escUrl}">\n`;
+  newTags += `<meta name="twitter:image" content="${escImage}">\n`;
+
   if (meta.robots) {
-    if (html.includes('<meta name="robots"')) {
-      html = html.replace(/<meta name="robots" content=".*?"\s*\/?>/, `<meta name="robots" content="${meta.robots}">`);
-    } else {
-      html = html.replace('</head>', `<meta name="robots" content="${meta.robots}">\n</head>`);
-    }
+    newTags += `<meta name="robots" content="${escapeHtml(meta.robots)}">\n`;
+  } else {
+    newTags += `<meta name="robots" content="index, follow">\n`;
   }
 
-  // 4c. Inject Pagination link tags (rel="prev" & rel="next" for search engine crawling)
-  let paginationLinks = '';
-  if (meta.prevUrl) {
-    paginationLinks += `<link rel="prev" href="${meta.prevUrl}">\n`;
+  if (escPrev) {
+    newTags += `<link rel="prev" href="${escPrev}">\n`;
   }
-  if (meta.nextUrl) {
-    paginationLinks += `<link rel="next" href="${meta.nextUrl}">\n`;
-  }
-  if (paginationLinks) {
-    html = html.replace('</head>', `${paginationLinks}</head>`);
+  if (escNext) {
+    newTags += `<link rel="next" href="${escNext}">\n`;
   }
 
-  // 5. Inject JSON-LD structured schema
+  // Inject JSON-LD structured schema with secure escaping
   if (meta.jsonLd) {
-    const jsonLdScript = `<script type="application/ld+json">\n${JSON.stringify(meta.jsonLd, null, 2)}\n</script>`;
-    html = html.replace('</head>', `${jsonLdScript}\n</head>`);
+    newTags += `<script type="application/ld+json">\n${escapeJsonLd(meta.jsonLd)}\n</script>\n`;
   }
 
-  // 6. Inject Geo-meta tags for local searches
+  // Inject Geo-meta tags for local searches
   if (meta.geoTags) {
-    const geoPos = `<meta name="geo.position" content="${meta.geoTags.position}">`;
-    const geoPlace = `<meta name="geo.placename" content="${meta.geoTags.placename}">`;
-    const geoRegion = `<meta name="geo.region" content="${meta.geoTags.region}">`;
-    html = html.replace('</head>', `${geoPos}\n${geoPlace}\n${geoRegion}\n</head>`);
+    const geoPos = `<meta name="geo.position" content="${escapeHtml(meta.geoTags.position)}">`;
+    const geoPlace = `<meta name="geo.placename" content="${escapeHtml(meta.geoTags.placename)}">`;
+    const geoRegion = `<meta name="geo.region" content="${escapeHtml(meta.geoTags.region)}">`;
+    newTags += `${geoPos}\n${geoPlace}\n${geoRegion}\n`;
   }
 
-  // 7. Hydrate initial state by putting data-attributes on #root
+  html = html.replace("</head>", `${newTags}</head>`);
+
+  // Hydrate initial state by putting data-attributes on #root and inject pre-rendered HTML (Task 1)
   let rootAttrs = '';
   if (meta.dataAttr && meta.dataVal) {
     rootAttrs += ` ${meta.dataAttr}="${meta.dataVal}"`;
@@ -724,20 +862,12 @@ function renderHtml(meta: {
       rootAttrs += ` ${k}="${v}"`;
     }
   }
-  if (rootAttrs) {
-    html = html.replace('<div id="root"></div>', `<div id="root"${rootAttrs}></div>`);
-  }
+  
+  const rootReplacement = `<div id="root"${rootAttrs}>${meta.bodyHtml || ""}</div>`;
+  html = html.replace('<div id="root"></div>', rootReplacement);
 
   return html;
 }
-
-const ECUADOR_LOCATIONS: Record<string, { lat: number; lng: number; region: string; fullName: string }> = {
-  'quito': { lat: -0.2298, lng: -78.5249, region: 'Pichincha', fullName: 'Quito' },
-  'guayaquil': { lat: -2.1962, lng: -79.8758, region: 'Guayas', fullName: 'Guayaquil' },
-  'cuenca': { lat: -2.9021, lng: -79.0049, region: 'Azuay', fullName: 'Cuenca' },
-  'ambato': { lat: -1.2241, lng: -78.6294, region: 'Tungurahua', fullName: 'Ambato' },
-  'machala': { lat: -3.2581, lng: -79.9439, region: 'El Oro', fullName: 'Machala' }
-};
 
 // Endpoint para páginas locales de ciudades principales de Ecuador
 app.get('/iess/:ciudad', (req, res) => {
@@ -752,67 +882,45 @@ app.get('/iess/:ciudad', (req, res) => {
   const baseUrl = getBaseUrl(req);
   const url = `${baseUrl}/iess/${ciudad}`;
   
+  const bodyHtml = generateCitySeoHtml(ciudad);
+  
   const html = renderHtml({
-    title: `IESS ${cityNameCap} - Trámites, Requisitos y Oficios | IESSAsistente`,
-    description: `Asesoría oficial IESS en ${cityNameCap} (Provincia de ${locationData.region}). Requisitos de jubilación por vejez, préstamos BIESS, subsidio de maternidad, afiliación voluntaria y oficios automatizados.`,
+    title: `IESS ${cityNameCap}: oficinas, turnos y trámites ${CURRENT_YEAR} | IESS Asistente`,
+    description: `Guía local para IESS ${cityNameCap}. Consulta el horario de atención, ubicación física, requisitos de afiliación y trámites en tu provincia.`,
     url,
     geoTags: {
       position: `${locationData.lat};${locationData.lng}`,
       placename: cityNameCap,
       region: `EC-${locationData.region}`
     },
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": `IESS Asistente - ${cityNameCap}`,
-      "description": `Asistente virtual y generador de oficios para trámites IESS en ${cityNameCap}`,
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": cityNameCap,
-        "addressRegion": locationData.region,
-        "addressCountry": "EC"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": String(locationData.lat),
-        "longitude": String(locationData.lng)
-      }
-    },
+    jsonLd: getCityGraph(baseUrl, ciudad, locationData),
     dataAttr: "data-location",
-    dataVal: ciudad
+    dataVal: ciudad,
+    bodyHtml
   });
   
   res.header('Content-Type', 'text/html');
   res.send(html);
 });
 
-// SSR Routing for Procedures (for SEO indexability)
+// SSR Routing for Procedures (for SEO indexability) (Task 5)
 app.get("/procedimiento/:slug", (req, res) => {
   const slug = req.params.slug;
-  // Look up procedure where slug-ified ID matches the requested slug
-  const proc = PROCEDURES_DATA.find(p => p.id.toLowerCase().replace(/\s+/g, '-') === slug.toLowerCase() || p.id.toLowerCase() === slug.toLowerCase());
+  const proc = findProcedureBySlug(slug);
 
   if (proc) {
     const baseUrl = getBaseUrl(req);
     const url = `${baseUrl}/procedimiento/${slug}`;
+    const bodyHtml = generateProcedureSeoHtml(proc);
+
     const html = renderHtml({
-      title: `${proc.title} - Requisitos y Pasos Oficiales | IESSAsistente`,
-      description: `Guía detallada paso a paso sobre ${proc.title} en Ecuador. Conoce los requisitos mínimos de aportes, documentos de respaldo, pasos de trámite en línea y errores comunes a evitar.`,
+      title: `${proc.title}: requisitos y pasos ${CURRENT_YEAR} | IESS Asistente`,
+      description: `Requisitos indispensables, guía paso a paso y errores a evitar para tramitar ${proc.title} en el IESS de Ecuador. Genera tu oficio gratis.`,
       url,
-      jsonLd: {
-        "@context": "https://schema.org",
-        "@type": "HowTo",
-        "name": proc.title,
-        "description": `Guía para tramitar ${proc.title} en el IESS de Ecuador.`,
-        "step": proc.steps.map((step, idx) => ({
-          "@type": "HowToStep",
-          "position": idx + 1,
-          "name": `Paso ${idx + 1}`,
-          "text": step
-        }))
-      },
+      jsonLd: getProcedureGraph(baseUrl, proc),
       dataAttr: "data-procedure",
-      dataVal: proc.id
+      dataVal: proc.id,
+      bodyHtml
     });
     res.header('Content-Type', 'text/html');
     res.send(html);
@@ -850,12 +958,12 @@ function renderBlogPage(req: express.Request, res: express.Response, requestedPa
 
   // SEO: Dynamic title and description to prevent duplicate metadata
   const title = isFirstPage
-    ? "Blog Oficial IESS Ecuador - Guías de Seguridad Social y Trámites"
-    : `Blog Oficial IESS Ecuador - Guías de Seguridad Social - Página ${safePage} | IESS Asistente`;
+    ? `Blog de Guías Prácticas del IESS ${CURRENT_YEAR} | IESS Asistente`
+    : `Blog de Guías de Seguridad Social - Página ${safePage} | IESS Asistente`;
 
   const description = isFirstPage
-    ? "Encuentra explicaciones sencillas, normativas legales vigentes y guías detalladas para jubilaciones, préstamos BIESS, cesantías y trámites paso a paso."
-    : `Página ${safePage} del archivo y blog de guías oficiales del IESS Ecuador. Normativas legales vigentes, requisitos actualizados 2026 y resoluciones.`;
+    ? "Encuentra explicaciones sencillas, normativas vigentes y guías detalladas de jubilaciones, préstamos BIESS y trámites del IESS de Ecuador."
+    : `Página ${safePage} del archivo de guías y normativas del IESS de Ecuador. Información de requisitos y resoluciones del Consejo Directivo.`;
 
   // SEO: Crawl budget optimization for deep pages (pages > 5 set to noindex, follow)
   const robots = safePage > 5 ? "noindex, follow" : "index, follow";
@@ -865,24 +973,9 @@ function renderBlogPage(req: express.Request, res: express.Response, requestedPa
   const pagePosts = BLOG_POSTS.slice(offset, offset + limit);
 
   // Structured Data (JSON-LD): CollectionPage with ItemList for this page
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": title,
-    "description": description,
-    "url": canonicalUrl,
-    "mainEntity": {
-      "@type": "ItemList",
-      "numberOfItems": pagePosts.length,
-      "itemListElement": pagePosts.map((post, index) => ({
-        "@type": "ListItem",
-        "position": offset + index + 1,
-        "name": post.title,
-        "description": post.metaDescription,
-        "url": `${baseUrl}/blog/${post.slug}`
-      }))
-    }
-  };
+  const jsonLd = getBlogArchiveGraph(baseUrl, safePage, pagePosts);
+
+  const bodyHtml = generateBlogArchiveSeoHtml(safePage);
 
   const html = renderHtml({
     title,
@@ -896,7 +989,8 @@ function renderBlogPage(req: express.Request, res: express.Response, requestedPa
     dataVal: "blog",
     extraDataAttrs: {
       "data-blog-page": String(safePage)
-    }
+    },
+    bodyHtml
   });
 
   res.header("Content-Type", "text/html");
@@ -931,24 +1025,18 @@ app.get("/blog/:slug", (req, res) => {
   if (post) {
     const baseUrl = getBaseUrl(req);
     const url = `${baseUrl}/blog/${slug}`;
+    const bodyHtml = generateBlogPostSeoHtml(post);
+
     const html = renderHtml({
-      title: `${post.title} | Blog IESSAsistente`,
+      title: `${post.title} | IESS Asistente`,
       description: post.metaDescription,
       url,
-      jsonLd: {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": post.title,
-        "description": post.metaDescription,
-        "image": post.image,
-        "datePublished": post.publishDate,
-        "author": {
-          "@type": "Organization",
-          "name": post.author
-        }
-      },
+      jsonLd: getArticleGraph(baseUrl, post),
       dataAttr: "data-blog-slug",
-      dataVal: post.slug
+      dataVal: post.slug,
+      image: post.image,
+      isArticle: true,
+      bodyHtml
     });
     res.header('Content-Type', 'text/html');
     res.send(html);
@@ -961,16 +1049,285 @@ app.get("/blog/:slug", (req, res) => {
 app.get("/faq", (req, res) => {
   const baseUrl = getBaseUrl(req);
   const url = `${baseUrl}/faq`;
+  const bodyHtml = generateFaqPageSeoHtml();
+
   const html = renderHtml({
-    title: "Preguntas Frecuentes IESS - Respuestas Rápidas de Seguridad Social",
-    description: "Resuelve de forma inmediata tus dudas de trámites, requisitos de afiliación voluntaria, cobro de fondos de reserva, cesantías y cálculo de pensiones.",
+    title: `Preguntas Frecuentes IESS: respuestas ${CURRENT_YEAR} | IESS Asistente`,
+    description: "Respuestas inmediatas a tus dudas de jubilación, préstamos BIESS, afiliación voluntaria y cobro de fondos en el IESS de Ecuador.",
     url,
+    jsonLd: getCategoryGraph(baseUrl, SEO_CATEGORIES.find(c => c.slug === "faq") || { slug: "faq", title: "Preguntas Frecuentes", metaTitle: "FAQ", metaDescription: "Preguntas Frecuentes IESS", faqs: [] }, null),
     dataAttr: "data-tab",
-    dataVal: "consultas"
+    dataVal: "consultas",
+    bodyHtml
   });
   res.header('Content-Type', 'text/html');
   res.send(html);
 });
+
+app.get("/sobre-nosotros", (req, res) => {
+  const baseUrl = getBaseUrl(req);
+  const bodyHtml = generateAboutSeoHtml();
+  const html = renderHtml({
+    title: "Sobre Nosotros - Guía Independiente de Consulta | IESS Asistente",
+    description: "Conoce el portal independiente de orientación ciudadana sobre trámites y derechos del IESS en Ecuador. Misión, visión y equipo de redactores.",
+    url: `${baseUrl}/sobre-nosotros`,
+    dataAttr: "data-tab",
+    dataVal: "about",
+    bodyHtml
+  });
+  res.header("Content-Type", "text/html").send(html);
+});
+
+app.get("/metodologia-editorial", (req, res) => {
+  const baseUrl = getBaseUrl(req);
+  const bodyHtml = generateEditorialSeoHtml();
+  const html = renderHtml({
+    title: "Metodología Editorial y Control de Calidad | IESS Asistente",
+    description: "Nuestros estándares editoriales de verificación de seguridad social en Ecuador. Fuentes autorizadas primarias, revisión humana y deslinde de IA.",
+    url: `${baseUrl}/metodologia-editorial`,
+    dataAttr: "data-tab",
+    dataVal: "editorial",
+    bodyHtml
+  });
+  res.header("Content-Type", "text/html").send(html);
+});
+
+app.get("/editorial", (req, res) => {
+  res.redirect(301, "/metodologia-editorial");
+});
+
+app.get("/contacto", (req, res) => {
+  const baseUrl = getBaseUrl(req);
+  const bodyHtml = generateContactSeoHtml();
+  const html = renderHtml({
+    title: "Contacto - Buzón Editorial de Asistencia | IESS Asistente",
+    description: "Comunícate con los editores del portal independiente de soporte del IESS en Ecuador. Formulario de contacto, correo electrónico y tiempos de respuesta.",
+    url: `${baseUrl}/contacto`,
+    dataAttr: "data-tab",
+    dataVal: "contact",
+    bodyHtml
+  });
+  res.header("Content-Type", "text/html").send(html);
+});
+
+app.get("/politica-de-privacidad", (req, res) => {
+  const baseUrl = getBaseUrl(req);
+  const bodyHtml = generatePrivacySeoHtml();
+  const html = renderHtml({
+    title: "Política de Privacidad y LOPDP de Ecuador | IESS Asistente",
+    description: "Tratamiento confidencial de datos personales de acuerdo con la LOPDP en Ecuador. Derechos ARCO, cookies analíticas, GA4 y Gemini chatbot.",
+    url: `${baseUrl}/politica-de-privacidad`,
+    dataAttr: "data-tab",
+    dataVal: "privacy",
+    bodyHtml
+  });
+  res.header("Content-Type", "text/html").send(html);
+});
+
+app.get("/privacidad", (req, res) => {
+  res.redirect(301, "/politica-de-privacidad");
+});
+
+app.get("/terminos-de-uso", (req, res) => {
+  const baseUrl = getBaseUrl(req);
+  const bodyHtml = generateTermsSeoHtml();
+  const html = renderHtml({
+    title: "Términos y Condiciones de Uso del Portal | IESS Asistente",
+    description: "Reglamento de uso libre, gratuito y no comercial de los generadores de oficios y guías de asistencia independiente del IESS en Ecuador.",
+    url: `${baseUrl}/terminos-de-uso`,
+    dataAttr: "data-tab",
+    dataVal: "terms",
+    bodyHtml
+  });
+  res.header("Content-Type", "text/html").send(html);
+});
+
+app.get("/terminos", (req, res) => {
+  res.redirect(301, "/terminos-de-uso");
+});
+
+app.get("/aviso-legal", (req, res) => {
+  const baseUrl = getBaseUrl(req);
+  const bodyHtml = generateLegalSeoHtml();
+  const html = renderHtml({
+    title: "Aviso Legal y Exención de Responsabilidad | IESS Asistente",
+    description: "Deslinde oficial de responsabilidad de IESS Asistente. Portal de divulgación independiente, no vinculado al IESS ni al BIESS de Ecuador.",
+    url: `${baseUrl}/aviso-legal`,
+    dataAttr: "data-tab",
+    dataVal: "legal",
+    bodyHtml
+  });
+  res.header("Content-Type", "text/html").send(html);
+});
+
+app.get("/politica-de-cookies", (req, res) => {
+  const baseUrl = getBaseUrl(req);
+  const bodyHtml = generateCookiesSeoHtml();
+  const html = renderHtml({
+    title: "Política de Cookies Técnicas y Estadísticas | IESS Asistente",
+    description: "Descripción detallada del uso de cookies en nuestro portal independiente. Consentimiento dinámico de Google Consent Mode v2 y GA4.",
+    url: `${baseUrl}/politica-de-cookies`,
+    dataAttr: "data-tab",
+    dataVal: "cookies",
+    bodyHtml
+  });
+  res.header("Content-Type", "text/html").send(html);
+});
+
+app.get("/autor/:slug", (req, res) => {
+  const slug = req.params.slug.toLowerCase();
+  const baseUrl = getBaseUrl(req);
+  const bodyHtml = generateAuthorSeoHtml(slug);
+  const { AUTHORS } = require("./src/data/authors");
+  const author = AUTHORS[slug];
+
+  if (!author) {
+    return res.redirect("/");
+  }
+
+  const html = renderHtml({
+    title: `${author.name} - Experto en Seguridad Social | IESS Asistente`,
+    description: `Perfil profesional de ${author.name}. Conoce sus credenciales académicas, trayectoria verificable y guías de apoyo publicadas en el portal.`,
+    url: `${baseUrl}/autor/${slug}`,
+    dataAttr: "data-author",
+    dataVal: slug,
+    bodyHtml
+  });
+  res.header("Content-Type", "text/html").send(html);
+});
+
+// GET / (home) (Task 5)
+app.get("/", (req, res) => {
+  const baseUrl = getBaseUrl(req);
+  const bodyHtml = generateHomeSeoHtml();
+
+  const html = renderHtml({
+    title: `IESS Ecuador: trámites y requisitos ${CURRENT_YEAR} | IESS Asistente`,
+    description: "Consulta requisitos de jubilación, préstamos quirografarios, hipotecarios, afiliación voluntaria y genera oficios de ley de forma gratuita.",
+    url: `${baseUrl}/`,
+    jsonLd: getHomeGraph(baseUrl, PROCEDURES_DATA),
+    bodyHtml
+  });
+  res.header("Content-Type", "text/html");
+  res.send(html);
+});
+
+// GET /oficios (Task 5)
+app.get("/oficios", (req, res) => {
+  const baseUrl = getBaseUrl(req);
+  
+  // Custom simple semantic preview for oficios page
+  const bodyHtml = `
+    <div class="flex flex-col min-h-screen">
+      <header class="bg-[#0a1f42] text-white p-4 border-b-4 border-[#c9a84c]">
+        <div class="max-w-5xl mx-auto flex items-center justify-between">
+          <a href="/" class="text-lg font-bold text-white no-underline">IESS Asistente - Guía de Trámites</a>
+          <nav class="flex gap-4 text-sm font-semibold">
+            <a href="/" class="text-white no-underline">Inicio</a>
+            <a href="/oficios" class="text-white no-underline">Herramientas/Oficios</a>
+            <a href="/blog" class="text-white no-underline">Blog</a>
+          </nav>
+        </div>
+      </header>
+      <main class="max-w-4xl w-full mx-auto px-4 py-8 space-y-6 flex-grow">
+        <h1 class="text-xl sm:text-2xl font-black text-[#0a1f42]">Formatos y Oficios de Ley IESS</h1>
+        <p class="text-xs sm:text-sm text-slate-650 leading-relaxed">Generador inteligente y gratuito de oficios, descargos de glosas patronales y solicitudes del IESS de Ecuador. Evita pagar tramitadores redactando tus solicitudes con amparo legal de forma inmediata.</p>
+      </main>
+    </div>
+  `;
+
+  const html = renderHtml({
+    title: `Formatos y Oficios de Ley IESS ${CURRENT_YEAR} | IESS Asistente`,
+    description: "Generador inteligente y gratuito de 17 oficios, apelaciones e impugnaciones de glosas para afiliados y empleadores del IESS en Ecuador.",
+    url: `${baseUrl}/oficios`,
+    jsonLd: getCategoryGraph(baseUrl, SEO_CATEGORIES.find(c => c.slug === "herramientas") || { slug: "herramientas", title: "Herramientas de Ley", metaTitle: "Herramientas de Ley", metaDescription: "Herramientas", faqs: [] }, null),
+    dataAttr: "data-tab",
+    dataVal: "oficios",
+    bodyHtml
+  });
+  res.header("Content-Type", "text/html");
+  res.send(html);
+});
+
+// GET /:categoria (Task 5)
+app.get("/:categoria", (req, res, next) => {
+  const categoriaSlug = req.params.categoria.toLowerCase();
+  
+  // Ignore "blog" and "faq" to avoid collision
+  if (categoriaSlug === "blog" || categoriaSlug === "faq") {
+    return next();
+  }
+  
+  const cat = SEO_CATEGORIES.find(c => c.slug.toLowerCase() === categoriaSlug);
+  if (!cat) {
+    return next(); // Let it fall through to 404
+  }
+  
+  const baseUrl = getBaseUrl(req);
+  const bodyHtml = generateCategorySeoHtml(cat, null);
+
+  const html = renderHtml({
+    title: `${cat.title} en el IESS: guía ${CURRENT_YEAR}`,
+    description: cat.metaDescription,
+    url: `${baseUrl}/${cat.slug}`,
+    jsonLd: getCategoryGraph(baseUrl, cat, null),
+    bodyHtml
+  });
+  res.header("Content-Type", "text/html");
+  res.send(html);
+});
+
+// GET /:categoria/:sub (Task 5)
+app.get("/:categoria/:sub", (req, res, next) => {
+  const categoriaSlug = req.params.categoria.toLowerCase();
+  const subSlug = req.params.sub.toLowerCase();
+  
+  if (categoriaSlug === "blog" || categoriaSlug === "faq") {
+    return next();
+  }
+  
+  const cat = SEO_CATEGORIES.find(c => c.slug.toLowerCase() === categoriaSlug);
+  if (!cat) {
+    return next();
+  }
+  
+  const sub = cat.subcategories.find(s => s.slug.toLowerCase() === subSlug);
+  if (!sub) {
+    return next();
+  }
+  
+  const baseUrl = getBaseUrl(req);
+  const bodyHtml = generateCategorySeoHtml(cat, sub.slug);
+
+  const html = renderHtml({
+    title: `${sub.title} - ${cat.title} | IESS Asistente`,
+    description: sub.description,
+    url: `${baseUrl}/${cat.slug}/${sub.slug}`,
+    jsonLd: getCategoryGraph(baseUrl, cat, sub.slug),
+    bodyHtml
+  });
+  res.header("Content-Type", "text/html");
+  res.send(html);
+});
+
+const distPath = path.join(process.cwd(), "dist");
+
+if (process.env.NODE_ENV === "production") {
+  // Task 4: Change express.static(distPath) to express.static(distPath, { index: false })
+  app.use(express.static(distPath, { index: false }));
+  
+  // Task 6: Custom 404 catch-all
+  app.get("*", (req, res) => {
+    const baseUrl = getBaseUrl(req);
+    const html = renderHtml({
+      title: "Página no encontrada - 404 | IESS Asistente",
+      description: "Lo sentimos, la página que buscas no existe o ha sido movida.",
+      url: `${baseUrl}${req.path}`,
+      robots: "noindex, nofollow"
+    });
+    res.status(404).header("Content-Type", "text/html").send(html);
+  });
+}
 
 // Serve frontend assets using Vite middleware or Static Server
 async function startServer() {
@@ -982,15 +1339,18 @@ async function startServer() {
       appType: "spa",
     });
     app.use(vite.middlewares);
-    console.log("Vite development server middleware mounted.");
-  } else {
-    // In production mode, serve compiled build assets inside dist/ folder
-    const distPath = path.join(process.cwd(), "dist");
-    app.use(express.static(distPath));
+    
+    // Dev fallback catch-all
     app.get("*", (req, res) => {
-      res.sendFile(path.join(distPath, "index.html"));
+      const baseUrl = getBaseUrl(req);
+      const html = renderHtml({
+        title: "IESS Ecuador - Guía Oficial de Trámites y Asistente Virtual | IESSAsistente",
+        description: "Guía completa y asistente virtual para trámites IESS en Ecuador. Jubilación, préstamos BIESS, afiliación, subsidios y más. Respuestas rápidas a tus dudas.",
+        url: `${baseUrl}${req.path}`
+      });
+      res.header("Content-Type", "text/html").send(html);
     });
-    console.log("Serving static production assets from /dist.");
+    console.log("Vite development server middleware mounted.");
   }
 
   app.listen(PORT, "0.0.0.0", () => {

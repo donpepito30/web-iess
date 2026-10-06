@@ -9,28 +9,27 @@
     <!-- SEO Básico -->
     <title>IESS Ecuador - Guía Oficial de Trámites y Asistente Virtual | IESSAsistente</title>
     <meta name="description" content="Guía completa y asistente virtual para trámites IESS en Ecuador. Jubilación, préstamos BIESS, afiliación, subsidios y más. Respuestas rápidas a tus dudas del seguro social.">
-    <meta name="keywords" content="IESS Ecuador, trámites IESS, jubilación, BIESS préstamos, seguro social Ecuador, afiliación, subsidio maternidad">
-    <meta name="language" content="Spanish">
     <meta name="author" content="IESS Asistente Virtual">
     <meta name="google-site-verification" content="google001807102b37c1ac" />
+    <meta name="theme-color" content="#0a1f42" />
     
-    <!-- Geolocalización Ecuador -->
-    <meta name="geo.placename" content="Ecuador">
-    <meta name="geo.region" content="EC">
-    <meta name="geo.position" content="-1.831239;-78.183406">
-    <meta name="ICBM" content="-1.831239, -78.183406">
-
+    <!-- PWA & Mobile Web App Elements -->
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/logo-192.png" />
+    
     <!-- Directivas de Robots -->
-    <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1" />
 
-    <!-- Enlace Canonical -->
-    <link rel="canonical" href="https://ais-pre-lcespzc3y2p5yn5ey2rbly-34447954721.us-west2.run.app/" />
+    <!-- Enlace Canonical y Alternates -->
+    <link rel="canonical" href="%SITE_URL%" />
+    <link rel="alternate" hreflang="es-EC" href="%SITE_URL%" />
+    <link rel="alternate" hreflang="x-default" href="%SITE_URL%" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ais-pre-lcespzc3y2p5yn5ey2rbly-34447954721.us-west2.run.app/" />
+    <meta property="og:url" content="%SITE_URL%" />
     <meta property="og:title" content="IESS Ecuador - Guía Oficial de Trámites y Asistente Virtual | IESSAsistente" />
     <meta property="og:description" content="Guía completa y asistente virtual para trámites IESS en Ecuador. Jubilación, préstamos BIESS, afiliación, subsidios y más. Respuestas rápidas a tus dudas." />
     <meta property="og:site_name" content="IESSAsistente" />
@@ -38,13 +37,9 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://ais-pre-lcespzc3y2p5yn5ey2rbly-34447954721.us-west2.run.app/" />
+    <meta name="twitter:url" content="%SITE_URL%" />
     <meta name="twitter:title" content="IESS Ecuador - Guía Oficial de Trámites y Asistente Virtual | IESSAsistente" />
     <meta name="twitter:description" content="Guía completa y asistente virtual para trámites IESS en Ecuador. Jubilación, préstamos BIESS, afiliación, subsidios y más. Respuestas rápidas a tus dudas." />
-
-    <!-- Preload critical bundle and Prefetch datasets -->
-    <link rel="preload" href="/src/main.tsx" as="script" />
-    <link rel="prefetch" href="/src/data/procedures.ts" />
 
     <!-- Preconnect for Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -65,13 +60,8 @@
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "IESSAsistente",
-      "url": "https://ais-pre-lcespzc3y2p5yn5ey2rbly-34447954721.us-west2.run.app/",
-      "description": "Guía completa y asistente virtual para trámites IESS en Ecuador.",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://ais-pre-lcespzc3y2p5yn5ey2rbly-34447954721.us-west2.run.app/?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
+      "url": "%SITE_URL%/",
+      "description": "Guía completa y asistente virtual para trámites IESS en Ecuador."
     }
     </script>
     <script type="application/ld+json">
@@ -100,6 +90,12 @@
     </script>
   </head>
   <body>
+    <noscript>
+      <div style="padding: 10px; background-color: #fff9e6; text-align: center; font-family: sans-serif; font-size: 13px; border-bottom: 2px border #c9a84c;">
+        Para una experiencia interactiva completa, por favor habilite JavaScript en su navegador. 
+        Puede consultar nuestro <a href="/sitemap.xml" style="color: #0a1f42; font-weight: bold; underline: hover;">Mapa del Sitio (Sitemap.xml)</a> para ver todas las guías de trámites del IESS de Ecuador.
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

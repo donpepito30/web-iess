@@ -13,8 +13,11 @@ import {
   Bookmark,
   BookOpen
 } from "lucide-react";
-import { SeoCategory, SeoSubcategory } from "../data/seoCategories";
+import { SeoCategory } from "../data/seoCategories";
 import { BLOG_POSTS } from "../data/blogPosts";
+import { Link } from "./Link";
+import { urlCategory, urlBlogPost } from "../lib/routes";
+import { getSiteUrl } from "../config/site";
 
 interface CategoryDetailProps {
   category: SeoCategory;
@@ -59,6 +62,8 @@ export default function CategoryDetail({
     .filter((cat) => cat.id !== category.id)
     .slice(0, 4);
 
+  const siteUrl = getSiteUrl();
+
   // Structured Data Schema Generation
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -68,21 +73,19 @@ export default function CategoryDetail({
         "@type": "ListItem",
         "position": 1,
         "name": "Inicio",
-        "item": typeof window !== "undefined" ? window.location.origin : "https://iessasistente.com"
+        "item": siteUrl
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": category.title,
-        "item": typeof window !== "undefined" ? `${window.location.origin}/${category.slug}` : `https://iessasistente.com/${category.slug}`
+        "item": `${siteUrl}${urlCategory(category.slug)}`
       },
       ...(activeSubcategory ? [{
         "@type": "ListItem",
         "position": 3,
         "name": activeSubcategory.title,
-        "item": typeof window !== "undefined" 
-          ? `${window.location.origin}/${category.slug}/${activeSubcategory.slug}` 
-          : `https://iessasistente.com/${category.slug}/${activeSubcategory.slug}`
+        "item": `${siteUrl}${urlCategory(category.slug, activeSubcategory.slug)}`
       }] : [])
     ]
   };
@@ -114,14 +117,12 @@ export default function CategoryDetail({
       "name": "IESSAsistente Ecuador",
       "logo": {
         "@type": "ImageObject",
-        "url": typeof window !== "undefined" ? `${window.location.origin}/logo.png` : ""
+        "url": `${siteUrl}/logo.png`
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": typeof window !== "undefined" 
-        ? `${window.location.origin}/${category.slug}${activeSubcategory ? `/${activeSubcategory.slug}` : ""}`
-        : `https://iessasistente.com/${category.slug}`
+      "@id": `${siteUrl}${urlCategory(category.slug)}${activeSubcategory ? `/${activeSubcategory.slug}` : ""}`
     }
   };
 
@@ -147,12 +148,12 @@ export default function CategoryDetail({
           <span className="text-[250px] font-black leading-none">IESS</span>
         </div>
 
-        <button
-          onClick={onBackToHome}
-          className="inline-flex items-center gap-1.5 text-xs text-slate-300 hover:text-[#c9a84c] mb-6 font-extrabold transition-colors cursor-pointer"
+        <Link
+          to="/"
+          className="inline-flex items-center gap-1.5 text-xs text-slate-300 hover:text-[#c9a84c] mb-6 font-extrabold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c9a84c] rounded-md px-1 py-0.5"
         >
           <ArrowLeft className="w-3.5 h-3.5" /> Volver al Inicio
-        </button>
+        </Link>
 
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
           <div className="max-w-3xl">
@@ -181,7 +182,7 @@ export default function CategoryDetail({
               const q = `Hola. Deseo recibir asesoría jurídica completa y personalizada sobre el tema de "${activeSubcategory ? `${category.title} (${activeSubcategory.title})` : category.title}". ¿Podrías indicarme los pasos detallados de ley, qué requisitos necesito y cómo tramitarlo?`;
               onConsultChatbot(q);
             }}
-            className="shrink-0 bg-[#c9a84c] hover:bg-[#b5953d] text-[#0a1f42] font-black px-5 py-3 rounded-xl transition-all shadow-lg hover:-translate-y-0.5 active:translate-y-0 text-sm flex items-center justify-center gap-2 uppercase tracking-wide border border-[#e5c15e] cursor-pointer"
+            className="shrink-0 bg-[#c9a84c] hover:bg-[#b5953d] text-[#0a1f42] font-black px-5 py-3 rounded-xl transition-all shadow-lg hover:-translate-y-0.5 active:translate-y-0 text-sm flex items-center justify-center gap-2 uppercase tracking-wide border border-[#e5c15e] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             Asistente IESS IA 🤖
           </button>
@@ -200,9 +201,9 @@ export default function CategoryDetail({
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               {/* Category Pillar main option */}
-              <div
-                onClick={() => onNavigateToCategory(category.slug, null)}
-                className={`p-3.5 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${
+              <Link
+                to={urlCategory(category.slug)}
+                className={`p-3.5 rounded-xl border transition-all cursor-pointer flex flex-col justify-between block hover:no-underline text-left ${
                   !activeSubcategorySlug
                     ? "bg-slate-50 border-[#c9a84c] shadow-xs"
                     : "bg-white border-slate-200 hover:border-[#c9a84c] hover:bg-slate-50/40"
@@ -219,15 +220,15 @@ export default function CategoryDetail({
                 <div className="text-[10px] font-bold text-[#c9a84c] flex items-center gap-0.5 mt-3">
                   Ver guía pilar <ArrowRight className="w-3 h-3" />
                 </div>
-              </div>
+              </Link>
 
               {category.subcategories.map((sub) => {
                 const isSelected = activeSubcategorySlug === sub.slug;
                 return (
-                  <div
+                  <Link
                     key={sub.id}
-                    onClick={() => onNavigateToCategory(category.slug, sub.slug)}
-                    className={`p-3.5 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${
+                    to={urlCategory(category.slug, sub.slug)}
+                    className={`p-3.5 rounded-xl border transition-all cursor-pointer flex flex-col justify-between block hover:no-underline text-left ${
                       isSelected
                         ? "bg-slate-50 border-[#c9a84c] shadow-xs"
                         : "bg-white border-slate-200 hover:border-[#c9a84c] hover:bg-slate-50/40"
@@ -244,7 +245,7 @@ export default function CategoryDetail({
                     <div className="text-[10px] font-bold text-[#c9a84c] flex items-center gap-0.5 mt-3">
                       Explorar subcategoría <ArrowRight className="w-3 h-3" />
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
             </div>
@@ -293,9 +294,9 @@ export default function CategoryDetail({
                     >
                       <button
                         onClick={() => setOpenFaqIndex(isOpen ? null : i)}
-                        className="w-full text-left p-4 flex items-center justify-between gap-3 font-extrabold text-xs sm:text-sm text-[#0a1f42] hover:bg-slate-100/50 cursor-pointer"
+                        className="w-full text-left p-4 flex items-center justify-between gap-3 font-extrabold text-xs sm:text-sm text-[#0a1f42] hover:bg-slate-100/50 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0a1f42]"
                       >
-                        <span className="flex items-start gap-2">
+                        <span className="flex items-start gap-2 text-left">
                           <span className="text-[#c9a84c]">❓</span>
                           {faq.q}
                         </span>
@@ -311,7 +312,7 @@ export default function CategoryDetail({
                                 const q = `Hola. Sobre la pregunta "${faq.q}", deseo recibir una respuesta mucho más amplia, con la base de ley ecuatoriana respectiva y los pasos para tramitarlo en el portal del IESS.`;
                                 onConsultChatbot(q);
                               }}
-                              className="text-[10px] bg-[#0a1f42] hover:bg-[#122e5b] text-white font-extrabold px-3 py-1.5 rounded-lg flex items-center gap-1 transition-all cursor-pointer uppercase tracking-wider"
+                              className="text-[10px] bg-[#0a1f42] hover:bg-[#122e5b] text-white font-extrabold px-3 py-1.5 rounded-lg flex items-center gap-1 transition-all cursor-pointer uppercase tracking-wider focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0a1f42]"
                             >
                               Consultar al Chatbot
                             </button>
@@ -364,7 +365,7 @@ export default function CategoryDetail({
                     </p>
                     <button
                       onClick={() => onConsultChatbot(tool.query)}
-                      className="w-full mt-3 py-1.5 bg-[#0a1f42] text-white hover:bg-[#143263] font-bold text-[10px] rounded-lg shadow-2xs transition-all flex items-center justify-center gap-1 cursor-pointer uppercase tracking-wider"
+                      className="w-full mt-3 py-1.5 bg-[#0a1f42] text-white hover:bg-[#143263] font-bold text-[10px] rounded-lg shadow-2xs transition-all flex items-center justify-center gap-1 cursor-pointer uppercase tracking-wider focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0a1f42]"
                     >
                       {tool.actionLabel}
                     </button>
@@ -406,10 +407,10 @@ export default function CategoryDetail({
               </h2>
               <div className="flex flex-col gap-3">
                 {relatedPosts.map((post) => (
-                  <div 
+                  <Link 
                     key={post.id}
-                    onClick={() => onNavigateToBlogPost(post.slug)}
-                    className="p-2.5 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all cursor-pointer group flex gap-2.5 items-start"
+                    to={urlBlogPost(post.slug)}
+                    className="p-2.5 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all cursor-pointer group flex gap-2.5 items-start block text-left hover:no-underline"
                   >
                     <div className="w-10 h-10 rounded bg-slate-100 overflow-hidden shrink-0">
                       <img 
@@ -425,7 +426,7 @@ export default function CategoryDetail({
                       </h3>
                       <span className="text-[9px] text-slate-400 font-bold block mt-1 font-mono">{post.publishDate}</span>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -436,15 +437,15 @@ export default function CategoryDetail({
             <h2 className="text-xs font-black uppercase tracking-wider text-[#0a1f42] mb-3 flex items-center gap-1.5 border-b border-slate-200 pb-2">
               <Bookmark className="w-4 h-4 text-[#c9a84c]" /> Otras Guías Relacionadas
             </h2>
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-wrap gap-1.5 text-left">
               {sisterCategories.map((cat) => (
-                <button
+                <Link
                   key={cat.id}
-                  onClick={() => onNavigateToCategory(cat.slug, null)}
-                  className="text-[10px] font-extrabold bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-600 hover:text-[#0a1f42] px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1"
+                  to={urlCategory(cat.slug)}
+                  className="text-[10px] font-extrabold bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-600 hover:text-[#0a1f42] px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 hover:no-underline"
                 >
                   <span>📂</span> {cat.title}
-                </button>
+                </Link>
               ))}
             </div>
           </div>
