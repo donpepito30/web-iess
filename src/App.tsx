@@ -1038,6 +1038,25 @@ export default function App() {
     }
   };
 
+  const isHomePage = 
+    currentRoute === 'home' && 
+    mainTab === 'consultas' && 
+    !selectedProcedure && 
+    !selectedPost && 
+    !selectedCity && 
+    !selectedSeoCategory && 
+    !activeLegalPage && 
+    !activeTool;
+
+  const showPortalTabs = 
+    (currentRoute === 'home' || currentRoute === 'blog') && 
+    !selectedProcedure && 
+    !selectedPost && 
+    !selectedCity && 
+    !selectedSeoCategory && 
+    !activeLegalPage && 
+    !activeTool;
+
   return (
     <div id="app-root" className="min-h-screen bg-[#f8fafc] text-[#1e293b] font-sans antialiased flex flex-col selection:bg-[#c9a84c] selection:text-white overflow-x-hidden w-full">
       
@@ -1074,198 +1093,202 @@ export default function App() {
         </div>
       </div>
 
-      {/* HERO SECTION - EXECUTIVE CIVIC ALIGNMENT */}
-      <section id="hero-section" className="bg-gradient-to-b from-[#0a1f42] via-[#0d2754] to-[#0a1f42] text-white pt-8 sm:pt-12 pb-12 sm:pb-16 relative overflow-hidden border-b border-slate-800">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-[#c9a84c]/5 rounded-full blur-3xl -z-10 pointer-events-none"></div>
-        
-        <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
+      {/* HERO SECTION - EXECUTIVE CIVIC ALIGNMENT (SOLO EN PORTADA PRINCIPAL) */}
+      {isHomePage && (
+        <section id="hero-section" className="bg-gradient-to-b from-[#0a1f42] via-[#0d2754] to-[#0a1f42] text-white pt-8 sm:pt-12 pb-12 sm:pb-16 relative overflow-hidden border-b border-slate-800">
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+          <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-[#c9a84c]/5 rounded-full blur-3xl -z-10 pointer-events-none"></div>
           
-          {/* Eyebrow / Kicker */}
-          <motion.div 
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/8 backdrop-blur-md border border-white/15 text-[11px] sm:text-xs font-semibold text-amber-200/95 tracking-wide mb-4 shadow-sm"
-          >
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>Portal Ciudadano Independiente · Normativa Oficial 2026</span>
-          </motion.div>
+          <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center">
+            
+            {/* Eyebrow / Kicker */}
+            <motion.div 
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className="inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-amber-200 tracking-wide mb-4 shadow-sm mx-auto"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+              <span>Portal Ciudadano Independiente · Normativa Oficial 2026</span>
+            </motion.div>
 
-          {/* Main Title */}
-          <motion.h1 
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.35 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-[1.15] text-center max-w-3xl mx-auto font-sans"
-          >
-            Tu guía completa para <br className="hidden sm:inline" />
-            <span className="bg-gradient-to-r from-[#fef08a] via-[#fde047] to-[#c9a84c] bg-clip-text text-transparent">
-              trámites del IESS y BIESS
-            </span>
-          </motion.h1>
+            {/* Main Title - PERFECT MATHEMATICAL AND OPTICAL ALIGNMENT */}
+            <motion.h1 
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.35 }}
+              className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-[1.2] text-center max-w-2xl mx-auto font-sans"
+            >
+              <span className="block text-white">Tu guía completa para</span>
+              <span className="block bg-gradient-to-r from-[#fef08a] via-[#fde047] to-[#c9a84c] bg-clip-text text-transparent mt-1 sm:mt-1.5">
+                trámites del IESS y BIESS
+              </span>
+            </motion.h1>
 
-          {/* Subtitle */}
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.18, duration: 0.35 }}
-            className="text-sm sm:text-base md:text-lg text-slate-300/90 max-w-2xl mx-auto mt-3 sm:mt-4 text-center font-normal leading-relaxed font-sans"
-          >
-            Consulta requisitos oficiales, genera oficios de ley de forma gratuita y resuelve tus dudas con nuestro asistente legal interactivo.
-          </motion.p>
+            {/* Subtitle - BALANCED SYMMETRY */}
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.18, duration: 0.35 }}
+              className="text-sm sm:text-base md:text-lg text-slate-300 max-w-xl mx-auto mt-4 text-center font-normal leading-relaxed font-sans [text-wrap:balance]"
+            >
+              Consulta requisitos oficiales, genera oficios de ley gratuitos y resuelve tus dudas con nuestro asistente legal interactivo.
+            </motion.p>
 
-          {/* SearchBar Container */}
-          <div className="w-full max-w-2xl mx-auto mt-6 sm:mt-8">
-            <SearchBar 
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-              onSearch={handleSearchTrigger}
-            />
-          </div>
+            {/* SearchBar Container */}
+            <div className="w-full max-w-2xl mx-auto mt-6 sm:mt-8">
+              <SearchBar 
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+                onSearch={handleSearchTrigger}
+              />
+            </div>
 
-          {/* Quick-Access Filter Tabs */}
-          <div className="mt-5 sm:mt-6 w-full max-w-3xl mx-auto flex flex-col items-center">
-            <span className="text-[11px] sm:text-xs font-medium text-slate-300/80 mb-2 tracking-wide">
-              Accesos rápidos por trámite:
-            </span>
-            <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
-              {categoriesList.map((cat) => {
-                const isSelected = selectedCategory === cat;
-                return (
-                  <button
-                    key={cat}
-                    onClick={() => {
-                      if (mainTab !== 'consultas' || currentRoute !== 'home' || selectedProcedure || selectedPost || selectedCity || selectedSeoCategory) {
-                        setMainTab('consultas');
-                        setCurrentRoute('home');
-                        setSelectedProcedure(null);
-                        setSelectedPost(null);
-                        setSelectedCity(null);
-                        setSelectedSeoCategory(null);
-                        setSelectedSubcategorySlug(null);
-                        window.history.pushState(null, "Asistente IESS Ecuador - Trámites y Requisitos", "/");
-                      }
-                      setSelectedCategory(cat);
-                      setTimeout(() => {
-                        const element = document.getElementById("catalogo-tramites");
-                        if (element) {
-                          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            {/* Quick-Access Filter Tabs */}
+            <div className="mt-5 sm:mt-6 w-full max-w-3xl mx-auto flex flex-col items-center">
+              <span className="text-[11px] sm:text-xs font-medium text-slate-300/80 mb-2 tracking-wide">
+                Accesos rápidos por trámite:
+              </span>
+              <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
+                {categoriesList.map((cat) => {
+                  const isSelected = selectedCategory === cat;
+                  return (
+                    <button
+                      key={cat}
+                      onClick={() => {
+                        if (mainTab !== 'consultas' || currentRoute !== 'home' || selectedProcedure || selectedPost || selectedCity || selectedSeoCategory) {
+                          setMainTab('consultas');
+                          setCurrentRoute('home');
+                          setSelectedProcedure(null);
+                          setSelectedPost(null);
+                          setSelectedCity(null);
+                          setSelectedSeoCategory(null);
+                          setSelectedSubcategorySlug(null);
+                          window.history.pushState(null, "Asistente IESS Ecuador - Trámites y Requisitos", "/");
                         }
-                      }, 100);
-                    }}
-                    className={`text-xs font-semibold px-3.5 py-1.5 rounded-lg transition-all duration-150 cursor-pointer font-sans ${
-                      isSelected 
-                        ? "bg-[#c9a84c] text-[#0a1f42] font-black shadow-md border border-[#c9a84c]" 
-                        : "bg-white/8 hover:bg-white/15 text-slate-200 border border-white/10 hover:border-white/25"
-                    }`}
-                  >
-                    {cat === "All" ? "Todos los Trámites" : cat}
-                  </button>
-                );
-              })}
+                        setSelectedCategory(cat);
+                        setTimeout(() => {
+                          const element = document.getElementById("catalogo-tramites");
+                          if (element) {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                          }
+                        }, 100);
+                      }}
+                      className={`text-xs font-semibold px-3.5 py-1.5 rounded-lg transition-all duration-150 cursor-pointer font-sans ${
+                        isSelected 
+                          ? "bg-[#c9a84c] text-[#0a1f42] font-black shadow-md border border-[#c9a84c]" 
+                          : "bg-white/8 hover:bg-white/15 text-slate-200 border border-white/10 hover:border-white/25"
+                      }`}
+                    >
+                      {cat === "All" ? "Todos los Trámites" : cat}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* 4 Trust & Metric Cards: Laser aligned to 5xl grid */}
+            <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-8 sm:mt-12 text-left">
+              <div className="bg-white/6 hover:bg-white/10 backdrop-blur-sm border border-white/12 hover:border-[#c9a84c]/50 rounded-xl p-3.5 sm:p-4 transition-all duration-150 flex flex-col justify-between min-h-[96px] group">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <div className="w-7 h-7 rounded-lg bg-[#c9a84c]/15 text-[#c9a84c] flex items-center justify-center shrink-0 border border-[#c9a84c]/30 group-hover:scale-105 transition-transform">
+                    <FileText className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="text-base sm:text-lg font-black text-white tabular-nums tracking-tight">13+ Guías</span>
+                </div>
+                <p className="text-[11px] sm:text-xs text-slate-300 font-medium leading-snug">
+                  Paso a paso con requisitos oficiales actualizados
+                </p>
+              </div>
+
+              <div className="bg-white/6 hover:bg-white/10 backdrop-blur-sm border border-white/12 hover:border-amber-400/50 rounded-xl p-3.5 sm:p-4 transition-all duration-150 flex flex-col justify-between min-h-[96px] group">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <div className="w-7 h-7 rounded-lg bg-amber-400/15 text-amber-300 flex items-center justify-center shrink-0 border border-amber-400/30 group-hover:scale-105 transition-transform">
+                    <Bot className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="text-base sm:text-lg font-black text-white tracking-tight">Chatbot 24/7</span>
+                </div>
+                <p className="text-[11px] sm:text-xs text-slate-300 font-medium leading-snug">
+                  Orientación legal y cálculo en tiempo real
+                </p>
+              </div>
+
+              <div className="bg-white/6 hover:bg-white/10 backdrop-blur-sm border border-white/12 hover:border-emerald-400/50 rounded-xl p-3.5 sm:p-4 transition-all duration-150 flex flex-col justify-between min-h-[96px] group">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <div className="w-7 h-7 rounded-lg bg-emerald-400/15 text-emerald-300 flex items-center justify-center shrink-0 border border-emerald-400/30 group-hover:scale-105 transition-transform">
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="text-base sm:text-lg font-black text-white tabular-nums tracking-tight">100% Legal</span>
+                </div>
+                <p className="text-[11px] sm:text-xs text-slate-300 font-medium leading-snug">
+                  Apegada a resoluciones y boletines del IESS
+                </p>
+              </div>
+
+              <div className="bg-white/6 hover:bg-white/10 backdrop-blur-sm border border-white/12 hover:border-[#c9a84c]/50 rounded-xl p-3.5 sm:p-4 transition-all duration-150 flex flex-col justify-between min-h-[96px] group">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <div className="w-7 h-7 rounded-lg bg-[#c9a84c]/15 text-[#c9a84c] flex items-center justify-center shrink-0 border border-[#c9a84c]/30 group-hover:scale-105 transition-transform">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="text-base sm:text-lg font-black text-white tabular-nums tracking-tight">$0 Gratuito</span>
+                </div>
+                <p className="text-[11px] sm:text-xs text-slate-300 font-medium leading-snug">
+                  Sin intermediarios ni cobros por gestión
+                </p>
+              </div>
             </div>
           </div>
+        </section>
+      )}
 
-          {/* 4 Trust & Metric Cards: Laser aligned to 5xl grid */}
-          <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-8 sm:mt-12 text-left">
-            <div className="bg-white/6 hover:bg-white/10 backdrop-blur-sm border border-white/12 hover:border-[#c9a84c]/50 rounded-xl p-3.5 sm:p-4 transition-all duration-150 flex flex-col justify-between min-h-[96px] group">
-              <div className="flex items-center gap-2 mb-1.5">
-                <div className="w-7 h-7 rounded-lg bg-[#c9a84c]/15 text-[#c9a84c] flex items-center justify-center shrink-0 border border-[#c9a84c]/30 group-hover:scale-105 transition-transform">
-                  <FileText className="w-3.5 h-3.5" />
-                </div>
-                <span className="text-base sm:text-lg font-black text-white tabular-nums tracking-tight">13+ Guías</span>
-              </div>
-              <p className="text-[11px] sm:text-xs text-slate-300 font-medium leading-snug">
-                Paso a paso con requisitos oficiales actualizados
-              </p>
-            </div>
-
-            <div className="bg-white/6 hover:bg-white/10 backdrop-blur-sm border border-white/12 hover:border-amber-400/50 rounded-xl p-3.5 sm:p-4 transition-all duration-150 flex flex-col justify-between min-h-[96px] group">
-              <div className="flex items-center gap-2 mb-1.5">
-                <div className="w-7 h-7 rounded-lg bg-amber-400/15 text-amber-300 flex items-center justify-center shrink-0 border border-amber-400/30 group-hover:scale-105 transition-transform">
-                  <Bot className="w-3.5 h-3.5" />
-                </div>
-                <span className="text-base sm:text-lg font-black text-white tracking-tight">Chatbot 24/7</span>
-              </div>
-              <p className="text-[11px] sm:text-xs text-slate-300 font-medium leading-snug">
-                Orientación legal y cálculo en tiempo real
-              </p>
-            </div>
-
-            <div className="bg-white/6 hover:bg-white/10 backdrop-blur-sm border border-white/12 hover:border-emerald-400/50 rounded-xl p-3.5 sm:p-4 transition-all duration-150 flex flex-col justify-between min-h-[96px] group">
-              <div className="flex items-center gap-2 mb-1.5">
-                <div className="w-7 h-7 rounded-lg bg-emerald-400/15 text-emerald-300 flex items-center justify-center shrink-0 border border-emerald-400/30 group-hover:scale-105 transition-transform">
-                  <ShieldCheck className="w-3.5 h-3.5" />
-                </div>
-                <span className="text-base sm:text-lg font-black text-white tabular-nums tracking-tight">100% Legal</span>
-              </div>
-              <p className="text-[11px] sm:text-xs text-slate-300 font-medium leading-snug">
-                Apegada a resoluciones y boletines del IESS
-              </p>
-            </div>
-
-            <div className="bg-white/6 hover:bg-white/10 backdrop-blur-sm border border-white/12 hover:border-[#c9a84c]/50 rounded-xl p-3.5 sm:p-4 transition-all duration-150 flex flex-col justify-between min-h-[96px] group">
-              <div className="flex items-center gap-2 mb-1.5">
-                <div className="w-7 h-7 rounded-lg bg-[#c9a84c]/15 text-[#c9a84c] flex items-center justify-center shrink-0 border border-[#c9a84c]/30 group-hover:scale-105 transition-transform">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                </div>
-                <span className="text-base sm:text-lg font-black text-white tabular-nums tracking-tight">$0 Gratuito</span>
-              </div>
-              <p className="text-[11px] sm:text-xs text-slate-300 font-medium leading-snug">
-                Sin intermediarios ni cobros por gestión
-              </p>
+      {/* PESTAÑAS PRINCIPALES DEL PORTAL CIUDADANO (Visible en Home y Blog para alternar pestañas del portal) */}
+      {showPortalTabs && (
+        <div id="main-portal-tabs" className="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
+          <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex gap-4 sm:gap-8 overflow-x-auto scrollbar-none pt-4 pb-1">
+              <button
+                onClick={handleConsultasTabClick}
+                type="button"
+                className={`pt-2.5 pb-4 px-1 text-xs sm:text-sm font-extrabold border-b-4 transition-all whitespace-nowrap flex items-center gap-2 cursor-pointer ${
+                  mainTab === 'consultas'
+                    ? 'border-[#0a1f42] text-[#0a1f42]'
+                    : 'border-transparent text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                CONSULTAS Y CHATBOT 24/7
+              </button>
+              <button
+                onClick={handleOficiosTabClick}
+                type="button"
+                className={`pt-2.5 pb-4 px-1 text-xs sm:text-sm font-extrabold border-b-4 transition-all whitespace-nowrap flex items-center gap-1.5 sm:gap-2 cursor-pointer ${
+                  mainTab === 'oficios'
+                    ? 'border-[#0a1f42] text-[#0a1f42]'
+                    : 'border-transparent text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                <span>FORMATOS Y OFICIOS DE LEY</span>
+                <span className="bg-red-500 text-white font-black text-[8px] sm:text-[9px] px-1.5 py-0.5 rounded-full uppercase animate-bounce shrink-0">
+                  17 formatos
+                </span>
+              </button>
+              <button
+                onClick={handleBlogTabClick}
+                type="button"
+                className={`pt-2.5 pb-4 px-1 text-xs sm:text-sm font-extrabold border-b-4 transition-all whitespace-nowrap flex items-center gap-1.5 sm:gap-2 cursor-pointer ${
+                  mainTab === 'blog'
+                    ? 'border-[#0a1f42] text-[#0a1f42]'
+                    : 'border-transparent text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                <span>BLOG DE GUÍAS PRÁCTICAS</span>
+                <span className="bg-emerald-500 text-white font-black text-[8px] sm:text-[9px] px-1.5 py-0.5 rounded-full uppercase shrink-0">
+                  Nuevo
+                </span>
+              </button>
             </div>
           </div>
         </div>
-      </section>
-
-      {/* PESTAÑAS PRINCIPALES DEL PORTAL CIUDADANO */}
-      <div id="main-portal-tabs" className="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
-        <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex gap-4 sm:gap-8 overflow-x-auto scrollbar-none pt-4 pb-1">
-            <button
-              onClick={handleConsultasTabClick}
-              type="button"
-              className={`pt-2.5 pb-4 px-1 text-xs sm:text-sm font-extrabold border-b-4 transition-all whitespace-nowrap flex items-center gap-2 cursor-pointer ${
-                mainTab === 'consultas'
-                  ? 'border-[#0a1f42] text-[#0a1f42]'
-                  : 'border-transparent text-slate-500 hover:text-slate-800'
-              }`}
-            >
-              CONSULTAS Y CHATBOT 24/7
-            </button>
-            <button
-              onClick={handleOficiosTabClick}
-              type="button"
-              className={`pt-2.5 pb-4 px-1 text-xs sm:text-sm font-extrabold border-b-4 transition-all whitespace-nowrap flex items-center gap-1.5 sm:gap-2 cursor-pointer ${
-                mainTab === 'oficios'
-                  ? 'border-[#0a1f42] text-[#0a1f42]'
-                  : 'border-transparent text-slate-500 hover:text-slate-800'
-              }`}
-            >
-              <span>FORMATOS Y OFICIOS DE LEY</span>
-              <span className="bg-red-500 text-white font-black text-[8px] sm:text-[9px] px-1.5 py-0.5 rounded-full uppercase animate-bounce shrink-0">
-                17 formatos
-              </span>
-            </button>
-            <button
-              onClick={handleBlogTabClick}
-              type="button"
-              className={`pt-2.5 pb-4 px-1 text-xs sm:text-sm font-extrabold border-b-4 transition-all whitespace-nowrap flex items-center gap-1.5 sm:gap-2 cursor-pointer ${
-                mainTab === 'blog'
-                  ? 'border-[#0a1f42] text-[#0a1f42]'
-                  : 'border-transparent text-slate-500 hover:text-slate-800'
-              }`}
-            >
-              <span>BLOG DE GUÍAS PRÁCTICAS</span>
-              <span className="bg-emerald-500 text-white font-black text-[8px] sm:text-[9px] px-1.5 py-0.5 rounded-full uppercase shrink-0">
-                Nuevo
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
+      )}
 
       {/* BREADCRUMBS SEO WIDGET */}
       <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-6 -mb-2">

@@ -74,11 +74,14 @@ export default function BlogPost({
       <div className="relative h-48 sm:h-64 md:h-80 w-full overflow-hidden">
         <img
           src={post.image}
-          alt={post.title}
+          alt={post.imageAlt || post.title}
           className="w-full h-full object-cover"
           referrerPolicy="no-referrer"
           loading="lazy"
           decoding="async"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1200&auto=format&fit=crop";
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
         <div className="absolute bottom-4 left-4 right-4 text-white text-left">

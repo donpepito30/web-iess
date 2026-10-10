@@ -34,10 +34,14 @@ export function urlCity(city: string): string {
 }
 
 export function navigate(url: string) {
+  if (typeof window !== "undefined") {
+    if (window.location.pathname !== url) {
+      window.history.pushState(null, "", url);
+    }
+  }
   if (navListener) {
     navListener(url);
-  } else {
-    window.history.pushState(null, "", url);
+  } else if (typeof window !== "undefined") {
     window.dispatchEvent(new PopStateEvent("popstate"));
   }
 }

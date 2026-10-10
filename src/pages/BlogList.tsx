@@ -147,11 +147,14 @@ export default function BlogList({
                 <div className="relative h-40 w-full overflow-hidden bg-slate-100">
                   <img
                     src={post.image}
-                    alt={post.title}
+                    alt={post.imageAlt || post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     referrerPolicy="no-referrer"
                     loading="lazy"
                     decoding="async"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1200&auto=format&fit=crop";
+                    }}
                   />
                   <span className="absolute top-3 left-3 bg-[#0a1f42] text-white font-black text-[9px] uppercase px-2 py-0.5 rounded shadow">
                     {post.category}

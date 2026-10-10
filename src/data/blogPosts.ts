@@ -845,7 +845,8 @@ La sustitución de hipoteca es un mecanismo financiero mediante el cual el BIESS
     author: 'fernando-torres',
     publishDate: '2026-01-20',
     readTime: 12,
-    image: '/img/blog/prestamo-hipotecario-biess-requisitos-tasas-2026.webp',
+    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop',
+    imageAlt: 'Vivienda y llaves de casa financiada con préstamo hipotecario del BIESS en Ecuador',
     category: 'Préstamos',
     dateModified: '2026-10-01',
     sources: [
@@ -858,7 +859,6 @@ La sustitución de hipoteca es un mecanismo financiero mediante el cual el BIESS
       'fondos-de-reserva-iess-consulta-acumulacion-retiro-2026',
       'afiliacion-voluntaria-iess-requisitos-beneficios-2026'
     ],
-    imageAlt: 'Solicitud de préstamo hipotecario BIESS con tasa preferencial en Ecuador',
     faqs: [
       {
         q: '¿Cuánto tiempo de mora patronal se necesita para que se bloquee el trámite?',
@@ -1320,7 +1320,7 @@ Mantener actualizados tus datos de contacto y tu cuenta bancaria es indispensabl
     publishDate: '2026-03-10',
     dateModified: '2026-10-01',
     readTime: 12,
-    image: '/img/blog/como-obtener-clave-iess-primera-vez.webp',
+    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200&auto=format&fit=crop',
     imageAlt: 'Proceso virtual para obtener o desbloquear la clave del IESS por primera vez en Ecuador',
     author: 'eliana-suarez',
     reviewer: 'fernando-torres',
@@ -1476,7 +1476,7 @@ Efectivamente, la clave personal que asigne a su cuenta de asegurado en el porta
     publishDate: '2026-03-12',
     dateModified: '2026-10-01',
     readTime: 12,
-    image: '/img/blog/como-consultar-aportes-iess-historial-laboral.webp',
+    image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200&auto=format&fit=crop',
     imageAlt: 'Visualización digital del historial laboral y aportaciones acumuladas en la plataforma del IESS de Ecuador',
     author: 'fernando-torres',
     reviewer: 'eliana-suarez',
@@ -1627,7 +1627,7 @@ Sí, las aportaciones realizadas de forma independiente como afiliado voluntario
     publishDate: '2026-03-15',
     dateModified: '2026-10-01',
     readTime: 12,
-    image: '/img/blog/como-saber-si-estoy-afiliado-al-iess.webp',
+    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1200&auto=format&fit=crop',
     imageAlt: 'Formulario digital para verificar el estado de afiliación activa o cesante en el IESS',
     author: 'eliana-suarez',
     reviewer: 'fernando-torres',
@@ -1779,7 +1779,7 @@ El Reglamento de Salud del IESS contempla un periodo de gracia denominado **"Per
     publishDate: '2026-03-18',
     dateModified: '2026-10-01',
     readTime: 12,
-    image: '/img/blog/afiliacion-trabajo-hogar-iess-requisitos.webp',
+    image: 'https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?q=80&w=1200&auto=format&fit=crop',
     imageAlt: 'Afiliación a la seguridad social para personas trabajadoras del hogar y amas de casa en Ecuador',
     author: 'fernando-torres',
     reviewer: 'eliana-suarez',
