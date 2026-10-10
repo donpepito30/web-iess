@@ -1,7 +1,9 @@
 import { PROCEDURES_DATA, Procedure } from "../data/procedures";
 import { BLOG_POSTS, BlogPost } from "../data/blogPosts";
 import { SEO_CATEGORIES, SeoCategory } from "../data/seoCategories";
+import { CITIES_DATA } from "../data/cities";
 import { marked } from "marked";
+import sanitizeHtml from "sanitize-html";
 
 // Ecuador Location definitions matching server.ts
 export const ECUADOR_LOCATIONS: Record<string, { lat: number; lng: number; region: string; fullName: string }> = {
@@ -406,7 +408,17 @@ export function generateBlogArchiveSeoHtml(currentPage: number): string {
 // 4. BLOG POST ARTICLE SEO HTML BUILDER
 export function generateBlogPostSeoHtml(post: BlogPost): string {
   // Convert Markdown content to HTML using marked.js and convert all <h1> to <h2> to avoid duplicates
-  let cleanMarkdownContent = marked.parse(post.content) as string;
+  const rawMarkdownHtml = marked.parse(post.content) as string;
+  let cleanMarkdownContent = sanitizeHtml(rawMarkdownHtml, {
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat(['h1', 'h2', 'h3', 'h4', 'img', 'table', 'thead', 'tbody', 'tr', 'th', 'td']),
+    allowedAttributes: {
+      ...sanitizeHtml.defaults.allowedAttributes,
+      '*': ['class', 'id'],
+      'a': ['href', 'name', 'target', 'rel'],
+      'img': ['src', 'alt', 'loading', 'decoding', 'width', 'height']
+    }
+  });
+
   cleanMarkdownContent = cleanMarkdownContent
     .replace(/<h1([^>]*)>/gi, '<h2$1>')
     .replace(/<\/h1>/gi, '</h2>');
@@ -597,58 +609,173 @@ export function generateCategorySeoHtml(cat: SeoCategory, subcategorySlug: strin
 }
 
 // 6. LOCAL CITY & FAQ PAGE SEO HTML BUILDERS
-export function generateCitySeoHtml(cityName: string): string {
-  const cityKey = cityName.toLowerCase();
-  const cityData = ECUADOR_LOCATIONS[cityKey];
-  const cityNameCap = cityData ? cityData.fullName : cityName;
+export function generateCitySeoHtml(citySlug: string): string {
+  const cityKey = citySlug.toLowerCase();
+  const cityData = CITIES_DATA[cityKey];
+  if (!cityData) return "";
+  
+  // Convert unique content (Markdown) to HTML
+  let parsedContent = marked.parse(cityData.uniqueContent) as string;
+  // Convert all <h1> to <h2> to avoid duplicates
+  parsedContent = parsedContent
+    .replace(/<h1([^>]*)>/gi, '<h2$1>')
+    .replace(/<\/h1>/gi, '</h2>');
+
+  // Render dependencies list
+  let dependenciesHtml = "";
+  if (cityData.dependencies && cityData.dependencies.length > 0) {
+    dependenciesHtml = `
+      <section class="space-y-4">
+        <h2 class="text-lg font-bold text-[#0a1f42]">🏢 Dependencias y Oficinas Reales del IESS en ${escapeText(cityData.name)}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          ${cityData.dependencies.map(dep => `
+            <div class="bg-white border border-slate-200 p-5 rounded-2xl shadow-xs space-y-3">
+              <span class="bg-[#0a1f42] text-white font-bold text-[9px] uppercase px-2 py-0.5 rounded shadow inline-block">
+                ${dep.type === "CAU" ? "Centro de Atención Universal (CAU)" : dep.type === "Hospital" ? "Hospital / Unidad Médica" : "Agencia BIESS"}
+              </span>
+              <h3 class="text-sm sm:text-base font-extrabold text-[#0a1f42]">${escapeText(dep.name)}</h3>
+              <div class="text-xs text-slate-650 space-y-1.5 pt-1.5 border-t border-slate-100">
+                <p>📍 <strong>Dirección:</strong> ${dep.address ? escapeText(dep.address) : '<span class="text-slate-400 italic">No verificado</span>'}</p>
+                <p>📞 <strong>Teléfono:</strong> ${dep.phone ? escapeText(dep.phone) : '<span class="text-slate-400 italic">No verificado</span>'}</p>
+                <p>⏱️ <strong>Horario:</strong> ${dep.hours ? escapeText(dep.hours) : '<span class="text-slate-400 italic">No verificado</span>'}</p>
+                <p>📅 <strong>Última Auditoría:</strong> ${dep.verifiedAt ? `Verificado el ${dep.verifiedAt} mediante ${escapeText(dep.source || '')}` : '<span class="text-red-500 font-bold">Sin verificar</span>'}</p>
+              </div>
+              ${dep.mapsUrl ? `
+                <div class="pt-2">
+                  <a href="${escapeText(dep.mapsUrl)}" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 bg-amber-50 hover:bg-[#c9a84c]/20 text-[#0a1f42] text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-200 no-underline transition-colors">
+                    🗺️ Ver en Google Maps &rarr;
+                  </a>
+                </div>
+              ` : ''}
+            </div>
+          `).join('')}
+        </div>
+      </section>
+    `;
+  } else {
+    dependenciesHtml = `
+      <div class="bg-red-50 border border-red-200 text-red-900 p-4 rounded-xl text-xs sm:text-sm leading-relaxed space-y-2">
+        <p class="font-extrabold text-left">⚠️ DIRECCIÓN BAJO AUDITORÍA EDITORIAL</p>
+        <p class="text-justify">Actualmente, las dependencias físicas del IESS en <strong>${escapeText(cityData.name)}</strong> se encuentran bajo un proceso de revisión y auditoría para evitar el marcado engañoso o direcciones ficticias en buscadores. Visite los canales oficiales o las ventanillas del IESS provincial para soporte directo.</p>
+      </div>
+    `;
+  }
 
   return `
     <div class="flex flex-col min-h-screen">
       ${renderSeoHeader()}
       
-      <main class="max-w-3xl w-full mx-auto px-4 py-8 space-y-6 flex-grow">
+      <main class="max-w-4xl w-full mx-auto px-4 py-8 space-y-8 flex-grow">
         
+        <!-- Breadcrumbs -->
         <nav aria-label="Migas de pan" class="text-xs text-slate-500">
           <a href="/" class="text-slate-500 no-underline hover:underline">Inicio</a> &gt; 
-          <a href="/#ciudades" class="text-slate-500 no-underline hover:underline">Ciudades</a> &gt; 
-          <span class="text-slate-800 font-bold">IESS ${escapeText(cityNameCap)}</span>
+          <a href="/iess" class="text-slate-500 no-underline hover:underline">Ciudades</a> &gt; 
+          <span class="text-slate-800 font-bold">IESS ${escapeText(cityData.name)}</span>
         </nav>
 
         <article class="space-y-6">
-          <h1 class="text-xl sm:text-2xl font-black text-[#0a1f42]">
-            IESS ${escapeText(cityNameCap)} - Trámites, Dirección de Oficinas y Requisitos
-          </h1>
-          
-          <p class="text-xs sm:text-sm text-slate-650 leading-relaxed text-justify">
-            Encuentra asesoría oficial y soporte presencial para tus trámites del IESS en la ciudad de <strong>${escapeText(cityNameCap)}</strong> (Provincia de ${cityData ? escapeText(cityData.region) : ''}). Obtén orientación ágil y detallada sobre requisitos mínimos de jubilación, estado del mecanizado de aportes, desbloqueo de clave personal, validación presencial de certificados médicos, préstamos quirografarios en el BIESS, fondos de reserva y cesantías.
-          </p>
+          <div class="space-y-2 text-left">
+            <span class="bg-[#0a1f42] text-white font-bold text-[9px] uppercase px-2 py-0.5 rounded shadow inline-block">
+              Guía Local Independiente (Provincia de ${escapeText(cityData.province)})
+            </span>
+            <h1 class="text-xl sm:text-3xl font-black text-[#0a1f42] leading-tight">
+              IESS ${escapeText(cityData.name)}: Horarios, Oficinas de Atención y Trámites
+            </h1>
+          </div>
 
-          <section class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-2.5">
-            <h2 class="text-xs sm:text-sm font-bold text-[#0a1f42] uppercase tracking-wide border-b border-slate-200 pb-1.5">📍 Ubicación Física y Contacto</h2>
-            <div class="text-xs sm:text-sm text-slate-600 space-y-1.5">
-              <p>• <strong>Provincia / Región:</strong> ${cityData ? escapeText(cityData.region) : ''}, Ecuador</p>
-              <p>• <strong>Coordenadas Geográficas:</strong> Latitud: ${cityData ? cityData.lat : ''}; Longitud: ${cityData ? cityData.lng : ''}</p>
-              <p>• <strong>Dirección de Atención:</strong> Acude a las ventanillas de Centros de Atención Universal (CAU) del IESS en la ciudad de ${escapeText(cityNameCap)} de lunes a viernes en horario de 08:00 a 17:00.</p>
-              <p>• <strong>Línea Telefónica Nacional Gratuita:</strong> Llama gratuitamente al ${CONTACT_PHONE} desde cualquier teléfono.</p>
-            </div>
-          </section>
+          <!-- Parsed unique long content exceeding 600 words -->
+          <div class="text-xs sm:text-sm text-slate-800 leading-relaxed text-justify space-y-4 pt-4 border-t border-slate-100">
+            ${parsedContent}
+          </div>
 
-          <section class="space-y-3">
-            <h2 class="text-sm sm:text-base font-bold text-[#0a1f42]">Preguntas Frecuentes resueltas para IESS ${escapeText(cityNameCap)}</h2>
-            
-            <div class="space-y-3 pl-1 text-xs sm:text-sm text-slate-600 leading-relaxed">
-              <div class="bg-white border border-slate-200 rounded-lg p-3">
-                <p class="font-bold text-[#0a1f42] mb-1">¿Cómo puedo agendar un turno médico presencial en el hospital del IESS de ${escapeText(cityNameCap)}?</p>
-                <p class="text-slate-500 pt-1 border-t border-slate-100">Puedes agendar turnos de consulta médica llamando al Call Center gratuito 140 de lunes a viernes o registrándote directamente en el portal iess.gob.ec con tu número de cédula y clave de afiliado.</p>
-              </div>
-              <div class="bg-white border border-slate-200 rounded-lg p-3">
-                <p class="font-bold text-[#0a1f42] mb-1">¿Dónde se retira la clave de afiliado de manera física en ${escapeText(cityNameCap)}?</p>
-                <p class="text-slate-500 pt-1 border-t border-slate-100">Si tu clave se encuentra bloqueada y no puedes desbloquearla en línea por internet, acude con tu cédula original legible al Centro de Atención Universal del IESS más cercano en ${escapeText(cityNameCap)} de 08:00 a 17:00.</p>
-              </div>
-            </div>
-          </section>
+          <!-- Verified dependencies list -->
+          <div class="pt-6 border-t border-slate-100">
+            ${dependenciesHtml}
+          </div>
 
         </article>
+
+      </main>
+      ${renderSeoFooter()}
+    </div>
+  `;
+}
+
+export function generateCitiesIndexSeoHtml(): string {
+  const citiesList = Object.values(CITIES_DATA);
+  const indexedCities = citiesList.filter(city => {
+    const wordCount = city.uniqueContent.split(/\s+/).filter(Boolean).length;
+    const verifiedCount = city.dependencies.filter(dep => dep.verifiedAt !== null && dep.address !== null).length;
+    return wordCount >= 600 && verifiedCount >= 2;
+  });
+  const unindexedCities = citiesList.filter(city => {
+    const wordCount = city.uniqueContent.split(/\s+/).filter(Boolean).length;
+    const verifiedCount = city.dependencies.filter(dep => dep.verifiedAt !== null && dep.address !== null).length;
+    return !(wordCount >= 600 && verifiedCount >= 2);
+  });
+
+  const indexedHtml = indexedCities.map(city => `
+    <li class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs hover:border-[#c9a84c] transition-colors flex flex-col justify-between space-y-3">
+      <div class="text-left">
+        <span class="text-2xl block mb-1">📍</span>
+        <h3 class="text-base font-extrabold text-[#0a1f42]">
+          <a href="/iess/${city.slug}" class="text-[#0a1f42] hover:text-[#c9a84c] no-underline">IESS ${escapeText(city.name)}</a>
+        </h3>
+        <p class="text-xs text-slate-500 font-medium">Provincia de ${escapeText(city.province)}</p>
+        <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed mt-2">Consulta la dirección oficial de los Centros de Atención Universal (CAU), horarios de ventanilla, hospitales del seguro de ${escapeText(city.name)} y consejos prácticos de trámites.</p>
+      </div>
+      <a href="/iess/${city.slug}" class="text-xs font-bold text-[#c9a84c] no-underline hover:underline pt-2 text-left">Ver Oficinas y Trámites &rarr;</a>
+    </li>
+  `).join('');
+
+  const unindexedHtml = unindexedCities.map(city => `
+    <li class="bg-slate-50 border border-slate-200 rounded-xl p-4 opacity-75 text-left">
+      <h4 class="text-xs sm:text-sm font-bold text-slate-700 flex items-center justify-between">
+        <span>📍 IESS ${escapeText(city.name)}</span>
+        <span class="text-[9px] uppercase tracking-wide font-extrabold text-amber-600 bg-amber-50 px-2 py-0.5 rounded shadow-2xs border border-amber-100">Bajo Auditoría</span>
+      </h4>
+      <p class="text-[10px] text-slate-500 leading-snug mt-1">Provincia de ${escapeText(city.province)}. Pendiente de verificación física de oficinas para prevenir marcado ficticio.</p>
+    </li>
+  `).join('');
+
+  return `
+    <div class="flex flex-col min-h-screen">
+      ${renderSeoHeader()}
+      
+      <main class="max-w-5xl w-full mx-auto px-4 py-8 space-y-10 flex-grow">
+        
+        <!-- Breadcrumbs -->
+        <nav aria-label="Migas de pan" class="text-xs text-slate-500">
+          <a href="/" class="text-slate-500 no-underline hover:underline">Inicio</a> &gt; 
+          <span class="text-slate-800 font-bold">Ciudades</span>
+        </nav>
+
+        <section class="text-center max-w-3xl mx-auto space-y-4">
+          <h1 class="text-xl sm:text-3xl font-black text-[#0a1f42] leading-tight text-center">
+            Directorio Local del IESS por Ciudades y Provincias de Ecuador
+          </h1>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto text-justify sm:text-center">
+            Consulte nuestro directorio local verificado del Instituto Ecuatoriano de Seguridad Social. Acceda a la ubicación geográfica real, horarios de ventanilla ininterrumpidos de los Centros de Atención Universal (CAU), agencias de atención del BIESS y unidades médicas provinciales para realizar sus trámites de forma presencial con total seguridad y transparencia.
+          </p>
+        </section>
+
+        <!-- Cities list section -->
+        <section class="space-y-4">
+          <h2 class="text-lg font-extrabold text-[#0a1f42] border-b border-slate-200 pb-2 text-left">📍 Oficinas y CAUs Verificados por Ciudad</h2>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 list-none pl-0">
+            ${indexedHtml}
+          </ul>
+        </section>
+
+        <!-- Under Audit Cities section -->
+        <section class="space-y-4">
+          <h2 class="text-sm font-extrabold text-slate-500 uppercase tracking-wide border-b border-slate-200 pb-2 text-left">📂 Ciudades de Ecuador en Proceso de Auditoría</h2>
+          <p class="text-xs text-slate-500 leading-relaxed max-w-3xl text-left">Conforme con nuestras políticas de honestidad en el SEO local, las siguientes capitales de provincia se encuentran temporalmente con indicación de exclusión de rastreo (noindex, follow) hasta que nuestro equipo confirme la exactitud física de sus dependencias:</p>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 list-none pl-0">
+            ${unindexedHtml}
+          </ul>
+        </section>
 
       </main>
       ${renderSeoFooter()}

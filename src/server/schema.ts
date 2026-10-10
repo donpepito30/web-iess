@@ -1,3 +1,5 @@
+import { CITIES_DATA } from "../data/cities";
+
 export function getOrganizationSchema(siteUrl: string) {
   return {
     "@type": "Organization",
@@ -336,9 +338,9 @@ export function getCityGraph(siteUrl: string, city: string, locationData: any) {
     "@type": "WebPage",
     "@id": `${pageUrl}/#webpage`,
     "url": pageUrl,
-    "name": `IESS ${cityNameCap} - Trámites, Requisitos y Oficios`,
+    "name": `IESS ${cityNameCap} - Dirección de Oficinas y Trámites`,
     "isPartOf": { "@id": `${siteUrl}/#website` },
-    "description": `Guía local para trámites y oficinas del IESS en ${cityNameCap}, provincia de ${locationData.region || "Ecuador"}.`,
+    "description": `Guía local independiente con direcciones, horarios y dependencias del IESS en ${cityNameCap}, provincia de ${locationData.region || "Ecuador"}.`,
     "inLanguage": "es-EC",
     "about": {
       "@type": "Place",
@@ -370,15 +372,63 @@ export function getCityGraph(siteUrl: string, city: string, locationData: any) {
       {
         "@type": "ListItem",
         "position": 2,
+        "name": "Ciudades",
+        "item": `${siteUrl}/iess`
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
         "name": `IESS ${cityNameCap}`,
         "item": pageUrl
       }
     ]
   };
   
+  const graphs: any[] = [org, website, webpage, breadcrumbs];
+  
+  // Inject actual verified dependencies
+  const cityData = CITIES_DATA[city];
+  if (cityData && cityData.dependencies) {
+    cityData.dependencies.forEach((dep, idx) => {
+      if (dep.verifiedAt && dep.address) {
+        if (dep.type === "Hospital") {
+          graphs.push({
+            "@type": "Hospital",
+            "@id": `${pageUrl}/#hospital-${idx}`,
+            "name": dep.name,
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": dep.address,
+              "addressLocality": cityNameCap,
+              "addressRegion": locationData.region,
+              "addressCountry": "EC"
+            },
+            "telephone": dep.phone || "1800-4377",
+            "url": "https://www.iess.gob.ec"
+          });
+        } else {
+          graphs.push({
+            "@type": "GovernmentOffice",
+            "@id": `${pageUrl}/#office-${idx}`,
+            "name": dep.name,
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": dep.address,
+              "addressLocality": cityNameCap,
+              "addressRegion": locationData.region,
+              "addressCountry": "EC"
+            },
+            "telephone": dep.phone || "1800-4377",
+            "url": "https://www.iess.gob.ec"
+          });
+        }
+      }
+    });
+  }
+  
   return {
     "@context": "https://schema.org",
-    "@graph": [org, website, webpage, breadcrumbs]
+    "@graph": graphs
   };
 }
 

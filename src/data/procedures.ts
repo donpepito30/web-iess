@@ -466,5 +466,134 @@ export const PROCEDURES_DATA: Procedure[] = [
       { label: "Secretaría Nacional de Transparencia de Ecuador", url: "https://www.transparencia.gob.ec", accessedAt: "2026-10-01" },
       { label: "Portal del Asegurado - Denuncias IESS", url: "https://denuncias.iess.gob.ec", accessedAt: "2026-10-01" }
     ]
+  },
+  {
+    id: "como-obtener-clave-iess-primera-vez",
+    title: "Obtención de Clave de Afiliado",
+    category: "Trámites y Afiliación",
+    whoCanDo: "Cualquier persona previamente registrada en el IESS (afiliado activo, voluntario o jubilado).",
+    requirements: [
+      "Cédula de identidad de Ecuador vigente.",
+      "Correo electrónico personal y activo registrado en la plataforma.",
+      "Responder de forma correcta las preguntas desafío financieras/laborales."
+    ],
+    steps: [
+      "Ingresar a iess.gob.ec -> Trámites Virtuales -> Asegurados -> Afiliados -> Generar/Recuperar Clave.",
+      "Escribir su número de cédula de ciudadanía de 10 dígitos sin guiones.",
+      "Aprobar el cuestionario interactivo de seguridad de 3 preguntas de opción múltiple.",
+      "Acceder a su buzón de correo electrónico registrado y abrir el enlace de confirmación antes de 15 minutos.",
+      "Fijar una contraseña segura que contenga letras y números de entre 8 y 15 caracteres."
+    ],
+    whereTo: {
+      label: "iess.gob.ec (Módulo de Generación de Claves)",
+      url: String(getFactValue("URL_IESS_PORTAL"))
+    },
+    commonErrors: [
+      "Fallar tres veces consecutivas en las preguntas de seguridad (bloquea la validación en línea).",
+      "Dejar pasar el lapso de 15 minutos sin hacer clic en el enlace temporal recibido por correo electrónico."
+    ],
+    needsMoreHelp: "Si su correo está desactualizado o no aprueba las preguntas de seguridad, acuda a un Centro de Atención Universal (CAU) con su cédula de identidad.",
+    referenceNorm: "Resolución C.D. 625 (Reglamento de Atención Universal IESS).",
+    dateModified: "2026-10-01",
+    sources: [
+      { label: "IESS - Solicitud de Clave de Afiliado", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" },
+      { label: "Resolución C.D. 625 - Reglamento de Atención Universal", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" }
+    ]
+  },
+  {
+    id: "como-consultar-aportes-iess-historial-laboral",
+    title: "Consulta de Aportes e Historial Laboral",
+    category: "Trámites y Afiliación",
+    whoCanDo: "Afiliados bajo relación de dependencia, afiliados voluntarios y jubilados de la seguridad social.",
+    requirements: [
+      "Número de cédula de ciudadanía ecuatoriana o código provisional de afiliación.",
+      "Clave personal de afiliado del IESS unificada."
+    ],
+    steps: [
+      "Ingresar a iess.gob.ec -> Asegurados -> Afiliados -> Historial Laboral.",
+      "Iniciar sesión digitando su cédula y clave de seguridad unificada.",
+      "Hacer clic en el menú lateral izquierdo en 'Consultas' -> 'Aportes' para visualizar imposiciones mensuales.",
+      "Seleccionar 'Historial Laboral' o 'Resumen de Aportes' para descargar la certificación consolidada.",
+      "Descargar la certificación consolidada en formato PDF firmado electrónicamente."
+    ],
+    whereTo: {
+      label: "iess.gob.ec (Módulo de Historial Laboral)",
+      url: String(getFactValue("URL_IESS_PORTAL"))
+    },
+    commonErrors: [
+      "Pensar que las imposiciones dobles de un mismo mes cuentan como dos meses de servicio para calificar para la jubilación.",
+      "Reclamar falta de aportes patronales antes del día 15 del mes en curso, dado que el empleador dispone hasta ese plazo de pago legal."
+    ],
+    needsMoreHelp: "Si faltan aportes de un empleador, interponga una queja o reclamo formal por falta de afiliación laboral en iess.gob.ec.",
+    referenceNorm: "Ley de Seguridad Social, Artículos de Recaudación y Control de Mora.",
+    dateModified: "2026-10-01",
+    sources: [
+      { label: "IESS - Consulta de Aportes en Línea", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" },
+      { label: "Ley de Seguridad Social de Ecuador - Artículos de Recaudación", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" }
+    ]
+  },
+  {
+    id: "como-saber-si-estoy-afiliado-al-iess",
+    title: "Consulta de Estado de Afiliación",
+    category: "Trámites y Afiliación",
+    whoCanDo: "Cualquier ciudadano con número de cédula de ciudadanía o código de extranjero.",
+    requirements: [
+      "Número de cédula de ciudadanía de Ecuador o código provisional de afiliación.",
+      "Fecha de nacimiento de la persona a consultar."
+    ],
+    steps: [
+      "Ingresar al portal web iess.gob.ec -> Servicios en Línea -> Asegurados -> Ciudadanos -> Certificado de Afiliación.",
+      "Digitar el número de cédula de ciudadanía de 10 dígitos sin guiones ni espacios.",
+      "Ingresar la fecha de nacimiento en el formato correspondiente.",
+      "Completar la validación de seguridad (captcha visual).",
+      "Visualizar el estado actual y hacer clic en 'Descargar Certificado' para guardar la certificación en PDF."
+    ],
+    whereTo: {
+      label: "iess.gob.ec (Certificado de Afiliación)",
+      url: String(getFactValue("URL_IESS_PORTAL"))
+    },
+    commonErrors: [
+      "Introducir guiones o espacios en el campo del número de cédula.",
+      "Intentar descargar un certificado expirado (los documentos descargados solo tienen 30 días de vigencia)."
+    ],
+    needsMoreHelp: "Si tu estado reporta 'Cesante' pero te encuentras laborando bajo dependencia, solicita la regularización de inmediato con tu empleador o ingresa una queja en línea.",
+    referenceNorm: "Ley de Seguridad Social de Ecuador.",
+    dateModified: "2026-10-01",
+    sources: [
+      { label: "IESS - Consulta de Afiliación", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" }
+    ]
+  },
+  {
+    id: "afiliacion-trabajo-hogar-iess-requisitos",
+    title: "Afiliación del Trabajo del Hogar",
+    category: "Trámites y Afiliación",
+    whoCanDo: "Empleadores domésticos (para trabajadoras remuneradas) o personas que realizan tareas domésticas en su hogar sin sueldo.",
+    requirements: [
+      "Cédula de identidad vigente del afiliado y del empleador (si aplica).",
+      "Contrato de trabajo doméstico registrado en el portal SUT del Ministerio del Trabajo (para trabajadoras remuneradas).",
+      "Estar en el Registro Social del MIES y tener entre 15 y 65 años (para seguro no remunerado de amas de casa)."
+    ],
+    steps: [
+      "Registrar la cuenta patronal doméstica del empleador en iess.gob.ec -> Empleadores -> Registro de Empleador -> Trabajo Doméstico (si aplica).",
+      "Generar el aviso de entrada en línea detallando el sueldo (mínimo el SBU de $482 para el año 2026) y la jornada laboral.",
+      "Para amas de casa, ingresar a iess.gob.ec -> Asegurados -> Afiliados -> Trabajo del Hogar No Remunerado con su cédula de identidad.",
+      "Completar la encuesta socioeconómica cruzada con el MIES para establecer la tarifa subsidiada correspondiente.",
+      "Confirmar el registro e imprimir el comprobante de afiliación especial."
+    ],
+    whereTo: {
+      label: "iess.gob.ec (Portal de Empleadores / Asegurados)",
+      url: String(getFactValue("URL_IESS_PORTAL"))
+    },
+    commonErrors: [
+      "No registrar el aviso de salida a tiempo tras finalizar la relación laboral (genera cobros acumulados).",
+      "Creer que el seguro especial subsidiado para amas de casa da derecho a consultas o cirugías en los hospitales del IESS (solo cubre jubilación e invalidez)."
+    ],
+    needsMoreHelp: "La afiliación doméstica extemporánea o su evasión constituye una infracción penal severa que puede ser sancionada con prisión de tres a siete días.",
+    referenceNorm: "Ley de Seguridad Social de Ecuador - Régimen Especial de Trabajo del Hogar.",
+    dateModified: "2026-10-01",
+    sources: [
+      { label: "Ley de Seguridad Social - Régimen Especial", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" },
+      { label: "Ministerio del Trabajo de Ecuador", url: "https://www.trabajo.gob.ec", accessedAt: "2026-10-01" }
+    ]
   }
 ];

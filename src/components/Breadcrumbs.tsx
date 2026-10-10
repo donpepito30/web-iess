@@ -81,10 +81,16 @@ export default function Breadcrumbs({
         to: urlBlogPost(selectedPost.slug),
         isLast: true
       });
+    } else if (selectedCity === 'directory') {
+      crumbs.push({
+        label: "Ciudades",
+        to: "/iess",
+        isLast: true
+      });
     } else if (selectedCity) {
       crumbs.push({
         label: "Ciudades",
-        to: "/",
+        to: "/iess",
         isLast: false
       });
       crumbs.push({

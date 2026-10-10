@@ -29,9 +29,19 @@ export default defineConfig(() => {
       },
       rollupOptions: {
         output: {
-          manualChunks: {
-            'vendor': ['react', 'react-dom'],
-            'ui': ['lucide-react', 'motion/react']
+          manualChunks(id) {
+            if (id.includes('src/data/blogPosts')) {
+              return 'blog-posts';
+            }
+            if (id.includes('src/data/seoCategories')) {
+              return 'seo-categories';
+            }
+            if (id.includes('src/data/templates')) {
+              return 'templates';
+            }
+            if (id.includes('node_modules')) {
+              return 'vendor';
+            }
           }
         }
       }

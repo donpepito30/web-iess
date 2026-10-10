@@ -130,7 +130,12 @@ En el Ecuador existen distintas modalidades de aportación para adaptarse a la r
       "Afiliarse voluntariamente teniendo deudas activas o multas patronales pendientes en el sistema del IESS.",
       "Intentar desafiliarse de manera incorrecta dejando de pagar, en lugar de solicitar la suspensión formal en la plataforma web."
     ],
-    relatedPostsSlugs: ["afiliacion-voluntaria-iess-requisitos-beneficios-2026"]
+    relatedPostsSlugs: [
+      "afiliacion-voluntaria-iess-requisitos-beneficios-2026",
+      "como-obtener-clave-iess-primera-vez",
+      "como-saber-si-estoy-afiliado-al-iess",
+      "afiliacion-trabajo-hogar-iess-requisitos"
+    ]
   },
   {
     id: "historia-laboral",
@@ -216,7 +221,11 @@ La consulta de tu historial de aportes está digitalizada y cuenta con todas las
       "Confundir aportaciones en mora con aportaciones perdidas. Las aportaciones en mora sí cuentan para el tiempo de jubilación una vez que el patrono cancele.",
       "No actualizar tus datos de contacto y correo electrónico dentro de la plataforma de historia laboral."
     ],
-    relatedPostsSlugs: ["jubilacion-por-vejez-requisitos-2026"]
+    relatedPostsSlugs: [
+      "jubilacion-por-vejez-requisitos-2026",
+      "como-consultar-aportes-iess-historial-laboral",
+      "como-saber-si-estoy-afiliado-al-iess"
+    ]
   },
   {
     id: "prestamos-biess",
@@ -549,7 +558,10 @@ Es una pensión mensual que se concede a las familias de los jubilados o afiliad
       "No verificar que la empresa haya ingresado formalmente el Aviso de Salida al sistema del IESS, dejando al solicitante como un empleado activo ante el sistema.",
       "Creer que los aportes del seguro privado o de otros regímenes extranjeros se homologan automáticamente sin haber completado un convenio de portabilidad formal previa."
     ],
-    relatedPostsSlugs: ["jubilacion-por-vejez-requisitos-2026"]
+    relatedPostsSlugs: [
+      "jubilacion-por-vejez-requisitos-2026",
+      "pension-montepio-iess-requisitos-sobrevivientes-2026"
+    ]
   },
   {
     id: "salud",

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ShieldAlert, Settings, Check, X } from "lucide-react";
+import { analytics } from "../lib/analytics";
 
 interface CookieSettings {
   necessary: boolean;
@@ -94,6 +95,7 @@ export default function CookieConsent() {
     setSettings(allAccepted);
     localStorage.setItem("cookie_consent_preferences", JSON.stringify(allAccepted));
     applyConsent(allAccepted);
+    analytics.cookieConsent(allAccepted, "accept_all");
     setShowBanner(false);
   };
 
@@ -106,12 +108,14 @@ export default function CookieConsent() {
     setSettings(allRejected);
     localStorage.setItem("cookie_consent_preferences", JSON.stringify(allRejected));
     applyConsent(allRejected);
+    analytics.cookieConsent(allRejected, "reject_all");
     setShowBanner(false);
   };
 
   const handleSavePreferences = () => {
     localStorage.setItem("cookie_consent_preferences", JSON.stringify(settings));
     applyConsent(settings);
+    analytics.cookieConsent(settings, "custom_save");
     setShowBanner(false);
   };
 
