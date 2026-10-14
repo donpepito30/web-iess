@@ -6,30 +6,44 @@ import { getSiteUrlServer } from "../config/site";
 
 export function handleSitemap(req: Request, res: Response) {
   const baseUrl = getSiteUrlServer();
+  const now = new Date().toISOString();
+  
   const urls = [
-    { loc: `${baseUrl}/`, lastmod: new Date().toISOString() },
-    { loc: `${baseUrl}/preguntas-frecuentes`, lastmod: new Date().toISOString() },
-    { loc: `${baseUrl}/guias-y-articulos`, lastmod: new Date().toISOString() },
-    { loc: `${baseUrl}/oficios`, lastmod: new Date().toISOString() },
-    { loc: `${baseUrl}/herramientas`, lastmod: new Date().toISOString() },
-    { loc: `${baseUrl}/iess`, lastmod: new Date().toISOString() },
+    { loc: `${baseUrl}/`, lastmod: now },
+    { loc: `${baseUrl}/preguntas-frecuentes`, lastmod: now },
+    { loc: `${baseUrl}/guias-y-articulos`, lastmod: now },
+    { loc: `${baseUrl}/oficios`, lastmod: now },
+    { loc: `${baseUrl}/herramientas`, lastmod: now },
+    { loc: `${baseUrl}/iess`, lastmod: now },
+    { loc: `${baseUrl}/sobre-nosotros`, lastmod: now },
+    { loc: `${baseUrl}/metodologia-editorial`, lastmod: now },
+    { loc: `${baseUrl}/contacto`, lastmod: now },
+    { loc: `${baseUrl}/politica-de-privacidad`, lastmod: now },
+    { loc: `${baseUrl}/terminos-de-uso`, lastmod: now },
+    { loc: `${baseUrl}/aviso-legal`, lastmod: now },
+    { loc: `${baseUrl}/politica-de-cookies`, lastmod: now },
   ];
 
+  // Blog pages
+  for (let i = 2; i <= 5; i++) {
+    urls.push({ loc: `${baseUrl}/guias-y-articulos/page/${i}`, lastmod: now });
+  }
+  
   // Procedures
   PROCEDURES_DATA.forEach(p => {
-    urls.push({ loc: `${baseUrl}/procedimiento/${p.id}`, lastmod: new Date().toISOString() });
+    urls.push({ loc: `${baseUrl}/procedimiento/${p.id}`, lastmod: now });
   });
 
   // Articles
   BLOG_POSTS.forEach(p => {
-    urls.push({ loc: `${baseUrl}/blog/${p.slug}`, lastmod: p.dateModified });
+    urls.push({ loc: `${baseUrl}/guias-y-articulos/${p.slug}`, lastmod: p.dateModified });
   });
 
   // Categories
   SEO_CATEGORIES.forEach(c => {
-    urls.push({ loc: `${baseUrl}/${c.slug}`, lastmod: new Date().toISOString() });
+    urls.push({ loc: `${baseUrl}/${c.slug}`, lastmod: now });
     c.subcategories.forEach(s => {
-      urls.push({ loc: `${baseUrl}/${c.slug}/${s.slug}`, lastmod: new Date().toISOString() });
+      urls.push({ loc: `${baseUrl}/${c.slug}/${s.slug}`, lastmod: now });
     });
   });
 

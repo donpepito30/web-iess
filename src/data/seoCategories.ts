@@ -850,7 +850,7 @@ Nuestra plataforma integra un **Generador Inteligente de Oficios de Ley** que cu
     relatedPostsSlugs: ["prestamo-quirografario-biess-requisitos-montos-2026"]
   },
   {
-    id: "faq",
+    id: "preguntas-frecuentes",
     title: "Preguntas Frecuentes",
     slug: "preguntas-frecuentes",
     description: "Resolución de dudas comunes sobre aportes, retiros, montepío, jubilaciones y préstamos BIESS.",
@@ -981,7 +981,7 @@ Nuestra redacción monitorea permanentemente el Registro Oficial del Ecuador y l
     relatedPostsSlugs: ["jubilacion-por-vejez-requisitos-2026"]
   },
   {
-    id: "blog",
+    id: "guias-y-articulos",
     title: "Guías y Artículos",
     slug: "guias-y-articulos",
     description: "Artículos educativos detallados y guías paso a paso sobre el funcionamiento de las jubilaciones, préstamos y aportes en Ecuador.",
