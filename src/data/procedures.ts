@@ -23,6 +23,7 @@ export interface Procedure {
   referenceNorm?: string;
   dateModified: string;
   sources: ProcedureSource[];
+  factIds?: string[];
 }
 
 export const PROCEDURES_DATA: Procedure[] = [
@@ -45,7 +46,7 @@ export const PROCEDURES_DATA: Procedure[] = [
       "Registrar el cese laboral con tu empleador para que suba el Aviso de Salida al sistema.",
       "Ingresar a iess.gob.ec -> sección 'Trámites Virtuales' -> 'Asegurados' -> 'Pensionistas' -> 'Jubilación'.",
       "Iniciar sesión con tu número de cédula y clave personal.",
-      "Completar el formulario de solicitud en línea.",
+      "Llenar el formulario de solicitud en línea.",
       "Registrar o confirmar tu cuenta bancaria de ahorros o corriente para la acreditación mensual.",
       "Enviar la solicitud (se aconseja realizarla antes del día 25 de cada mes para acelerar el procesamiento)."
     ],
@@ -115,7 +116,7 @@ export const PROCEDURES_DATA: Procedure[] = [
       "Reunir documentos: Partida de defunción, cédula de los beneficiarios, acta de matrimonio o unión de hecho, y partidas de nacimiento de hijos.",
       "Ingresar a iess.gob.ec -> sección de Montepío e ingresar con los datos de viudedad u orfandad.",
       "Registrar los datos y subir los justificativos digitales requeridos.",
-      "Completar la cuenta bancaria de los beneficiarios para acreditar las cuotas mensuales correspondientes."
+      "Registrar la cuenta bancaria de los beneficiarios para acreditar las cuotas mensuales correspondientes."
     ],
     whereTo: {
       label: "iess.gob.ec -> Pensiones -> Montepío",
@@ -131,7 +132,8 @@ export const PROCEDURES_DATA: Procedure[] = [
     sources: [
       { label: "Normativa de Montepío IESS", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" },
       { label: "Registro Civil de Ecuador", url: "https://www.registrocivil.gob.ec", accessedAt: "2026-10-01" }
-    ]
+    ],
+    factIds: ["MONTEPIO_VIUDEZ_PCT", "MONTEPIO_ORFANDAD_PCT"]
   },
   {
     id: "prestamo-quirografario",
@@ -171,7 +173,8 @@ export const PROCEDURES_DATA: Procedure[] = [
     sources: [
       { label: "Portal del BIESS - Manual de Préstamo Quirografario", url: "https://www.biess.fin.ec/quirografarios", accessedAt: "2026-10-01" },
       { label: "Resoluciones de Crédito del Directorio del BIESS", url: "https://www.biess.fin.ec", accessedAt: "2026-10-01" }
-    ]
+    ],
+    factIds: ["QUIROGRAFARIO_APORTES_REQ", "QUIROGRAFARIO_CONSECUTIVOS_REQ"]
   },
   {
     id: "prestamo-hipotecario",
@@ -208,7 +211,8 @@ export const PROCEDURES_DATA: Procedure[] = [
     sources: [
       { label: "Banco del IESS (BIESS) - Guías de Préstamos Hipotecarios", url: "https://www.biess.fin.ec/hipotecarios", accessedAt: "2026-10-01" },
       { label: "Superintendencia de Bancos del Ecuador", url: "https://www.superbancos.gob.ec", accessedAt: "2026-10-01" }
-    ]
+    ],
+    factIds: ["TASA_HIPOTECARIO_MIN", "TASA_HIPOTECARIO_MAX", "HIPOTECARIO_PLAZO_MAX_ANOS", "HIPOTECARIO_MONTO_100_COBERTURA", "HIPOTECARIO_MONTO_MAX"]
   },
   {
     id: "afiliacion-voluntaria",
@@ -243,7 +247,8 @@ export const PROCEDURES_DATA: Procedure[] = [
     sources: [
       { label: "IESS - Reglamento de Aseguramiento Voluntario", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" },
       { label: "Resolución C.D. 625 - Consejo Directivo", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" }
-    ]
+    ],
+    factIds: ["SBU_2026", "APORTE_VOLUNTARIO_PCT"]
   },
   {
     id: "subsidio-enfermedad",
@@ -306,7 +311,8 @@ export const PROCEDURES_DATA: Procedure[] = [
     sources: [
       { label: "Código del Trabajo de Ecuador", url: "https://www.trabajo.gob.ec", accessedAt: "2026-10-01" },
       { label: "IESS - Subsidios Pecuniarios", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" }
-    ]
+    ],
+    factIds: ["MATERNIDAD_SUBSIDIO_IESS_PCT", "MATERNIDAD_DIAS_DESCANSO", "MATERNIDAD_APORTES_REQ"]
   },
   {
     id: "cesantia-desempleo",
@@ -387,7 +393,7 @@ export const PROCEDURES_DATA: Procedure[] = [
       "Ingresar a iess.gob.ec -> sección de Empleadores.",
       "Hacer clic en 'Avisos de Entrada y Salida' y acceder con usuario patronal y clave.",
       "Registrar los datos de identidad del colaborador.",
-      "Completar fecha exacta de reingreso o finalización, tipo de jornada ordinaria/parcial, y salario básico contractual.",
+      "Ingresar fecha exacta de reingreso o finalización, tipo de jornada ordinaria/parcial, y salario básico contractual.",
       "Validar el registro y guardar la constancia firmada en formato digital."
     ],
     whereTo: {
@@ -545,7 +551,7 @@ export const PROCEDURES_DATA: Procedure[] = [
       "Ingresar al portal web iess.gob.ec -> Servicios en Línea -> Asegurados -> Ciudadanos -> Certificado de Afiliación.",
       "Digitar el número de cédula de ciudadanía de 10 dígitos sin guiones ni espacios.",
       "Ingresar la fecha de nacimiento en el formato correspondiente.",
-      "Completar la validación de seguridad (captcha visual).",
+      "Superar la validación de seguridad (captcha visual).",
       "Visualizar el estado actual y hacer clic en 'Descargar Certificado' para guardar la certificación en PDF."
     ],
     whereTo: {
@@ -577,7 +583,7 @@ export const PROCEDURES_DATA: Procedure[] = [
       "Registrar la cuenta patronal doméstica del empleador en iess.gob.ec -> Empleadores -> Registro de Empleador -> Trabajo Doméstico (si aplica).",
       "Generar el aviso de entrada en línea detallando el sueldo (mínimo el SBU de $482 para el año 2026) y la jornada laboral.",
       "Para amas de casa, ingresar a iess.gob.ec -> Asegurados -> Afiliados -> Trabajo del Hogar No Remunerado con su cédula de identidad.",
-      "Completar la encuesta socioeconómica cruzada con el MIES para establecer la tarifa subsidiada correspondiente.",
+      "Llenar la encuesta socioeconómica cruzada con el MIES para establecer la tarifa subsidiada correspondiente.",
       "Confirmar el registro e imprimir el comprobante de afiliación especial."
     ],
     whereTo: {

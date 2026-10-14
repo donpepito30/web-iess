@@ -122,7 +122,7 @@ En el Ecuador existen distintas modalidades de aportación para adaptarse a la r
       {
         title: "IESS amplía servicios virtuales de afiliación rápida desde el celular",
         date: "14 de Marzo de 2026",
-        summary: "A través de la nueva aplicación móvil, los ciudadanos pueden completar el registro voluntario en menos de 5 minutos utilizando reconocimiento facial."
+        summary: "A través de la nueva aplicación móvil, los ciudadanos pueden finalizar el registro voluntario en menos de 5 minutos utilizando reconocimiento facial."
       }
     ],
     commonErrors: [
@@ -386,7 +386,7 @@ Si has acumulado tus fondos en el IESS y deseas retirarlos, puedes hacerlo de ma
     commonErrors: [
       "Intentar retirar los fondos antes de acumular las 36 aportaciones requeridas, lo que provoca que el sistema bloquee el botón de retiro en línea.",
       "Tener la cuenta bancaria bloqueada o inactiva en el sistema financiero al momento de realizar la solicitud de desembolso.",
-      "Suponer que los fondos se acumulan de manera automática al cambiar de empresa; al ingresar a un nuevo empleo, se requiere completar nuevamente un año continuo de servicios."
+      "Suponer que los fondos se acumulan de manera automática al cambiar de empresa; al ingresar a un nuevo empleo, se requiere cumplir nuevamente un año continuo de servicios."
     ],
     relatedPostsSlugs: ["prestamo-quirografario-biess-requisitos-montos-2026"]
   },
@@ -852,7 +852,7 @@ Nuestra plataforma integra un **Generador Inteligente de Oficios de Ley** que cu
   {
     id: "faq",
     title: "Preguntas Frecuentes",
-    slug: "faq",
+    slug: "preguntas-frecuentes",
     description: "Resolución de dudas comunes sobre aportes, retiros, montepío, jubilaciones y préstamos BIESS.",
     metaTitle: "Preguntas Frecuentes del IESS - Respuestas de Seguridad Social 2026",
     metaDescription: "Encuentra respuestas rápidas y certeras a tus dudas sobre deudas, aportaciones voluntarias, desbloqueo de claves y retiros de cesantía en el IESS.",
@@ -982,8 +982,8 @@ Nuestra redacción monitorea permanentemente el Registro Oficial del Ecuador y l
   },
   {
     id: "blog",
-    title: "Blog Informativo",
-    slug: "blog",
+    title: "Guías y Artículos",
+    slug: "guias-y-articulos",
     description: "Artículos educativos detallados y guías paso a paso sobre el funcionamiento de las jubilaciones, préstamos y aportes en Ecuador.",
     metaTitle: "Blog Oficial de Guías del IESS - Trámites de Seguridad Social Explicados",
     metaDescription: "Encuentra tutoriales de alta calidad, desgloses legislativos y guías paso a paso para afiliados, jubilados y ecuatorianos en el extranjero.",

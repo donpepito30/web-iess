@@ -153,7 +153,7 @@ export default function BlogList({
                     loading="lazy"
                     decoding="async"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1200&auto=format&fit=crop";
+                      (e.target as HTMLImageElement).src = "/og-default.jpg";
                     }}
                   />
                   <span className="absolute top-3 left-3 bg-[#0a1f42] text-white font-black text-[9px] uppercase px-2 py-0.5 rounded shadow">

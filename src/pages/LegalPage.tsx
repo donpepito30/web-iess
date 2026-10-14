@@ -17,10 +17,25 @@ export default function LegalPage({ activeLegalPage }: LegalPageProps) {
         <div className="space-y-4">
           <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0a1f42] border-b pb-3 uppercase tracking-tight">Sobre Nosotros</h1>
           <p className="text-sm text-slate-700 leading-relaxed">
-            <strong>Guía IESS Ciudadano</strong> es un portal independiente de orientación y asistencia ciudadana diseñado exclusivamente para educar y facilitar el entendimiento de la seguridad social en el Ecuador.
+            <strong>IESS Asistente</strong> es un proyecto cívico e independiente dedicado exclusivamente a orientar y facilitar la comprensión de trámites, derechos y deberes en la seguridad social del Ecuador.
           </p>
+          <h2 className="text-lg font-bold text-[#0a1f42] mt-4">¿Quiénes Somos?</h2>
           <p className="text-sm text-slate-700 leading-relaxed">
-            Nuestra misión es democratizar el acceso a la información pública, traduciendo reglamentos complejos y boletines técnicos a un lenguaje claro, sencillo y accionable para afiliados, jubilados, pensionistas y empleadores del país. Creemos firmemente que una ciudadanía informada es capaz de ejercer y defender sus derechos de forma más autónoma y justa.
+            Somos un equipo editorial independiente de profesionales y entusiastas cívicos que investiga y sintetiza la normativa pública para hacerla comprensible para afiliados, jubilados, pensionistas y empleadores en Ecuador. No tenemos filiación partidista ni ánimo de lucro abusivo.
+          </p>
+          <h2 className="text-lg font-bold text-[#0a1f42] mt-4">¿Cómo se Redactan Nuestras Guías?</h2>
+          <p className="text-sm text-slate-700 leading-relaxed">
+            Redactamos cada guía a partir de fuentes primarias y oficiales de la República del Ecuador (Ley de Seguridad Social, resoluciones del Consejo Directivo, Registro Oficial y portales institucionales). Empleamos modelos de inteligencia artificial como herramientas de apoyo para la síntesis de textos y estructuración de borradores, pero cada dato normativo, requisito y cálculo es revisado y verificado antes de publicarse.
+          </p>
+          <div className="p-4 bg-amber-50/70 border border-amber-200 rounded-xl space-y-1 text-sm text-slate-800">
+            <span className="font-extrabold text-[#0a1f42] block">Aviso Importante: No Somos el IESS</span>
+            <p className="text-xs text-slate-700 leading-relaxed">
+              IESS Asistente es un portal estrictamente informativo y no oficial. No formamos parte, no tenemos vínculo comercial ni representamos al Instituto Ecuatoriano de Seguridad Social (IESS) ni al Banco del IESS (BIESS). Los trámites oficiales y transacciones se realizan única y exclusivamente en los sitios oficiales del Estado: iess.gob.ec y biess.fin.ec.
+            </p>
+          </div>
+          <h2 className="text-lg font-bold text-[#0a1f42] mt-4">Reporte de Errores y Transparencia</h2>
+          <p className="text-sm text-slate-700 leading-relaxed">
+            Si identificas algún dato desactualizado o error en nuestras guías, escríbenos directamente a <a href="mailto:contacto@iessasistente.com" className="text-[#c9a84c] font-bold hover:underline">contacto@iessasistente.com</a>. Revisamos los reportes en un plazo menor a 48 horas laborables.
           </p>
         </div>
       )}
@@ -29,15 +44,31 @@ export default function LegalPage({ activeLegalPage }: LegalPageProps) {
         <div className="space-y-4">
           <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0a1f42] border-b pb-3 uppercase tracking-tight">Metodología Editorial</h1>
           <p className="text-sm text-slate-700 leading-relaxed">
-            En <strong>Guía IESS Ciudadano</strong> nos tomamos la fidelidad informativa con la máxima rigurosidad normativa. Todos nuestros artículos, tutoriales y bases de datos son redactados, revisados y contrastados de forma manual por profesionales con amplio entendimiento en la legislación laboral y seguridad social de Ecuador.
+            En <strong>IESS Asistente</strong>, el rigor y la honestidad en la información de seguridad social son pilares esenciales. El contenido sobre pensiones, fondos de reserva y derechos del ciudadano exige transparencia de acuerdo con los más altos estándares de calidad YMYL (Your Money or Your Life).
           </p>
-          <h2 className="text-lg font-bold text-[#0a1f42] mt-4">Fuentes de Contraste</h2>
+          <h2 className="text-lg font-bold text-[#0a1f42] mt-4">1. Fuentes Oficiales y Primarias</h2>
           <ul className="list-disc pl-5 space-y-1 text-sm text-slate-700 list-none pl-0">
-            <li>Ley Orgánica de Seguridad Social vigente.</li>
-            <li>Código del Trabajo de la República del Ecuador.</li>
-            <li>Boletines de prensa y resoluciones del Consejo Directivo del IESS.</li>
-            <li>Reglamentos de crédito emitidos por el BIESS.</li>
+            <li>Constitución de la República del Ecuador.</li>
+            <li>Ley de Seguridad Social y Código del Trabajo.</li>
+            <li>Resoluciones y gacetas normativas del Consejo Directivo del IESS.</li>
+            <li>Publicaciones del Registro Oficial y portales institucionales (iess.gob.ec y biess.fin.ec).</li>
           </ul>
+          <h2 className="text-lg font-bold text-[#0a1f42] mt-4">2. Uso Responsable de IA y Revisión Humana</h2>
+          <p className="text-sm text-slate-700 leading-relaxed">
+            Empleamos modelos de inteligencia artificial como herramientas de apoyo para estructurar información, redactar resúmenes preliminares y responder consultas orientativas a través de nuestro asistente en línea. Sin embargo, todas las guías definitivas, requisitos, montos y tablas son revisadas y verificadas por nuestro equipo editorial antes de su publicación, contrastando cada dato con la fuente oficial.
+          </p>
+          <h2 className="text-lg font-bold text-[#0a1f42] mt-4">3. Frecuencia de Actualización</h2>
+          <p className="text-sm text-slate-700 leading-relaxed">
+            Revisamos nuestras guías de forma periódica y ante reformas sustanciales (variaciones del Salario Básico Unificado, reformas a tasas del BIESS o resoluciones institucionales).
+          </p>
+          <h2 className="text-lg font-bold text-[#0a1f42] mt-4">4. Política de Corrección de Errores</h2>
+          <p className="text-sm text-slate-700 leading-relaxed">
+            Cualquier imprecisión detectada puede reportarse de inmediato a <a href="mailto:contacto@iessasistente.com" className="text-[#c9a84c] font-bold hover:underline">contacto@iessasistente.com</a>. Evaluamos reportes en un plazo máximo de 48 horas laborables.
+          </p>
+          <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-600">
+            <strong className="text-[#0a1f42] block mb-1">Deslinde Institucional:</strong>
+            IESS Asistente es un proyecto independiente de orientación ciudadana. No somos el IESS ni gestionamos trámites de manera oficial. Para trámites vinculantes, consulte siempre los canales oficiales de la institución.
+          </div>
         </div>
       )}
       

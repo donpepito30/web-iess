@@ -17,7 +17,7 @@ import { SeoCategory } from "../data/seoCategories";
 import { BLOG_POSTS } from "../data/blogPosts";
 import { Link } from "./Link";
 import { urlCategory, urlBlogPost } from "../lib/routes";
-import { getSiteUrl } from "../config/site";
+import { getSiteUrlClient } from "../config/site";
 
 interface CategoryDetailProps {
   category: SeoCategory;
@@ -62,7 +62,7 @@ export default function CategoryDetail({
     .filter((cat) => cat.id !== category.id)
     .slice(0, 4);
 
-  const siteUrl = getSiteUrl();
+  const siteUrl = getSiteUrlClient();
 
   // Structured Data Schema Generation
   const breadcrumbSchema = {

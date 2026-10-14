@@ -20,7 +20,6 @@ export interface BlogPost {
   sources: BlogPostSource[];
   faqs?: { q: string; a: string }[];
   readingTime?: number;
-  reviewer?: string;
   relatedSlugs?: string[];
   imageAlt?: string;
 }
@@ -100,10 +99,10 @@ Si quieres calcular de manera personalizada o necesitas ayuda redactando oficios
 
 *Nota legal: Este artículo es una guía interpretativa simplificada independiente basada en la Ley de Seguridad Social de Ecuador y resoluciones vigentes del Consejo Directivo del IESS. Te sugerimos siempre validar tu estado de aportes de forma directa en el portal oficial.*
 `,
-    author: 'fernando-torres',
+    author: 'equipo-editorial',
     publishDate: '2026-01-15',
     readTime: 8,
-    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop',
+    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
     category: 'Jubilación',
     dateModified: '2026-10-01',
     sources: [
@@ -147,6 +146,8 @@ Para que el sistema apruebe tu solicitud de préstamo quirografario, debes cumpl
 6. **No tener obligaciones vencidas**: No registrar deudas en mora con el IESS o el BIESS, ni ser garante de un préstamo en mora.
 7. **Cédula de ciudadanía**: Documento vigente y no encontrarse en listas de control financiero.
 
+<FactNote ids={["QUIROGRAFARIO_APORTES_REQ", "QUIROGRAFARIO_CONSECUTIVOS_REQ"]} />
+
 ---
 
 ## Paso a Paso para Realizar la Solicitud
@@ -179,10 +180,10 @@ La tasa de interés para los préstamos quirografarios es variable y se reajusta
 
 Si tienes problemas con retenciones de tu sueldo o necesitas justificar un reclamo formal por un descuento indebido del BIESS, te recomendamos revisar nuestra sección de [formatos de oficios de ley](/oficios) donde podrás generar cartas de impugnación de forma 100% gratuita.
 `,
-    author: 'fernando-torres',
+    author: 'equipo-editorial',
     publishDate: '2026-01-10',
     readTime: 7,
-    image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop',
+    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
     category: 'Préstamos',
     dateModified: '2026-10-01',
     sources: [
@@ -202,12 +203,11 @@ Si tienes problemas con retenciones de tu sueldo o necesitas justificar un recla
       'valor aporte voluntario iess 2026',
       'cuánto se paga al iess por afiliación voluntaria'
     ],
-    author: 'eliana-suarez',
-    reviewer: 'fernando-torres',
+    author: 'equipo-editorial',
     publishDate: '2026-01-05',
     dateModified: '2026-10-10',
     readTime: 14,
-    image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1200&auto=format&fit=crop',
+    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
     imageAlt: 'Cuánto se paga por la afiliación voluntaria al IESS en 2026 según el salario declarado en Ecuador',
     category: 'Trámites',
     relatedSlugs: [
@@ -275,12 +275,14 @@ A continuación, presentamos la tabla comparativa con el valor de la aportación
 
 | Salario Declarado Mensual (USD) | Porcentaje de Aporte (%) | Valor Mensual a Pagar (USD) | Cobertura Médica y Prestacional |
 | :--- | :--- | :--- | :--- |
-| **$482,00 (Salario Básico Mínimo)** | **17,60 %** // VERIFICAR | **$84,83** | Salud titular + hijos menores de 18 años, jubilación base, montepío, préstamos BIESS |
+| **$482,00 (Salario Básico Mínimo)** | **17,60 %** | **$84,83** | Salud titular + hijos menores de 18 años, jubilación base, montepío, préstamos BIESS |
 | **$600,00** | **17,60 %** | **$105,60** | Salud integral, historial de aportes para jubilación media, auxilio de funerales |
 | **$800,00** | **17,60 %** | **$140,80** | Cobertura médica especializada, mayor promedio salarial para el cálculo de pensión |
 | **$1.000,00** | **17,60 %** | **$176,00** | Salud completa, acceso a mayor cupo de crédito quirografario y montepío superior |
 | **$1.500,00** | **17,60 %** | **$264,00** | Plan de jubilación de alto rendimiento, créditos quirografarios e hipotecarios ampliados |
 | **$2.000,00** | **17,60 %** | **$352,00** | Cobertura hospitalaria completa en toda la red nacional del IESS y prestadores externos |
+
+<FactNote ids={["SBU_2026", "APORTE_VOLUNTARIO_PCT"]} />
 
 > 📊 **Simula tu cuota exacta en línea**: Puedes proyectar tu pago mensual personalizado con diferentes rangos salariales usando nuestra [calculadora de aportaciones voluntarias del IESS](/herramientas/calculadora-aporte-afiliacion-voluntaria).
 
@@ -454,7 +456,7 @@ Si dejas de pagar por más de 60 días continuos, el IESS da de baja automática
     id: 'subsidio-maternidad-2026',
     slug: 'subsidio-maternidad-iess-requisitos-calculo-2026',
     title: 'Subsidio de maternidad IESS 2026: requisitos y cuánto pagan',
-    metaDescription: 'Guía oficial 2026 del subsidio de maternidad IESS: requisitos de 12 aportes, cálculo de los 84 días al 100%, certificado médico, trámites y fechas de acreditación.',
+    metaDescription: 'Guía 2026 del subsidio de maternidad IESS: requisitos de 12 aportes, cálculo de los 84 días al 100%, certificado médico, trámite y acreditación.',
     keywords: [
       'subsidio de maternidad',
       'cuánto es el subsidio por maternidad',
@@ -464,13 +466,12 @@ Si dejas de pagar por más de 60 días continuos, el IESS da de baja automática
       'www iess gob ec subsidio de maternidad',
       'licencia maternidad 84 dias ecuador'
     ],
-    author: 'eliana-suarez',
-    reviewer: 'carlos-mendoza',
+    author: 'equipo-editorial',
     publishDate: '2026-01-08',
     dateModified: '2026-10-10',
     readTime: 9,
     readingTime: 9,
-    image: 'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=1200&auto=format&fit=crop',
+    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
     imageAlt: 'Madre trabajadora asegurada revisando los requisitos y liquidación del subsidio de maternidad en el portal del IESS Ecuador',
     category: 'Salud',
     relatedSlugs: [
@@ -515,6 +516,8 @@ La siguiente tabla resume la estructura comparativa de cobertura, duración y po
 | **Parto Múltiple (Gemelar o más)** | 100% del sueldo promediado | 75% del promedio diario x 94 días | 25% mensual en rol de pagos | 94 días calendario (10 días extra) | 12 aportes continuos en 15 meses |
 | **Subsidio por Enfermedad General** | 75% (días 4 al 90) / 66% (días 91 al 180) | 100% del porcentaje subsidiado | 0% (primeros 3 días asume patrono) | Hasta 180 días de reposo | Aportes continuos al día |
 | **Licencia de Paternidad (Padre)** | 100% del sueldo del trabajador | 0% (no es subsidio del IESS) | 100% asumido por el patrono | 10 a 15 días según tipo de parto | No aplica cómputo del IESS |
+
+<FactNote ids={["MATERNIDAD_SUBSIDIO_IESS_PCT", "MATERNIDAD_DIAS_DESCANSO", "MATERNIDAD_APORTES_REQ"]} />
 
 ---
 
@@ -736,6 +739,8 @@ La siguiente tabla detalla la estructura vigente de financiamiento y tasas nomin
 | **Vivienda de Gama Alta** | Desde $200,001 hasta $300,000 | Hasta el 80% del avalúo comercial | 7.91% a 8.50% anual | Hasta 20 años |
 | **Terrenos o Oficinas** | Según avalúo | Hasta el 80% del avalúo comercial | 8.00% a 9.50% anual | Hasta 10 años |
 
+<FactNote ids={["TASA_HIPOTECARIO_MIN", "TASA_HIPOTECARIO_MAX", "HIPOTECARIO_PLAZO_MAX_ANOS", "HIPOTECARIO_MONTO_100_COBERTURA", "HIPOTECARIO_MONTO_MAX"]} />
+
 ---
 
 ## ¿Quiénes pueden solicitar un Préstamo Hipotecario en el BIESS?
@@ -842,10 +847,10 @@ La sustitución de hipoteca es un mecanismo financiero mediante el cual el BIESS
 * Si trabaja por cuenta propia, revise los beneficios del programa de [Afiliación Voluntaria](/procedimiento/afiliacion-voluntaria) de forma independiente.
 * Mantenga al día sus finanzas revisando cómo consultar y gestionar sus acumulados de [Fondos de Reserva](/blog/fondos-de-reserva-iess-consulta-acumulacion-retiro-2026) en línea.
 `,
-    author: 'fernando-torres',
+    author: 'equipo-editorial',
     publishDate: '2026-01-20',
     readTime: 12,
-    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop',
+    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
     imageAlt: 'Vivienda y llaves de casa financiada con préstamo hipotecario del BIESS en Ecuador',
     category: 'Préstamos',
     dateModified: '2026-10-01',
@@ -853,7 +858,6 @@ La sustitución de hipoteca es un mecanismo financiero mediante el cual el BIESS
       { label: "Banco del IESS - Crédito Inmobiliario", url: "https://www.biess.fin.ec/hipotecarios", accessedAt: "2026-10-01" },
       { label: "Superintendencia de Bancos del Ecuador - Tasas de Referencia", url: "https://www.superbancos.gob.ec", accessedAt: "2026-10-01" }
     ],
-    reviewer: 'eliana-suarez',
     relatedSlugs: [
       'prestamo-quirografario-biess-requisitos-montos-2026',
       'fondos-de-reserva-iess-consulta-acumulacion-retiro-2026',
@@ -909,10 +913,10 @@ Es un fondo de ahorro individual obligatorio conformado por el 2% o 3% del salar
 ## 2. Seguro de Desempleo (Prestación Temporal)
 Si el despido fue intempestivo o involuntario, el asegurado puede optar por el seguro de desempleo, que entrega hasta **5 pagos mensuales equivalentes al 70% del salario básico unificado**.
 `,
-    author: 'fernando-torres',
+    author: 'equipo-editorial',
     publishDate: '2026-01-25',
     readTime: 7,
-    image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1200&auto=format&fit=crop',
+    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
     category: 'Trámites',
     dateModified: '2026-10-01',
     sources: [
@@ -944,10 +948,10 @@ El **Fondo de Reserva** es un beneficio de ley equivalente a un mes de sueldo po
 2. **Jubilados o mayores de 60 años**: Pueden retirar el saldo total disponible en cualquier momento sin esperar las 36 aportaciones.
 3. **Cesantes**: Tras haber transcurrido al menos dos meses de cesantía legal certificada.
 `,
-    author: 'fernando-torres',
+    author: 'equipo-editorial',
     publishDate: '2026-02-02',
     readTime: 6,
-    image: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=1200&auto=format&fit=crop',
+    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
     category: 'Trámites',
     dateModified: '2026-10-01',
     sources: [
@@ -988,7 +992,7 @@ La **pensión de viudez y orfandad** del IESS (también denominada legalmente mo
 
 En el siguiente cuadro se sintetizan las condiciones reglamentarias para cada categoría de derechohabiente según la Ley de Seguridad Social y la normativa interna del IESS:
 
-| Tipo de Beneficiario | Condición Legal y Límite de Edad | Requisitos Probatorios | Porcentaje Estimado de Pensión // VERIFICAR: |
+| Tipo de Beneficiario | Condición Legal y Límite de Edad | Requisitos Probatorios | Porcentaje Estimado de Pensión |
 | :--- | :--- | :--- | :--- |
 | **Cónyuge sobreviviente (Viudez)** | Matrimonio civil inscrito ante el Registro Civil | Partida de matrimonio y cédula de identidad vigente | 60 % (sin hijos concurrentes) o 40 % (con hijos) |
 | **Conviviente en unión de hecho** | Unión de hecho estable y monogámica legalmente registrada | Acta notarial o sentencia judicial inscrita en el Registro Civil | 60 % (sin hijos concurrentes) o 40 % (con hijos) |
@@ -996,6 +1000,8 @@ En el siguiente cuadro se sintetizan las condiciones reglamentarias para cada ca
 | **Hijos estudiantes (18 a 21 años)** | Entre 18 y 21 años con matrícula académica activa | Certificado de asistencia regular a universidad o instituto superior | Concurre en la cuota de orfandad (40 % compartido) |
 | **Hijos con discapacidad** | Cualquier edad (beneficio vitalicio) | Carné del Conadis/MSP o dictamen pericial de la Comecap | Concurre en la cuota de orfandad permanente |
 | **Madre o padre sobreviviente (Ascendientes)** | Sin cónyuge ni hijos concurrentes | Demostración formal de dependencia económica y desamparo | Porción residual reglamentaria fijada por el IESS |
+
+<FactNote ids={["MONTEPIO_VIUDEZ_PCT", "MONTEPIO_ORFANDAD_PCT"]} />
 
 ---
 
@@ -1134,10 +1140,10 @@ Al cumplir los 18 años, el beneficiario de orfandad debe ingresar periódicamen
 * Aprende a verificar tus cotizaciones históricas en la guía de [Consulta de aportes e historial laboral del IESS](/blog/como-consultar-aportes-iess-historial-laboral).
 * Revisa cómo gestionar la [Afiliación Voluntaria del IESS](/blog/afiliacion-voluntaria-iess-requisitos-beneficios-2026) para mantener cobertura médica y de jubilación.
 `,
-    author: 'eliana-suarez',
+    author: 'equipo-editorial',
     publishDate: '2026-02-10',
     readTime: 11,
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop',
+    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
     imageAlt: 'Trámite de pensión de viudez y orfandad del IESS para cónyuge e hijos sobrevivientes',
     category: 'Jubilación',
     dateModified: '2026-10-09',
@@ -1146,7 +1152,6 @@ Al cumplir los 18 años, el beneficiario de orfandad debe ingresar periódicamen
       { label: "Ley de Seguridad Social - Prestaciones por Muerte", url: "https://www.iess.gob.ec/documents/10162/13686/Ley_de_Seguridad_Social", accessedAt: "2026-10-09" },
       { label: "Registro Civil del Ecuador - Certificaciones de Defunción y Parentesco", url: "https://www.registrocivil.gob.ec", accessedAt: "2026-10-09" }
     ],
-    reviewer: 'fernando-torres',
     relatedSlugs: [
       'jubilacion-vejez-iess-requisitos-calculo-pension-2026',
       'jubilacion-invalidez-iess-requisitos-comecap-2026',
@@ -1201,10 +1206,10 @@ La **Jubilación por Invalidez** protege a los trabajadores que, a causa de un a
 2. **Dictamen de Incapacidad**: La Comisión de Valuación de Incapacidades (Comecap) debe emitir un informe que certifique un porcentaje de pérdida de capacidad laboral igual o superior al **65%**.
 3. **Enfermedades Catastróficas**: Los afiliados diagnosticados con enfermedades oncológicas o insuficiencia renal crónica reciben atención prioritaria y reducción en los plazos reglamentarios de calificación.
 `,
-    author: 'eliana-suarez',
+    author: 'equipo-editorial',
     publishDate: '2026-02-18',
     readTime: 7,
-    image: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?q=80&w=1200&auto=format&fit=crop',
+    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
     category: 'Salud',
     dateModified: '2026-10-01',
     sources: [
@@ -1235,10 +1240,10 @@ De acuerdo con el Código Tributario y el Reglamento de Coactivas del IESS:
 ## Convenios de Pago y Exoneraciones
 Los empleadores que mantengan moras pueden acogerse a los **Convenios de Purga de Mora** hasta a 36 meses plazo, levantando de inmediato los bloqueos crediticios para sus colaboradores.
 `,
-    author: 'fernando-torres',
+    author: 'equipo-editorial',
     publishDate: '2026-02-24',
     readTime: 8,
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop',
+    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
     category: 'Trámites',
     dateModified: '2026-10-01',
     sources: [
@@ -1269,10 +1274,10 @@ El registro correcto del inicio y fin de la relación laboral es una de las obli
 * Si no se registra la salida, la plataforma continúa facturando planillas mensuales al empleador con intereses de mora acumulados.
 * La falta de aviso de salida bloquea al extrabajador para solicitar su jubilación, cesantía o fondo de reserva.
 `,
-    author: 'fernando-torres',
+    author: 'equipo-editorial',
     publishDate: '2026-03-01',
     readTime: 5,
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop',
+    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
     category: 'Trámites',
     dateModified: '2026-10-01',
     sources: [
@@ -1299,10 +1304,10 @@ Mantener actualizados tus datos de contacto y tu cuenta bancaria es indispensabl
 3. Dirígete a la sección de **"Cuenta Bancaria"** e introduce el banco, tipo de cuenta (ahorros/corriente) y número completo.
 4. El sistema cruzará información con el Banco Central del Ecuador (BCE) para validar que la cuenta esté activa y a nombre exclusivo del titular.
 `,
-    author: 'eliana-suarez',
+    author: 'equipo-editorial',
     publishDate: '2026-03-05',
     readTime: 6,
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop',
+    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
     category: 'Trámites',
     dateModified: '2026-10-01',
     sources: [
@@ -1320,10 +1325,9 @@ Mantener actualizados tus datos de contacto y tu cuenta bancaria es indispensabl
     publishDate: '2026-03-10',
     dateModified: '2026-10-01',
     readTime: 12,
-    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200&auto=format&fit=crop',
+    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
     imageAlt: 'Proceso virtual para obtener o desbloquear la clave del IESS por primera vez en Ecuador',
-    author: 'eliana-suarez',
-    reviewer: 'fernando-torres',
+    author: 'equipo-editorial',
     relatedSlugs: [
       'actualizacion-datos-cuenta-bancaria-cau-iess-2026',
       'como-consultar-aportes-iess-historial-laboral',
@@ -1344,7 +1348,7 @@ Mantener actualizados tus datos de contacto y tu cuenta bancaria es indispensabl
       },
       {
         q: '¿Qué pasa si mi correo electrónico registrado en el IESS ya no está activo?',
-        a: 'Si ya no tiene acceso al correo electrónico registrado en el IESS, no podrá completar la validación virtual. En este escenario, deberá acudir de forma presencial a un Centro de Atención Universal (CAU).'
+        a: 'Si ya no tiene acceso al correo electrónico registrado en el IESS, no podrá finalizar la validación virtual. En este escenario, deberá acudir de forma presencial a un Centro de Atención Universal (CAU).'
       },
       {
         q: '¿Por qué se bloquea la clave del IESS frecuentemente?',
@@ -1476,10 +1480,9 @@ Efectivamente, la clave personal que asigne a su cuenta de asegurado en el porta
     publishDate: '2026-03-12',
     dateModified: '2026-10-01',
     readTime: 12,
-    image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200&auto=format&fit=crop',
+    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
     imageAlt: 'Visualización digital del historial laboral y aportaciones acumuladas en la plataforma del IESS de Ecuador',
-    author: 'fernando-torres',
-    reviewer: 'eliana-suarez',
+    author: 'equipo-editorial',
     relatedSlugs: [
       'como-obtener-clave-iess-primera-vez',
       'fondos-de-reserva-iess-consulta-acumulacion-retiro-2026',
@@ -1627,10 +1630,9 @@ Sí, las aportaciones realizadas de forma independiente como afiliado voluntario
     publishDate: '2026-03-15',
     dateModified: '2026-10-01',
     readTime: 12,
-    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1200&auto=format&fit=crop',
+    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
     imageAlt: 'Formulario digital para verificar el estado de afiliación activa o cesante en el IESS',
-    author: 'eliana-suarez',
-    reviewer: 'fernando-torres',
+    author: 'equipo-editorial',
     relatedSlugs: [
       'como-obtener-clave-iess-primera-vez',
       'como-consultar-aportes-iess-historial-laboral',
@@ -1779,10 +1781,9 @@ El Reglamento de Salud del IESS contempla un periodo de gracia denominado **"Per
     publishDate: '2026-03-18',
     dateModified: '2026-10-01',
     readTime: 12,
-    image: 'https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?q=80&w=1200&auto=format&fit=crop',
+    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
     imageAlt: 'Afiliación a la seguridad social para personas trabajadoras del hogar y amas de casa en Ecuador',
-    author: 'fernando-torres',
-    reviewer: 'eliana-suarez',
+    author: 'equipo-editorial',
     relatedSlugs: [
       'como-obtener-clave-iess-primera-vez',
       'como-consultar-aportes-iess-historial-laboral',
@@ -1815,7 +1816,7 @@ El Reglamento de Salud del IESS contempla un periodo de gracia denominado **"Per
       },
       {
         q: '¿Cómo se registra el contrato de una empleada doméstica en el Ministerio del Trabajo?',
-        a: 'El empleador debe ingresar al portal oficial SUT (Sistema Único de Trabajo) del Ministerio del Trabajo, registrar sus datos patronales y completar el formulario del contrato de trabajo del sector doméstico, especificando la jornada de labores (completa o parcial) y el sueldo. Posteriormente, el contrato se descarga, se firma por ambas partes y se sube escaneado al sistema en un plazo máximo de 15 días.'
+        a: 'El empleador debe ingresar al portal oficial SUT (Sistema Único de Trabajo) del Ministerio del Trabajo, registrar sus datos patronales y llenar el formulario del contrato de trabajo del sector doméstico, especificando la jornada de labores (completa o parcial) y el sueldo. Posteriormente, el contrato se descarga, se firma por ambas partes y se sube escaneado al sistema en un plazo máximo de 15 días.'
       }
     ],
     content: `

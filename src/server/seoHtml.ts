@@ -2,6 +2,8 @@ import { PROCEDURES_DATA, Procedure } from "../data/procedures";
 import { BLOG_POSTS, BlogPost } from "../data/blogPosts";
 import { SEO_CATEGORIES, SeoCategory } from "../data/seoCategories";
 import { CITIES_DATA } from "../data/cities";
+import { AUTHORS, EDITORIAL_TEAM } from "../data/authors";
+import { renderFactNoteHtml } from "../components/FactNote";
 import { marked } from "marked";
 import sanitizeHtml from "sanitize-html";
 
@@ -250,6 +252,13 @@ export function generateProcedureSeoHtml(proc: Procedure): string {
             Cómo realizar el trámite de ${escapeText(proc.title)} en el IESS
           </h1>
 
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 py-2 border-y border-slate-100">
+            <span>Por <a href="/metodologia-editorial" class="text-slate-700 font-bold hover:underline">Equipo editorial de IESS Asistente</a></span>
+            <span><a href="/metodologia-editorial" class="text-[#c9a84c] font-medium hover:underline">Metodología editorial</a></span>
+            <span>📅 Publicado: 10/01/2026</span>
+            <span>🔄 Última revisión: <time datetime="${proc.dateModified || '2026-10-01'}">${proc.dateModified || '2026-10-01'}</time></span>
+          </div>
+
           <!-- Direct IA Answer paragraph (40-60 words) -->
           <p class="text-xs sm:text-sm font-semibold text-slate-800 bg-slate-100 border-l-4 border-[#c9a84c] p-4 rounded-r-lg leading-relaxed">
             ${escapeText(directAnswer)}
@@ -267,6 +276,7 @@ export function generateProcedureSeoHtml(proc: Procedure): string {
             <ul class="list-disc pl-5 text-xs sm:text-sm text-slate-600 space-y-1.5">
               ${reqsList}
             </ul>
+            ${proc.factIds && proc.factIds.length > 0 ? renderFactNoteHtml(proc.factIds) : ''}
           </section>
 
           <!-- Steps -->
@@ -346,7 +356,7 @@ export function generateBlogArchiveSeoHtml(currentPage: number): string {
         </h2>
         <p class="text-xs sm:text-sm text-slate-650 leading-relaxed line-clamp-3">${escapeText(post.metaDescription)}</p>
         <div class="flex items-center justify-between pt-2 text-xs">
-          <span class="text-slate-400 font-medium">Por: ${post.author}</span>
+          <span class="text-slate-400 font-medium">Por Equipo editorial de IESS Asistente</span>
           <a href="/blog/${post.slug}" class="text-[#c9a84c] font-black no-underline hover:underline">Leer Guía completa &rarr;</a>
         </div>
       </article>
@@ -407,10 +417,16 @@ export function generateBlogArchiveSeoHtml(currentPage: number): string {
 
 // 4. BLOG POST ARTICLE SEO HTML BUILDER
 export function generateBlogPostSeoHtml(post: BlogPost): string {
+  // Replace <FactNote ids={[...]} /> with rendered HTML
+  const contentWithFactNotes = post.content.replace(/<FactNote\s+ids=\{?\[([^\]]+)\]\}?\s*\/>/g, (_match, idsStr) => {
+    const ids = idsStr.split(',').map(s => s.trim().replace(/["'\s]/g, ''));
+    return renderFactNoteHtml(ids);
+  });
+
   // Convert Markdown content to HTML using marked.js and convert all <h1> to <h2> to avoid duplicates
-  const rawMarkdownHtml = marked.parse(post.content) as string;
+  const rawMarkdownHtml = marked.parse(contentWithFactNotes) as string;
   let cleanMarkdownContent = sanitizeHtml(rawMarkdownHtml, {
-    allowedTags: sanitizeHtml.defaults.allowedTags.concat(['h1', 'h2', 'h3', 'h4', 'img', 'table', 'thead', 'tbody', 'tr', 'th', 'td']),
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat(['h1', 'h2', 'h3', 'h4', 'img', 'table', 'thead', 'tbody', 'tr', 'th', 'td', 'div', 'p', 'span']),
     allowedAttributes: {
       ...sanitizeHtml.defaults.allowedAttributes,
       '*': ['class', 'id'],
@@ -451,9 +467,11 @@ export function generateBlogPostSeoHtml(post: BlogPost): string {
               ${escapeText(post.title)}
             </h1>
             
-            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-450 pt-2 border-y border-slate-100 py-2">
-              <span>Por: <strong class="text-slate-700">${escapeText(post.author)}</strong></span>
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 pt-2 border-y border-slate-100 py-2">
+              <span>Por <a href="/metodologia-editorial" class="text-slate-700 font-bold hover:underline">Equipo editorial de IESS Asistente</a></span>
+              <span><a href="/metodologia-editorial" class="text-[#c9a84c] font-medium hover:underline">Metodología editorial</a></span>
               <span>📅 Publicado: <time datetime="${post.publishDate}">${post.publishDate}</time></span>
+              <span>🔄 Última revisión: <time datetime="${post.dateModified || post.publishDate}">${post.dateModified || post.publishDate}</time></span>
               <span>⏱️ Lectura: ${post.readTime} minutos</span>
             </div>
           </div>
@@ -626,23 +644,28 @@ export function generateCitySeoHtml(citySlug: string): string {
   if (cityData.dependencies && cityData.dependencies.length > 0) {
     dependenciesHtml = `
       <section class="space-y-4">
-        <h2 class="text-lg font-bold text-[#0a1f42]">🏢 Dependencias y Oficinas Reales del IESS en ${escapeText(cityData.name)}</h2>
+        <h2 class="text-lg font-bold text-[#0a1f42]">🏢 Dependencias y Puntos de Atención del IESS en ${escapeText(cityData.name)}</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           ${cityData.dependencies.map(dep => `
             <div class="bg-white border border-slate-200 p-5 rounded-2xl shadow-xs space-y-3">
-              <span class="bg-[#0a1f42] text-white font-bold text-[9px] uppercase px-2 py-0.5 rounded shadow inline-block">
-                ${dep.type === "CAU" ? "Centro de Atención Universal (CAU)" : dep.type === "Hospital" ? "Hospital / Unidad Médica" : "Agencia BIESS"}
-              </span>
+              <div class="flex items-center justify-between gap-2">
+                <span class="bg-[#0a1f42] text-white font-bold text-[9px] uppercase px-2 py-0.5 rounded shadow inline-block">
+                  ${dep.type === "CAU" ? "Centro de Atención Universal (CAU)" : dep.type === "Hospital" ? "Hospital / Unidad Médica" : "Agencia BIESS"}
+                </span>
+                <span class="text-[9px] font-mono text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 font-bold">
+                  Pendiente de verificación
+                </span>
+              </div>
               <h3 class="text-sm sm:text-base font-extrabold text-[#0a1f42]">${escapeText(dep.name)}</h3>
-              <div class="text-xs text-slate-650 space-y-1.5 pt-1.5 border-t border-slate-100">
-                <p>📍 <strong>Dirección:</strong> ${dep.address ? escapeText(dep.address) : '<span class="text-slate-400 italic">No verificado</span>'}</p>
-                <p>📞 <strong>Teléfono:</strong> ${dep.phone ? escapeText(dep.phone) : '<span class="text-slate-400 italic">No verificado</span>'}</p>
-                <p>⏱️ <strong>Horario:</strong> ${dep.hours ? escapeText(dep.hours) : '<span class="text-slate-400 italic">No verificado</span>'}</p>
-                <p>📅 <strong>Última Auditoría:</strong> ${dep.verifiedAt ? `Verificado el ${dep.verifiedAt} mediante ${escapeText(dep.source || '')}` : '<span class="text-red-500 font-bold">Sin verificar</span>'}</p>
+              <div class="text-xs text-slate-650 space-y-1.5 pt-1.5 border-t border-slate-100 font-sans">
+                <p>📍 <strong>Dirección:</strong> ${dep.address ? escapeText(dep.address) : '<span class="text-slate-400 italic">Pendiente de verificación</span>'}</p>
+                <p>📞 <strong>Teléfono:</strong> ${dep.phone ? escapeText(dep.phone) : '<span class="text-slate-400 italic">Pendiente de verificación</span>'}</p>
+                <p>⏱️ <strong>Horario:</strong> ${dep.hours ? escapeText(dep.hours) : '<span class="text-slate-400 italic">Pendiente de verificación</span>'}</p>
+                <p class="text-[11px] text-amber-800 bg-amber-50 p-2 rounded border border-amber-200 font-medium">⚠️ Datos pendientes de verificación. Confirma dirección, teléfono y horarios en iess.gob.ec antes de acudir</p>
               </div>
               ${dep.mapsUrl ? `
                 <div class="pt-2">
-                  <a href="${escapeText(dep.mapsUrl)}" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 bg-amber-50 hover:bg-[#c9a84c]/20 text-[#0a1f42] text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-200 no-underline transition-colors">
+                  <a href="${escapeText(dep.mapsUrl)}" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 bg-amber-50 hover:bg-[#c9a84c]/20 text-[#0a1f42] text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-200 no-underline transition-colors font-sans">
                     🗺️ Ver en Google Maps &rarr;
                   </a>
                 </div>
@@ -654,9 +677,9 @@ export function generateCitySeoHtml(citySlug: string): string {
     `;
   } else {
     dependenciesHtml = `
-      <div class="bg-red-50 border border-red-200 text-red-900 p-4 rounded-xl text-xs sm:text-sm leading-relaxed space-y-2">
-        <p class="font-extrabold text-left">⚠️ DIRECCIÓN BAJO AUDITORÍA EDITORIAL</p>
-        <p class="text-justify">Actualmente, las dependencias físicas del IESS en <strong>${escapeText(cityData.name)}</strong> se encuentran bajo un proceso de revisión y auditoría para evitar el marcado engañoso o direcciones ficticias en buscadores. Visite los canales oficiales o las ventanillas del IESS provincial para soporte directo.</p>
+      <div class="bg-amber-50 border border-amber-200 text-amber-900 p-4 rounded-xl text-xs sm:text-sm leading-relaxed space-y-2 font-sans">
+        <p class="font-extrabold text-left uppercase">⚠️ INFORMACIÓN EN REVISIÓN</p>
+        <p class="text-justify font-medium">Datos pendientes de verificación. Confirma dirección, teléfono y horarios en iess.gob.ec antes de acudir.</p>
       </div>
     `;
   }
@@ -684,12 +707,17 @@ export function generateCitySeoHtml(citySlug: string): string {
             </h1>
           </div>
 
-          <!-- Parsed unique long content exceeding 600 words -->
+          <!-- Mandatory disclaimer from Task 4 -->
+          <div class="p-4 bg-amber-50 border border-amber-200 rounded-xl text-xs sm:text-sm text-amber-900 font-medium leading-relaxed font-sans">
+            ⚠️ <strong>Aviso importante:</strong> Datos pendientes de verificación. Confirma dirección, teléfono y horarios en iess.gob.ec antes de acudir.
+          </div>
+
+          <!-- Parsed unique long content -->
           <div class="text-xs sm:text-sm text-slate-800 leading-relaxed text-justify space-y-4 pt-4 border-t border-slate-100">
             ${parsedContent}
           </div>
 
-          <!-- Verified dependencies list -->
+          <!-- Dependencies list -->
           <div class="pt-6 border-t border-slate-100">
             ${dependenciesHtml}
           </div>
@@ -723,19 +751,19 @@ export function generateCitiesIndexSeoHtml(): string {
           <a href="/iess/${city.slug}" class="text-[#0a1f42] hover:text-[#c9a84c] no-underline">IESS ${escapeText(city.name)}</a>
         </h3>
         <p class="text-xs text-slate-500 font-medium">Provincia de ${escapeText(city.province)}</p>
-        <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed mt-2">Consulta la dirección oficial de los Centros de Atención Universal (CAU), horarios de ventanilla, hospitales del seguro de ${escapeText(city.name)} y consejos prácticos de trámites.</p>
+        <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed mt-2">Consulta dependencias y trámites en ${escapeText(city.name)}. Datos pendientes de verificación. Confirma dirección, teléfono y horarios en iess.gob.ec antes de acudir.</p>
       </div>
-      <a href="/iess/${city.slug}" class="text-xs font-bold text-[#c9a84c] no-underline hover:underline pt-2 text-left">Ver Oficinas y Trámites &rarr;</a>
+      <a href="/iess/${city.slug}" class="text-xs font-bold text-[#c9a84c] no-underline hover:underline pt-2 text-left">Ver Información &rarr;</a>
     </li>
   `).join('');
 
   const unindexedHtml = unindexedCities.map(city => `
-    <li class="bg-slate-50 border border-slate-200 rounded-xl p-4 opacity-75 text-left">
+    <li class="bg-slate-50 border border-slate-200 rounded-xl p-4 opacity-85 text-left">
       <h4 class="text-xs sm:text-sm font-bold text-slate-700 flex items-center justify-between">
         <span>📍 IESS ${escapeText(city.name)}</span>
-        <span class="text-[9px] uppercase tracking-wide font-extrabold text-amber-600 bg-amber-50 px-2 py-0.5 rounded shadow-2xs border border-amber-100">Bajo Auditoría</span>
+        <span class="text-[9px] uppercase tracking-wide font-extrabold text-amber-700 bg-amber-50 px-2 py-0.5 rounded shadow-2xs border border-amber-100">Pendiente de verificación</span>
       </h4>
-      <p class="text-[10px] text-slate-500 leading-snug mt-1">Provincia de ${escapeText(city.province)}. Pendiente de verificación física de oficinas para prevenir marcado ficticio.</p>
+      <p class="text-[10px] text-slate-500 leading-snug mt-1">Provincia de ${escapeText(city.province)}. Datos pendientes de verificación. Confirma dirección, teléfono y horarios en iess.gob.ec antes de acudir.</p>
     </li>
   `).join('');
 
@@ -753,18 +781,19 @@ export function generateCitiesIndexSeoHtml(): string {
 
         <section class="text-center max-w-3xl mx-auto space-y-4">
           <h1 class="text-xl sm:text-3xl font-black text-[#0a1f42] leading-tight text-center">
-            Directorio Local del IESS por Ciudades y Provincias de Ecuador
+            Directorio de Ciudades y Provincias del Ecuador
           </h1>
-          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto text-justify sm:text-center">
-            Consulte nuestro directorio local verificado del Instituto Ecuatoriano de Seguridad Social. Acceda a la ubicación geográfica real, horarios de ventanilla ininterrumpidos de los Centros de Atención Universal (CAU), agencias de atención del BIESS y unidades médicas provinciales para realizar sus trámites de forma presencial con total seguridad y transparencia.
-          </p>
+          <div class="p-3.5 bg-amber-50 border border-amber-200 rounded-xl text-xs sm:text-sm text-amber-900 font-medium leading-relaxed max-w-2xl mx-auto">
+            ⚠️ <strong>Aviso importante:</strong> Datos pendientes de verificación. Confirma dirección, teléfono y horarios en iess.gob.ec antes de acudir.
+          </div>
         </section>
 
         <!-- Cities list section -->
         <section class="space-y-4">
-          <h2 class="text-lg font-extrabold text-[#0a1f42] border-b border-slate-200 pb-2 text-left">📍 Oficinas y CAUs Verificados por Ciudad</h2>
-          <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 list-none pl-0">
-            ${indexedHtml}
+          <h2 class="text-lg font-extrabold text-[#0a1f42] border-b border-slate-200 pb-2 text-left">📍 Directorio de Puntos de Atención por Ciudad</h2>
+          ${indexedHtml ? `<ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 list-none pl-0 mb-6">${indexedHtml}</ul>` : ''}
+          <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 list-none pl-0">
+            ${unindexedHtml}
           </ul>
         </section>
 
@@ -840,24 +869,34 @@ export function generateAboutSeoHtml(): string {
         <article class="space-y-6">
           <h1 class="text-2xl sm:text-3xl font-black text-[#0a1f42]">Sobre Nosotros: IESS Asistente</h1>
           <p class="text-xs sm:text-sm text-slate-650 leading-relaxed text-justify">
-            Bienvenido a <strong>IESS Asistente</strong>, una iniciativa cívica e independiente dedicada a simplificar la comprensión de los trámites, derechos y obligaciones en la seguridad social de Ecuador. 
+            <strong>IESS Asistente</strong> es un proyecto cívico e independiente dedicado exclusivamente a orientar y facilitar la comprensión de trámites, derechos y deberes en la seguridad social del Ecuador.
           </p>
+
           <div class="space-y-3">
-            <h2 class="text-lg font-bold text-[#0a1f42]">Nuestra Misión</h2>
+            <h2 class="text-lg font-bold text-[#0a1f42]">¿Quiénes Somos?</h2>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify">
-              Nuestra misión es educar al ciudadano ecuatoriano para que comprenda con exactitud los reglamentos y plazos de jubilación, préstamos BIESS, y afiliaciones voluntarias. Buscamos eliminar la dependencia de tramitadores ilegales y costosos que lucran con la desinformación de los afiliados y pensionistas, proporcionando un canal limpio y transparente de información.
+              Somos un equipo editorial independiente de profesionales y entusiastas cívicos que investiga y sintetiza la normativa pública para hacerla comprensible para afiliados, jubilados, pensionistas y empleadores en Ecuador. No tenemos filiación partidista ni ánimo de lucro abusivo.
             </p>
           </div>
+
           <div class="space-y-3">
-            <h2 class="text-lg font-bold text-[#0a1f42]">¿Por qué existimos?</h2>
+            <h2 class="text-lg font-bold text-[#0a1f42]">¿Cómo se Redactan Nuestras Guías?</h2>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify">
-              Los reglamentos del Instituto Ecuatoriano de Seguridad Social (IESS) y del BIESS suelen ser extensos, técnicos y difíciles de interpretar para el ciudadano promedio. Ofrecemos resúmenes ejecutivos, herramientas interactivas de redacción de oficios y un asistente virtual que traduce la jerga legal a términos sencillos y aplicables.
+              Redactamos cada guía a partir de fuentes primarias y oficiales de la República del Ecuador (Ley de Seguridad Social, resoluciones del Consejo Directivo, Registro Oficial y portales institucionales). Empleamos modelos de inteligencia artificial como herramientas de apoyo para la síntesis de textos y estructuración de borradores, pero cada dato normativo, requisito y cálculo es revisado y verificado antes de publicarse.
             </p>
           </div>
-          <div class="space-y-3 bg-amber-50/50 border border-amber-100 rounded-xl p-4">
-            <h2 class="text-sm font-black text-[#0a1f42] uppercase tracking-wide">¿Cómo verificamos la información?</h2>
+
+          <div class="space-y-3 bg-amber-50/50 border border-amber-200 rounded-xl p-4">
+            <h2 class="text-sm font-black text-[#0a1f42] uppercase tracking-wide">Aviso Importante: No Somos el IESS</h2>
             <p class="text-xs text-slate-650 leading-relaxed">
-              Toda nuestra base de conocimientos es contrastada por especialistas en derecho laboral de Ecuador directamente contra las publicaciones del Registro Oficial, resoluciones de los consejos directivos, leyes orgánicas y reglamentos internos institucionales.
+              <strong>IESS Asistente es un portal estrictamente informativo y no oficial.</strong> No formamos parte, no tenemos vínculo comercial ni representamos al Instituto Ecuatoriano de Seguridad Social (IESS) ni al Banco del IESS (BIESS). Los trámites oficiales y transacciones se realizan única y exclusivamente en los sitios oficiales del Estado: <strong>iess.gob.ec</strong> y <strong>biess.fin.ec</strong>.
+            </p>
+          </div>
+
+          <div class="space-y-3">
+            <h2 class="text-lg font-bold text-[#0a1f42]">Reporte de Errores y Transparencia</h2>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify">
+              Si identificas algún dato desactualizado o error en nuestras guías, escríbenos directamente a <strong>contacto@iessasistente.com</strong>. Revisamos los reportes en un plazo menor a 48 horas laborables para mantener la información al día.
             </p>
           </div>
         </article>
@@ -879,41 +918,46 @@ export function generateEditorialSeoHtml(): string {
         <article class="space-y-6">
           <h1 class="text-2xl sm:text-3xl font-black text-[#0a1f42]">Metodología Editorial y Control de Exactitud</h1>
           <p class="text-xs sm:text-sm text-slate-650 leading-relaxed text-justify">
-            En <strong>IESS Asistente</strong>, el rigor y la fidelidad de la información de seguridad social son nuestra mayor prioridad. El contenido que afecta directamente las pensiones, ahorros y derechos del ciudadano exige controles de calidad exhaustivos de acuerdo con las normativas de temas YMYL (Your Money or Your Life).
+            En <strong>IESS Asistente</strong>, el rigor y la honestidad en la información de seguridad social son pilares esenciales. El contenido sobre pensiones, fondos de reserva y derechos del ciudadano exige transparencia de acuerdo con los más altos estándares de calidad YMYL (Your Money or Your Life).
           </p>
           
           <div class="space-y-3">
-            <h2 class="text-lg font-bold text-[#0a1f42]">1. Fuentes Primarias de Información</h2>
+            <h2 class="text-lg font-bold text-[#0a1f42]">1. Fuentes Oficiales y Primarias</h2>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify">
-              Nuestras guías y artículos solo se redactan con base en fuentes oficiales y primarias de la República del Ecuador:
+              Nuestras publicaciones se fundamentan exclusivamente en documentos oficiales de la República del Ecuador:
             </p>
             <ul class="text-xs sm:text-sm text-slate-600 list-disc pl-5 space-y-1">
               <li>Constitución de la República del Ecuador.</li>
-              <li>Ley de Seguridad Social de Ecuador.</li>
-              <li>Resoluciones y Gacetas del Consejo Directivo del IESS.</li>
-              <li>Boletines oficiales y portales de transparencia gubernamentales (iess.gob.ec y biess.fin.ec).</li>
+              <li>Ley de Seguridad Social y Código del Trabajo.</li>
+              <li>Resoluciones y gacetas normativas del Consejo Directivo del IESS.</li>
+              <li>Publicaciones del Registro Oficial y portales institucionales (iess.gob.ec, biess.fin.ec).</li>
             </ul>
           </div>
 
           <div class="space-y-3">
-            <h2 class="text-lg font-bold text-[#0a1f42]">2. Proceso de Revisión Humana</h2>
+            <h2 class="text-lg font-bold text-[#0a1f42]">2. Uso Responsable de IA y Revisión Humana</h2>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify">
-              <strong>Política de uso de Inteligencia Actorial (IA):</strong> Nuestro asistente virtual en línea utiliza IA para resolver consultas ágiles e interactivas de los ciudadanos, de forma orientativa. Sin embargo, todas nuestras guías de blog, oficios descargables, requisitos y manuales escritos son redactados, revisados y validados de forma exclusiva por profesionales humanos especializados en el área jurídica y de seguridad social.
+              <strong>Apoyo tecnológico:</strong> Empleamos modelos de inteligencia artificial como herramientas de apoyo para estructurar información, redactar resúmenes preliminares y responder consultas orientativas a través de nuestro asistente en línea. Sin embargo, <strong>todas las guías definitivas, requisitos, montos y tablas son revisadas y verificadas por nuestro equipo editorial</strong> antes de su publicación, contrastando cada dato con la fuente oficial.
             </p>
           </div>
 
           <div class="space-y-3">
             <h2 class="text-lg font-bold text-[#0a1f42]">3. Frecuencia de Actualización</h2>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify">
-              Revisamos la base de conocimientos y el portal en un plazo máximo de 30 días posteriores a la expedición de cualquier reforma gubernamental sustancial (por ejemplo, reajustes del Salario Básico Unificado, variaciones de tasas de interés BIESS o cambios en el Seguro de Desempleo).
+              Revisamos nuestras guías de forma periódica y ante reformas sustanciales (como variaciones del Salario Básico Unificado, reformas a tasas de interés del BIESS o modificaciones en resoluciones del IESS).
             </p>
           </div>
 
           <div class="space-y-3">
-            <h2 class="text-lg font-bold text-[#0a1f42]">4. Política de Correcciones</h2>
+            <h2 class="text-lg font-bold text-[#0a1f42]">4. Política de Corrección de Errores</h2>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify">
-              Si detectas un error tipográfico, una cifra desactualizada o una imprecisión legal, puedes reportarlo de forma inmediata en el correo <strong>contacto@iessasistente.com</strong>. Evaluaremos el reporte en un plazo máximo de 48 horas laborables y realizaremos la corrección de forma transparente en el artículo respectivo.
+              Si detectas cualquier imprecisión o cambio normativo pendiente de actualizar, puedes reportarlo a <strong>contacto@iessasistente.com</strong>. Atendemos reportes en un plazo máximo de 48 horas laborables y actualizamos la fecha de última revisión del artículo.
             </p>
+          </div>
+
+          <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-600 space-y-1.5">
+            <p class="font-bold text-[#0a1f42]">Deslinde Institucional:</p>
+            <p>IESS Asistente es un proyecto independiente de orientación ciudadana. No somos el IESS ni gestionamos trámites de manera oficial. Para trámites legales y vinculantes, acuda siempre a los canales oficiales del IESS.</p>
           </div>
         </article>
       </main>
@@ -1154,10 +1198,9 @@ export function generateCookiesSeoHtml(): string {
 }
 
 export function generateAuthorSeoHtml(authorSlug: string): string {
-  const { AUTHORS } = require("../data/authors");
-  const author = AUTHORS[authorSlug] || AUTHORS["fernando-torres"];
+  const author = (authorSlug && AUTHORS[authorSlug]) ? AUTHORS[authorSlug] : EDITORIAL_TEAM;
   
-  const expHtml = author.experience.map((exp: string) => `
+  const expHtml = (author.experience || []).map((exp: string) => `
     <li class="flex items-start gap-2 text-xs sm:text-sm text-slate-600">
       <span class="text-[#c9a84c] text-lg font-bold flex-shrink-0 leading-none">•</span>
       <span>${escapeText(exp)}</span>
@@ -1171,34 +1214,28 @@ export function generateAuthorSeoHtml(authorSlug: string): string {
         
         <nav aria-label="Migas de pan" class="text-xs text-slate-500">
           <a href="/" class="text-slate-500 no-underline hover:underline">Inicio</a> &gt; 
-          <span class="text-slate-800 font-bold">Autores</span> &gt;
+          <a href="/metodologia-editorial" class="text-slate-500 no-underline hover:underline">Metodología Editorial</a> &gt;
           <span class="text-slate-800 font-bold">${escapeText(author.name)}</span>
         </nav>
 
         <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-6">
-          <div class="flex flex-col sm:flex-row items-center sm:items-start gap-5">
-            <img
-              src="${escapeText(author.imageUrl)}"
-              alt="${escapeText(author.name)}"
-              class="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-[#c9a84c] shadow-sm object-cover"
-            />
-            <div class="space-y-2 text-center sm:text-left">
-              <h1 class="text-xl sm:text-2xl font-black text-[#0a1f42]">${escapeText(author.name)}</h1>
-              <p class="text-[#c9a84c] text-xs sm:text-sm font-extrabold uppercase tracking-wide">${escapeText(author.title)}</p>
-              <p class="text-xs sm:text-sm text-slate-500 leading-relaxed text-justify pt-1">${escapeText(author.bio)}</p>
-            </div>
+          <div class="space-y-3">
+            <span class="bg-[#0a1f42] text-[#c9a84c] text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded">Autoría Institucional</span>
+            <h1 class="text-xl sm:text-2xl font-black text-[#0a1f42]">${escapeText(author.name)}</h1>
+            <p class="text-[#c9a84c] text-xs sm:text-sm font-extrabold uppercase tracking-wide">${escapeText(author.title)}</p>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify pt-1">${escapeText(author.bio)}</p>
           </div>
 
           <div class="border-t border-slate-100 pt-5 space-y-3">
-            <h2 class="text-sm sm:text-base font-extrabold text-[#0a1f42] uppercase tracking-wider">Experiencia Profesional Verificable</h2>
+            <h2 class="text-sm sm:text-base font-extrabold text-[#0a1f42] uppercase tracking-wider">Metodología y Principios Editoriales</h2>
             <ul class="space-y-2.5 list-none pl-0">
               ${expHtml}
             </ul>
           </div>
 
-          <div class="border-t border-slate-100 pt-5 flex flex-wrap gap-4 text-xs font-bold text-slate-500">
-            <span>✉️ Contacto: <a href="mailto:${escapeText(author.email || '')}" class="text-[#c9a84c] no-underline hover:underline">${escapeText(author.email || '')}</a></span>
-            <span>📍 Localización: Quito, Ecuador</span>
+          <div class="border-t border-slate-100 pt-5 flex flex-wrap items-center justify-between gap-4 text-xs font-bold text-slate-500">
+            <span>✉️ Contacto editorial: <a href="mailto:contacto@iessasistente.com" class="text-[#c9a84c] no-underline hover:underline">contacto@iessasistente.com</a></span>
+            <a href="/metodologia-editorial" class="text-[#0a1f42] hover:text-[#c9a84c] underline">Consultar metodología completa &rarr;</a>
           </div>
         </section>
 

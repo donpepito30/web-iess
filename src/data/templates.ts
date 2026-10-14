@@ -511,7 +511,7 @@ C.C.: ${cedula}`;
     ],
     fields: [
       { id: "ciudad", label: "Ciudad", type: "text", defaultValue: "Quito" },
-      { id: "nombre", label: "Nombre del Afiliado o Empresa", type: "text", placeholder: "Ej. Manuel Torres" },
+      { id: "nombre", label: "Nombre del Afiliado o Empresa", type: "text", placeholder: "Ej. Manuel Andrade" },
       { id: "cedula", label: "Cédula / RUC", type: "text", placeholder: "Ej. 1715897451" },
       { id: "empleador", label: "Empleador Relacionado", type: "text", placeholder: "Ej. Comercial S.A." },
       { id: "valorEstimado", label: "Valor estimado a devolver (USD)", type: "number", placeholder: "Ej. 240" },
@@ -947,7 +947,7 @@ Asunto: Solicitud de Justificación por Imposibilidad Técnica y Reporte de Caí
 
 Yo, ${nombre}, con cédula No. ${cedula}, presento ante ustedes este descargo institucional por fuerza mayor técnica:
 
-Manifiesto que el portal del IESS en el aplicativo: ${sec}, ha presentado fallas tecnológicas habituales impidiéndome completar mi trámite habitual a tiempo, señalando el error: ${det}.
+Manifiesto que el portal del IESS en el aplicativo: ${sec}, ha presentado fallas tecnológicas habituales impidiéndome finalizar mi trámite habitual a tiempo, señalando el error: ${det}.
 
 Conforme a la Ley de Optimización y Eficiencia de Trámites Públicos, las deficiencias informáticas estatales no pueden generar multas patronales ni de mora civil al ciudadano. Solicito se justifique mi retraso en el trámite y se me brinde soporte especializado.
 

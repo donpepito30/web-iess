@@ -9,10 +9,18 @@ export interface Fact {
 
 export const FACTS: Record<string, Fact> = {
   // Salario Básico Unificado
+  SBU_2024: {
+    id: "SBU_2024",
+    value: 460,
+    source: "Ministerio del Trabajo, año 2024",
+    verifiedAt: "2026-10-01",
+    verified: false,
+    notes: "Salario Básico Unificado fijado para el año 2024."
+  },
   SBU_2025: {
     id: "SBU_2025",
-    value: 460,
-    source: "Ministerio del Trabajo de Ecuador, Acuerdo Ministerial Nro. MDT-2024-175",
+    value: 470,
+    source: "Ministerio del Trabajo de Ecuador",
     verifiedAt: "2026-10-01",
     verified: false,
     notes: "Salario Básico Unificado fijado para el año 2025."
@@ -20,10 +28,10 @@ export const FACTS: Record<string, Fact> = {
   SBU_2026: {
     id: "SBU_2026",
     value: 482,
-    source: "Proyección estimada según inflación y canasta básica de Ecuador",
+    source: "Consejo Nacional de Trabajo y Salarios, resolución del 15-dic-2025 (vigente desde el 1-ene-2026). Confirmar número de Acuerdo Ministerial en trabajo.gob.ec",
     verifiedAt: "2026-10-01",
     verified: false,
-    notes: "Valor estimado para el ejercicio fiscal 2026. Requiere confirmación con el Registro Oficial."
+    notes: "Valor fijado para el ejercicio fiscal 2026. Requiere confirmar número de Acuerdo Ministerial en trabajo.gob.ec."
   },
   
   // Porcentajes de Aportaciones
@@ -49,7 +57,7 @@ export const FACTS: Record<string, Fact> = {
     source: "Ley de Seguridad Social, Art. 116",
     verifiedAt: "2026-10-01",
     verified: false,
-    notes: "Porcentaje de descuento mensual al sueldo del trabajador."
+    notes: "pendiente de confirmar en iess.gob.ec"
   },
   APORTE_PATRONAL_PCT: {
     id: "APORTE_PATRONAL_PCT",
@@ -57,7 +65,51 @@ export const FACTS: Record<string, Fact> = {
     source: "Ley de Seguridad Social, Art. 117",
     verifiedAt: "2026-10-01",
     verified: false,
-    notes: "Porcentaje de contribución del empleador sobre la nómina."
+    notes: "pendiente de confirmar en iess.gob.ec"
+  },
+
+  // Subsidio de Maternidad
+  MATERNIDAD_SUBSIDIO_IESS_PCT: {
+    id: "MATERNIDAD_SUBSIDIO_IESS_PCT",
+    value: 75,
+    source: "Código del Trabajo de Ecuador, Art. 152 / Ley de Seguridad Social",
+    verifiedAt: "2026-10-01",
+    verified: false,
+    notes: "Porcentaje del subsidio monetario cubierto por el IESS durante el reposo (25% a cargo del empleador)."
+  },
+  MATERNIDAD_DIAS_DESCANSO: {
+    id: "MATERNIDAD_DIAS_DESCANSO",
+    value: 84,
+    source: "Código del Trabajo, Art. 152 (12 semanas)",
+    verifiedAt: "2026-10-01",
+    verified: false,
+    notes: "Días calendario de descanso remunerado por maternidad."
+  },
+  MATERNIDAD_APORTES_REQ: {
+    id: "MATERNIDAD_APORTES_REQ",
+    value: 12,
+    source: "Reglamento General del Seguro de Salud del IESS",
+    verifiedAt: "2026-10-01",
+    verified: false,
+    notes: "Aportaciones continuas requeridas en los 15 meses previos al parto."
+  },
+
+  // Pensión de Montepío
+  MONTEPIO_VIUDEZ_PCT: {
+    id: "MONTEPIO_VIUDEZ_PCT",
+    value: 60,
+    source: "Reglamento del Seguro de Invalidez, Vejez y Muerte del IESS",
+    verifiedAt: "2026-10-01",
+    verified: false,
+    notes: "Porcentaje de la pensión del causante para viuda/o o conviviente sin hijos (40% si concurren hijos)."
+  },
+  MONTEPIO_ORFANDAD_PCT: {
+    id: "MONTEPIO_ORFANDAD_PCT",
+    value: 40,
+    source: "Reglamento del Seguro de Invalidez, Vejez y Muerte del IESS",
+    verifiedAt: "2026-10-01",
+    verified: false,
+    notes: "Porcentaje global a distribuirse entre hijos huérfanos con derecho."
   },
 
   // Tasas de Interés Financieras BIESS
@@ -184,4 +236,17 @@ export const FACTS: Record<string, Fact> = {
  */
 export function getFactValue(key: keyof typeof FACTS): string | number {
   return FACTS[key]?.value ?? "";
+}
+
+/**
+ * Helper para obtener la nota referencial y advertencia de un fact
+ */
+export function formatFactNoteString(id: string): string {
+  const fact = FACTS[id];
+  if (!fact) return "";
+  const base = `Dato referencial: ${fact.value} · Fuente: ${fact.source} · Consultado: ${fact.verifiedAt}`;
+  if (!fact.verified) {
+    return `${base} · Confirma este valor en iess.gob.ec antes de realizar tu trámite`;
+  }
+  return base;
 }

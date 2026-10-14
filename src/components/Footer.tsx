@@ -76,7 +76,7 @@ export default function Footer() {
             </span>
             <ul className="space-y-1.5 font-medium list-none pl-0">
               <li><Link to="/sobre-nosotros" className="hover:text-white transition-colors">ℹ️ Sobre Nosotros</Link></li>
-              <li><Link to="/editorial" className="hover:text-white transition-colors">✍️ Metodología Editorial</Link></li>
+              <li><Link to="/metodologia-editorial" className="hover:text-white transition-colors">✍️ Metodología Editorial</Link></li>
               <li><Link to="/contacto" className="hover:text-white transition-colors">📧 Contacto Directo</Link></li>
               <li><Link to="/privacidad" className="hover:text-white transition-colors">🔒 Política de Privacidad</Link></li>
               <li><Link to="/terminos" className="hover:text-white transition-colors">⚖️ Términos y Condiciones</Link></li>

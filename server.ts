@@ -9,7 +9,15 @@ import rateLimit from "express-rate-limit";
 import { PROCEDURES_DATA } from "./src/data/procedures";
 import { BLOG_POSTS } from "./src/data/blogPosts";
 import { SEO_CATEGORIES } from "./src/data/seoCategories";
-import { getSiteUrl, CURRENT_YEAR } from "./src/config/site";
+import { getSiteUrlServer, CURRENT_YEAR } from "./src/config/site";
+import {
+  handleSitemap,
+  handleRobots,
+  handleLlms,
+  handleAds,
+  handleIndexNowKey,
+  handleIndexNowPost,
+} from "./src/server/seoRoutes";
 import {
   generateHomeSeoHtml,
   generateProcedureSeoHtml,
@@ -43,7 +51,7 @@ import {
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 // Security: Disable x-powered-by header
 app.disable("x-powered-by");
@@ -68,7 +76,6 @@ app.use(
           "'self'",
           "data:",
           "https:",
-          "https://images.unsplash.com",
           "https://pagead2.googlesyndication.com",
         ],
         connectSrc: [
@@ -167,7 +174,7 @@ app.use((req, res, next) => {
 
 // Helper function to dynamically obtain the site's base URL (e.g., on Vercel, Cloud Run, Localhost)
 function getBaseUrl(req?: express.Request): string {
-  return getSiteUrl();
+  return getSiteUrlServer();
 }
 
 // Sitemap dinámico
@@ -1043,9 +1050,15 @@ function renderHtml(meta: {
   bodyHtml?: string;
 }) {
   const isProd = process.env.NODE_ENV === "production";
-  const htmlPath = isProd
-    ? path.join(process.cwd(), "dist", "index.html")
+  let htmlPath = isProd
+    ? path.join(process.cwd(), "dist", "template.html")
     : path.join(process.cwd(), "index.html");
+  if (isProd && !fs.existsSync(htmlPath)) {
+    const fallbackPath = path.join(process.cwd(), "dist", "index.html");
+    if (fs.existsSync(fallbackPath)) {
+      htmlPath = fallbackPath;
+    }
+  }
 
   let html = "";
   try {
@@ -1056,7 +1069,7 @@ function renderHtml(meta: {
   }
 
   // Task 4: Replace site url placeholder first
-  html = html.replace(/%SITE_URL%/g, getSiteUrl());
+  html = html.replace(/%SITE_URL%/g, getSiteUrlServer());
 
   // Remove pre-existing JSON-LD tags to prevent duplicate schemas
   html = html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/gi, "");
@@ -1085,7 +1098,7 @@ function renderHtml(meta: {
   const escUrl = escapeHtml(meta.url);
   const escPrev = meta.prevUrl ? escapeHtml(meta.prevUrl) : undefined;
   const escNext = meta.nextUrl ? escapeHtml(meta.nextUrl) : undefined;
-  const escImage = meta.image ? escapeHtml(meta.image) : "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop";
+  const escImage = meta.image ? escapeHtml(meta.image) : "/og-default.jpg";
   const ogTypeVal = meta.isArticle ? "article" : "website";
 
   let newTags = "";
@@ -1197,7 +1210,7 @@ app.get('/iess/:ciudad', (req, res) => {
   
   const html = renderHtml({
     title: `IESS ${cityNameCap}: dirección, oficinas y trámites presenciales ${CURRENT_YEAR} | IESS Asistente`,
-    description: `Direcciones de oficinas, CAUs y hospitales del IESS en ${cityNameCap}, provincia de ${cityData.province}. Consulta horarios de atención, trámites presenciales y requisitos.`,
+    description: `Dirección de oficinas y CAUs del IESS en ${cityNameCap}, ${cityData.province}. Horarios y trámites. Datos pendientes de verificación; confirme en iess.gob.ec.`,
     url,
     robots,
     geoTags: {
@@ -1486,26 +1499,31 @@ app.get("/politica-de-cookies", (req, res) => {
   res.header("Content-Type", "text/html").send(html);
 });
 
+// SEO & Metadata Routes
+app.get("/sitemap.xml", handleSitemap);
+app.get("/robots.txt", handleRobots);
+app.get("/llms.txt", handleLlms);
+app.get("/ads.txt", handleAds);
+app.get(`/${process.env.INDEXNOW_KEY || 'indexnow'}.txt`, handleIndexNowKey);
+app.post("/api/indexnow", handleIndexNowPost);
+
 app.get("/autor/:slug", (req, res) => {
   const slug = req.params.slug.toLowerCase();
-  const baseUrl = getBaseUrl(req);
-  const bodyHtml = generateAuthorSeoHtml(slug);
-  const { AUTHORS } = require("./src/data/authors");
-  const author = AUTHORS[slug];
-
-  if (!author) {
-    return res.redirect("/");
+  if (slug === "fernando-torres" || slug === "eliana-suarez") {
+    return res.redirect(301, "/metodologia-editorial");
   }
+  return res.status(404).send("Página no encontrada");
+});
 
-  const html = renderHtml({
-    title: `${author.name} - Experto en Seguridad Social | IESS Asistente`,
-    description: `Perfil profesional de ${author.name}. Conoce sus credenciales académicas, trayectoria verificable y guías de apoyo publicadas en el portal.`,
-    url: `${baseUrl}/autor/${slug}`,
-    dataAttr: "data-author",
-    dataVal: slug,
-    bodyHtml
-  });
-  res.header("Content-Type", "text/html").send(html);
+
+// Redirect old blog/faq subpaths
+app.get(/^\/(blog|faq)\/(.+)/, (req, res, next) => {
+  const path = req.params[1];
+  // Don't redirect articles or the main faq page
+  if (path.includes("page/") || path.includes("afiliacion-voluntaria-iess-requisitos-beneficios-2026")) {
+    return next();
+  }
+  res.redirect(301, `/guias-y-articulos/${path}`);
 });
 
 // GET / (home) (Task 5)
@@ -1644,8 +1662,15 @@ if (process.env.NODE_ENV === "production") {
     next();
   });
 
-  // Task 4: Change express.static(distPath) to express.static(distPath, { index: false })
-  app.use(express.static(distPath, { index: false }));
+  // Task 4 & Vercel deployment: Serve static files (/assets, /fonts, /img) with immutable cache for /assets/
+  app.use(express.static(distPath, {
+    index: false,
+    setHeaders: (res, filePath) => {
+      if (filePath.includes("/assets/") || filePath.includes("\\assets\\")) {
+        res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+      }
+    }
+  }));
   
   // Task 6: Custom 404 catch-all
   app.get("*", (req, res) => {

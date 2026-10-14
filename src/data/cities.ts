@@ -34,8 +34,8 @@ export const CITIES_DATA: Record<string, CityData> = {
         phone: "1800-4377",
         hours: "Lunes a viernes de 08:00 a 17:00",
         mapsUrl: "https://maps.google.com/?q=IESS+Direccion+Provincial+Pichincha+Quito",
-        source: "Portal de Transparencia del IESS de Ecuador",
-        verifiedAt: "2026-10-01"
+        source: null,
+        verifiedAt: null
       },
       {
         name: "Centro de Atención Universal Sur (Quitumbe)",
@@ -44,8 +44,8 @@ export const CITIES_DATA: Record<string, CityData> = {
         phone: "1800-4377",
         hours: "Lunes a viernes de 08:00 a 17:00",
         mapsUrl: "https://maps.google.com/?q=CAU+Sur+IESS+Quitumbe+Quito",
-        source: "Boletín Oficial del IESS",
-        verifiedAt: "2026-10-01"
+        source: null,
+        verifiedAt: null
       },
       {
         name: "Hospital Carlos Andrade Marín (HCAM)",
@@ -54,8 +54,8 @@ export const CITIES_DATA: Record<string, CityData> = {
         phone: "02-294-4200",
         hours: "Emergencias 24 horas. Consulta externa de lunes a viernes de 07:00 a 19:00",
         mapsUrl: "https://maps.google.com/?q=Hospital+Carlos+Andrade+Marín+Quito",
-        source: "Directorio de Unidades Médicas del HCAM",
-        verifiedAt: "2026-10-01"
+        source: null,
+        verifiedAt: null
       }
     ],
     uniqueContent: `
@@ -127,8 +127,8 @@ Muchos asegurados de Quito desconocen que pueden resolver sus inquietudes de for
         phone: "1800-4377",
         hours: "Lunes a viernes de 08:00 a 17:00",
         mapsUrl: "https://maps.google.com/?q=IESS+Caja+del+Seguro+Guayaquil",
-        source: "Directorio de Atención del IESS Provincial Guayas",
-        verifiedAt: "2026-10-01"
+        source: null,
+        verifiedAt: null
       },
       {
         name: "Centro de Atención Universal El Fortín",
@@ -137,8 +137,8 @@ Muchos asegurados de Quito desconocen que pueden resolver sus inquietudes de for
         phone: "1800-4377",
         hours: "Lunes a viernes de 08:00 a 17:00",
         mapsUrl: "https://maps.google.com/?q=IESS+CAU+El+Fortín+Guayaquil",
-        source: "Boletín de Prensa IESS Guayas",
-        verifiedAt: "2026-10-01"
+        source: null,
+        verifiedAt: null
       },
       {
         name: "Hospital de Especialidades Teodoro Maldonado Carbo (HTMC)",
@@ -147,8 +147,8 @@ Muchos asegurados de Quito desconocen que pueden resolver sus inquietudes de for
         phone: "04-243-9100",
         hours: "Emergencias 24/7. Consulta externa: Lunes a viernes de 07:00 a 19:00",
         mapsUrl: "https://maps.google.com/?q=Hospital+Teodoro+Maldonado+Carbo+Guayaquil",
-        source: "Directorio de Unidades Médicas IESS",
-        verifiedAt: "2026-10-01"
+        source: null,
+        verifiedAt: null
       }
     ],
     uniqueContent: `
@@ -219,8 +219,8 @@ Evite salir de casa y realice de forma virtual las principales gestiones en la p
         phone: "1800-4377",
         hours: "Lunes a viernes de 08:00 a 17:00",
         mapsUrl: "https://maps.google.com/?q=IESS+Direccion+Provincial+Azuay+Cuenca",
-        source: "Portal de Transparencia IESS",
-        verifiedAt: "2026-10-01"
+        source: null,
+        verifiedAt: null
       },
       {
         name: "Hospital General del IESS José Carrasco Arteaga",
@@ -229,8 +229,8 @@ Evite salir de casa y realice de forma virtual las principales gestiones en la p
         phone: "07-286-1500",
         hours: "Emergencias 24/7. Consulta externa: Lunes a viernes de 07:00 a 18:00",
         mapsUrl: "https://maps.google.com/?q=Hospital+José+Carrasco+Arteaga+Cuenca",
-        source: "Directorio de Unidades Médicas IESS",
-        verifiedAt: "2026-10-01"
+        source: null,
+        verifiedAt: null
       }
     ],
     uniqueContent: `
@@ -296,8 +296,8 @@ Utilice nuestros tutoriales oficiales para solventar sus gestiones de forma segu
         phone: "1800-4377",
         hours: "Lunes a viernes de 08:00 a 17:00",
         mapsUrl: "https://maps.google.com/?q=IESS+Ambato+Castillo+y+Olmedo",
-        source: "Portal de Transparencia IESS Tungurahua",
-        verifiedAt: "2026-10-01"
+        source: null,
+        verifiedAt: null
       },
       {
         name: "Hospital General del IESS Ambato",
@@ -306,8 +306,8 @@ Utilice nuestros tutoriales oficiales para solventar sus gestiones de forma segu
         phone: "03-242-1800",
         hours: "Emergencias 24/7. Consulta externa: Lunes a viernes de 07:00 a 18:00",
         mapsUrl: "https://maps.google.com/?q=Hospital+IESS+Ambato",
-        source: "Directorio de Unidades Médicas IESS",
-        verifiedAt: "2026-10-01"
+        source: null,
+        verifiedAt: null
       }
     ],
     uniqueContent: `
@@ -373,8 +373,8 @@ Realice sus consultas y trámites de manera virtual, sin necesidad de salir de c
         phone: "1800-4377",
         hours: "Lunes a viernes de 08:00 a 17:00",
         mapsUrl: "https://maps.google.com/?q=CAU+IESS+Machala+Bolivar+y+Ayacucho",
-        source: "Portal de Transparencia IESS El Oro",
-        verifiedAt: "2026-10-01"
+        source: null,
+        verifiedAt: null
       },
       {
         name: "Hospital General Machala",
@@ -383,8 +383,8 @@ Realice sus consultas y trámites de manera virtual, sin necesidad de salir de c
         phone: "07-370-1300",
         hours: "Emergencias 24/7. Consulta externa: Lunes a viernes de 07:00 a 18:00",
         mapsUrl: "https://maps.google.com/?q=Hospital+General+Machala+IESS",
-        source: "Directorio de Unidades Médicas IESS",
-        verifiedAt: "2026-10-01"
+        source: null,
+        verifiedAt: null
       }
     ],
     uniqueContent: `

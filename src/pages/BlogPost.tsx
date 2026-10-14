@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import { ArrowRight } from "lucide-react";
 import Link from "../components/Link";
 import ArticleMeta from "../components/ArticleMeta";
+import FactNote from "../components/FactNote";
 import SourcesBlock from "../components/SourcesBlock";
 import AdSlot from "../components/AdSlot";
 import { BlogPost as BlogPostType } from "../data/blogPosts";
@@ -50,6 +51,25 @@ export default function BlogPost({
     };
   }, [post.slug]);
 
+  const contentSegments = React.useMemo(() => {
+    const regex = /<FactNote\s+ids=\{?\[([^\]]+)\]\}?\s*\/>/g;
+    let match;
+    let lastIndex = 0;
+    const segments: Array<{ type: "md"; text: string } | { type: "factNote"; ids: string[] }> = [];
+    while ((match = regex.exec(post.content)) !== null) {
+      if (match.index > lastIndex) {
+        segments.push({ type: "md", text: post.content.slice(lastIndex, match.index) });
+      }
+      const ids = match[1].split(",").map(s => s.trim().replace(/["'\s]/g, ""));
+      segments.push({ type: "factNote", ids });
+      lastIndex = regex.lastIndex;
+    }
+    if (lastIndex < post.content.length) {
+      segments.push({ type: "md", text: post.content.slice(lastIndex) });
+    }
+    return segments.length > 0 ? segments : [{ type: "md" as const, text: post.content }];
+  }, [post.content]);
+
   return (
     <article className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden animate-fade-in font-sans">
       <div className="p-6 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-left">
@@ -80,7 +100,7 @@ export default function BlogPost({
           loading="lazy"
           decoding="async"
           onError={(e) => {
-            (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1200&auto=format&fit=crop";
+            (e.target as HTMLImageElement).src = "/og-default.jpg";
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
@@ -97,37 +117,44 @@ export default function BlogPost({
           
           {/* Trust authorship and verification block (ArticleMeta) */}
           <ArticleMeta 
-            authorSlug={post.author === "Fernando Torres" ? "fernando-torres" : "eliana-suarez"}
+            authorSlug="equipo-editorial"
             publishDate={post.publishDate}
             dateModified={post.dateModified || "2026-10-01"}
-            reviewerSlug={post.category === "Salud" || post.category === "Trámites" ? "eliana-suarez" : "fernando-torres"}
           />
 
-          <div className="prose prose-slate max-w-none prose-sm sm:prose-base leading-relaxed text-justify">
-            <ReactMarkdown
-              components={{
-                h1: ({node, ...props}) => <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0a1f42] mt-6 mb-4 border-b border-slate-150 pb-2" {...props} />,
-                h2: ({node, ...props}) => <h2 className="text-xl font-bold text-[#0a1f42] mt-6 mb-3" {...props} />,
-                h3: ({node, ...props}) => <h3 className="text-lg font-bold text-slate-800 mt-4 mb-2" {...props} />,
-                p: ({node, ...props}) => <p className="text-sm text-slate-700 leading-relaxed mb-4 text-justify" {...props} />,
-                ul: ({node, ...props}) => <ul className="list-disc pl-5 mb-4 space-y-1.5 text-sm text-slate-700 list-none" {...props} />,
-                ol: ({node, ...props}) => <ol className="list-decimal pl-5 mb-4 space-y-1.5 text-sm text-slate-700 list-none" {...props} />,
-                li: ({node, ...props}) => <li className="leading-relaxed" {...props} />,
-                blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-[#c9a84c] bg-amber-50/50 p-4 rounded-r-xl my-4 text-sm font-medium italic text-slate-800" {...props} />,
-                table: ({node, ...props}) => (
-                  <div className="overflow-x-auto my-6 border border-slate-200 rounded-xl">
-                    <table className="w-full text-left border-collapse text-xs sm:text-sm" {...props} />
-                  </div>
-                ),
-                thead: ({node, ...props}) => <thead className="bg-[#0a1f42]/5 text-[#0a1f42] uppercase text-[10px] tracking-wider font-extrabold border-b border-slate-200" {...props} />,
-                tbody: ({node, ...props}) => <tbody className="divide-y divide-slate-100" {...props} />,
-                tr: ({node, ...props}) => <tr className="hover:bg-slate-50/50 transition-colors" {...props} />,
-                th: ({node, ...props}) => <th className="p-3 font-bold" {...props} />,
-                td: ({node, ...props}) => <td className="p-3 text-slate-650 font-sans" {...props} />,
-              }}
-            >
-              {post.content}
-            </ReactMarkdown>
+          <div className="prose prose-slate max-w-none prose-sm sm:prose-base leading-relaxed text-justify space-y-4">
+            {contentSegments.map((segment, sIdx) => {
+              if (segment.type === "factNote") {
+                return <FactNote key={`fact-${sIdx}`} ids={segment.ids} />;
+              }
+              return (
+                <ReactMarkdown
+                  key={`md-${sIdx}`}
+                  components={{
+                    h1: ({node, ...props}) => <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0a1f42] mt-6 mb-4 border-b border-slate-150 pb-2" {...props} />,
+                    h2: ({node, ...props}) => <h2 className="text-xl font-bold text-[#0a1f42] mt-6 mb-3" {...props} />,
+                    h3: ({node, ...props}) => <h3 className="text-lg font-bold text-slate-800 mt-4 mb-2" {...props} />,
+                    p: ({node, ...props}) => <p className="text-sm text-slate-700 leading-relaxed mb-4 text-justify" {...props} />,
+                    ul: ({node, ...props}) => <ul className="list-disc pl-5 mb-4 space-y-1.5 text-sm text-slate-700 list-none" {...props} />,
+                    ol: ({node, ...props}) => <ol className="list-decimal pl-5 mb-4 space-y-1.5 text-sm text-slate-700 list-none" {...props} />,
+                    li: ({node, ...props}) => <li className="leading-relaxed" {...props} />,
+                    blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-[#c9a84c] bg-amber-50/50 p-4 rounded-r-xl my-4 text-sm font-medium italic text-slate-800" {...props} />,
+                    table: ({node, ...props}) => (
+                      <div className="overflow-x-auto my-6 border border-slate-200 rounded-xl">
+                        <table className="w-full text-left border-collapse text-xs sm:text-sm" {...props} />
+                      </div>
+                    ),
+                    thead: ({node, ...props}) => <thead className="bg-[#0a1f42]/5 text-[#0a1f42] uppercase text-[10px] tracking-wider font-extrabold border-b border-slate-200" {...props} />,
+                    tbody: ({node, ...props}) => <tbody className="divide-y divide-slate-100" {...props} />,
+                    tr: ({node, ...props}) => <tr className="hover:bg-slate-50/50 transition-colors" {...props} />,
+                    th: ({node, ...props}) => <th className="p-3 font-bold" {...props} />,
+                    td: ({node, ...props}) => <td className="p-3 text-slate-650 font-sans" {...props} />,
+                  }}
+                >
+                  {segment.text}
+                </ReactMarkdown>
+              );
+            })}
           </div>
 
           <AdSlot slot="blog-mid-article" format="in-article" />
@@ -167,22 +194,26 @@ export default function BlogPost({
 
         {/* Columna lateral / Sidebar del Post */}
         <div className="lg:col-span-4 space-y-5">
-          <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-4">
+          <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-3">
             <h4 className="text-xs font-black text-[#0a1f42] uppercase tracking-wider border-b pb-2">
-              Sobre el Autor
+              Equipo Editorial
             </h4>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0a1f42] to-[#122e5a] flex items-center justify-center font-bold text-xs text-[#c9a84c] border border-slate-300 shadow">
-                IAS
-              </div>
-              <div>
-                <span className="block text-xs font-bold text-[#0a1f42]">{post.author}</span>
-                <span className="block text-[10px] text-slate-400 font-medium font-mono">Asesor de Seguridad Social</span>
+            <div className="space-y-1.5">
+              <span className="block text-xs font-bold text-[#0a1f42]">
+                Por Equipo editorial de IESS Asistente
+              </span>
+              <p className="text-[11px] text-slate-500 leading-relaxed">
+                Guías de orientación ciudadana redactadas a partir de fuentes oficiales y contrastadas con normativas del IESS, con revisión y verificación de datos antes de publicar.
+              </p>
+              <div className="pt-1">
+                <Link
+                  to="/metodologia-editorial"
+                  className="text-xs text-[#c9a84c] hover:underline font-bold inline-flex items-center gap-1"
+                >
+                  Metodología editorial &rarr;
+                </Link>
               </div>
             </div>
-            <p className="text-[11px] text-slate-500 leading-relaxed">
-              Guías elaboradas con base en la Ley de Seguridad Social, reglamentos del IESS, boletines oficiales y resoluciones actuales de Ecuador.
-            </p>
           </div>
 
           <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-3">

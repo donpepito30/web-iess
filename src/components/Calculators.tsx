@@ -293,7 +293,7 @@ export function CalculadoraJubilacion() {
           <div className="bg-slate-50 border border-slate-200 p-3.5 rounded-xl">
             <h5 className="text-xs font-extrabold text-[#0a1f42] uppercase mb-1">¿Qué pasa si me faltan pocos aportes para jubilarme?</h5>
             <p className="text-[11.5px] leading-relaxed text-slate-600">
-              Si le faltan imposiciones para calificar pero ya cumple la edad mínima, puede optar por la **afiliación voluntaria independiente** aportando de forma mensual por su propia cuenta para completar las cuotas requeridas de forma ágil y 100% legal.
+              Si le faltan imposiciones para calificar pero ya cumple la edad mínima, puede optar por la **afiliación voluntaria independiente** aportando de forma mensual por su propia cuenta para alcanzar las cuotas requeridas de forma ágil y 100% legal.
             </p>
           </div>
           <div className="bg-slate-50 border border-slate-200 p-3.5 rounded-xl">

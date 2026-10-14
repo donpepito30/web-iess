@@ -106,16 +106,12 @@ export function getProcedureGraph(siteUrl: string, proc: any) {
       "url": `${pageUrl}#step-${idx + 1}`
     })),
     "author": {
-      "@type": "Person",
-      "name": "Dr. Fernando Torres",
-      "jobTitle": "Especialista en Seguridad Social",
-      "url": `${siteUrl}/sobre-nosotros`
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      "name": "IESS Asistente"
     },
-    "reviewedBy": {
-      "@type": "Person",
-      "name": "Dra. Eliana Suárez",
-      "jobTitle": "Asesora Legal Corporativa",
-      "url": `${siteUrl}/editorial`
+    "publisher": {
+      "@id": `${siteUrl}/#organization`
     }
   };
   
@@ -212,9 +208,9 @@ export function getArticleGraph(siteUrl: string, post: any) {
       "name": post.category
     },
     "author": {
-      "@type": "Person",
-      "name": post.author,
-      "url": `${siteUrl}/editorial`
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      "name": "IESS Asistente"
     },
     "publisher": {
       "@id": `${siteUrl}/#organization`
@@ -340,7 +336,7 @@ export function getCityGraph(siteUrl: string, city: string, locationData: any) {
     "url": pageUrl,
     "name": `IESS ${cityNameCap} - Dirección de Oficinas y Trámites`,
     "isPartOf": { "@id": `${siteUrl}/#website` },
-    "description": `Guía local independiente con direcciones, horarios y dependencias del IESS en ${cityNameCap}, provincia de ${locationData.region || "Ecuador"}.`,
+    "description": `Guía local independiente con direcciones y horarios del IESS en ${cityNameCap}, provincia de ${locationData.region || "Ecuador"}. Datos pendientes de verificación.`,
     "inLanguage": "es-EC",
     "about": {
       "@type": "Place",

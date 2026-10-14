@@ -22,7 +22,7 @@ import type { BlogPost } from "./data/blogPosts";
 import { SEO_CATEGORIES, SeoCategory } from "./data/seoCategories";
 import { CITIES_DATA } from "./data/cities";
 import { ECUADOR_LOCATIONS } from "./server/seoHtml";
-import { getSiteUrl, CURRENT_YEAR } from "./config/site";
+import { getSiteUrlClient, CURRENT_YEAR } from "./config/site";
 
 // Client-side routes & navigation helpers
 import { 
@@ -107,7 +107,7 @@ export function updateMetaTags(config: {
   if (twitterDesc) twitterDesc.setAttribute('content', config.description);
 
   // Canonical and URL properties
-  const siteUrl = getSiteUrl();
+  const siteUrl = getSiteUrlClient();
   const canonical = document.querySelector('link[rel="canonical"]');
   if (canonical) canonical.setAttribute('href', `${siteUrl}${config.url}`);
   const ogUrl = document.querySelector('meta[property="og:url"]');
@@ -584,7 +584,7 @@ export default function App() {
         title: "IESS Ecuador: trámites y requisitos " + CURRENT_YEAR + " | IESS Asistente",
         description: "Consulta requisitos de jubilación, préstamos quirografarios, hipotecarios, afiliación voluntaria y genera oficios de ley de forma gratuita.",
         url: "/",
-        jsonLd: getHomeGraph(getSiteUrl(), PROCEDURES_DATA)
+        jsonLd: getHomeGraph(getSiteUrlClient(), PROCEDURES_DATA)
       });
     } else if (path === "/oficios") {
       setCurrentRoute('home');
@@ -593,7 +593,7 @@ export default function App() {
         title: "Formatos y Oficios de Ley IESS " + CURRENT_YEAR + " | IESS Asistente",
         description: "Generador inteligente y gratuito de 17 oficios, apelaciones e impugnaciones de glosas para afiliados y empleadores del IESS en Ecuador.",
         url: "/oficios",
-        jsonLd: getCategoryGraph(getSiteUrl(), SEO_CATEGORIES.find(c => c.slug === "herramientas") || { slug: "herramientas", title: "Herramientas de Ley", metaTitle: "Herramientas de Ley", metaDescription: "Herramientas", faqs: [] }, null)
+        jsonLd: getCategoryGraph(getSiteUrlClient(), SEO_CATEGORIES.find(c => c.slug === "herramientas") || { slug: "herramientas", title: "Herramientas de Ley", metaTitle: "Herramientas de Ley", metaDescription: "Herramientas", faqs: [] }, null)
       });
     } else if (path === "/faq") {
       setCurrentRoute('faq');
@@ -602,7 +602,7 @@ export default function App() {
         title: "Preguntas Frecuentes IESS: respuestas " + CURRENT_YEAR + " | IESS Asistente",
         description: "Respuestas inmediatas a tus dudas de jubilación, préstamos BIESS, afiliación voluntaria y cobro de fondos en el IESS de Ecuador.",
         url: "/faq",
-        jsonLd: getCategoryGraph(getSiteUrl(), SEO_CATEGORIES.find(c => c.slug === "faq") || { slug: "faq", title: "Preguntas Frecuentes", metaTitle: "FAQ", metaDescription: "Preguntas Frecuentes IESS", faqs: [] }, null)
+        jsonLd: getCategoryGraph(getSiteUrlClient(), SEO_CATEGORIES.find(c => c.slug === "faq") || { slug: "faq", title: "Preguntas Frecuentes", metaTitle: "FAQ", metaDescription: "Preguntas Frecuentes IESS", faqs: [] }, null)
       });
     } else if (path === "/sobre-nosotros") {
       setActiveLegalPage("about");
@@ -612,13 +612,22 @@ export default function App() {
         description: "Conoce más sobre el portal independiente de orientación y asistencia ciudadana para trámites del IESS en Ecuador.",
         url: "/sobre-nosotros"
       });
-    } else if (path === "/editorial") {
+    } else if (path === "/editorial" || path === "/metodologia-editorial") {
       setActiveLegalPage("editorial");
       setCurrentRoute('home');
       updateMetaTags({
         title: "Metodología Editorial | Guía IESS Ciudadano",
         description: "Descubre nuestro riguroso proceso de verificación y contraste normativo para asegurar la fidelidad legal de nuestras guías del IESS.",
-        url: "/editorial"
+        url: "/metodologia-editorial"
+      });
+    } else if (path === "/autor/fernando-torres" || path === "/autor/eliana-suarez") {
+      window.history.replaceState({}, '', '/metodologia-editorial');
+      setActiveLegalPage("editorial");
+      setCurrentRoute('home');
+      updateMetaTags({
+        title: "Metodología Editorial | Guía IESS Ciudadano",
+        description: "Descubre nuestro riguroso proceso de verificación y contraste normativo para asegurar la fidelidad legal de nuestras guías del IESS.",
+        url: "/metodologia-editorial"
       });
     } else if (path === "/contacto") {
       setActiveLegalPage("contact");
@@ -663,7 +672,7 @@ export default function App() {
           title: proc.title + ": requisitos y pasos " + CURRENT_YEAR + " | IESS Asistente",
           description: "Requisitos indispensables, guía paso a paso y errores a evitar para tramitar " + proc.title + " en el IESS de Ecuador. Genera tu oficio gratis.",
           url: `/procedimiento/${slug}`,
-          jsonLd: getProcedureGraph(getSiteUrl(), proc)
+          jsonLd: getProcedureGraph(getSiteUrlClient(), proc)
         });
       }
     } else if (path.startsWith("/blog/page/") || path === "/blog") {
@@ -698,7 +707,7 @@ export default function App() {
         robots,
         prevUrl,
         nextUrl,
-        jsonLd: getBlogArchiveGraph(getSiteUrl(), p, pagePosts)
+        jsonLd: getBlogArchiveGraph(getSiteUrlClient(), p, pagePosts)
       });
     } else if (path.startsWith("/blog/")) {
       const slug = path.split("/blog/")[1];
@@ -712,7 +721,7 @@ export default function App() {
           description: post.metaDescription,
           url: `/blog/${post.slug}`,
           image: post.image,
-          jsonLd: getArticleGraph(getSiteUrl(), post)
+          jsonLd: getArticleGraph(getSiteUrlClient(), post)
         });
       }
     } else if (path === "/iess" || path === "/iess/") {
@@ -750,7 +759,7 @@ export default function App() {
           description: "Guía local para IESS " + cityNameCap + ". Consulta el horario de atención, ubicación física, requisitos de afiliación y trámites en tu provincia.",
           url: `/iess/${city}`,
           robots,
-          jsonLd: getCityGraph(getSiteUrl(), city, locData)
+          jsonLd: getCityGraph(getSiteUrlClient(), city, locData)
          });
       }
     } else {
@@ -781,7 +790,7 @@ export default function App() {
               ? matchedCategory.subcategories.find(s => s.slug === pathParts[1])?.description || matchedCategory.metaDescription
               : matchedCategory.metaDescription,
             url,
-            jsonLd: getCategoryGraph(getSiteUrl(), matchedCategory, pathParts.length > 1 ? pathParts[1] : null)
+            jsonLd: getCategoryGraph(getSiteUrlClient(), matchedCategory, pathParts.length > 1 ? pathParts[1] : null)
           });
         }
       }

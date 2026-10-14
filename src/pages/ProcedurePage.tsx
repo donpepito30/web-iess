@@ -12,6 +12,7 @@ import { Procedure, PROCEDURES_DATA } from "../data/procedures";
 import { BLOG_POSTS } from "../data/blogPosts";
 import Link from "../components/Link";
 import AdSlot from "../components/AdSlot";
+import FactNote from "../components/FactNote";
 import { analytics } from "../lib/analytics";
 
 interface ProcedurePageProps {
@@ -57,6 +58,27 @@ export default function ProcedurePage({
         </button>
       </div>
 
+      {/* Editorial Attribution & Verification Strip */}
+      <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-650">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="font-extrabold text-[#0a1f42]">
+            Por Equipo editorial de IESS Asistente
+          </span>
+          <span className="text-slate-300">•</span>
+          <Link
+            to="/metodologia-editorial"
+            className="text-[#c9a84c] hover:underline font-semibold"
+          >
+            Metodología editorial
+          </Link>
+        </div>
+        <div className="flex items-center gap-3 text-[11px] font-mono text-slate-500">
+          <span>Publicado: 10/01/2026</span>
+          <span className="text-slate-300">•</span>
+          <span>Última revisión: <strong className="text-slate-700 font-sans">{procedure.dateModified || "2026-10-01"}</strong></span>
+        </div>
+      </div>
+
       {/* Main content sections grid */}
       <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm space-y-6 text-slate-800 text-xs sm:text-sm">
         
@@ -85,6 +107,11 @@ export default function ProcedurePage({
               </li>
             ))}
           </ul>
+          {procedure.factIds && procedure.factIds.length > 0 && (
+            <div className="mt-4">
+              <FactNote ids={procedure.factIds} />
+            </div>
+          )}
         </section>
 
         {/* 3. Pasos para tramitarlo */}

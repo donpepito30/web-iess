@@ -3,7 +3,7 @@ import { ChevronRight, Home } from "lucide-react";
 import { SeoCategory } from "../data/seoCategories";
 import { Link } from "./Link";
 import { urlProcedure, urlBlogPost, urlCategory, urlCity } from "../lib/routes";
-import { getSiteUrl } from "../config/site";
+import { getSiteUrlClient } from "../config/site";
 
 interface BreadcrumbsProps {
   currentRoute: string;
@@ -133,7 +133,7 @@ export default function Breadcrumbs({
   };
 
   const crumbs = getCrumbs();
-  const siteUrl = getSiteUrl();
+  const siteUrl = getSiteUrlClient();
 
   // JSON-LD structured data with actual exact sub-urls for perfect search engine indexation
   const jsonLd = {
