@@ -1311,9 +1311,9 @@ function renderGuiasPage(req: express.Request, res: express.Response, requestedP
     nextUrl,
     jsonLd,
     dataAttr: "data-tab",
-    dataVal: "blog",
+    dataVal: "guias-y-articulos",
     extraDataAttrs: {
-      "data-blog-page": String(safePage)
+      "data-guias-page": String(safePage)
     },
     bodyHtml
   });
@@ -1380,7 +1380,7 @@ app.get("/faq", (req, res) => {
     title: `Preguntas Frecuentes IESS: respuestas ${CURRENT_YEAR} | IESS Asistente`,
     description: "Respuestas inmediatas a tus dudas de jubilación, préstamos BIESS, afiliación voluntaria y cobro de fondos en el IESS de Ecuador.",
     url,
-    jsonLd: getCategoryGraph(baseUrl, SEO_CATEGORIES.find(c => c.slug === "faq") || { slug: "faq", title: "Preguntas Frecuentes", metaTitle: "FAQ", metaDescription: "Preguntas Frecuentes IESS", faqs: [] }, null),
+    jsonLd: getCategoryGraph(baseUrl, SEO_CATEGORIES.find(c => c.slug === "preguntas-frecuentes") || { slug: "preguntas-frecuentes", title: "Preguntas Frecuentes", metaTitle: "FAQ", metaDescription: "Preguntas Frecuentes IESS", faqs: [] }, null),
     dataAttr: "data-tab",
     dataVal: "consultas",
     bodyHtml
@@ -1583,8 +1583,8 @@ app.get("/oficios", (req, res) => {
 app.get("/:categoria", (req, res, next) => {
   const categoriaSlug = req.params.categoria.toLowerCase();
   
-  // Ignore "blog" and "faq" to avoid collision
-  if (categoriaSlug === "blog" || categoriaSlug === "faq") {
+  // Ignore "guias-y-articulos" and "preguntas-frecuentes" to avoid collision
+  if (categoriaSlug === "guias-y-articulos" || categoriaSlug === "preguntas-frecuentes") {
     return next();
   }
   
@@ -1612,7 +1612,7 @@ app.get("/:categoria/:sub", (req, res, next) => {
   const categoriaSlug = req.params.categoria.toLowerCase();
   const subSlug = req.params.sub.toLowerCase();
   
-  if (categoriaSlug === "blog" || categoriaSlug === "faq") {
+  if (categoriaSlug === "guias-y-articulos" || categoriaSlug === "preguntas-frecuentes") {
     return next();
   }
   
