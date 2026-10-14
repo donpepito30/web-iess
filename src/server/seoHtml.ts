@@ -50,8 +50,8 @@ function renderSeoHeader(): string {
         <nav class="flex flex-wrap gap-4 text-sm font-semibold">
           <a href="/" class="text-white hover:text-[#c9a84c] no-underline">Trámites</a>
           <a href="/oficios" class="text-white hover:text-[#c9a84c] no-underline">Herramientas/Oficios</a>
-          <a href="/blog" class="text-white hover:text-[#c9a84c] no-underline">Blog</a>
-          <a href="/faq" class="text-white hover:text-[#c9a84c] no-underline">FAQ</a>
+          <a href="/guias-y-articulos" class="text-white hover:text-[#c9a84c] no-underline">Guías</a>
+          <a href="/preguntas-frecuentes" class="text-white hover:text-[#c9a84c] no-underline">FAQ</a>
         </nav>
       </div>
     </header>
@@ -126,7 +126,7 @@ export function generateHomeSeoHtml(): string {
     `;
   }).join('');
 
-  const categoriesListHtml = SEO_CATEGORIES.filter(cat => cat.slug !== "blog" && cat.slug !== "faq").map(cat => {
+  const categoriesListHtml = SEO_CATEGORIES.filter(cat => cat.slug !== "guias-y-articulos" && cat.slug !== "preguntas-frecuentes").map(cat => {
     return `
       <li class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm hover:border-[#c9a84c] transition-colors">
         <span class="text-2xl block mb-2">📂</span>
@@ -144,11 +144,11 @@ export function generateHomeSeoHtml(): string {
         <div>
           <span class="text-[9px] font-mono text-slate-400 block mb-1">📅 ${post.publishDate}</span>
           <h3 class="text-xs sm:text-sm font-bold text-[#0a1f42] mb-1.5 leading-snug">
-            <a href="/blog/${post.slug}" class="text-[#0a1f42] hover:text-[#c9a84c] no-underline">${escapeText(post.title)}</a>
+            <a href="/guias-y-articulos/${post.slug}" class="text-[#0a1f42] hover:text-[#c9a84c] no-underline">${escapeText(post.title)}</a>
           </h3>
           <p class="text-[11px] text-slate-500 leading-normal line-clamp-2 mb-3">${escapeText(post.metaDescription)}</p>
         </div>
-        <a href="/blog/${post.slug}" class="text-xs font-bold text-[#c9a84c] no-underline hover:underline">Leer Guía completa &rarr;</a>
+        <a href="/guias-y-articulos/${post.slug}" class="text-xs font-bold text-[#c9a84c] no-underline hover:underline">Leer Guía completa &rarr;</a>
       </li>
     `;
   }).join('');
@@ -352,12 +352,12 @@ export function generateBlogArchiveSeoHtml(currentPage: number): string {
       <article class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs hover:border-[#c9a84c] transition-colors space-y-3">
         <span class="text-[10px] text-slate-400 font-mono block">📅 Publicado el ${post.publishDate} • ⏱️ ${post.readTime} min de lectura</span>
         <h2 class="text-base sm:text-lg font-extrabold text-[#0a1f42] leading-snug">
-          <a href="/blog/${post.slug}" class="text-[#0a1f42] hover:text-[#c9a84c] no-underline">${escapeText(post.title)}</a>
+          <a href="/guias-y-articulos/${post.slug}" class="text-[#0a1f42] hover:text-[#c9a84c] no-underline">${escapeText(post.title)}</a>
         </h2>
         <p class="text-xs sm:text-sm text-slate-650 leading-relaxed line-clamp-3">${escapeText(post.metaDescription)}</p>
         <div class="flex items-center justify-between pt-2 text-xs">
           <span class="text-slate-400 font-medium">Por Equipo editorial de IESS Asistente</span>
-          <a href="/blog/${post.slug}" class="text-[#c9a84c] font-black no-underline hover:underline">Leer Guía completa &rarr;</a>
+          <a href="/guias-y-articulos/${post.slug}" class="text-[#c9a84c] font-black no-underline hover:underline">Leer Guía completa &rarr;</a>
         </div>
       </article>
     `;
@@ -366,16 +366,16 @@ export function generateBlogArchiveSeoHtml(currentPage: number): string {
   // Pagination links
   let paginationHtml = '';
   if (safePage > 1) {
-    const prevUrl = safePage === 2 ? "/blog" : `/blog/page/${safePage - 1}`;
+    const prevUrl = safePage === 2 ? "/guias-y-articulos" : `/guias-y-articulos/page/${safePage - 1}`;
     paginationHtml += `<a href="${prevUrl}" class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg font-bold text-slate-700 text-xs no-underline hover:bg-slate-50">&larr; Anterior</a>`;
   }
   for (let i = 1; i <= totalPages; i++) {
-    const url = i === 1 ? "/blog" : `/blog/page/${i}`;
+    const url = i === 1 ? "/guias-y-articulos" : `/guias-y-articulos/page/${i}`;
     const activeClass = i === safePage ? 'bg-[#0a1f42] text-white border-[#0a1f42]' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50';
     paginationHtml += `<a href="${url}" class="w-8 h-8 flex items-center justify-center border rounded-lg font-bold text-xs no-underline ${activeClass}">${i}</a>`;
   }
   if (safePage < totalPages) {
-    paginationHtml += `<a href="/blog/page/${safePage + 1}" class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg font-bold text-slate-700 text-xs no-underline hover:bg-slate-50">Siguiente &rarr;</a>`;
+    paginationHtml += `<a href="/guias-y-articulos/page/${safePage + 1}" class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg font-bold text-slate-700 text-xs no-underline hover:bg-slate-50">Siguiente &rarr;</a>`;
   }
 
   return `
@@ -387,12 +387,12 @@ export function generateBlogArchiveSeoHtml(currentPage: number): string {
         <!-- Breadcrumbs -->
         <nav aria-label="Migas de pan" class="text-xs text-slate-500">
           <a href="/" class="text-slate-500 no-underline hover:underline">Inicio</a> &gt; 
-          <span class="text-slate-800 font-bold">Blog</span>
+          <span class="text-slate-800 font-bold">Guías y Artículos</span>
         </nav>
 
         <section class="space-y-3">
           <h1 class="text-xl sm:text-2xl font-black text-[#0a1f42] leading-tight">
-            Blog Oficial IESS Ecuador - Guías de Seguridad Social y Trámites
+            Guías y Artículos IESS Ecuador - Seguridad Social y Trámites
           </h1>
           <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
             Explora nuestra biblioteca de artículos explicados de manera sencilla y fundamentados en la Ley de Seguridad Social y las resoluciones del Consejo Directivo. Aprende sobre tus derechos de afiliado y jubilado.
@@ -442,7 +442,7 @@ export function generateBlogPostSeoHtml(post: BlogPost): string {
   const relatedPostsHtml = BLOG_POSTS
     .filter(p => p.category === post.category && p.slug !== post.slug)
     .slice(0, 3)
-    .map(p => `<li><a href="/blog/${p.slug}" class="text-[#c9a84c] font-bold no-underline hover:underline">${escapeText(p.title)}</a></li>`)
+    .map(p => `<li><a href="/guias-y-articulos/${p.slug}" class="text-[#c9a84c] font-bold no-underline hover:underline">${escapeText(p.title)}</a></li>`)
     .join('');
 
   return `
@@ -454,7 +454,7 @@ export function generateBlogPostSeoHtml(post: BlogPost): string {
         <!-- Breadcrumbs -->
         <nav aria-label="Migas de pan" class="text-xs text-slate-500">
           <a href="/" class="text-slate-500 no-underline hover:underline">Inicio</a> &gt; 
-          <a href="/blog" class="text-slate-500 no-underline hover:underline">Blog</a> &gt; 
+          <a href="/guias-y-articulos" class="text-slate-500 no-underline hover:underline">Guías y Artículos</a> &gt; 
           <span class="text-slate-800 font-bold">${escapeText(post.title)}</span>
         </nav>
 
@@ -547,7 +547,7 @@ export function generateCategorySeoHtml(cat: SeoCategory, subcategorySlug: strin
 
   const relatedPostsHtml = BLOG_POSTS
     .filter(post => cat.relatedPostsSlugs.includes(post.slug))
-    .map(post => `<li><a href="/blog/${post.slug}" class="text-[#c9a84c] font-bold no-underline hover:underline">${escapeText(post.title)}</a></li>`)
+    .map(post => `<li><a href="/guias-y-articulos/${post.slug}" class="text-[#c9a84c] font-bold no-underline hover:underline">${escapeText(post.title)}</a></li>`)
     .join('');
 
   return `

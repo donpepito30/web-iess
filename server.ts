@@ -184,8 +184,8 @@ app.get('/sitemap.xml', (req, res) => {
   // URLs principales
   const urls = [
     { url: '/', changefreq: 'daily', priority: '1.0' },
-    { url: '/faq', changefreq: 'weekly', priority: '0.9' },
-    { url: '/blog', changefreq: 'daily', priority: '0.8' },
+    { url: '/preguntas-frecuentes', changefreq: 'weekly', priority: '0.9' },
+    { url: '/guias-y-articulos', changefreq: 'daily', priority: '0.8' },
     { url: '/iess', changefreq: 'weekly', priority: '0.8' },
   ];
   
@@ -977,7 +977,7 @@ Recuerda que si deseas registrar un reclamo, los canales oficiales 24/7 son **de
 });
 
 // API: Paginated Blog Guides & Search Endpoint
-app.get("/api/blog", (req, res) => {
+app.get("/api/guias-y-articulos", (req, res) => {
   const page = Math.max(1, parseInt(req.query.page as string, 10) || 1);
   const limit = Math.min(20, Math.max(1, parseInt(req.query.limit as string, 10) || 4));
   const category = (req.query.category as string) || "All";
@@ -1254,8 +1254,8 @@ app.get("/procedimiento/:slug", (req, res) => {
   }
 });
 
-// SSR Helper for Blog Paginated Archive Pages
-function renderBlogPage(req: express.Request, res: express.Response, requestedPage: number) {
+// SSR Helper for Guías y Artículos Paginated Archive Pages
+function renderGuiasPage(req: express.Request, res: express.Response, requestedPage: number) {
   const baseUrl = getBaseUrl(req);
   const limit = 4;
   const totalPosts = BLOG_POSTS.length;
@@ -1322,34 +1322,34 @@ function renderBlogPage(req: express.Request, res: express.Response, requestedPa
   res.send(html);
 }
 
-// SSR Routing for Blog Pagination: /blog/page/:page (MUST come before /blog/:slug)
-app.get("/blog/page/:page", (req, res) => {
+// SSR Routing for Guias Pagination: /guias-y-articulos/page/:page (MUST come before /guias-y-articulos/:slug)
+app.get("/guias-y-articulos/page/:page", (req, res) => {
   const pageNum = parseInt(req.params.page, 10);
   if (isNaN(pageNum) || pageNum < 1) {
-    return res.redirect(301, "/blog");
+    return res.redirect(301, "/guias-y-articulos");
   }
   if (pageNum === 1) {
-    // 301 Redirect page 1 parameter to root /blog for strict canonical URL cleanliness
-    return res.redirect(301, "/blog");
+    // 301 Redirect page 1 parameter to root /guias-y-articulos for strict canonical URL cleanliness
+    return res.redirect(301, "/guias-y-articulos");
   }
-  renderBlogPage(req, res, pageNum);
+  renderGuiasPage(req, res, pageNum);
 });
 
-// SSR Routing for Blog Section List: /blog (supports query string ?page=X or defaults to page 1)
-app.get("/blog", (req, res) => {
+// SSR Routing for Guias Section List: /guias-y-articulos (supports query string ?page=X or defaults to page 1)
+app.get("/guias-y-articulos", (req, res) => {
   const pageParam = req.query.page ? parseInt(req.query.page as string, 10) : 1;
   const pageNum = isNaN(pageParam) || pageParam < 1 ? 1 : pageParam;
-  renderBlogPage(req, res, pageNum);
+  renderGuiasPage(req, res, pageNum);
 });
 
-// SSR Routing for Blog Articles (for SEO indexability)
-app.get("/blog/:slug", (req, res) => {
+// SSR Routing for Guias Articles (for SEO indexability)
+app.get("/guias-y-articulos/:slug", (req, res) => {
   const slug = req.params.slug;
   const post = BLOG_POSTS.find(p => p.slug === slug || p.id === slug);
 
   if (post) {
     const baseUrl = getBaseUrl(req);
-    const url = `${baseUrl}/blog/${slug}`;
+    const url = `${baseUrl}/guias-y-articulos/${slug}`;
     const bodyHtml = generateBlogPostSeoHtml(post);
 
     const html = renderHtml({
@@ -1357,7 +1357,7 @@ app.get("/blog/:slug", (req, res) => {
       description: post.metaDescription,
       url,
       jsonLd: getArticleGraph(baseUrl, post),
-      dataAttr: "data-blog-slug",
+      dataAttr: "data-guias-slug",
       dataVal: post.slug,
       image: post.image,
       isArticle: true,
@@ -1366,7 +1366,7 @@ app.get("/blog/:slug", (req, res) => {
     res.header('Content-Type', 'text/html');
     res.send(html);
   } else {
-    res.redirect("/blog");
+    res.redirect("/guias-y-articulos");
   }
 });
 
