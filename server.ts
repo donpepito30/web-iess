@@ -1254,7 +1254,7 @@ app.get("/procedimiento/:slug", (req, res) => {
   }
 });
 
-// SSR Helper for Guías y Artículos Paginated Archive Pages
+// SSR Helper for Blog & Guías y Artículos Paginated Archive Pages
 function renderGuiasPage(req: express.Request, res: express.Response, requestedPage: number) {
   const baseUrl = getBaseUrl(req);
   const limit = 4;
@@ -1265,20 +1265,21 @@ function renderGuiasPage(req: express.Request, res: express.Response, requestedP
   const safePage = Math.max(1, Math.min(requestedPage, totalPages));
   const isFirstPage = safePage === 1;
 
+  const isLegacy = req.path.startsWith("/blog");
+  const basePath = isLegacy ? "/blog" : "/guias-y-articulos";
+
   // SEO: Self-referencing canonical URL
-  // Page 1: /blog
-  // Page 2+: /blog/page/:page
-  const canonicalUrl = isFirstPage ? `${baseUrl}/blog` : `${baseUrl}/blog/page/${safePage}`;
+  const canonicalUrl = isFirstPage ? `${baseUrl}${basePath}` : `${baseUrl}${basePath}/page/${safePage}`;
 
   // SEO: Rel prev & next links for crawler pagination traversal
   const prevUrl = safePage === 2
-    ? `${baseUrl}/blog`
+    ? `${baseUrl}${basePath}`
     : safePage > 2
-      ? `${baseUrl}/blog/page/${safePage - 1}`
+      ? `${baseUrl}${basePath}/page/${safePage - 1}`
       : undefined;
 
   const nextUrl = safePage < totalPages
-    ? `${baseUrl}/blog/page/${safePage + 1}`
+    ? `${baseUrl}${basePath}/page/${safePage + 1}`
     : undefined;
 
   // SEO: Dynamic title and description to prevent duplicate metadata
@@ -1311,9 +1312,9 @@ function renderGuiasPage(req: express.Request, res: express.Response, requestedP
     nextUrl,
     jsonLd,
     dataAttr: "data-tab",
-    dataVal: "guias-y-articulos",
+    dataVal: isLegacy ? "blog" : "guias-y-articulos",
     extraDataAttrs: {
-      "data-guias-page": String(safePage)
+      [isLegacy ? "data-blog-page" : "data-guias-page"]: String(safePage)
     },
     bodyHtml
   });
@@ -1322,34 +1323,36 @@ function renderGuiasPage(req: express.Request, res: express.Response, requestedP
   res.send(html);
 }
 
-// SSR Routing for Guias Pagination: /guias-y-articulos/page/:page (MUST come before /guias-y-articulos/:slug)
-app.get("/guias-y-articulos/page/:page", (req, res) => {
+// SSR Routing for Blog & Guias Pagination
+app.get(["/blog/page/:page", "/guias-y-articulos/page/:page"], (req, res) => {
+  const rootPath = req.path.startsWith("/blog") ? "/blog" : "/guias-y-articulos";
   const pageNum = parseInt(req.params.page, 10);
   if (isNaN(pageNum) || pageNum < 1) {
-    return res.redirect(301, "/guias-y-articulos");
+    return res.redirect(301, rootPath);
   }
   if (pageNum === 1) {
-    // 301 Redirect page 1 parameter to root /guias-y-articulos for strict canonical URL cleanliness
-    return res.redirect(301, "/guias-y-articulos");
+    return res.redirect(301, rootPath);
   }
   renderGuiasPage(req, res, pageNum);
 });
 
-// SSR Routing for Guias Section List: /guias-y-articulos (supports query string ?page=X or defaults to page 1)
-app.get("/guias-y-articulos", (req, res) => {
+// SSR Routing for Blog & Guias Section List: /blog, /guias-y-articulos
+app.get(["/blog", "/guias-y-articulos"], (req, res) => {
   const pageParam = req.query.page ? parseInt(req.query.page as string, 10) : 1;
   const pageNum = isNaN(pageParam) || pageParam < 1 ? 1 : pageParam;
   renderGuiasPage(req, res, pageNum);
 });
 
-// SSR Routing for Guias Articles (for SEO indexability)
-app.get("/guias-y-articulos/:slug", (req, res) => {
+// SSR Routing for Blog Articles (for SEO indexability)
+app.get(["/blog/:slug", "/guias-y-articulos/:slug"], (req, res) => {
   const slug = req.params.slug;
+  const isBlog = req.path.startsWith("/blog");
   const post = BLOG_POSTS.find(p => p.slug === slug || p.id === slug);
 
   if (post) {
     const baseUrl = getBaseUrl(req);
-    const url = `${baseUrl}/guias-y-articulos/${slug}`;
+    const basePath = isBlog ? "/blog" : "/guias-y-articulos";
+    const url = `${baseUrl}${basePath}/${slug}`;
     const bodyHtml = generateBlogPostSeoHtml(post);
 
     const html = renderHtml({
@@ -1357,23 +1360,42 @@ app.get("/guias-y-articulos/:slug", (req, res) => {
       description: post.metaDescription,
       url,
       jsonLd: getArticleGraph(baseUrl, post),
-      dataAttr: "data-guias-slug",
+      dataAttr: isBlog ? "data-blog-slug" : "data-guias-slug",
       dataVal: post.slug,
       image: post.image,
       isArticle: true,
       bodyHtml
     });
     res.header('Content-Type', 'text/html');
-    res.send(html);
-  } else {
-    res.redirect("/guias-y-articulos");
+    return res.send(html);
   }
+
+  // 301 Redirect for old category subpaths (e.g. /blog/jubilados -> /guias-y-articulos/jubilados)
+  if (isBlog) {
+    const guiasCat = SEO_CATEGORIES.find(c => c.slug === "guias-y-articulos");
+    const sub = guiasCat?.subcategories.find(s => s.slug === slug);
+    if (sub) {
+      return res.redirect(301, `/guias-y-articulos/${slug}`);
+    }
+  }
+
+  // Not found -> 404 with noindex
+  const baseUrl = getBaseUrl(req);
+  const html = renderHtml({
+    title: "Artículo no encontrado | IESS Asistente",
+    description: "Lo sentimos, el artículo solicitado no existe.",
+    url: `${baseUrl}${req.path}`,
+    robots: "noindex, nofollow"
+  });
+  return res.status(404).header("Content-Type", "text/html").send(html);
 });
 
 // SSR Routing for FAQ / Consultas Section
-app.get("/faq", (req, res) => {
+app.get(["/faq", "/preguntas-frecuentes"], (req, res) => {
   const baseUrl = getBaseUrl(req);
-  const url = `${baseUrl}/faq`;
+  const isFaq = req.path.startsWith("/faq");
+  const currentPath = isFaq ? "/faq" : "/preguntas-frecuentes";
+  const url = `${baseUrl}${currentPath}`;
   const bodyHtml = generateFaqPageSeoHtml();
 
   const html = renderHtml({
@@ -1387,6 +1409,24 @@ app.get("/faq", (req, res) => {
   });
   res.header('Content-Type', 'text/html');
   res.send(html);
+});
+
+// 301 Redirect for old FAQ subcategories (/faq/afiliacion -> /preguntas-frecuentes/afiliacion)
+app.get("/faq/:sub", (req, res) => {
+  const sub = req.params.sub;
+  const faqCat = SEO_CATEGORIES.find(c => c.slug === "preguntas-frecuentes");
+  const subcat = faqCat?.subcategories.find(s => s.slug === sub);
+  if (subcat) {
+    return res.redirect(301, `/preguntas-frecuentes/${sub}`);
+  }
+  const baseUrl = getBaseUrl(req);
+  const html = renderHtml({
+    title: "Pregunta no encontrada | IESS Asistente",
+    description: "La sección de preguntas solicitada no existe.",
+    url: `${baseUrl}${req.path}`,
+    robots: "noindex, nofollow"
+  });
+  res.status(404).header("Content-Type", "text/html").send(html);
 });
 
 app.get("/sobre-nosotros", (req, res) => {
@@ -1516,15 +1556,6 @@ app.get("/autor/:slug", (req, res) => {
 });
 
 
-// Redirect old blog/faq subpaths
-app.get(/^\/(blog|faq)\/(.+)/, (req, res, next) => {
-  const path = req.params[1];
-  // Don't redirect articles or the main faq page
-  if (path.includes("page/") || path.includes("afiliacion-voluntaria-iess-requisitos-beneficios-2026")) {
-    return next();
-  }
-  res.redirect(301, `/guias-y-articulos/${path}`);
-});
 
 // GET / (home) (Task 5)
 app.get("/", (req, res) => {
@@ -1583,8 +1614,8 @@ app.get("/oficios", (req, res) => {
 app.get("/:categoria", (req, res, next) => {
   const categoriaSlug = req.params.categoria.toLowerCase();
   
-  // Ignore "guias-y-articulos" and "preguntas-frecuentes" to avoid collision
-  if (categoriaSlug === "guias-y-articulos" || categoriaSlug === "preguntas-frecuentes") {
+  // Ignore "guias-y-articulos", "preguntas-frecuentes", "blog", and "faq" to avoid collision
+  if (categoriaSlug === "guias-y-articulos" || categoriaSlug === "preguntas-frecuentes" || categoriaSlug === "blog" || categoriaSlug === "faq") {
     return next();
   }
   
@@ -1612,7 +1643,7 @@ app.get("/:categoria/:sub", (req, res, next) => {
   const categoriaSlug = req.params.categoria.toLowerCase();
   const subSlug = req.params.sub.toLowerCase();
   
-  if (categoriaSlug === "guias-y-articulos" || categoriaSlug === "preguntas-frecuentes") {
+  if (categoriaSlug === "guias-y-articulos" || categoriaSlug === "preguntas-frecuentes" || categoriaSlug === "blog" || categoriaSlug === "faq") {
     return next();
   }
   
