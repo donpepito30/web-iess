@@ -275,7 +275,7 @@ La sede central del IESS en el Centro Histórico de Cuenca registra un alto fluj
 ---
 
 ## Enlaces virtuales recomendados para afiliados de Cuenca
-Utilice nuestros tutoriales oficiales para solventar sus gestiones de forma segura desde su ordenador o dispositivo móvil:
+Utilice nuestros tutoriales independientes para solventar sus gestiones de forma segura desde su ordenador o dispositivo móvil:
 
 * Descargue de forma ágil su historial de cotizaciones ingresando a [Consulta de aportaciones del IESS](/blog/como-consultar-aportes-iess-historial-laboral).
 * Si ha olvidado sus credenciales virtuales, restablezca su cuenta mediante la guía de [Obtener clave del IESS por primera vez](/blog/como-obtener-clave-iess-primera-vez).

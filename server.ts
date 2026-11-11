@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import fs from "fs";
+import os from "os";
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
 import compression from "compression";
@@ -479,6 +480,44 @@ app.get("/api/health", (req, res) => {
   });
 });
 
+// Helper to get a writable storage directory for ephemeral or persisted logs.
+// In Serverless runtimes (such as Vercel / AWS Lambda), the deployment directory (/var/task)
+// is strictly read-only. Any writable temporary files or logs must reside in os.tmpdir() (/tmp).
+function getWritableDataDir(): string {
+  // If running on Vercel or AWS Lambda, immediately use os.tmpdir()
+  if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.LAMBDA_TASK_ROOT) {
+    const serverlessDir = path.join(os.tmpdir(), "data");
+    try {
+      if (!fs.existsSync(serverlessDir)) {
+        fs.mkdirSync(serverlessDir, { recursive: true });
+      }
+    } catch {
+      // ignore
+    }
+    return serverlessDir;
+  }
+
+  // Local development / container environment
+  const localDir = path.join(process.cwd(), "data");
+  try {
+    if (!fs.existsSync(localDir)) {
+      fs.mkdirSync(localDir, { recursive: true });
+    }
+    return localDir;
+  } catch {
+    // Fallback to os.tmpdir() if process.cwd() is read-only
+    const fallbackDir = path.join(os.tmpdir(), "data");
+    try {
+      if (!fs.existsSync(fallbackDir)) {
+        fs.mkdirSync(fallbackDir, { recursive: true });
+      }
+    } catch {
+      // ignore
+    }
+    return fallbackDir;
+  }
+}
+
 const contactIpCache = new Map<string, { count: number, resetTime: number }>();
 
 app.post("/api/contact", (req, res) => {
@@ -521,14 +560,15 @@ app.post("/api/contact", (req, res) => {
 
   // Store contact submissions safely in data/contact-messages.json without leaking secrets
   try {
-    const dataDir = path.join(process.cwd(), "data");
-    if (!fs.existsSync(dataDir)) {
-      fs.mkdirSync(dataDir, { recursive: true });
-    }
+    const dataDir = getWritableDataDir();
     const contactFile = path.join(dataDir, "contact-messages.json");
-    let msgs = [];
+    let msgs: any[] = [];
     if (fs.existsSync(contactFile)) {
-      msgs = JSON.parse(fs.readFileSync(contactFile, "utf-8"));
+      try {
+        msgs = JSON.parse(fs.readFileSync(contactFile, "utf-8"));
+      } catch {
+        msgs = [];
+      }
     }
     msgs.push({
       date: new Date().toISOString(),
@@ -538,8 +578,8 @@ app.post("/api/contact", (req, res) => {
       ip: ip.replace(/:\d+$/, "")
     });
     fs.writeFileSync(contactFile, JSON.stringify(msgs, null, 2));
-  } catch (err) {
-    console.warn("[Contact Storage] Warning saving contact message:", err);
+  } catch {
+    // Non-blocking: fail silently in read-only / serverless environments
   }
 
   // If a contact recipient email is configured via env var CONTACT_NOTIFICATION_EMAIL, log dispatch
@@ -610,16 +650,27 @@ function setCachedChat(query: string, value: Omit<ChatCacheEntry, "timestamp">) 
 }
 
 // Queries log store for SEO & topic analysis
-const CHAT_LOG_FILE = path.join(process.cwd(), "data", "chat-queries.json");
 function logChatQuery(userQuery: string, wasAnsweredBySite: boolean, topicCategory: string) {
   try {
-    const dataDir = path.join(process.cwd(), "data");
-    if (!fs.existsSync(dataDir)) {
-      fs.mkdirSync(dataDir, { recursive: true });
-    }
+    const dataDir = getWritableDataDir();
+    const chatLogFile = path.join(dataDir, "chat-queries.json");
     let queries: Array<{ query: string; answered: boolean; category: string; count: number; lastSeen: string }> = [];
-    if (fs.existsSync(CHAT_LOG_FILE)) {
-      queries = JSON.parse(fs.readFileSync(CHAT_LOG_FILE, "utf-8"));
+    if (fs.existsSync(chatLogFile)) {
+      try {
+        queries = JSON.parse(fs.readFileSync(chatLogFile, "utf-8"));
+      } catch {
+        queries = [];
+      }
+    } else {
+      // Bundled seed fallback
+      const bundledSeed = path.join(process.cwd(), "data", "chat-queries.json");
+      if (fs.existsSync(bundledSeed)) {
+        try {
+          queries = JSON.parse(fs.readFileSync(bundledSeed, "utf-8"));
+        } catch {
+          queries = [];
+        }
+      }
     }
     const cleanQ = userQuery.trim().toLowerCase();
     const existing = queries.find(q => q.query === cleanQ);
@@ -636,10 +687,9 @@ function logChatQuery(userQuery: string, wasAnsweredBySite: boolean, topicCatego
         lastSeen: new Date().toISOString()
       });
     }
-    fs.writeFileSync(CHAT_LOG_FILE, JSON.stringify(queries, null, 2));
-  } catch (err) {
-    // Non-blocking error handling
-    console.warn("[Chat Logging] Failed to persist chat query log:", err);
+    fs.writeFileSync(chatLogFile, JSON.stringify(queries, null, 2));
+  } catch {
+    // Non-blocking: fail silently in read-only / serverless environments without throwing or spamming logs
   }
 }
 
@@ -1040,7 +1090,6 @@ function renderHtml(meta: {
   jsonLd?: any;
   dataAttr?: string;
   dataVal?: string;
-  geoTags?: { position: string; placename: string; region: string };
   robots?: string;
   prevUrl?: string;
   nextUrl?: string;
@@ -1136,14 +1185,6 @@ function renderHtml(meta: {
     newTags += `<script type="application/ld+json">\n${escapeJsonLd(meta.jsonLd)}\n</script>\n`;
   }
 
-  // Inject Geo-meta tags for local searches
-  if (meta.geoTags) {
-    const geoPos = `<meta name="geo.position" content="${escapeHtml(meta.geoTags.position)}">`;
-    const geoPlace = `<meta name="geo.placename" content="${escapeHtml(meta.geoTags.placename)}">`;
-    const geoRegion = `<meta name="geo.region" content="${escapeHtml(meta.geoTags.region)}">`;
-    newTags += `${geoPos}\n${geoPlace}\n${geoRegion}\n`;
-  }
-
   html = html.replace("</head>", `${newTags}</head>`);
 
   // Hydrate initial state by putting data-attributes on #root and inject pre-rendered HTML (Task 1)
@@ -1209,15 +1250,10 @@ app.get('/iess/:ciudad', (req, res) => {
   };
   
   const html = renderHtml({
-    title: `IESS ${cityNameCap}: dirección, oficinas y trámites presenciales ${CURRENT_YEAR} | IESS Asistente`,
+    title: `IESS ${cityNameCap}: oficinas y trámites | IESS Asistente`,
     description: `Dirección de oficinas y CAUs del IESS en ${cityNameCap}, ${cityData.province}. Horarios y trámites. Datos pendientes de verificación; confirme en iess.gob.ec.`,
     url,
     robots,
-    geoTags: {
-      position: `${locationData.lat};${locationData.lng}`,
-      placename: cityNameCap,
-      region: `EC-${locationData.region}`
-    },
     jsonLd: getCityGraph(baseUrl, ciudad, locationData),
     dataAttr: "data-location",
     dataVal: ciudad,
@@ -1516,7 +1552,7 @@ app.get("/aviso-legal", (req, res) => {
   const bodyHtml = generateLegalSeoHtml();
   const html = renderHtml({
     title: "Aviso Legal y Exención de Responsabilidad | IESS Asistente",
-    description: "Deslinde oficial de responsabilidad de IESS Asistente. Portal de divulgación independiente, no vinculado al IESS ni al BIESS de Ecuador.",
+    description: "Deslinde legal de responsabilidad de IESS Asistente. Portal de divulgación independiente, no vinculado al IESS ni al BIESS de Ecuador.",
     url: `${baseUrl}/aviso-legal`,
     dataAttr: "data-tab",
     dataVal: "legal",
@@ -1627,8 +1663,12 @@ app.get("/:categoria", (req, res, next) => {
   const baseUrl = getBaseUrl(req);
   const bodyHtml = generateCategorySeoHtml(cat, null);
 
+  const catTitleClean = cat.title.toLowerCase().includes("iess")
+    ? `${cat.title}: guía ${CURRENT_YEAR}`
+    : `${cat.title} IESS: guía ${CURRENT_YEAR}`;
+
   const html = renderHtml({
-    title: `${cat.title} en el IESS: guía ${CURRENT_YEAR}`,
+    title: `${catTitleClean} | IESS Asistente`,
     description: cat.metaDescription,
     url: `${baseUrl}/${cat.slug}`,
     jsonLd: getCategoryGraph(baseUrl, cat, null),
@@ -1731,8 +1771,8 @@ async function startServer() {
     app.get("*", (req, res) => {
       const baseUrl = getBaseUrl(req);
       const html = renderHtml({
-        title: "IESS Ecuador - Guía Oficial de Trámites y Asistente Virtual | IESSAsistente",
-        description: "Guía completa y asistente virtual para trámites IESS en Ecuador. Jubilación, préstamos BIESS, afiliación, subsidios y más. Respuestas rápidas a tus dudas.",
+        title: "IESS Ecuador: trámites y requisitos | IESS Asistente",
+        description: "Guía independiente y asistente virtual para trámites IESS en Ecuador. Jubilación, préstamos BIESS, afiliación, subsidios y más.",
         url: `${baseUrl}${req.path}`
       });
       res.header("Content-Type", "text/html").send(html);

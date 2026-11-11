@@ -18,27 +18,7 @@ export default function CookieConsent() {
   });
 
   useEffect(() => {
-    // 1. Initialize Consent Mode v2 variables to "denied" by default
-    if (typeof window !== "undefined") {
-      const g = (window as any);
-      g.dataLayer = g.dataLayer || [];
-      function gtag() {
-        g.dataLayer.push(arguments);
-      }
-      if (!g.gtag) {
-        g.gtag = gtag;
-      }
-      
-      // Default GCM v2 denied
-      g.gtag('consent', 'default', {
-        'ad_storage': 'denied',
-        'analytics_storage': 'denied',
-        'ad_user_data': 'denied',
-        'ad_personalization': 'denied'
-      });
-    }
-
-    // 2. Load preferences from localStorage
+    // 1. Load preferences from localStorage and apply consent update if saved
     const savedConsent = localStorage.getItem("cookie_consent_preferences");
     if (!savedConsent) {
       setShowBanner(true);

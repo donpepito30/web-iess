@@ -20,6 +20,7 @@ cleanup() {
   fi
   if [ -d "$BACKUP_DIR" ]; then
     echo "Restoring node_modules..."
+    rm -rf node_modules
     mv "$BACKUP_DIR" node_modules
   fi
 }
@@ -67,6 +68,7 @@ wait "$SERVER_PID" 2>/dev/null || true
 unset SERVER_PID
 
 echo "6. Restoring node_modules..."
+rm -rf node_modules
 mv "$BACKUP_DIR" node_modules
 trap - EXIT INT TERM
 
