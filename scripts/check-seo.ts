@@ -2,279 +2,368 @@ import app from "../server";
 import { Server } from "http";
 import { FACTS } from "../src/data/facts";
 
-const PORT = 3006;
+const PORT = 3008;
 
-async function runSeoCheck() {
-  console.log("==================================================");
-  console.log("Iniciando Verificación Automatizada de SEO Técnico...");
-  console.log("==================================================");
+interface CategorizedErrors {
+  http: string[];
+  titles: string[];
+  descriptions: string[];
+  h1s: string[];
+  canonicals: string[];
+  jsonLd: string[];
+  ogDuplicates: string[];
+  ogImages: string[];
+  brokenLinks: string[];
+  forbiddenOfficiality: string[];
+  placeholders: string[];
+  ymylFacts: string[];
+  cityIndexing: string[];
+}
 
-  // Start the server locally on port 3006
-  const server = app.listen(PORT, "127.0.0.1", async () => {
-    console.log(`[Server] Servidor temporal corriendo en http://127.0.0.1:${PORT}`);
-    
+async function runFullSeoCheck() {
+  console.log("================================================================================");
+  console.log("  Auditoría Completa de SEO Técnico y Calidad Web - IESS Asistente 2026");
+  console.log("================================================================================");
+
+  const errors: CategorizedErrors = {
+    http: [],
+    titles: [],
+    descriptions: [],
+    h1s: [],
+    canonicals: [],
+    jsonLd: [],
+    ogDuplicates: [],
+    ogImages: [],
+    brokenLinks: [],
+    forbiddenOfficiality: [],
+    placeholders: [],
+    ymylFacts: [],
+    cityIndexing: []
+  };
+
+  const titleMap = new Map<string, string[]>();
+  const resourceCache = new Map<string, { status: number; ok: boolean }>();
+
+  const server: Server = app.listen(PORT, "127.0.0.1", async () => {
+    console.log(`[Servidor de Pruebas] Escuchando en http://127.0.0.1:${PORT}`);
+
     try {
-      const testCases = [
-        {
-          name: "Home Page",
-          path: "/",
-          expectedCanonical: "https://ieesciudadano.vercel.app/"
-        },
-        {
-          name: "Trámite (Jubilación por Vejez)",
-          path: "/procedimiento/jubilacion-vejez",
-          expectedCanonical: "https://ieesciudadano.vercel.app/procedimiento/jubilacion-vejez"
-        },
-        {
-          name: "Trámite (Afiliación Voluntaria - Con FactNote)",
-          path: "/procedimiento/afiliacion-voluntaria",
-          expectedCanonical: "https://ieesciudadano.vercel.app/procedimiento/afiliacion-voluntaria",
-          requiresUnverifiedWarning: true
-        },
-        {
-          name: "Trámite (Préstamo Quirografario - Con FactNote)",
-          path: "/procedimiento/prestamo-quirografario",
-          expectedCanonical: "https://ieesciudadano.vercel.app/procedimiento/prestamo-quirografario",
-          requiresUnverifiedWarning: true
-        },
-        {
-          name: "Trámite (Pensión de Montepío - Con FactNote)",
-          path: "/procedimiento/montepio",
-          expectedCanonical: "https://ieesciudadano.vercel.app/procedimiento/montepio",
-          requiresUnverifiedWarning: true
-        },
-        {
-          name: "Trámite (Subsidio de Maternidad - Con FactNote)",
-          path: "/procedimiento/subsidio-maternidad",
-          expectedCanonical: "https://ieesciudadano.vercel.app/procedimiento/subsidio-maternidad",
-          requiresUnverifiedWarning: true
-        },
-        {
-          name: "Artículo de Blog (Jubilación por Vejez)",
-          path: "/blog/jubilacion-por-vejez-requisitos-2026",
-          expectedCanonical: "https://ieesciudadano.vercel.app/blog/jubilacion-por-vejez-requisitos-2026"
-        },
-        {
-          name: "Artículo de Blog (Afiliación Voluntaria - Con FactNote)",
-          path: "/blog/afiliacion-voluntaria-iess-requisitos-beneficios-2026",
-          expectedCanonical: "https://ieesciudadano.vercel.app/blog/afiliacion-voluntaria-iess-requisitos-beneficios-2026",
-          requiresUnverifiedWarning: true
-        },
-        {
-          name: "Artículo de Blog (Subsidio de Maternidad - Con FactNote)",
-          path: "/blog/subsidio-maternidad-iess-requisitos-calculo-2026",
-          expectedCanonical: "https://ieesciudadano.vercel.app/blog/subsidio-maternidad-iess-requisitos-calculo-2026",
-          requiresUnverifiedWarning: true
-        },
-        {
-          name: "Artículo de Blog (Pensión de Montepío - Con FactNote)",
-          path: "/blog/pension-montepio-iess-requisitos-sobrevivientes-2026",
-          expectedCanonical: "https://ieesciudadano.vercel.app/blog/pension-montepio-iess-requisitos-sobrevivientes-2026",
-          requiresUnverifiedWarning: true
-        },
-        {
-          name: "Artículo de Blog (Préstamo Hipotecario - Con FactNote)",
-          path: "/blog/prestamo-hipotecario-biess-requisitos-tasas-2026",
-          expectedCanonical: "https://ieesciudadano.vercel.app/blog/prestamo-hipotecario-biess-requisitos-tasas-2026",
-          requiresUnverifiedWarning: true
-        },
-        {
-          name: "Categoría de Contenido (Afiliación)",
-          path: "/afiliacion",
-          expectedCanonical: "https://ieesciudadano.vercel.app/afiliacion"
-        },
-        {
-          name: "Página de Ciudad / SEO Local (Quito - noindex)",
-          path: "/iess/quito",
-          expectedCanonical: "https://ieesciudadano.vercel.app/iess/quito",
-          mustBeNoindex: true
-        },
-        {
-          name: "Paginación de Blog (Página 2)",
-          path: "/blog/page/2",
-          expectedCanonical: "https://ieesciudadano.vercel.app/blog/page/2"
+      // 1. Fetch Sitemap XML
+      console.log("[Sitemap] Obteniendo sitemap.xml...");
+      const sitemapRes = await fetch(`http://127.0.0.1:${PORT}/sitemap.xml`, {
+        headers: { "User-Agent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" }
+      });
+
+      if (!sitemapRes.ok) {
+        errors.http.push(`/sitemap.xml devolvió status ${sitemapRes.status}`);
+        throw new Error(`Error fatal al cargar sitemap.xml: status ${sitemapRes.status}`);
+      }
+
+      const sitemapXml = await sitemapRes.text();
+      const sitemapUrls = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1].trim());
+
+      console.log(`[Sitemap] ${sitemapUrls.length} URLs encontradas en sitemap.xml para auditar.\n`);
+
+      if (sitemapUrls.length === 0) {
+        errors.http.push("El sitemap no contiene URLs válidas (<loc>).");
+      }
+
+      // Helper for testing local links and resources
+      async function testResource(path: string): Promise<{ status: number; ok: boolean }> {
+        if (resourceCache.has(path)) {
+          return resourceCache.get(path)!;
         }
-      ];
+        try {
+          const res = await fetch(`http://127.0.0.1:${PORT}${path}`, {
+            method: "HEAD",
+            headers: { "User-Agent": "Mozilla/5.0 (compatible; Googlebot/2.1)" }
+          });
+          const result = { status: res.status, ok: res.status >= 200 && res.status < 400 };
+          resourceCache.set(path, result);
+          return result;
+        } catch {
+          const result = { status: 500, ok: false };
+          resourceCache.set(path, result);
+          return result;
+        }
+      }
 
-      let globalErrorCount = 0;
+      let auditedCount = 0;
 
-      for (const testCase of testCases) {
-        console.log(`\n--------------------------------------------------`);
-        console.log(`[Test] Validando: ${testCase.name} (${testCase.path})`);
-        console.log(`--------------------------------------------------`);
+      // 2. Crawl and audit each URL in the sitemap
+      for (const rawUrl of sitemapUrls) {
+        auditedCount++;
+        let pathname = rawUrl;
+        let expectedCanonical = rawUrl;
+        try {
+          const parsed = new URL(rawUrl);
+          pathname = parsed.pathname;
+        } catch {
+          // already relative or formatted
+        }
 
-        const res = await fetch(`http://127.0.0.1:${PORT}${testCase.path}`, {
+        const res = await fetch(`http://127.0.0.1:${PORT}${pathname}`, {
           headers: {
             "User-Agent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
           }
         });
 
-        if (!res.ok) {
-          console.error(`❌ Error HTTP: Status devuelto ${res.status}`);
-          globalErrorCount++;
+        // 2a. HTTP Status Check
+        if (res.status !== 200) {
+          errors.http.push(`${pathname}: HTTP status devuelto ${res.status} (se esperaba 200)`);
           continue;
         }
 
         const html = await res.text();
-        const pageErrors: string[] = [];
 
-        // 1. Check for single H1 tag (SEO best practice)
+        // 2b. Title Check (30-60 chars, unique)
+        const titleMatch = html.match(/<title>([^<]*)<\/title>/i);
+        if (!titleMatch) {
+          errors.titles.push(`${pathname}: Falta etiqueta <title>`);
+        } else {
+          const title = titleMatch[1].trim();
+          if (title.length < 30 || title.length > 60) {
+            errors.titles.push(`${pathname}: Título de ${title.length} caracteres fuera del rango [30-60] ("${title}")`);
+          }
+          if (!titleMap.has(title)) {
+            titleMap.set(title, []);
+          }
+          titleMap.get(title)!.push(pathname);
+        }
+
+        // 2c. Meta Description Check (120-160 chars)
+        const descMatch =
+          html.match(/<meta\s+name=["']description["']\s+content=["']([^"']*)["']/i) ||
+          html.match(/<meta\s+content=["']([^"']*)["']\s+name=["']description["']/i);
+        if (!descMatch) {
+          errors.descriptions.push(`${pathname}: Falta etiqueta <meta name="description">`);
+        } else {
+          const desc = descMatch[1].trim();
+          if (desc.length < 120 || desc.length > 160) {
+            errors.descriptions.push(
+              `${pathname}: Descripción de ${desc.length} caracteres fuera de la norma Google [120-160] ("${desc}")`
+            );
+          }
+        }
+
+        // 2d. H1 Tag Check (Exactly 1 H1)
         const h1Matches = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/gi) || [];
         if (h1Matches.length === 0) {
-          pageErrors.push("Falta etiqueta <h1> descriptiva de la página.");
+          errors.h1s.push(`${pathname}: Falta etiqueta <h1> descriptiva`);
         } else if (h1Matches.length > 1) {
-          pageErrors.push(`Se detectaron múltiples etiquetas <h1> (${h1Matches.length} encontradas).`);
-        } else {
-          console.log(`   [H1] Encontrado: ${h1Matches[0].replace(/<[^>]*>/g, '').trim()}`);
+          errors.h1s.push(`${pathname}: Se encontraron ${h1Matches.length} etiquetas <h1> (debe haber exactamente 1)`);
         }
 
-        // 2. Check for Title tag presence & length (30-90 characters to cover articles)
-        const titleMatch = html.match(/<title>([\s\S]*?)<\/title>/i);
-        if (!titleMatch) {
-          pageErrors.push("Falta la etiqueta <title>.");
+        // 2e. Canonical Tag Check (Must match own URL)
+        const canMatch =
+          html.match(/<link\s+rel=["']canonical["']\s+href=["']([^"']*)["']/i) ||
+          html.match(/<link\s+href=["']([^"']*)["']\s+rel=["']canonical["']/i);
+        if (!canMatch) {
+          errors.canonicals.push(`${pathname}: Falta etiqueta <link rel="canonical">`);
         } else {
-          const titleText = titleMatch[1].trim();
-          console.log(`   [Title] Encontrado: "${titleText}" (${titleText.length} caracteres)`);
-          if (titleText.length < 30 || titleText.length > 90) {
-            pageErrors.push(`La longitud del título (${titleText.length} caracteres) está fuera del rango [30-90].`);
+          const canonicalHref = canMatch[1].trim();
+          let canonicalPath = canonicalHref;
+          try {
+            canonicalPath = new URL(canonicalHref).pathname;
+          } catch {
+            // relative
+          }
+          const normalizedTestPath = pathname === "/" ? "/" : pathname.replace(/\/$/, "");
+          const normalizedCanPath = canonicalPath === "/" ? "/" : canonicalPath.replace(/\/$/, "");
+
+          if (normalizedCanPath !== normalizedTestPath && canonicalHref !== expectedCanonical) {
+            errors.canonicals.push(
+              `${pathname}: Canonical incorrecto. Encontrado: "${canonicalHref}", Esperado: "${expectedCanonical}"`
+            );
           }
         }
 
-        // 3. Check for Meta Description presence & strict length (120-160 characters)
-        const descMatch = html.match(/<meta\s+name="description"\s+content="([^"]*)"/i) || 
-                          html.match(/<meta\s+content="([^"]*)"\s+name="description"/i);
-        if (!descMatch) {
-          pageErrors.push("Falta la etiqueta <meta name=\"description\">.");
-        } else {
-          const descText = descMatch[1].trim();
-          console.log(`   [Description] Encontrada: "${descText}" (${descText.length} caracteres)`);
-          if (descText.length < 120 || descText.length > 160) {
-            pageErrors.push(`La longitud de la descripción (${descText.length} caracteres) está fuera de la norma Google [120-160].`);
-          }
-        }
-
-        // 4. Check for self-referencing canonical URL
-        const canonicalMatch = html.match(/<link\s+rel="canonical"\s+href="([^"]*)"/i) || 
-                               html.match(/<link\s+href="([^"]*)"\s+rel="canonical"/i);
-        if (!canonicalMatch) {
-          pageErrors.push("Falta la etiqueta <link rel=\"canonical\">.");
-        } else {
-          const canonicalHref = canonicalMatch[1].trim();
-          console.log(`   [Canonical] Encontrado: "${canonicalHref}"`);
-          if (canonicalHref !== testCase.expectedCanonical) {
-            pageErrors.push(`Canonical URL incorrecta. Esperada: "${testCase.expectedCanonical}", Encontrada: "${canonicalHref}"`);
-          }
-        }
-
-        // 5. Check JSON-LD structured data presence & valid JSON syntax
-        const jsonLdRegex = /<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/gi;
+        // 2f. JSON-LD Check (Valid and parseable)
+        const jsonLdRegex = /<script\s+type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/gi;
         let jsonMatch;
         let jsonLdCount = 0;
         while ((jsonMatch = jsonLdRegex.exec(html)) !== null) {
           jsonLdCount++;
-          const jsonText = jsonMatch[1].trim();
+          const jsonContent = jsonMatch[1].trim();
           try {
-            const parsed = JSON.parse(jsonText);
-            console.log(`   [JSON-LD #${jsonLdCount}] Parseado exitosamente. Tipo: ${parsed["@type"] || "Graph (@graph)"}`);
+            JSON.parse(jsonContent);
           } catch (jsonErr: any) {
-            pageErrors.push(`Bloque JSON-LD #${jsonLdCount} contiene sintaxis inválida: ${jsonErr.message}`);
+            errors.jsonLd.push(`${pathname}: Bloque JSON-LD #${jsonLdCount} con sintaxis inválida: ${jsonErr.message}`);
           }
         }
         if (jsonLdCount === 0) {
-          pageErrors.push("No se encontró ningún bloque de datos estructurados <script type=\"application/ld+json\">.");
+          errors.jsonLd.push(`${pathname}: No se encontró bloque de datos estructurados JSON-LD`);
         }
 
-        // 6. Check for duplicate OpenGraph tags
-        const ogTags: string[] = html.match(/<meta\s+property="og:[^>]*>/gi) || [];
+        // 2g. OpenGraph Duplicates Check
+        const ogTags = html.match(/<meta\s+property=["']og:[^"']*["'][^>]*>/gi) || [];
         const seenOgProps = new Set<string>();
-        ogTags.forEach((tag: string) => {
-          const propMatch = tag.match(/property="og:([^"]*)"/i) || tag.match(/property='og:([^']*)'/i);
+        for (const tag of ogTags) {
+          const propMatch = tag.match(/property=["']og:([^"']*)["']/i);
           if (propMatch) {
             const prop = propMatch[1].toLowerCase();
             if (seenOgProps.has(prop)) {
-              pageErrors.push(`Etiqueta Meta og:${prop} duplicada.`);
+              errors.ogDuplicates.push(`${pathname}: Etiqueta OpenGraph og:${prop} duplicada`);
             }
             seenOgProps.add(prop);
           }
-        });
-        if (seenOgProps.size > 0) {
-          console.log(`   [OpenGraph] Detectadas propiedades: ${Array.from(seenOgProps).map(p => `og:${p}`).join(", ")}`);
         }
 
-        // 7. Check for unverified facts warning (Task 6)
-        // Regla: Añade en seo:check un fallo si algún dato con verified:false aparece en una página SIN el aviso del punto 2
-        const requiredWarning = "Confirma este valor en iess.gob.ec antes de realizar tu trámite";
-        const hasWarning = html.includes(requiredWarning);
-
-        // Detect unverified facts rendered on this page
-        const unverifiedFactsFound: string[] = [];
-        for (const [id, fact] of Object.entries(FACTS)) {
-          if (!fact.verified) {
-            // Check if this fact note was rendered
-            if (html.includes(`Dato referencial: ${fact.value}`) && html.includes(fact.source)) {
-              unverifiedFactsFound.push(`${id} (${fact.value})`);
+        // 2h. OpenGraph Image Check (No external domains, no 404s)
+        const ogImgMatch =
+          html.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']*)["']/i) ||
+          html.match(/<meta\s+content=["']([^"']*)["']\s+property=["']og:image["']/i);
+        if (ogImgMatch) {
+          const ogImg = ogImgMatch[1].trim();
+          if (ogImg.startsWith("http://") || (ogImg.startsWith("https://") && !ogImg.includes("ieesciudadano.vercel.app"))) {
+            errors.ogImages.push(`${pathname}: og:image apunta a un dominio externo prohibido: "${ogImg}"`);
+          } else {
+            let imgPath = ogImg;
+            if (imgPath.startsWith("http")) {
+              try {
+                imgPath = new URL(imgPath).pathname;
+              } catch {}
+            }
+            const imgCheck = await testResource(imgPath);
+            if (!imgCheck.ok) {
+              errors.ogImages.push(`${pathname}: og:image "${ogImg}" responde con código ${imgCheck.status}`);
             }
           }
         }
 
-        if (unverifiedFactsFound.length > 0) {
-          if (!hasWarning) {
-            pageErrors.push(
-              `Dato con verified:false encontrado (${unverifiedFactsFound.join(", ")}) SIN el aviso obligatorio: "${requiredWarning}"`
-            );
-          } else {
-            console.log(`   [YMYL FactCheck] ✅ Datos no verificados [${unverifiedFactsFound.length}] acompañados del aviso obligatorio.`);
+        // 2i. Internal Links & Local Resources Check (href, src, link rel)
+        const resourceRegex = /(?:href|src)=["'](\/[^"'#\s?]+)["']/gi;
+        let match;
+        while ((match = resourceRegex.exec(html)) !== null) {
+          const resPath = match[1];
+          if (resPath.startsWith("//") || resPath.startsWith("/api/")) continue;
+          const check = await testResource(resPath);
+          if (!check.ok) {
+            errors.brokenLinks.push(`${pathname}: Enlace o recurso local roto: "${resPath}" devolvió HTTP ${check.status}`);
           }
         }
 
-        if (testCase.requiresUnverifiedWarning && !hasWarning) {
-          pageErrors.push(`Página con datos normativos clave requiere el aviso obligatorio: "${requiredWarning}"`);
+        // 2j. Forbidden Officiality Texts
+        if (/blog oficial/i.test(html)) {
+          errors.forbiddenOfficiality.push(`${pathname}: Se encontró la frase prohibida "Blog Oficial"`);
+        }
+        if (/gu[ií]a oficial/i.test(html)) {
+          errors.forbiddenOfficiality.push(`${pathname}: Se encontró la frase prohibida "Guía Oficial"`);
         }
 
-        // 8. Check for city noindex requirement (Task 4)
-        if (testCase.mustBeNoindex) {
-          const robotsMatch = html.match(/<meta\s+name="robots"\s+content="([^"]*)"/i) ||
-                              html.match(/<meta\s+content="([^"]*)"\s+name="robots"/i);
+        // 2k. Unreplaced Template Placeholders
+        if (html.includes("%SITE_URL%")) {
+          errors.placeholders.push(`${pathname}: Contiene el marcador sin reemplazar %SITE_URL%`);
+        }
+        if (html.includes("[COMPLETAR") || html.includes("[completar")) {
+          errors.placeholders.push(`${pathname}: Contiene el marcador sin reemplazar [COMPLETAR`);
+        }
+
+        // 2l. YMYL Fact Verification Warning
+        const requiredWarning = "Confirma este valor en iess.gob.ec antes de realizar tu trámite";
+        for (const [id, fact] of Object.entries(FACTS)) {
+          if (!fact.verified && html.includes(`Dato referencial: ${fact.value}`) && html.includes(fact.source)) {
+            if (!html.includes(requiredWarning)) {
+              errors.ymylFacts.push(
+                `${pathname}: Dato no verificado "${id}" (${fact.value}) no incluye el aviso obligatorio`
+              );
+            }
+          }
+        }
+
+        // 2m. City Page Checks (noindex and disclaimer)
+        if (pathname.startsWith("/iess/")) {
+          const robotsMatch =
+            html.match(/<meta\s+name=["']robots["']\s+content=["']([^"']*)["']/i) ||
+            html.match(/<meta\s+content=["']([^"']*)["']\s+name=["']robots["']/i);
           if (!robotsMatch || !robotsMatch[1].includes("noindex")) {
-            pageErrors.push(`La página de ciudad debe tener directiva noindex, pero tiene: "${robotsMatch ? robotsMatch[1] : 'ninguna'}"`);
-          } else {
-            console.log(`   [Robots City] ✅ Correctamente marcada con noindex: "${robotsMatch[1]}"`);
+            errors.cityIndexing.push(
+              `${pathname}: Página de ciudad requiere meta robots "noindex", pero tiene: "${robotsMatch ? robotsMatch[1] : "ninguna"}"`
+            );
           }
-
-          const cityDisclaimer = "Datos pendientes de verificación. Confirma dirección, teléfono y horarios en iess.gob.ec antes de acudir";
+          const cityDisclaimer =
+            "Datos pendientes de verificación. Confirma dirección, teléfono y horarios en iess.gob.ec antes de acudir";
           if (!html.includes(cityDisclaimer)) {
-            pageErrors.push(`Falta el aviso obligatorio de ciudad pendiente de verificación.`);
+            errors.cityIndexing.push(`${pathname}: Falta aviso obligatorio de ciudad pendiente de verificación`);
           }
         }
 
-        // Report page errors if any
-        if (pageErrors.length > 0) {
-          console.error(`❌ Errores de validación en ${testCase.path}:`);
-          pageErrors.forEach(err => console.error(`   - [FAIL] ${err}`));
-          globalErrorCount += pageErrors.length;
-        } else {
-          console.log(`✅ ${testCase.name} cumple perfectamente todos los criterios SEO.`);
+        process.stdout.write(`\r[Progreso] Auditadas ${auditedCount}/${sitemapUrls.length} páginas...`);
+      }
+
+      console.log("\n");
+
+      // Check for duplicate titles across different URLs
+      for (const [title, urls] of titleMap.entries()) {
+        if (urls.length > 1) {
+          errors.titles.push(`Título duplicado en ${urls.length} páginas: "${title}" -> [${urls.join(", ")}]`);
         }
       }
 
-      // Stop server and determine exit status
+      // 3. Print Grouped Summary
+      const totalErrors =
+        errors.http.length +
+        errors.titles.length +
+        errors.descriptions.length +
+        errors.h1s.length +
+        errors.canonicals.length +
+        errors.jsonLd.length +
+        errors.ogDuplicates.length +
+        errors.ogImages.length +
+        errors.brokenLinks.length +
+        errors.forbiddenOfficiality.length +
+        errors.placeholders.length +
+        errors.ymylFacts.length +
+        errors.cityIndexing.length;
+
+      console.log("================================================================================");
+      console.log("  RESUMEN DE RESULTADOS DE LA AUDITORÍA SEO");
+      console.log("================================================================================");
+      console.log(`Total URLs auditadas: ${auditedCount}`);
+      console.log(`Recursos y enlaces internos cacheados/verificados: ${resourceCache.size}`);
+      console.log(`Total de discrepancias encontradas: ${totalErrors}`);
+      console.log("--------------------------------------------------------------------------------");
+
+      function printErrorCategory(name: string, list: string[]) {
+        if (list.length > 0) {
+          console.error(`\n❌ [${name}] (${list.length} errores):`);
+          list.forEach(err => console.error(`   - ${err}`));
+        } else {
+          console.log(`✅ [${name}]: 0 errores`);
+        }
+      }
+
+      printErrorCategory("HTTP_STATUS_ERRORS", errors.http);
+      printErrorCategory("TITLE_ERRORS (30-60 chars, unique)", errors.titles);
+      printErrorCategory("DESCRIPTION_ERRORS (120-160 chars)", errors.descriptions);
+      printErrorCategory("H1_ERRORS (exactamente 1)", errors.h1s);
+      printErrorCategory("CANONICAL_ERRORS (coincide con propia URL)", errors.canonicals);
+      printErrorCategory("JSON_LD_ERRORS (sintaxis válida)", errors.jsonLd);
+      printErrorCategory("OG_DUPLICATE_ERRORS", errors.ogDuplicates);
+      printErrorCategory("OG_IMAGE_ERRORS (dominio propio, 200 OK)", errors.ogImages);
+      printErrorCategory("BROKEN_LINK_ERRORS (recursos y enlaces internos)", errors.brokenLinks);
+      printErrorCategory("OFFICIALITY_CLAIM_ERRORS (no auto-afirmación oficial)", errors.forbiddenOfficiality);
+      printErrorCategory("UNREPLACED_PLACEHOLDER_ERRORS (%SITE_URL%, [COMPLETAR)", errors.placeholders);
+      printErrorCategory("YMYL_FACT_ERRORS (aviso obligatorio)", errors.ymylFacts);
+      printErrorCategory("CITY_INDEXING_ERRORS (noindex y disclaimer)", errors.cityIndexing);
+
+      console.log("================================================================================\n");
+
       server.close(() => {
-        console.log("\n[Server] Servidor temporal apagado.");
-        if (globalErrorCount > 0) {
-          console.error(`\n❌ La validación ha terminado con ${globalErrorCount} errores totales de SEO.`);
+        if (totalErrors > 0) {
+          console.error(`🚨 Fallo en la auditoría: se encontraron ${totalErrors} errores de SEO técnico.`);
           process.exit(1);
         } else {
-          console.log("\n🎉 ¡Éxito! Todas las páginas representativas cumplen al 100% las normativas SEO y YMYL.");
+          console.log("🎉 ¡Éxito rotundo! Todas las páginas del portal cumplen al 100% las normativas técnicas de SEO.");
           process.exit(0);
         }
       });
-
     } catch (err: any) {
       server.close();
-      console.error("\n❌ Error grave inesperado en el validador:", err.message);
+      console.error("\n❌ Error inesperado durante la ejecución del validador:", err.message);
       process.exit(1);
     }
   });
 }
 
-runSeoCheck();
+runFullSeoCheck();

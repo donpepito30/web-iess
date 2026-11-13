@@ -3,6 +3,7 @@ export interface SeoSubcategory {
   title: string;
   slug: string;
   description: string;
+  metaTitle?: string;
 }
 
 export interface SeoFaq {
@@ -68,19 +69,22 @@ En el Ecuador existen distintas modalidades de aportación para adaptarse a la r
         id: "afiliacion-voluntaria",
         title: "Afiliación Voluntaria",
         slug: "voluntaria",
-        description: "Modalidad para trabajadores independientes, profesionales sin relación de dependencia y ecuatorianos en el exterior."
+        metaTitle: "Afiliación Voluntaria al IESS: requisitos | IESS Asistente",
+        description: "Guía completa de afiliación voluntaria al IESS en Ecuador. Requisitos, porcentaje de aportación mensual del 17.60% y cobertura médica integral."
       },
       {
         id: "afiliacion-dependiente",
         title: "Relación de Dependencia",
         slug: "dependiente",
-        description: "Aportes obligatorios mediante rol de pagos para servidores públicos y trabajadores de empresas privadas."
+        metaTitle: "Afiliación en Dependencia IESS: aportes | IESS Asistente",
+        description: "Conoce las normativas de afiliación bajo relación de dependencia en el IESS. Porcentajes de aportes del empleador y trabajador en rol de pagos."
       },
       {
         id: "trabajo-hogar",
         title: "Trabajo no Remunerado del Hogar",
         slug: "trabajo-hogar",
-        description: "Régimen especial de afiliación para personas dedicadas exclusivamente a las labores del hogar, con subsidio estatal."
+        metaTitle: "Afiliación del Trabajo del Hogar al IESS | IESS Asistente",
+        description: "Aprende sobre la afiliación al trabajo no remunerado del hogar en el IESS. Requisitos, subsidio estatal progresivo y pensiones de vejez y muerte."
       }
     ],
     faqs: [
@@ -171,19 +175,22 @@ La consulta de tu historial de aportes está digitalizada y cuenta con todas las
         id: "mecanizado-aportes",
         title: "Mecanizado de Aportes",
         slug: "mecanizado",
-        description: "Consulta cronológica detallada de todas las imposiciones y sueldos declarados por empleador."
+        metaTitle: "Mecanizado de Aportes IESS: historial | IESS Asistente",
+        description: "Descarga el mecanizado del IESS con el detalle de tus aportaciones patronales por empresa. Guía paso a paso para revisar tu récord laboral activo."
       },
       {
         id: "reclamo-aportes-impagos",
         title: "Reclamo de Aportaciones",
         slug: "reclamos",
-        description: "Denuncias virtuales confidenciales por falta de afiliación o retrasos en el pago de aportes de tu empresa."
+        metaTitle: "Reclamo de Aportaciones al IESS: pasos | IESS Asistente",
+        description: "Cómo ingresar un reclamo formal por falta de aportes o mora patronal en el IESS. Protege tus semanas cotizadas con denuncias confidenciales."
       },
       {
         id: "correccion-tiempos",
         title: "Corrección de Datos Laborales",
         slug: "correccion",
-        description: "Trámite de rectificación cuando el sistema no refleja aportaciones antiguas o contiene inconsistencias de nombre."
+        metaTitle: "Corrección de Datos Laborales en el IESS | IESS Asistente",
+        description: "Procedimiento para solicitar la corrección de aportaciones no registradas o inconsistencias en nombres y cédula ante el IESS de Ecuador."
       }
     ],
     faqs: [
@@ -250,19 +257,22 @@ El BIESS ofrece financiamientos destinados a cubrir necesidades inmediatas de co
         id: "quirografarios",
         title: "Préstamos Quirografarios",
         slug: "quirografarios",
-        description: "Créditos rápidos de consumo garantizados por tus fondos acumulados de cesantía y reserva."
+        metaTitle: "Préstamos Quirografarios BIESS: trámite | IESS Asistente",
+        description: "Solicita préstamos quirografarios en el BIESS de forma inmediata. Requisitos mínimos, plazos de hasta 60 meses y garantías de cesantía o reserva."
       },
       {
         id: "hipotecarios",
         title: "Préstamos Hipotecarios",
         slug: "hipotecarios",
-        description: "Financiamiento a largo plazo para compra de casa, construcción, terreno o sustitución de hipotecas bancarias."
+        metaTitle: "Préstamos Hipotecarios BIESS: requisitos | IESS Asistente",
+        description: "Requisitos y simulación para obtener créditos hipotecarios del BIESS en Ecuador. Financiamiento de vivienda terminada, terrenos y construcción."
       },
       {
         id: "reestructuracion-deudas",
         title: "Refinanciamiento y Alivio",
         slug: "alivio-financiero",
-        description: "Planes especiales para reestructurar deudas de créditos vigentes y evitar procesos coactivos."
+        metaTitle: "Alivio Financiero BIESS: refinanciamiento | IESS Asistente",
+        description: "Opciones de refinanciamiento y reestructuración de préstamos quirografarios o hipotecarios del BIESS para afiliados con cuotas vencidas en mora."
       }
     ],
     faqs: [
@@ -344,13 +354,15 @@ Si has acumulado tus fondos en el IESS y deseas retirarlos, puedes hacerlo de ma
         id: "devolucion-fondos",
         title: "Devolución de Fondos",
         slug: "devolucion",
-        description: "Retiro y transferencia electrónica de tus fondos acumulados directamente a tu cuenta bancaria personal."
+        metaTitle: "Devolución de Fondos de Reserva del IESS | IESS Asistente",
+        description: "Requisitos y pasos para solicitar la devolución o retiro de tus fondos de reserva acumulados en el IESS directamente a tu cuenta bancaria."
       },
       {
         id: "solicitud-acumulacion",
         title: "Acumulación o Mensualización",
         slug: "acumulacion-mensualizacion",
-        description: "Envío o modificación de la solicitud virtual para decidir si ahorras tus fondos o los cobras en el rol de pagos."
+        metaTitle: "Acumulación de Fondos de Reserva IESS | IESS Asistente",
+        description: "Elige si deseas acumular tus fondos de reserva en el IESS para ganar rendimientos o mensualizarlos para cobrarlos directamente en tu rol de pagos."
       }
     ],
     faqs: [
@@ -422,13 +434,15 @@ Los afiliados que cumplan las condiciones para jubilarse por vejez, invalidez o 
         id: "retiro-cesantia",
         title: "Retiro y Devolución",
         slug: "retiro-cesantia",
-        description: "Proceso electrónico para solicitar el desembolso total de tus fondos acumulados a tu cuenta bancaria registrada."
+        metaTitle: "Retiro de Fondos de Cesantía del IESS | IESS Asistente",
+        description: "Guía de retiro de la cesantía acumulada en el IESS para afiliados cesantes. Requisitos legales, tiempos de espera de 60 días y solicitud virtual."
       },
       {
         id: "cesantia-garantia",
         title: "Uso de Cesantía como Garantía",
         slug: "garantia-cesantia",
-        description: "Regulaciones y saldos retenidos como colateral prendario automático de tus deudas vigentes con el BIESS."
+        metaTitle: "Cesantía como Garantía en Créditos BIESS | IESS Asistente",
+        description: "Descubre cómo utiliza el BIESS tus fondos de cesantía como garantía automática y obligatoria al solicitar préstamos quirografarios de consumo."
       }
     ],
     faqs: [
@@ -470,7 +484,7 @@ Los afiliados que cumplan las condiciones para jubilarse por vejez, invalidez o 
     slug: "jubilacion",
     description: "Toda la información sobre jubilación por vejez, invalidez, discapacidad y pensión de montepío. Tablas de aportes y cálculo de pensión.",
     metaTitle: "Jubilación IESS Ecuador - Tipos, Requisitos y Tabla de Aportes 2026",
-    metaDescription: "Guía completa de jubilación del IESS en Ecuador. Requisitos detallados de jubilación por vejez, pensiones por invalidez, discapacidad, cálculo de pensión y montepío.",
+    metaDescription: "Guía completa de jubilación del IESS en Ecuador. Requisitos de jubilación por vejez, pensiones por invalidez, cálculo de pensión y montepío.",
     pilarText: `## El Sistema de Pensiones del IESS en Ecuador
 
 La **Jubilación** es el derecho supremo que otorga el sistema de seguridad social del Ecuador a los afiliados que, tras años de esfuerzo y aportaciones constantes, deciden retirarse de la vida productiva activa. El régimen del IESS garantiza la entrega de una pensión mensual vitalicia, la cual se reajusta anualmente para mantener su poder adquisitivo frente a la inflación económica nacional.
@@ -501,19 +515,22 @@ Es una pensión mensual que se concede a las familias de los jubilados o afiliad
         id: "jubilacion-vejez",
         title: "Jubilación por Vejez",
         slug: "vejez",
-        description: "Requisitos de jubilación regular basada en la combinación de edad y años de aportaciones patronales."
+        metaTitle: "Pensión de Vejez del IESS: requisitos | IESS Asistente",
+        description: "Requisitos de edad e imposiciones para tramitar la jubilación ordinaria por vejez en el IESS. Cálculo pensional y registro de cuenta bancaria."
       },
       {
         id: "jubilacion-invalidez-causa",
         title: "Jubilación por Invalidez",
         slug: "invalidez",
-        description: "Pensión vitalicia para afiliados que sufren accidentes o enfermedades catastróficas validadas médicamente."
+        metaTitle: "Jubilación por Invalidez IESS: trámites | IESS Asistente",
+        description: "Pensión vitalicia por invalidez común o accidente en el IESS. Valoración de la comisión médica Comecap, requisitos y montos de compensación."
       },
       {
         id: "montepio-familiar",
         title: "Pensión de Montepío",
         slug: "montepio",
-        description: "Pensión de orfandad y viudez destinada a los derechohabientes del afiliado o jubilado fallecido."
+        metaTitle: "Pensión de Montepío IESS: viudez y orfandad | IESS Asistente",
+        description: "Trámite de pensión de montepío por viudez y orfandad en el IESS. Porcentajes de pensión para cónyuge e hijos menores, requisitos y documentos."
       }
     ],
     faqs: [
@@ -597,13 +614,15 @@ Cuando la red de hospitales propios del IESS no posee turnos disponibles para es
         id: "agendamiento-citas",
         title: "Agendamiento de Citas",
         slug: "citas-medicas",
-        description: "Pasos y números de teléfono oficiales para separar turnos de medicina general y especialidades médicas."
+        metaTitle: "Citas Médicas IESS: agendamiento y turnos | IESS Asistente",
+        description: "Cómo agendar citas médicas en el IESS por llamada telefónica al 140 o mediante el portal web oficial. Especialidades médicas y turnos asignados."
       },
       {
         id: "maternidad-subsidios",
         title: "Subsidios de Salud y Maternidad",
         slug: "subsidios-maternidad",
-        description: "Validación de descansos médicos de clínicas privadas y cobro de subsidios monetarios por enfermedad."
+        metaTitle: "Subsidios de Salud y Maternidad del IESS | IESS Asistente",
+        description: "Requisitos para el cobro del subsidio monetario por maternidad y reposo médico en el IESS. Validación de certificados médicos particulares."
       }
     ],
     faqs: [
@@ -669,13 +688,15 @@ Este certificado verifica si el afiliado o sus dependientes directos han acumula
         id: "certificado-afiliacion",
         title: "Certificado de Afiliación",
         slug: "afiliacion",
-        description: "Documento oficial gratuito que demuestra si eres o no afiliado activo al IESS."
+        metaTitle: "Certificado de Afiliación al IESS gratis | IESS Asistente",
+        description: "Descarga tu certificado de afiliación al IESS en formato PDF de forma gratuita e inmediata. Documento válido para trámites laborales y consulares."
       },
       {
         id: "certificado-no-adeudar",
         title: "Certificado de No Adeudar",
         slug: "no-adeudar",
-        description: "Certificado patronal que hace constar que no posees obligaciones económicas pendientes con el IESS."
+        metaTitle: "Certificado de No Adeudar al IESS online | IESS Asistente",
+        description: "Cómo obtener el certificado de no adeudar al IESS en línea. Comprueba que no registras obligaciones patronales ni deudas pendientes de crédito."
       }
     ],
     faqs: [
@@ -737,13 +758,15 @@ El incumplimiento de estas obligaciones patronales, el retraso en el pago de pla
         id: "registro-patronal",
         title: "Registro Patronal RUC",
         slug: "registro-patronal",
-        description: "Pasos para registrar tu empresa por primera vez ante el IESS y recibir tu clave patronal de operaciones."
+        metaTitle: "Registro Patronal RUC IESS: requisitos | IESS Asistente",
+        description: "Guía paso a paso para abrir el registro patronal en el IESS para personas naturales o empresas con RUC. Obtención de clave patronal por primera vez."
       },
       {
         id: "impugnacion-glosas",
         title: "Impugnación de Glosas",
         slug: "glosas",
-        description: "Procedimiento formal para apelar y justificar multas o glosas emitidas erróneamente por inspectores."
+        metaTitle: "Impugnación de Glosas Patronales IESS | IESS Asistente",
+        description: "Procedimiento administrativo para apelar y contestar glosas patronales del IESS. Plazos reglamentarios, descargos y acuerdos de pago en mora."
       }
     ],
     faqs: [
@@ -807,13 +830,15 @@ Nuestra plataforma integra un **Generador Inteligente de Oficios de Ley** que cu
         id: "oficios-ley",
         title: "Generador de Oficios",
         slug: "oficios",
-        description: "Formatos preestablecidos y autocompletados para desbloqueo de claves, quejas de salud, apelaciones de jubilación."
+        metaTitle: "Generador de Oficios y Solicitudes IESS | IESS Asistente",
+        description: "Genera oficios legales y cartas formales dirigidas al IESS con amparo normativo. Modelos gratuitos para impugnaciones, quejas y solicitudes."
       },
       {
         id: "simuladores-biess",
         title: "Calculadoras y Simuladores",
         slug: "simuladores",
-        description: "Proyecta los montos mínimos de tus préstamos quirografarios y jubilación ordinaria."
+        metaTitle: "Simuladores de Préstamos y Pensiones IESS | IESS Asistente",
+        description: "Simuladores interactivos para proyectar tu pensión estimada de jubilación por vejez y capacidad de endeudamiento en créditos quirografarios."
       }
     ],
     faqs: [
@@ -872,13 +897,15 @@ Explora nuestras secciones divididas por categorías temáticas para obtener ori
         id: "faq-afiliacion",
         title: "FAQs sobre Afiliación",
         slug: "afiliacion",
-        description: "Preguntas sobre costos, aportaciones voluntarias e ingresos mínimos declarables."
+        metaTitle: "Preguntas de Afiliación al IESS: dudas | IESS Asistente",
+        description: "Respuestas a las dudas más comunes sobre modalidades de afiliación, costos mensuales, cálculo de imposiciones y pérdida de beneficios en el IESS."
       },
       {
         id: "faq-prestamos",
         title: "FAQs sobre Créditos",
         slug: "prestamos",
-        description: "Interrogantes comunes de préstamos quirografarios, plazos, garantías y tasas de interés."
+        metaTitle: "Preguntas de Créditos BIESS: respuestas | IESS Asistente",
+        description: "Resuelve todas tus dudas sobre montos máximos, tasas de interés, garantías de fondos y refinanciamiento en préstamos quirografarios del BIESS."
       }
     ],
     faqs: [
@@ -937,13 +964,15 @@ Nuestra redacción monitorea permanentemente el Registro Oficial del Ecuador y l
         id: "noticias-reformas",
         title: "Reformas Legales",
         slug: "reformas-legales",
-        description: "Cobertura de decretos legislativos y cambios a la Ley de Seguridad Social y Jubilaciones."
+        metaTitle: "Reformas Legales a la Seguridad Social IESS | IESS Asistente",
+        description: "Análisis y resumen de las últimas reformas a la Ley de Seguridad Social y resoluciones del Consejo Directivo del IESS vigentes en Ecuador."
       },
       {
         id: "comunicados-atencion",
         title: "Horarios y Emergencias",
         slug: "canales-atencion",
-        description: "Alertas de mantenimiento de sistemas web, cierres de oficinas por feriados nacionales y contingencias de salud."
+        metaTitle: "Canales de Atención del IESS y Horarios | IESS Asistente",
+        description: "Conoce los canales autorizados del IESS para atención ciudadana, recepción de quejas, líneas telefónicas de emergencia y horarios de ventanilla."
       }
     ],
     faqs: [
@@ -985,7 +1014,7 @@ Nuestra redacción monitorea permanentemente el Registro Oficial del Ecuador y l
     title: "Guías y Artículos",
     slug: "guias-y-articulos",
     description: "Artículos educativos detallados y guías paso a paso sobre el funcionamiento de las jubilaciones, préstamos y aportes en Ecuador.",
-    metaTitle: "Blog Oficial de Guías del IESS - Trámites de Seguridad Social Explicados",
+    metaTitle: "Guías y Artículos de Seguridad Social IESS Ecuador 2026",
     metaDescription: "Encuentra tutoriales de alta calidad, desgloses legislativos y guías paso a paso para afiliados, jubilados y ecuatorianos en el extranjero.",
     pilarText: `## Espacio de Formación y Educación Financiera IESS
 
@@ -1003,13 +1032,15 @@ Nuestros redactores preparan artículos minuciosos con base en la normativa lega
         id: "blog-jubilados",
         title: "Guías para Jubilados",
         slug: "jubilados",
-        description: "Todo sobre el cálculo de pensiones, décimos de ley, montepío e inclusión digital."
+        metaTitle: "Guías para Jubilados del IESS: pensiones | IESS Asistente",
+        description: "Guías especializadas para jubilados y pensionistas del IESS en Ecuador. Fechas de pago de pensiones, décimos de ley y beneficios tributarios."
       },
       {
         id: "blog-afiliados",
         title: "Guías para Afiliados",
         slug: "afiliados",
-        description: "Pasos detallados para solicitudes de fondos, cesantías, afiliación voluntaria y créditos de consumo."
+        metaTitle: "Guías para Afiliados del IESS: derechos | IESS Asistente",
+        description: "Guías prácticas para afiliados activos y voluntarios del IESS. Derechos laborales, fondos de reserva, cesantías y préstamos quirografarios."
       }
     ],
     faqs: [
@@ -1021,7 +1052,7 @@ Nuestros redactores preparan artículos minuciosos con base en la normativa lega
     tools: [
       {
         title: "Explorar Todo el Catálogo de Guías",
-        description: "Utiliza el menú de pestañas superiores para ingresar de inmediato al Blog Oficial de Guías e inspeccionar los artículos completos.",
+        description: "Utiliza el menú de pestañas superiores para ingresar de inmediato a las Guías e inspeccionar los artículos completos.",
         type: "oficio",
         actionLabel: "Ir al Catálogo",
         query: "Hola, deseo ver los últimos artículos e investigaciones de seguridad social que hay en el blog."
@@ -1064,13 +1095,15 @@ Aportes patronales, créditos inmediatos, jubilaciones vitalicias o solicitudes 
         id: "directorio-digital",
         title: "Trámites Virtuales en Línea",
         slug: "virtuales",
-        description: "Diligencias que pueden realizarse en línea con firma electrónica o clave de afiliado sin acudir a ventanillas."
+        metaTitle: "Trámites Virtuales del IESS en Línea | IESS Asistente",
+        description: "Lista completa de trámites que puedes realizar 100% en línea desde el portal del IESS sin hacer filas ni acudir a ventanillas presenciales."
       },
       {
         id: "directorio-presencial",
         title: "Trámites Presenciales",
         slug: "presenciales",
-        description: "Diligencias de alta complejidad que exigen agendamiento de turnos previos para entrega física de carpetas y cédula."
+        metaTitle: "Trámites Presenciales del IESS: turnos | IESS Asistente",
+        description: "Directorio de trámites presenciales que requieren agendamiento de turnos en Centros de Atención Universal (CAU) del IESS en todo el país."
       }
     ],
     faqs: [

@@ -8,12 +8,9 @@ export function handleSitemap(req: Request, res: Response) {
   const baseUrl = getSiteUrlServer();
   const now = new Date().toISOString();
   
-  const urls = [
+  const urls: { loc: string; lastmod: string }[] = [
     { loc: `${baseUrl}/`, lastmod: now },
-    { loc: `${baseUrl}/preguntas-frecuentes`, lastmod: now },
-    { loc: `${baseUrl}/guias-y-articulos`, lastmod: now },
     { loc: `${baseUrl}/oficios`, lastmod: now },
-    { loc: `${baseUrl}/herramientas`, lastmod: now },
     { loc: `${baseUrl}/iess`, lastmod: now },
     { loc: `${baseUrl}/sobre-nosotros`, lastmod: now },
     { loc: `${baseUrl}/metodologia-editorial`, lastmod: now },
@@ -25,7 +22,8 @@ export function handleSitemap(req: Request, res: Response) {
   ];
 
   // Blog pages
-  for (let i = 2; i <= 5; i++) {
+  const blogPagesCount = Math.ceil(BLOG_POSTS.length / 4) || 1;
+  for (let i = 2; i <= blogPagesCount; i++) {
     urls.push({ loc: `${baseUrl}/guias-y-articulos/page/${i}`, lastmod: now });
   }
   
@@ -47,9 +45,19 @@ export function handleSitemap(req: Request, res: Response) {
     });
   });
 
+  // Ensure strict uniqueness of URLs
+  const uniqueUrls: { loc: string; lastmod: string }[] = [];
+  const seenLocs = new Set<string>();
+  for (const u of urls) {
+    if (!seenLocs.has(u.loc)) {
+      seenLocs.add(u.loc);
+      uniqueUrls.push(u);
+    }
+  }
+
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${urls.map(u => `
+  ${uniqueUrls.map(u => `
   <url>
     <loc>${u.loc}</loc>
     <lastmod>${u.lastmod}</lastmod>

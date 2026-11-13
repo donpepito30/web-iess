@@ -847,7 +847,7 @@ export function VerificaQuirografario() {
           </div>
           <div>
             <h2 className="text-lg font-extrabold text-[#0a1f42]">Autoevaluación de Requisitos para Préstamo Quirografario</h2>
-            <p className="text-xs text-slate-500">Responda a este cuestionario oficial para verificar si la plataforma del BIESS aceptará su crédito.</p>
+            <p className="text-xs text-slate-500">Responda a este cuestionario de autoevaluación para verificar si la plataforma del BIESS aceptará su crédito.</p>
           </div>
         </div>
 

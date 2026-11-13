@@ -9,6 +9,8 @@ export interface ProcedureSource {
 export interface Procedure {
   id: string;
   title: string;
+  seoTitle?: string;
+  metaDescription?: string;
   category: 'Jubilación' | 'Seguros y Subsidios' | 'Créditos' | 'Trámites y Afiliación';
   whoCanDo: string;
   requirements: string[];
@@ -25,6 +27,77 @@ export interface Procedure {
   sources: ProcedureSource[];
   factIds?: string[];
 }
+
+export const PROCEDURE_SEO: Record<string, { title: string; description: string }> = {
+  "jubilacion-vejez": {
+    title: "Jubilación por Vejez IESS: trámite | IESS Asistente",
+    description: "Requisitos de edad y años de aportaciones para tramitar la jubilación por vejez en el IESS en Ecuador. Cálculo de pensión y solicitud virtual."
+  },
+  "jubilacion-invalidez": {
+    title: "Jubilación por Invalidez IESS: guía | IESS Asistente",
+    description: "Requisitos y evaluación de la comisión médica Comecap para tramitar la pensión por invalidez definitiva en el IESS de Ecuador. Guía paso a paso."
+  },
+  "montepio": {
+    title: "Pensión de Montepío IESS: requisitos | IESS Asistente",
+    description: "Requisitos indispensables para tramitar la pensión de montepío por viudez y orfandad en el IESS de Ecuador. Solicitud y documentos necesarios."
+  },
+  "prestamo-quirografario": {
+    title: "Préstamo Quirografario BIESS: trámite | IESS Asistente",
+    description: "Pasos y requisitos indispensables para solicitar préstamos quirografarios en el BIESS en Ecuador. Montos máximos, plazos y desembolso bancario."
+  },
+  "prestamo-hipotecario": {
+    title: "Préstamo Hipotecario BIESS: trámite | IESS Asistente",
+    description: "Requisitos indispensables para financiar vivienda terminada, terreno o construcción con el BIESS en Ecuador. Tasas de interés y simulación en línea."
+  },
+  "afiliacion-voluntaria": {
+    title: "Afiliación Voluntaria al IESS: guía | IESS Asistente",
+    description: "Guía paso a paso para afiliarse voluntariamente al IESS en Ecuador. Porcentaje de aportación del 17.60%, requisitos mínimos y cobertura médica."
+  },
+  "subsidio-enfermedad": {
+    title: "Subsidio por Enfermedad IESS: trámite | IESS Asistente",
+    description: "Requisitos y validación de certificados médicos para cobrar el subsidio por incapacidad temporal en el IESS de Ecuador. Genera tu oficio gratis."
+  },
+  "subsidio-maternidad": {
+    title: "Subsidio de Maternidad IESS: requisitos | IESS Asistente",
+    description: "Requisitos y cálculo de los 84 días remunerados del subsidio de maternidad en el IESS de Ecuador. Validación médica y desembolso en cuenta bancaria."
+  },
+  "cesantia-desempleo": {
+    title: "Cesantía y Seguro de Desempleo IESS | IESS Asistente",
+    description: "Requisitos indispensables para solicitar el retiro de fondos de cesantía o el seguro de desempleo en el IESS de Ecuador tras 60 días cesante."
+  },
+  "responsabilidad-patronal": {
+    title: "Responsabilidad Patronal IESS: guía | IESS Asistente",
+    description: "Requisitos y plazos reglamentarios para evitar la responsabilidad patronal en el IESS de Ecuador según la Resolución C.D. 677. Descarga tu descargo."
+  },
+  "aviso-entrada-salida": {
+    title: "Aviso de Entrada y Salida del IESS | IESS Asistente",
+    description: "Requisitos indispensables y plazos para registrar avisos de entrada y salida de trabajadores en el IESS de Ecuador. Evita sanciones patronales."
+  },
+  "actualizacion-datos": {
+    title: "Actualización de Datos en el IESS | IESS Asistente",
+    description: "Pasos para registrar o actualizar correo electrónico, celular y cuenta bancaria en el IESS de Ecuador sin acudir a ventanillas presenciales."
+  },
+  "quejas-canales-denuncia": {
+    title: "Canales de Denuncia del IESS: guía | IESS Asistente",
+    description: "Canales autorizados de recepción de denuncias, mala atención y quejas administrativas del IESS en Ecuador. Trámite en línea y vía WhatsApp."
+  },
+  "como-obtener-clave-iess-primera-vez": {
+    title: "Clave del IESS por Primera Vez: paso | IESS Asistente",
+    description: "Requisitos indispensables para generar, desbloquear o recuperar tu clave de afiliado del IESS en Ecuador de forma virtual y 100% gratuita."
+  },
+  "como-consultar-aportes-iess-historial-laboral": {
+    title: "Consulta de Aportes e Historial IESS | IESS Asistente",
+    description: "Pasos para consultar tus aportaciones mensuales y descargar el historial laboral mecanizado en el portal del IESS en Ecuador sin intermediarios."
+  },
+  "como-saber-si-estoy-afiliado-al-iess": {
+    title: "Consulta de Afiliación al IESS: pasos | IESS Asistente",
+    description: "Requisitos y pasos indispensables para verificar si te encuentras activo en el seguro social del IESS en Ecuador y descargar tu certificado oficial."
+  },
+  "afiliacion-trabajo-hogar-iess-requisitos": {
+    title: "Afiliación al Trabajo del Hogar IESS | IESS Asistente",
+    description: "Requisitos y montos para la afiliación no remunerada del trabajo del hogar en el IESS de Ecuador. Subsidio del Estado y pensión de jubilación."
+  }
+};
 
 export const PROCEDURES_DATA: Procedure[] = [
   {

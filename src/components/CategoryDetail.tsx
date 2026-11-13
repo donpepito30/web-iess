@@ -159,7 +159,7 @@ export default function CategoryDetail({
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-2.5">
               <span className="text-xs bg-[#c9a84c] text-[#0a1f42] font-black px-2.5 py-1 rounded uppercase tracking-wider">
-                Guía Oficial de Consulta
+                Guía Independiente de Consulta
               </span>
               {activeSubcategory && (
                 <span className="text-xs bg-white/10 text-white font-bold px-2.5 py-1 rounded">

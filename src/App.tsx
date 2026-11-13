@@ -14,8 +14,7 @@ import {
 import { motion, AnimatePresence } from "motion/react";
 import ReactMarkdown from "react-markdown";
 
-// Core Data imports
-import { PROCEDURES_DATA, Procedure } from "./data/procedures";
+import { PROCEDURES_DATA, Procedure, PROCEDURE_SEO } from "./data/procedures";
 import { OFICIOS_TEMPLATES } from "./data/templates";
 import { BLOG_POSTS } from "./data/blogPosts";
 import type { BlogPost } from "./data/blogPosts";
@@ -477,7 +476,7 @@ export default function App() {
       setCurrentRoute('tool');
       setActiveTool('calculadora-jubilacion');
       updateMetaTags({
-        title: "Calculadora de Jubilación IESS Ecuador " + CURRENT_YEAR + " | IESS Asistente",
+        title: "Calculadora de Jubilación IESS: simulación | IESS Asistente",
         description: "Simule su elegibilidad para la jubilación por vejez del IESS ingresando su edad y aportes. Cálculos ajustados a la Ley de Seguridad Social.",
         url: "/herramientas/calculadora-jubilacion",
         jsonLd: {
@@ -493,7 +492,7 @@ export default function App() {
       setCurrentRoute('tool');
       setActiveTool('calculadora-aporte-afiliacion-voluntaria');
       updateMetaTags({
-        title: "Calculadora de Aporte de Afiliación Voluntaria IESS | IESS Asistente",
+        title: "Calculadora Aporte Voluntario IESS: cuota | IESS Asistente",
         description: "Simulador interactivo para calcular el valor exacto de su aporte mensual como afiliado voluntario del IESS en Ecuador según su salario.",
         url: "/herramientas/calculadora-aporte-afiliacion-voluntaria",
         jsonLd: {
@@ -509,7 +508,7 @@ export default function App() {
       setCurrentRoute('tool');
       setActiveTool('calculadora-subsidio-maternidad');
       updateMetaTags({
-        title: "Calculadora de Subsidio de Maternidad IESS | IESS Asistente",
+        title: "Calculadora Subsidio Maternidad IESS: guía | IESS Asistente",
         description: "Simule y calcule los montos compartidos del IESS (75%) y empleador (25%) durante su licencia de maternidad de 84 días en Ecuador.",
         url: "/herramientas/calculadora-subsidio-maternidad",
         jsonLd: {
@@ -668,9 +667,13 @@ export default function App() {
         setSelectedProcedure(proc);
         setCurrentRoute('procedure');
         setMainTab('consultas');
+        const seo = PROCEDURE_SEO[proc.id] || {
+          title: `${proc.title} IESS: guía 2026 | IESS Asistente`,
+          description: `Requisitos indispensables y guía paso a paso para tramitar ${proc.title} en el IESS de Ecuador. Genera tu oficio gratis.`
+        };
         updateMetaTags({
-          title: proc.title + ": requisitos y pasos " + CURRENT_YEAR + " | IESS Asistente",
-          description: "Requisitos indispensables, guía paso a paso y errores a evitar para tramitar " + proc.title + " en el IESS de Ecuador. Genera tu oficio gratis.",
+          title: seo.title,
+          description: seo.description,
           url: `/procedimiento/${slug}`,
           jsonLd: getProcedureGraph(getSiteUrlClient(), proc)
         });
@@ -685,8 +688,8 @@ export default function App() {
       setMainTab('blog');
       
       const title = p <= 1
-        ? "Blog de Guías Prácticas del IESS " + CURRENT_YEAR + " | IESS Asistente"
-        : "Blog de Guías de Seguridad Social - Página " + p + " | IESS Asistente";
+        ? `Guías y Artículos del IESS Ecuador ${CURRENT_YEAR} | IESS Asistente`
+        : `Guías de Seguridad Social IESS - Pág. ${p} | IESS Asistente`;
       const description = p <= 1
         ? "Encuentra explicaciones sencillas, normativas vigentes y guías detalladas de jubilaciones, préstamos BIESS y trámites del IESS de Ecuador."
         : "Página " + p + " del archivo de guías y normativas del IESS de Ecuador. Información de requisitos y resoluciones del Consejo Directivo.";
@@ -716,8 +719,10 @@ export default function App() {
         setSelectedPost(post);
         setCurrentRoute('blog');
         setMainTab('blog');
+        const postTitle = post.seoTitle || post.title;
+        const title = postTitle.includes("| IESS Asistente") ? postTitle : `${postTitle} | IESS Asistente`;
         updateMetaTags({
-          title: post.title + " | IESS Asistente",
+          title,
           description: post.metaDescription,
           url: `/blog/${post.slug}`,
           image: post.image,
@@ -729,7 +734,7 @@ export default function App() {
       setCurrentRoute('home');
       setMainTab('consultas');
       updateMetaTags({
-        title: `Directorio Local IESS de Oficinas y Hospitales ${CURRENT_YEAR} | IESS Asistente`,
+        title: "IESS Directorio de Oficinas y Hospitales | IESS Asistente",
         description: "Consulta el directorio independiente de oficinas, CAUs y hospitales del IESS por provincia y ciudad de Ecuador. Información real verificada.",
         url: "/iess"
       });
@@ -754,9 +759,20 @@ export default function App() {
           lng: cityData.lng
         };
 
+        let cityTitle = `IESS ${cityNameCap}: oficinas y trámites`;
+        if (cityNameCap === "Puerto Baquerizo Moreno") {
+          cityTitle = "IESS Baquerizo Moreno: oficinas y CAU";
+        } else if (cityNameCap === "Francisco de Orellana") {
+          cityTitle = "IESS Francisco de Orellana: trámites y CAU";
+        } else if (cityTitle.length < 33) {
+          cityTitle = `IESS ${cityNameCap}: oficinas y trámites locales`;
+        }
+
         updateMetaTags({
-          title: "IESS " + cityNameCap + ": oficinas, turnos y trámites " + CURRENT_YEAR + " | IESS Asistente",
-          description: "Guía local para IESS " + cityNameCap + ". Consulta el horario de atención, ubicación física, requisitos de afiliación y trámites en tu provincia.",
+          title: cityTitle + " | IESS Asistente",
+          description: cityNameCap.toLowerCase() === "santo domingo"
+            ? "Dirección de oficinas y CAUs del IESS en Santo Domingo, Tsáchilas. Horarios y trámites. Datos pendientes de verificación; confirme en iess.gob.ec."
+            : `Dirección de oficinas y CAUs del IESS en ${cityNameCap}, ${cityData.province}. Horarios y trámites. Datos pendientes de verificación; confirme en iess.gob.ec.`,
           url: `/iess/${city}`,
           robots,
           jsonLd: getCityGraph(getSiteUrlClient(), city, locData)
@@ -779,10 +795,27 @@ export default function App() {
           setCurrentRoute('category');
           setMainTab('consultas');
           
+          const catSeoTitles: Record<string, string> = {
+            "afiliacion": "Afiliación al IESS: requisitos y guía 2026 | IESS Asistente",
+            "historia-laboral": "Historia Laboral IESS: consulta de aportes | IESS Asistente",
+            "prestamos-biess": "Préstamos BIESS: créditos quirografarios | IESS Asistente",
+            "fondos-reserva": "Fondos de Reserva IESS: retiro y requisitos | IESS Asistente",
+            "cesantia": "Fondo de Cesantía IESS: retiro y requisitos | IESS Asistente",
+            "jubilacion": "Jubilación IESS: requisitos de vejez | IESS Asistente",
+            "salud": "Salud y Citas Médicas IESS: turnos y guía | IESS Asistente",
+            "certificados": "Certificados del IESS: afiliación y deudas | IESS Asistente",
+            "empleadores": "Empleadores IESS: obligaciones y planillas | IESS Asistente",
+            "herramientas": "Herramientas Digitales IESS: oficios y ley | IESS Asistente",
+            "preguntas-frecuentes": "Preguntas Frecuentes IESS: respuestas 2026 | IESS Asistente",
+            "noticias": "Noticias del IESS: reformas y novedades | IESS Asistente",
+            "guias-y-articulos": "Guías y Artículos IESS: trámites y dudas | IESS Asistente",
+            "tramites": "Directorio de Trámites IESS: pasos en línea | IESS Asistente"
+          };
+
           const url = pathParts.length > 1 ? `/${pathParts[0]}/${pathParts[1]}` : `/${pathParts[0]}`;
           const title = pathParts.length > 1 && matchedSub
-            ? matchedSub.title + " - " + matchedCategory.title + " | IESS Asistente"
-            : matchedCategory.title + " en el IESS: guía " + CURRENT_YEAR;
+            ? (matchedSub.metaTitle || matchedSub.title + " - " + matchedCategory.title + " | IESS Asistente")
+            : (catSeoTitles[matchedCategory.slug] || `${matchedCategory.title} IESS: guía ${CURRENT_YEAR} | IESS Asistente`);
             
           updateMetaTags({
             title,
@@ -1118,7 +1151,7 @@ export default function App() {
               className="inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-amber-200 tracking-wide mb-4 shadow-sm mx-auto"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
-              <span>Portal Ciudadano Independiente · Normativa Oficial 2026</span>
+              <span>Portal Ciudadano Independiente · Normativa Vigente 2026</span>
             </motion.div>
 
             {/* Main Title - PERFECT MATHEMATICAL AND OPTICAL ALIGNMENT */}
@@ -1141,7 +1174,7 @@ export default function App() {
               transition={{ delay: 0.18, duration: 0.35 }}
               className="text-sm sm:text-base md:text-lg text-slate-300 max-w-xl mx-auto mt-4 text-center font-normal leading-relaxed font-sans [text-wrap:balance]"
             >
-              Consulta requisitos oficiales, genera oficios de ley gratuitos y resuelve tus dudas con nuestro asistente legal interactivo.
+              Consulta requisitos actualizados, genera oficios de ley gratuitos y resuelve tus dudas con nuestro asistente legal interactivo.
             </motion.p>
 
             {/* SearchBar Container */}
@@ -1206,7 +1239,7 @@ export default function App() {
                   <span className="text-base sm:text-lg font-black text-white tabular-nums tracking-tight">13+ Guías</span>
                 </div>
                 <p className="text-[11px] sm:text-xs text-slate-300 font-medium leading-snug">
-                  Paso a paso con requisitos oficiales actualizados
+                  Paso a paso con requisitos normativos actualizados
                 </p>
               </div>
 

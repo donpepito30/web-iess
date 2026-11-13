@@ -8,6 +8,7 @@ export interface BlogPost {
   id: string;
   slug: string;
   title: string;
+  seoTitle?: string;
   metaDescription: string;
   keywords: string[];
   content: string;
@@ -29,6 +30,7 @@ export const BLOG_POSTS: BlogPost[] = [
     id: 'jubilacion-2026',
     slug: 'jubilacion-por-vejez-requisitos-2026',
     title: 'Jubilación por Vejez IESS 2026: Guía de Requisitos y Pasos',
+    seoTitle: 'Jubilación por Vejez IESS: guía 2026 | IESS Asistente',
     metaDescription: 'Todo lo que necesitas saber sobre jubilación por vejez en IESS Ecuador 2026. Requisitos actualizados, pasos, montos y combinaciones de edad y aportes.',
     keywords: ['jubilación IESS', 'jubilación por vejez Ecuador', 'requisitos jubilación IESS', 'cómo jubilarme IESS'],
     content: `
@@ -114,6 +116,7 @@ Si quieres calcular de manera personalizada o necesitas ayuda redactando oficios
     id: 'prestamo-biess-2026',
     slug: 'prestamo-quirografario-biess-requisitos-montos-2026',
     title: 'Préstamo Quirografario BIESS 2026: Requisitos y Cómo Solicitarlo',
+    seoTitle: 'Préstamos Quirografarios BIESS: guía | IESS Asistente',
     metaDescription: 'Guía actualizada 2026 sobre préstamo quirografario BIESS. Requisitos para afiliados activos y jubilados, montos máximos, pasos y plazos de desembolso.',
     keywords: ['préstamo BIESS', 'préstamo quirografario Ecuador', 'crédito BIESS', 'BIESS requisitos'],
     content: `
@@ -195,7 +198,8 @@ Si tienes problemas con retenciones de tu sueldo o necesitas justificar un recla
     id: 'afiliacion-voluntaria-2026',
     slug: 'afiliacion-voluntaria-iess-requisitos-beneficios-2026',
     title: 'Afiliación voluntaria IESS 2026: cuánto se paga al mes',
-    metaDescription: 'Cuánto se paga por la afiliación voluntaria al IESS en 2026. Aporte mensual según sueldo, requisitos, cobertura médica, préstamos BIESS y trámite paso a paso.',
+    seoTitle: 'Afiliación Voluntaria al IESS: costo | IESS Asistente',
+    metaDescription: 'Aporte mensual de afiliación voluntaria al IESS en 2026: cálculo del 17.60% del sueldo, requisitos, cobertura médica, préstamos BIESS y trámite en línea.',
     keywords: [
       'afiliación voluntaria IESS',
       'seguro voluntario iess valor a pagar 2026',
@@ -456,6 +460,7 @@ Si dejas de pagar por más de 60 días continuos, el IESS da de baja automática
     id: 'subsidio-maternidad-2026',
     slug: 'subsidio-maternidad-iess-requisitos-calculo-2026',
     title: 'Subsidio de maternidad IESS 2026: requisitos y cuánto pagan',
+    seoTitle: 'Subsidio de Maternidad IESS: cálculo | IESS Asistente',
     metaDescription: 'Guía 2026 del subsidio de maternidad IESS: requisitos de 12 aportes, cálculo de los 84 días al 100%, certificado médico, trámite y acreditación.',
     keywords: [
       'subsidio de maternidad',
@@ -709,7 +714,8 @@ En el lamentable evento de parto prematuro con feto viable o fallecimiento neona
     id: 'prestamo-hipotecario-2026',
     slug: 'prestamo-hipotecario-biess-requisitos-tasas-2026',
     title: 'Préstamo Hipotecario BIESS 2026: Requisitos y Tasas de Interés',
-    metaDescription: 'Guía detallada para solicitar un préstamo hipotecario BIESS en 2026. Conoce las tasas de interés preferenciales desde el 5.0%, plazos de hasta 25 años y montos.',
+    seoTitle: 'Préstamos Hipotecarios BIESS: tasas | IESS Asistente',
+    metaDescription: 'Préstamo hipotecario BIESS 2026: tasas preferenciales desde el 5.0%, requisitos de afiliación, plazos de 25 años y financiamiento de vivienda en Ecuador.',
     keywords: ['préstamo hipotecario BIESS', 'casa propia BIESS', 'crédito vivienda ecuador', 'tasa interés BIESS', 'requisitos hipotecario BIESS'],
     content: `
 # Préstamo Hipotecario BIESS 2026: Requisitos y Tasas de Interés
@@ -890,7 +896,8 @@ La sustitución de hipoteca es un mecanismo financiero mediante el cual el BIESS
     id: 'cesantia-desempleo-2026',
     slug: 'cesantia-seguro-desempleo-iess-como-retirar-2026',
     title: 'Cesantía y Seguro de Desempleo IESS 2026: Cómo Retirar Fondos',
-    metaDescription: 'Aprende a retirar tus fondos de cesantía acumulados y a solicitar el seguro de desempleo del IESS en 2026. Plazos de 60 días, requisitos del C.D. 515 y montos.',
+    seoTitle: 'Cesantía y Seguro Desempleo del IESS | IESS Asistente',
+    metaDescription: 'Cómo retirar tu cesantía acumulada y solicitar el seguro de desempleo del IESS en 2026. Requisitos de la Resolución C.D. 515, plazos de 60 días y montos.',
     keywords: ['cesantía IESS', 'seguro de desempleo Ecuador', 'retiro cesantía en línea', 'fondos cesantía IESS'],
     content: `
 # Cesantía y Seguro de Desempleo IESS: Guía de Retiro en Caso de Cese Laboral
@@ -928,6 +935,7 @@ Si el despido fue intempestivo o involuntario, el asegurado puede optar por el s
     id: 'fondos-reserva-2026',
     slug: 'fondos-de-reserva-iess-consulta-acumulacion-retiro-2026',
     title: 'Fondos de Reserva IESS 2026: Consulta, Retiro y Acumulación',
+    seoTitle: 'Fondos de Reserva del IESS: retiro | IESS Asistente',
     metaDescription: 'Descubre cómo consultar y retirar tus Fondos de Reserva en el IESS en 2026. Reglas de 36 aportes, pago mensualizado vs acumulado y solicitud bancaria.',
     keywords: ['fondos de reserva IESS', 'consultar fondos reserva', 'retirar fondos de reserva', 'acumulación fondos reserva'],
     content: `
@@ -962,6 +970,7 @@ El **Fondo de Reserva** es un beneficio de ley equivalente a un mes de sueldo po
     id: 'montepio-pension-2026',
     slug: 'pension-montepio-iess-requisitos-sobrevivientes-2026',
     title: 'Pensión de viudez y orfandad IESS: requisitos y trámite',
+    seoTitle: 'Pensión de Montepío del IESS: trámite | IESS Asistente',
     metaDescription: 'Guía completa sobre la pensión de viudez y orfandad (montepío) del IESS en 2026. Requisitos de aportes del fallecido, documentos, pasos y porcentajes.',
     keywords: [
       'viudez y orfandad',
@@ -1192,7 +1201,8 @@ Al cumplir los 18 años, el beneficiario de orfandad debe ingresar periódicamen
     id: 'jubilacion-invalidez-2026',
     slug: 'jubilacion-invalidez-iess-requisitos-comecap-2026',
     title: 'Jubilación por Invalidez IESS 2026: Requisitos y Evaluación Comecap',
-    metaDescription: 'Cómo tramitar la jubilación por invalidez del IESS en 2026. Evaluación de la Comisión Médica (Comecap), grados de incapacidad laboral y aportaciones mínimas.',
+    seoTitle: 'Jubilación por Invalidez IESS: pasos | IESS Asistente',
+    metaDescription: 'Jubilación por invalidez en el IESS en 2026. Evaluación de la Comisión Médica Comecap, grados de incapacidad laboral y requisitos de aportaciones mínimas.',
     keywords: ['jubilación por invalidez IESS', 'comecap iess', 'enfermedad catastrófica iess jubilación', 'incapacidad permanente iess'],
     content: `
 # Jubilación por Invalidez en el IESS: Proceso y Dictamen Médico
@@ -1221,7 +1231,8 @@ La **Jubilación por Invalidez** protege a los trabajadores que, a causa de un a
     id: 'glosas-patronales-2026',
     slug: 'impugnacion-glosas-mora-patronal-iess-convenio-pago-2026',
     title: 'Impugnación de Glosas Patronales IESS 2026: Plazos y Descargos',
-    metaDescription: 'Guía legal para empleadores y afiliados sobre glosas patronales del IESS en 2026. Plazo de 20 días de impugnación, acuerdos de purga de mora y Resolución C.D. 677.',
+    seoTitle: 'Impugnación de Glosas IESS: plazos | IESS Asistente',
+    metaDescription: 'Guía para impugnar glosas patronales del IESS en 2026. Plazo legal de 20 días, descargos normativos, purga de mora y convenios de pago.',
     keywords: ['glosas patronales IESS', 'mora patronal ecuador', 'impugnar glosa IESS', 'convenio de pago IESS'],
     content: `
 # Impugnación de Glosas y Resolución de Mora Patronal ante el IESS
@@ -1255,7 +1266,8 @@ Los empleadores que mantengan moras pueden acogerse a los **Convenios de Purga d
     id: 'aviso-entrada-salida-2026',
     slug: 'aviso-entrada-salida-iess-plazos-multas-empleadores-2026',
     title: 'Avisos de Entrada y Salida IESS 2026: Plazos y Sanciones',
-    metaDescription: 'Conoce los plazos legales para registrar el aviso de entrada (primer día) y aviso de salida (15 días) en el IESS para 2026. Evita multas y responsabilidad patronal.',
+    seoTitle: 'Avisos de Entrada y Salida IESS: ley | IESS Asistente',
+    metaDescription: 'Plazos legales de aviso de entrada y aviso de salida en el IESS para 2026. Evita multas y responsabilidad patronal registrando a tiempo.',
     keywords: ['aviso de entrada IESS', 'aviso de salida IESS', 'afiliación de trabajadores ecuador', 'multas IESS empleador'],
     content: `
 # Avisos de Entrada y Salida en el IESS: Marco Legal para Empleadores y Trabajadores
@@ -1289,6 +1301,7 @@ El registro correcto del inicio y fin de la relación laboral es una de las obli
     id: 'actualizacion-datos-cau-2026',
     slug: 'actualizacion-datos-cuenta-bancaria-cau-iess-2026',
     title: 'Actualización de Datos IESS 2026: Trámite Virtual de Cuenta Bancaria',
+    seoTitle: 'Actualizar Datos y Cuenta en el IESS | IESS Asistente',
     metaDescription: 'Cómo actualizar tu correo, teléfono y validar tu cuenta bancaria en el IESS en 2026 sin acudir a ventanillas. Requisitos de la Resolución C.D. 625.',
     keywords: ['actualizar datos IESS', 'registrar cuenta bancaria IESS', 'clave IESS desbloqueo', 'CAU iess turnos'],
     content: `
@@ -1319,6 +1332,7 @@ Mantener actualizados tus datos de contacto y tu cuenta bancaria es indispensabl
     id: 'como-obtener-clave-iess-primera-vez',
     slug: 'como-obtener-clave-iess-primera-vez',
     title: 'Cómo obtener la clave del IESS por primera vez y recuperarla',
+    seoTitle: 'Clave del IESS por Primera Vez: guía | IESS Asistente',
     metaDescription: 'Guía paso a paso para obtener tu clave de afiliado del IESS por primera vez en 2026. Proceso virtual, desbloqueo y recuperación rápida.',
     keywords: ['clave del iess por primera vez', 'recuperar clave iess', 'desbloquear clave iess', 'solicitar clave iess'],
     category: 'Trámites',
@@ -1474,6 +1488,7 @@ Efectivamente, la clave personal que asigne a su cuenta de asegurado en el porta
     id: 'como-consultar-aportes-iess-historial-laboral',
     slug: 'como-consultar-aportes-iess-historial-laboral',
     title: 'Cómo consultar aportes del IESS e historial laboral en línea',
+    seoTitle: 'Consulta de Aportes del IESS en línea | IESS Asistente',
     metaDescription: 'Guía completa para consultar tus aportaciones del IESS y descargar tu historial laboral en 2026. Requisitos, cálculo de aportes y pasos digitales.',
     keywords: ['consultar aportes iess', 'historial laboral iess', 'aportaciones iess', 'iess historial de aportes'],
     category: 'Trámites',
@@ -1624,7 +1639,8 @@ Sí, las aportaciones realizadas de forma independiente como afiliado voluntario
     id: 'como-saber-si-estoy-afiliado-al-iess',
     slug: 'como-saber-si-estoy-afiliado-al-iess',
     title: 'Cómo saber si estoy afiliado al IESS: Consulta de estado',
-    metaDescription: 'Guía oficial paso a paso para consultar si estás afiliado al IESS en 2026. Descarga tu certificado de afiliación y verifica tu estado laboral actual.',
+    seoTitle: 'Cómo Saber si Estoy Afiliado al IESS | IESS Asistente',
+    metaDescription: 'Guía independiente para consultar si estás afiliado al IESS en 2026. Descarga tu certificado de afiliación y verifica tu estado laboral actual.',
     keywords: ['cómo saber si estoy afiliado al IESS', 'consultar afiliación IESS', 'certificado de afiliación IESS', 'verificar afiliación IESS'],
     category: 'Trámites',
     publishDate: '2026-03-15',
@@ -1636,7 +1652,7 @@ Sí, las aportaciones realizadas de forma independiente como afiliado voluntario
     relatedSlugs: [
       'como-obtener-clave-iess-primera-vez',
       'como-consultar-aportes-iess-historial-laboral',
-      'certificado-de-afiliacion-iess-descargar'
+      'afiliacion-voluntaria-iess-requisitos-beneficios-2026'
     ],
     sources: [
       { label: "IESS - Consulta de Afiliación", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" },
@@ -1766,7 +1782,7 @@ El Reglamento de Salud del IESS contempla un periodo de gracia denominado **"Per
 ---
 
 ## Enlaces de interés interno para su trámite
-* Aprende a descargar el documento en la guía paso a paso de [Descarga de Certificado de Afiliación](/blog/certificado-de-afiliacion-iess-descargar).
+* Aprende a descargar el documento en la guía paso a paso de [Descarga de Certificado de Afiliación](/certificados/afiliacion).
 * Si te encuentras cesante, revisa cómo reactivar tus derechos mediante la [Afiliación Voluntaria en Ecuador](/procedimiento/afiliacion-voluntaria).
 * Una vez confirmado tu estado activo, puedes proceder a [Consultar tus aportes e historial laboral](/blog/como-consultar-aportes-iess-historial-laboral) acumulados en línea.
 `
@@ -1775,6 +1791,7 @@ El Reglamento de Salud del IESS contempla un periodo de gracia denominado **"Per
     id: 'afiliacion-trabajo-hogar-iess-requisitos',
     slug: 'afiliacion-trabajo-hogar-iess-requisitos',
     title: 'Afiliación trabajo hogar IESS requisitos y costo 2026',
+    seoTitle: 'Afiliación Trabajo del Hogar al IESS | IESS Asistente',
     metaDescription: 'Requisitos, costo mensual y beneficios de la afiliación para trabajadoras del hogar y amas de casa en el IESS para 2026. Guía de registro paso a paso.',
     keywords: ['afiliación trabajo hogar IESS requisitos', 'afiliar trabajadora del hogar IESS', 'seguro de amas de casa IESS', 'costo afiliación doméstica'],
     category: 'Trámites',

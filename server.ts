@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 import compression from "compression";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
-import { PROCEDURES_DATA } from "./src/data/procedures";
+import { PROCEDURES_DATA, PROCEDURE_SEO } from "./src/data/procedures";
 import { BLOG_POSTS } from "./src/data/blogPosts";
 import { SEO_CATEGORIES } from "./src/data/seoCategories";
 import { getSiteUrlServer, CURRENT_YEAR } from "./src/config/site";
@@ -177,123 +177,6 @@ app.use((req, res, next) => {
 function getBaseUrl(req?: express.Request): string {
   return getSiteUrlServer();
 }
-
-// Sitemap dinámico
-app.get('/sitemap.xml', (req, res) => {
-  const baseUrl = getBaseUrl(req);
-  
-  // URLs principales
-  const urls = [
-    { url: '/', changefreq: 'daily', priority: '1.0' },
-    { url: '/preguntas-frecuentes', changefreq: 'weekly', priority: '0.9' },
-    { url: '/guias-y-articulos', changefreq: 'daily', priority: '0.8' },
-    { url: '/iess', changefreq: 'weekly', priority: '0.8' },
-  ];
-  
-  // URLs por cada trámite (generadas desde PROCEDURES_DATA)
-  const procedures = [
-    'jubilacion-vejez',
-    'prestamo-quirografario',
-    'prestamo-hipotecario',
-    'afiliacion-voluntaria',
-    'subsidio-maternidad',
-    'cesantia-desempleo',
-    'aviso-entrada-salida',
-    'actualizacion-datos'
-  ];
-  
-  procedures.forEach(proc => {
-    urls.push({
-      url: `/procedimiento/${proc}`,
-      changefreq: 'weekly',
-      priority: '0.8'
-    });
-  });
-
-  // URLs por cada artículo del Blog (slugs reales de BLOG_POSTS)
-  BLOG_POSTS.forEach(post => {
-    urls.push({
-      url: `/blog/${post.slug}`,
-      changefreq: 'weekly',
-      priority: '0.8'
-    });
-  });
-
-  // URLs de paginación del Blog (distribución de Link Equity y rastreo de archivos)
-  const totalBlogPages = Math.ceil(BLOG_POSTS.length / 4);
-  for (let p = 2; p <= totalBlogPages; p++) {
-    urls.push({
-      url: `/blog/page/${p}`,
-      changefreq: 'daily',
-      priority: '0.7'
-    });
-  }
-
-  // URLs por cada Ciudad para SEO local (solo si cumplen con criterios de indexación: >600 palabras y >=2 dependencias verificadas)
-  Object.values(CITIES_DATA).forEach(city => {
-    const wordCount = city.uniqueContent.split(/\s+/).filter(Boolean).length;
-    const verifiedCount = city.dependencies.filter(dep => dep.verifiedAt !== null && dep.address !== null).length;
-    if (wordCount >= 600 && verifiedCount >= 2) {
-      urls.push({
-        url: `/iess/${city.slug}`,
-        changefreq: 'weekly',
-        priority: '0.7'
-      });
-    }
-  });
-  
-  // Generar XML
-  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
-  
-  urls.forEach(item => {
-    xml += `  <url>\n`;
-    xml += `    <loc>${baseUrl}${item.url}</loc>\n`;
-    xml += `    <changefreq>${item.changefreq}</changefreq>\n`;
-    xml += `    <priority>${item.priority}</priority>\n`;
-    xml += `  </url>\n`;
-  });
-  
-  xml += '</urlset>';
-  
-  res.header('Content-Type', 'application/xml');
-  res.send(xml);
-});
-
-// Robots.txt
-app.get('/robots.txt', (req, res) => {
-  const baseUrl = getBaseUrl(req);
-  const robotsTxt = `
-User-agent: *
-Allow: /
-Disallow: /admin
-Disallow: /api/
-Disallow: /private
-
-Sitemap: ${baseUrl}/sitemap.xml
-
-# Google-specific directives
-User-agent: Googlebot
-Allow: /
-
-# Bing-specific directives
-User-agent: Bingbot
-Allow: /
-
-# Crawl delay (para no sobrecargar servidor)
-Request-rate: 30/60
-  `.trim();
-  
-  res.header('Content-Type', 'text/plain');
-  res.send(robotsTxt);
-});
-
-// Ads.txt reads process.env.ADS_TXT to enable dynamic red placement
-app.get('/ads.txt', (req, res) => {
-  const adsTxt = process.env.ADS_TXT || "# Google AdSense ads.txt placeholder\ngoogle.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0";
-  res.header('Content-Type', 'text/plain');
-  res.send(adsTxt);
-});
 
 // Lazy initialization of Gemini Client for Serverless and Container environments
 let cachedAiClient: GoogleGenAI | null = null;
@@ -1181,9 +1064,20 @@ function renderHtml(meta: {
   }
 
   // Inject JSON-LD structured schema with secure escaping
-  if (meta.jsonLd) {
-    newTags += `<script type="application/ld+json">\n${escapeJsonLd(meta.jsonLd)}\n</script>\n`;
-  }
+  const finalJsonLd = meta.jsonLd || {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": meta.title,
+    "description": meta.description,
+    "url": escUrl,
+    "inLanguage": "es-EC",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "IESS Asistente",
+      "url": getBaseUrl()
+    }
+  };
+  newTags += `<script type="application/ld+json">\n${escapeJsonLd(finalJsonLd)}\n</script>\n`;
 
   html = html.replace("</head>", `${newTags}</head>`);
 
@@ -1204,13 +1098,52 @@ function renderHtml(meta: {
   return html;
 }
 
+const CATEGORY_SEO_TITLES: Record<string, string> = {
+  "afiliacion": "Afiliación al IESS: requisitos y guía 2026 | IESS Asistente",
+  "historia-laboral": "Historia Laboral IESS: consulta de aportes | IESS Asistente",
+  "prestamos-biess": "Préstamos BIESS: créditos quirografarios | IESS Asistente",
+  "fondos-reserva": "Fondos de Reserva IESS: retiro y requisitos | IESS Asistente",
+  "cesantia": "Fondo de Cesantía IESS: retiro y requisitos | IESS Asistente",
+  "jubilacion": "Jubilación IESS: requisitos de vejez | IESS Asistente",
+  "salud": "Salud y Citas Médicas IESS: turnos y guía | IESS Asistente",
+  "certificados": "Certificados del IESS: afiliación y deudas | IESS Asistente",
+  "empleadores": "Empleadores IESS: obligaciones y planillas | IESS Asistente",
+  "herramientas": "Herramientas Digitales IESS: oficios y ley | IESS Asistente",
+  "preguntas-frecuentes": "Preguntas Frecuentes IESS: respuestas 2026 | IESS Asistente",
+  "noticias": "Noticias del IESS: reformas y novedades | IESS Asistente",
+  "guias-y-articulos": "Guías y Artículos IESS: trámites y dudas | IESS Asistente",
+  "tramites": "Directorio de Trámites IESS: pasos en línea | IESS Asistente"
+};
+
+function getCityTitle(cityName: string): string {
+  const suffix = " | IESS Asistente";
+  if (cityName === "Puerto Baquerizo Moreno") {
+    return `IESS Baquerizo Moreno: oficinas y CAU${suffix}`;
+  }
+  if (cityName === "Francisco de Orellana") {
+    return `IESS Francisco de Orellana: trámites y CAU${suffix}`;
+  }
+  let base = `IESS ${cityName}: oficinas y trámites`;
+  if (base.length < 33) {
+    base = `IESS ${cityName}: oficinas y trámites locales`;
+  }
+  return base + suffix;
+}
+
+function getCityDescription(cityName: string, province: string): string {
+  if (cityName.toLowerCase() === "santo domingo") {
+    return "Dirección de oficinas y CAUs del IESS en Santo Domingo, Tsáchilas. Horarios y trámites. Datos pendientes de verificación; confirme en iess.gob.ec.";
+  }
+  return `Dirección de oficinas y CAUs del IESS en ${cityName}, ${province}. Horarios y trámites. Datos pendientes de verificación; confirme en iess.gob.ec.`;
+}
+
 // Endpoint para listado de ciudades de Ecuador
 app.get('/iess', (req, res) => {
   const baseUrl = getBaseUrl(req);
   const bodyHtml = generateCitiesIndexSeoHtml();
   
   const html = renderHtml({
-    title: `Directorio Local IESS de Oficinas y Hospitales ${CURRENT_YEAR} | IESS Asistente`,
+    title: "IESS Directorio de Oficinas y Hospitales | IESS Asistente",
     description: "Consulta el directorio independiente de oficinas, CAUs y hospitales del IESS por provincia y ciudad de Ecuador. Información real verificada.",
     url: `${baseUrl}/iess`,
     bodyHtml
@@ -1250,8 +1183,8 @@ app.get('/iess/:ciudad', (req, res) => {
   };
   
   const html = renderHtml({
-    title: `IESS ${cityNameCap}: oficinas y trámites | IESS Asistente`,
-    description: `Dirección de oficinas y CAUs del IESS en ${cityNameCap}, ${cityData.province}. Horarios y trámites. Datos pendientes de verificación; confirme en iess.gob.ec.`,
+    title: getCityTitle(cityNameCap),
+    description: getCityDescription(cityNameCap, cityData.province),
     url,
     robots,
     jsonLd: getCityGraph(baseUrl, ciudad, locationData),
@@ -1273,10 +1206,14 @@ app.get("/procedimiento/:slug", (req, res) => {
     const baseUrl = getBaseUrl(req);
     const url = `${baseUrl}/procedimiento/${slug}`;
     const bodyHtml = generateProcedureSeoHtml(proc);
+    const seo = PROCEDURE_SEO[proc.id] || {
+      title: `${proc.title} IESS: guía 2026 | IESS Asistente`,
+      description: `Requisitos indispensables y guía paso a paso para tramitar ${proc.title} en el IESS de Ecuador. Genera tu oficio gratis.`
+    };
 
     const html = renderHtml({
-      title: `${proc.title}: requisitos y pasos ${CURRENT_YEAR} | IESS Asistente`,
-      description: `Requisitos indispensables, guía paso a paso y errores a evitar para tramitar ${proc.title} en el IESS de Ecuador. Genera tu oficio gratis.`,
+      title: seo.title,
+      description: seo.description,
       url,
       jsonLd: getProcedureGraph(baseUrl, proc),
       dataAttr: "data-procedure",
@@ -1320,8 +1257,8 @@ function renderGuiasPage(req: express.Request, res: express.Response, requestedP
 
   // SEO: Dynamic title and description to prevent duplicate metadata
   const title = isFirstPage
-    ? `Blog de Guías Prácticas del IESS ${CURRENT_YEAR} | IESS Asistente`
-    : `Blog de Guías de Seguridad Social - Página ${safePage} | IESS Asistente`;
+    ? `Guías y Artículos del IESS Ecuador ${CURRENT_YEAR} | IESS Asistente`
+    : `Guías de Seguridad Social IESS - Pág. ${safePage} | IESS Asistente`;
 
   const description = isFirstPage
     ? "Encuentra explicaciones sencillas, normativas vigentes y guías detalladas de jubilaciones, préstamos BIESS y trámites del IESS de Ecuador."
@@ -1390,9 +1327,11 @@ app.get(["/blog/:slug", "/guias-y-articulos/:slug"], (req, res) => {
     const basePath = isBlog ? "/blog" : "/guias-y-articulos";
     const url = `${baseUrl}${basePath}/${slug}`;
     const bodyHtml = generateBlogPostSeoHtml(post);
+    const postTitle = post.seoTitle || post.title;
+    const title = postTitle.includes("| IESS Asistente") ? postTitle : `${postTitle} | IESS Asistente`;
 
     const html = renderHtml({
-      title: `${post.title} | IESS Asistente`,
+      title,
       description: post.metaDescription,
       url,
       jsonLd: getArticleGraph(baseUrl, post),
@@ -1406,13 +1345,24 @@ app.get(["/blog/:slug", "/guias-y-articulos/:slug"], (req, res) => {
     return res.send(html);
   }
 
-  // 301 Redirect for old category subpaths (e.g. /blog/jubilados -> /guias-y-articulos/jubilados)
-  if (isBlog) {
-    const guiasCat = SEO_CATEGORIES.find(c => c.slug === "guias-y-articulos");
-    const sub = guiasCat?.subcategories.find(s => s.slug === slug);
-    if (sub) {
+  // Check if it's a subcategory of guias-y-articulos (e.g. /guias-y-articulos/jubilados, /guias-y-articulos/afiliados)
+  const guiasCat = SEO_CATEGORIES.find(c => c.slug === "guias-y-articulos");
+  const sub = guiasCat?.subcategories.find(s => s.slug === slug);
+  if (sub) {
+    if (isBlog) {
       return res.redirect(301, `/guias-y-articulos/${slug}`);
     }
+    const baseUrl = getBaseUrl(req);
+    const bodyHtml = generateCategorySeoHtml(guiasCat!, sub.slug);
+    const html = renderHtml({
+      title: sub.metaTitle || `${sub.title}: guías y trámites | IESS Asistente`,
+      description: sub.description,
+      url: `${baseUrl}/guias-y-articulos/${sub.slug}`,
+      jsonLd: getCategoryGraph(baseUrl, guiasCat!, sub.slug),
+      bodyHtml
+    });
+    res.header("Content-Type", "text/html");
+    return res.send(html);
   }
 
   // Not found -> 404 with noindex
@@ -1469,7 +1419,7 @@ app.get("/sobre-nosotros", (req, res) => {
   const baseUrl = getBaseUrl(req);
   const bodyHtml = generateAboutSeoHtml();
   const html = renderHtml({
-    title: "Sobre Nosotros - Guía Independiente de Consulta | IESS Asistente",
+    title: "Sobre Nosotros: portal ciudadano del IESS | IESS Asistente",
     description: "Conoce el portal independiente de orientación ciudadana sobre trámites y derechos del IESS en Ecuador. Misión, visión y equipo de redactores.",
     url: `${baseUrl}/sobre-nosotros`,
     dataAttr: "data-tab",
@@ -1501,7 +1451,7 @@ app.get("/contacto", (req, res) => {
   const baseUrl = getBaseUrl(req);
   const bodyHtml = generateContactSeoHtml();
   const html = renderHtml({
-    title: "Contacto - Buzón Editorial de Asistencia | IESS Asistente",
+    title: "Contacto y Consultas de Asistencia IESS | IESS Asistente",
     description: "Comunícate con los editores del portal independiente de soporte del IESS en Ecuador. Formulario de contacto, correo electrónico y tiempos de respuesta.",
     url: `${baseUrl}/contacto`,
     dataAttr: "data-tab",
@@ -1565,7 +1515,7 @@ app.get("/politica-de-cookies", (req, res) => {
   const baseUrl = getBaseUrl(req);
   const bodyHtml = generateCookiesSeoHtml();
   const html = renderHtml({
-    title: "Política de Cookies Técnicas y Estadísticas | IESS Asistente",
+    title: "Política de Cookies y Consentimiento Web | IESS Asistente",
     description: "Descripción detallada del uso de cookies en nuestro portal independiente. Consentimiento dinámico de Google Consent Mode v2 y GA4.",
     url: `${baseUrl}/politica-de-cookies`,
     dataAttr: "data-tab",
@@ -1646,6 +1596,45 @@ app.get("/oficios", (req, res) => {
   res.send(html);
 });
 
+// GET /herramientas/:tool
+app.get("/herramientas/:tool", (req, res, next) => {
+  const tool = req.params.tool;
+  const baseUrl = getBaseUrl(req);
+  if (tool === "calculadora-jubilacion") {
+    const html = renderHtml({
+      title: `Calculadora de Jubilación IESS: simulación | IESS Asistente`,
+      description: "Simula tu elegibilidad para la jubilación por vejez del IESS ingresando edad y aportaciones. Cálculo estimado según la Ley de Seguridad Social.",
+      url: `${baseUrl}/herramientas/calculadora-jubilacion`,
+      bodyHtml: `<div class="max-w-4xl mx-auto px-4 py-8"><h1 class="text-2xl font-black text-[#0a1f42]">Calculadora de Jubilación IESS</h1><p class="text-slate-650 mt-2">Simula tu elegibilidad para la jubilación por vejez del IESS ingresando tu edad y aportaciones.</p></div>`
+    });
+    return res.header("Content-Type", "text/html").send(html);
+  }
+  if (tool === "calculadora-aporte-afiliacion-voluntaria") {
+    const html = renderHtml({
+      title: `Calculadora Aporte Voluntario IESS: cuota | IESS Asistente`,
+      description: "Calcula el valor de tu aporte mensual a la afiliación voluntaria del IESS en Ecuador según tus ingresos. Simulador actualizado para el año 2026.",
+      url: `${baseUrl}/herramientas/calculadora-aporte-afiliacion-voluntaria`,
+      bodyHtml: `<div class="max-w-4xl mx-auto px-4 py-8"><h1 class="text-2xl font-black text-[#0a1f42]">Calculadora de Aporte de Afiliación Voluntaria IESS</h1><p class="text-slate-650 mt-2">Calcula tu valor mensual de afiliación voluntaria según tus ingresos declarados.</p></div>`
+    });
+    return res.header("Content-Type", "text/html").send(html);
+  }
+  if (tool === "calculadora-subsidio-maternidad") {
+    const html = renderHtml({
+      title: `Calculadora Subsidio Maternidad IESS: guía | IESS Asistente`,
+      description: "Calcula y simula el monto del subsidio de maternidad del IESS y empleador durante la licencia de 84 días para trabajadoras en relación de dependencia.",
+      url: `${baseUrl}/herramientas/calculadora-subsidio-maternidad`,
+      bodyHtml: `<div class="max-w-4xl mx-auto px-4 py-8"><h1 class="text-2xl font-black text-[#0a1f42]">Calculadora de Subsidio de Maternidad IESS</h1><p class="text-slate-650 mt-2">Simula el desglose del 75% asumido por el IESS y 25% por tu empleador.</p></div>`
+    });
+    return res.header("Content-Type", "text/html").send(html);
+  }
+  next();
+});
+
+// Redirect legacy or mislinked blog url
+app.get("/blog/certificado-de-afiliacion-iess-descargar", (req, res) => {
+  res.redirect(301, "/certificados/afiliacion");
+});
+
 // GET /:categoria (Task 5)
 app.get("/:categoria", (req, res, next) => {
   const categoriaSlug = req.params.categoria.toLowerCase();
@@ -1663,12 +1652,8 @@ app.get("/:categoria", (req, res, next) => {
   const baseUrl = getBaseUrl(req);
   const bodyHtml = generateCategorySeoHtml(cat, null);
 
-  const catTitleClean = cat.title.toLowerCase().includes("iess")
-    ? `${cat.title}: guía ${CURRENT_YEAR}`
-    : `${cat.title} IESS: guía ${CURRENT_YEAR}`;
-
   const html = renderHtml({
-    title: `${catTitleClean} | IESS Asistente`,
+    title: CATEGORY_SEO_TITLES[cat.slug] || `${cat.title} IESS: guía ${CURRENT_YEAR} | IESS Asistente`,
     description: cat.metaDescription,
     url: `${baseUrl}/${cat.slug}`,
     jsonLd: getCategoryGraph(baseUrl, cat, null),
@@ -1683,7 +1668,7 @@ app.get("/:categoria/:sub", (req, res, next) => {
   const categoriaSlug = req.params.categoria.toLowerCase();
   const subSlug = req.params.sub.toLowerCase();
   
-  if (categoriaSlug === "guias-y-articulos" || categoriaSlug === "preguntas-frecuentes" || categoriaSlug === "blog" || categoriaSlug === "faq") {
+  if (categoriaSlug === "guias-y-articulos" || categoriaSlug === "blog" || categoriaSlug === "faq") {
     return next();
   }
   
@@ -1701,7 +1686,7 @@ app.get("/:categoria/:sub", (req, res, next) => {
   const bodyHtml = generateCategorySeoHtml(cat, sub.slug);
 
   const html = renderHtml({
-    title: `${sub.title} - ${cat.title} | IESS Asistente`,
+    title: sub.metaTitle || `${sub.title} - ${cat.title} | IESS Asistente`,
     description: sub.description,
     url: `${baseUrl}/${cat.slug}/${sub.slug}`,
     jsonLd: getCategoryGraph(baseUrl, cat, sub.slug),
@@ -1712,6 +1697,14 @@ app.get("/:categoria/:sub", (req, res, next) => {
 });
 
 const distPath = path.join(process.cwd(), "dist");
+const publicPath = path.join(process.cwd(), "public");
+
+// Serve static assets unconditionally (images, favicon, manifest, etc.)
+app.use(express.static(publicPath));
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath));
+}
+app.use("/src", express.static(path.join(process.cwd(), "src")));
 
 if (process.env.NODE_ENV === "production") {
   // Serve precompressed Brotli (.br) files if they exist to optimize performance and bandwidth (Core Web Vitals)
@@ -1785,7 +1778,15 @@ async function startServer() {
   });
 }
 
-if (process.env.NODE_ENV !== "production" || !process.env.VERCEL) {
+const isDirectRun = Boolean(
+  process.argv[1] && (
+    process.argv[1].endsWith("server.ts") || 
+    process.argv[1].endsWith("server.cjs") || 
+    process.argv[1].endsWith("server.js")
+  )
+);
+
+if (isDirectRun && (process.env.NODE_ENV !== "production" || !process.env.VERCEL)) {
   startServer();
 }
 
