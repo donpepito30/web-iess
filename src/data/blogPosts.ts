@@ -27,1951 +27,795 @@ export interface BlogPost {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    id: 'jubilacion-2026',
-    slug: 'jubilacion-por-vejez-requisitos-2026',
-    title: 'Jubilación por Vejez IESS 2026: Guía de Requisitos y Pasos',
-    seoTitle: 'Jubilación por Vejez IESS: guía 2026 | IESS Asistente',
-    metaDescription: 'Todo lo que necesitas saber sobre jubilación por vejez en IESS Ecuador 2026. Requisitos actualizados, pasos, montos y combinaciones de edad y aportes.',
-    keywords: ['jubilación IESS', 'jubilación por vejez Ecuador', 'requisitos jubilación IESS', 'cómo jubilarme IESS'],
-    content: `
-# Jubilación por Vejez IESS 2026: Guía Completa y Actualizada
-
-¿Estás planificando tu retiro en el Ecuador? La **[Jubilación por Vejez del IESS](/procedimiento/jubilacion-vejez)** es uno de los derechos más importantes para los trabajadores ecuatorianos y extranjeros residentes en el país. En esta guía completa, te explicamos al detalle los requisitos oficiales, las tablas de aportes vigentes y cómo realizar tu solicitud 100% en línea de manera rápida.
-
----
-
-## ¿Cuáles son los requisitos de Edad y Aportes en 2026?
-
-Para calificar a la jubilación ordinaria por vejez, el Instituto Ecuatoriano de Seguridad Social (IESS) exige una relación proporcional entre tu edad cronológica y el número de aportes (llamadas "imposiciones"). 
-
-La tabla oficial vigente es la siguiente:
-
-| Edad Requerida | Imposiciones Mínimas | Años de Aportación Equivalentes |
-| :--- | :--- | :--- |
-| **Cualquier edad** | 480 imposiciones o más | 40 años de aportes |
-| **60 años de edad** | 360 imposiciones o más | 30 años de aportes |
-| **65 años de edad** | 180 imposiciones o más | 15 años de aportes |
-| **70 años de edad** o más | 120 imposiciones o más | 10 años de aportes |
-
-> ⚠️ **Importante**: Las imposiciones no se pierden aunque hayas dejado de aportar temporalmente. Se acumulan a lo largo de tu vida laboral.
-
----
-
-## Requisitos Generales Adicionales
-
-Además de cumplir con la tabla de edad y aportes, el solicitante debe:
-
-1. **Estar cesante**: Debes haber finalizado tu relación de dependencia laboral. Tu empleador debe haber subido el **Aviso de Salida** al sistema.
-2. **No tener deudas en mora**: No puedes tener obligaciones patronales ni [préstamos quirografarios](/procedimiento/prestamo-quirografario) o [hipotecarios](/procedimiento/prestamo-hipotecario) vencidos en el BIESS o en el IESS.
-3. **Cuenta Bancaria autorizada**: Tu cuenta bancaria personal debe estar previamente validada y registrada en el sistema de la institución.
-4. **Clave de Afiliado activa**: Necesitarás tu credencial virtual para ingresar al portal web.
-
----
-
-## Paso a Paso para Solicitar la Jubilación en Línea
-
-El trámite es completamente gratuito y no requiere de tramitadores intermediarios. Sigue estos pasos para realizarlo tú mismo:
-
-### Paso 1: Registro del Cese Laboral
-Tu empleador tiene hasta 15 días posteriores a tu salida de la empresa para registrar el Aviso de Salida en el sistema de empleadores. Verifica que este paso esté completado antes de iniciar tu solicitud.
-
-### Paso 2: Validación de Cuenta Bancaria
-Si nunca has cobrado fondos de reserva o cesantía, asegúrate de validar tu cuenta en el IESS. Puedes hacerlo a través de la web o entregando el certificado de cuenta en los Centros de Atención Universal.
-
-### Paso 3: Ingreso al Sistema de Jubilación
-1. Ingresa a la web oficial [iess.gob.ec](https://www.iess.gob.ec).
-2. Haz clic en **"Servicios en línea"** y luego en la opción **"Asegurados"** -> **"Pensionistas"** -> **"Jubilación"**.
-3. Digita tu número de cédula y tu clave de seguridad.
-
-### Paso 4: Envío de la Solicitud
-1. El sistema calculará automáticamente tu historial y te mostrará un mensaje confirmando si cumples con las condiciones.
-2. Verifica y acepta el desglose de aportaciones precalculado.
-3. Selecciona tu cuenta bancaria registrada para el depósito de la pensión.
-4. Confirma el envío. Tu aprobación tardará de 15 a 30 días calendario.
-
----
-
-## ¿Cómo se calcula el monto de la pensión?
-
-La pensión mensual de jubilación se calcula con base en el promedio de los **cinco (5) años de mejor sueldo** o remuneraciones sobre las cuales aportaste. Este valor promedio se multiplica por un coeficiente de liquidación fijado por la ley, el cual depende directamente de los años completos de aportación (mientras más años tengas aportados, mayor será el porcentaje de tu promedio que recibirás, empezando desde el 50% hasta alcanzar un tope del 100%).
-
-Si quieres calcular de manera personalizada o necesitas ayuda redactando oficios de reclamo de aportes faltantes, utiliza nuestras [herramientas y formatos de oficios de ley](/oficios) del portal.
-
----
-
-*Nota legal: Este artículo es una guía interpretativa simplificada independiente basada en la Ley de Seguridad Social de Ecuador y resoluciones vigentes del Consejo Directivo del IESS. Te sugerimos siempre validar tu estado de aportes de forma directa en el portal oficial.*
-`,
-    author: 'equipo-editorial',
-    publishDate: '2026-01-15',
-    readTime: 8,
-    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
-    category: 'Jubilación',
-    dateModified: '2026-10-01',
-    sources: [
-      { label: "Ley de Seguridad Social de Ecuador", url: "https://www.iess.gob.ec/documents/10162/13686/Ley_de_Seguridad_Social", accessedAt: "2026-10-01" },
-      { label: "IESS - Portal Informativo de Jubilación", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" }
-    ]
-  },
-  {
-    id: 'prestamo-biess-2026',
-    slug: 'prestamo-quirografario-biess-requisitos-montos-2026',
-    title: 'Préstamo Quirografario BIESS 2026: Requisitos y Cómo Solicitarlo',
-    seoTitle: 'Préstamos Quirografarios BIESS: guía | IESS Asistente',
-    metaDescription: 'Guía actualizada 2026 sobre préstamo quirografario BIESS. Requisitos para afiliados activos y jubilados, montos máximos, pasos y plazos de desembolso.',
-    keywords: ['préstamo BIESS', 'préstamo quirografario Ecuador', 'crédito BIESS', 'BIESS requisitos'],
-    content: `
-# Préstamo Quirografario BIESS 2026: Guía Completa de Solicitud
-
-El **[Préstamo Quirografario](/procedimiento/prestamo-quirografario)** del Banco del Instituto de Seguridad Social (BIESS) es uno de los productos de financiamiento de consumo más demandados y con la tasa de interés más baja del mercado financiero ecuatoriano. 
-
-Si necesitas liquidez inmediata para salud, educación, viajes o pago de deudas, en esta guía te contamos cómo calificar y recibir tu dinero en un plazo récord de **24 a 72 horas hábiles**.
-
----
-
-## ¿Quiénes pueden solicitar un préstamo quirografario?
-
-El BIESS otorga este crédito a tres grupos principales de asegurados:
-* **Afiliados activos** bajo relación de dependencia.
-* **[Afiliados voluntarios](/procedimiento/afiliacion-voluntaria)** que realicen aportaciones de forma independiente.
-* **Jubilados** por vejez, [invalidez](/procedimiento/jubilacion-invalidez) o discapacidad, así como beneficiarios de pensión de [montepío](/procedimiento/montepio).
-
----
-
-## Requisitos Oficiales para Afiliados Activos (Vigente 2026)
-
-Para que el sistema apruebe tu solicitud de préstamo quirografario, debes cumplir con las siguientes condiciones mínimas:
-
-1. **Aportaciones acumuladas**: Poseer un mínimo de **36 aportaciones mensuales** en total (pueden ser de distintos empleadores).
-2. **Consecutividad**: Las últimas **12 aportaciones** deben ser consecutivas e inmediatamente anteriores a la fecha de la solicitud.
-3. **Relación de dependencia**: Ser un afiliado activo y que tu empleador no se encuentre en mora patronal con el IESS.
-4. **Garantía suficiente**: Contar con fondos suficientes acumulados en tus cuentas de **Fondos de Reserva** y/o **Cesantía**. El préstamo se concede hasta por el 95% del valor que tengas acumulado como garantía.
-5. **Capacidad de endeudamiento**: La cuota mensual del préstamo no puede superar el 30% de tus ingresos promedio declarados en las aportaciones.
-6. **No tener obligaciones vencidas**: No registrar deudas en mora con el IESS o el BIESS, ni ser garante de un préstamo en mora.
-7. **Cédula de ciudadanía**: Documento vigente y no encontrarse en listas de control financiero.
-
-<FactNote ids={["QUIROGRAFARIO_APORTES_REQ", "QUIROGRAFARIO_CONSECUTIVOS_REQ"]} />
-
----
-
-## Paso a Paso para Realizar la Solicitud
-
-El proceso es 100% virtual a través del portal transaccional del BIESS. Sigue estas indicaciones para evitar rechazos en el sistema:
-
-### Paso 1: Acceso al Sistema del BIESS
-1. Entra a [biess.fin.ec](https://www.biess.fin.ec).
-2. Selecciona la opción **"Préstamos Quirografarios"** y haz clic en **"Solicitar Préstamo"**.
-3. Inicia sesión con tu cédula y clave de afiliado del IESS (la misma que usas en el portal general del IESS).
-
-### Paso 2: Rol del Asegurado
-Selecciona tu perfil de acuerdo a tu estado actual: **Afiliado** o **Jubilado**. El sistema procesará un análisis instantáneo de tus requisitos.
-
-### Paso 3: Simulación y Configuración del Crédito
-Si calificas, la pantalla te mostrará el **monto máximo preaprobado** calculado según tus fondos de garantía.
-1. Selecciona el **monto deseado** (puede ser menor al tope máximo).
-2. Define el **plazo de pago** (hasta 48 meses en afiliados activos y hasta 60 meses en jubilados).
-3. Selecciona la tabla de amortización que prefieras: **Cuotas Alemanas** (decrecientes) o **Cuotas Francesas** (fijas).
-
-### Paso 4: Confirmación y Desembolso
-1. Lee detenidamente el contrato de mutuo electrónico.
-2. Logea e ingresa el código de seguridad que el BIESS te enviará por correo electrónico o SMS para firmar electrónicamente.
-3. ¡Listo! El desembolso se realizará automáticamente a tu cuenta bancaria registrada en un lapso de **24 a 72 horas hábiles**.
-
----
-
-## Tasa de Interés y Plazos
-La tasa de interés para los préstamos quirografarios es variable y se reajusta trimestralmente. El rango general fluctúa entre el **11% y el 14% anual**, dependiendo del plazo seleccionado por el usuario. Cuanto menor sea el plazo que escojas, menor será la tasa de interés final aplicada a tu deuda.
-
-Si tienes problemas con retenciones de tu sueldo o necesitas justificar un reclamo formal por un descuento indebido del BIESS, te recomendamos revisar nuestra sección de [formatos de oficios de ley](/oficios) donde podrás generar cartas de impugnación de forma 100% gratuita.
-`,
-    author: 'equipo-editorial',
-    publishDate: '2026-01-10',
-    readTime: 7,
-    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
-    category: 'Préstamos',
-    dateModified: '2026-10-01',
-    sources: [
-      { label: "Banco del IESS - Crédito Quirografario", url: "https://www.biess.fin.ec/quirografarios", accessedAt: "2026-10-01" },
-      { label: "Manuales de Calificación de Créditos de Consumo BIESS", url: "https://www.biess.fin.ec", accessedAt: "2026-10-01" }
-    ]
-  },
-  {
-    id: 'afiliacion-voluntaria-2026',
-    slug: 'afiliacion-voluntaria-iess-requisitos-beneficios-2026',
-    title: 'Afiliación voluntaria IESS 2026: cuánto se paga al mes',
-    seoTitle: 'Afiliación Voluntaria al IESS: costo | IESS Asistente',
-    metaDescription: 'Aporte mensual de afiliación voluntaria al IESS en 2026: cálculo del 17.60% del sueldo, requisitos, cobertura médica, préstamos BIESS y trámite en línea.',
-    keywords: [
-      'afiliación voluntaria IESS',
-      'seguro voluntario iess valor a pagar 2026',
-      'cuánto cuesta el seguro voluntario',
-      'valor aporte voluntario iess 2026',
-      'cuánto se paga al iess por afiliación voluntaria'
+    "id": "jubilacion-2026",
+    "slug": "jubilacion-por-vejez-requisitos-2026",
+    "title": "Jubilación por Vejez IESS 2026: Guía de Requisitos y Pasos",
+    "seoTitle": "Jubilación por Vejez IESS: guía 2026 | IESS Asistente",
+    "metaDescription": "Todo lo que necesitas saber sobre jubilación por vejez en IESS Ecuador 2026. Requisitos actualizados, pasos, montos y combinaciones de edad y aportes.",
+    "keywords": [
+      "jubilación IESS",
+      "jubilación por vejez Ecuador",
+      "requisitos jubilación IESS",
+      "cómo jubilarme IESS"
     ],
-    author: 'equipo-editorial',
-    publishDate: '2026-01-05',
-    dateModified: '2026-10-10',
-    readTime: 14,
-    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
-    imageAlt: 'Cuánto se paga por la afiliación voluntaria al IESS en 2026 según el salario declarado en Ecuador',
-    category: 'Trámites',
-    relatedSlugs: [
-      'como-obtener-clave-iess-primera-vez',
-      'como-consultar-aportes-iess-historial-laboral',
-      'prestamo-quirografario-biess-requisitos-montos-2026',
-      'pension-montepio-iess-requisitos-sobrevivientes-2026'
-    ],
-    sources: [
-      { label: "IESS - Resolución C.D. 625 (Reglamento de Aseguramiento)", url: "https://www.iess.gob.ec", accessedAt: "2026-10-10" },
-      { label: "Ministerio del Trabajo de Ecuador - Salario Básico Unificado", url: "https://www.trabajo.gob.ec", accessedAt: "2026-10-10" },
-      { label: "Banco del Instituto Ecuatoriano de Seguridad Social (BIESS)", url: "https://www.biess.fin.ec", accessedAt: "2026-10-10" }
-    ],
-    faqs: [
+    "content": "\n# Jubilación por Vejez IESS 2026: Guía Completa y Actualizada\n\n¿Estás planificando tu retiro laboral en el Ecuador? La **[Jubilación por Vejez del IESS](/procedimiento/jubilacion-vejez)** constituye uno de los pilares fundamentales del sistema de seguridad social para los trabajadores bajo relación de dependencia y afiliados voluntarios. En esta guía detallada analizamos los requisitos normativos vigentes, las combinaciones de edad y aportes, la fórmula matemática oficial de cálculo de pensiones y el procedimiento paso a paso para gestionar tu solicitud por internet.\n\n---\n\n## 1. Marco Legal y Requisitos de Edad y Aportes en 2026\n\nPara acceder a una pensión ordinaria de vejez vitalicia, el Instituto Ecuatoriano de Seguridad Social (IESS) establece una escala proporcional que equilibra la edad cronológica alcanzada con el número total de imposiciones acumuladas a lo largo de la trayectoria productiva del afiliado. Una imposición equivale a un mes de cotización formal cancelado ante el instituto.\n\nLa tabla legal vigente para el año 2026 establece las siguientes alternativas de jubilación ordinaria:\n\n| Modalidad de Retiro | Edad Mínima | Imposiciones Totales | Años de Cotización Requeridos |\n| :--- | :--- | :--- | :--- |\n| **Por Años de Servicio (Sin límite de edad)** | Cualquier edad | 480 imposiciones o más | 40 años completos de aportes |\n| **Jubilación Ordinaria Estándar** | 60 años cumplidos | 360 imposiciones o más | 30 años completos de aportes |\n| **Jubilación por Edad Avanzada Media** | 65 años cumplidos | 180 imposiciones o más | 15 años completos de aportes |\n| **Jubilación por Vejez Especial** | 70 años cumplidos o más | 120 imposiciones o más | 10 años completos de aportes |\n\n> 📌 **Regla de oro sobre las aportaciones**: Las imposiciones acumuladas en el IESS no prescriben ni caducan aunque existan pausas prolongadas en la relación laboral. Si trabajaste en varias empresas o combinaste periodos de trabajo dependiente con periodos de cotización como afiliado voluntario, todos esos meses se unifican en tu cuenta individual.\n\nAntes de radicar la solicitud formal, es indispensable verificar que tu empleador haya cancelado puntualmente todas las planillas mensuales. Puedes revisar tu mecanizado detallado consultando la guía sobre **[cómo consultar aportes e historial laboral del IESS](/blog/como-consultar-aportes-iess-historial-laboral)**.\n\n---\n\n## 2. Requisitos Administrativos Indispensables\n\nAdemás de cumplir con la combinación exigida de años de vida y cuotas cotizadas, el solicitante debe verificar las siguientes condiciones previas en los sistemas informáticos del IESS:\n\n1. **Estado de cesantía legalmente registrado**: Para tramitar la jubilación, el afiliado bajo relación de dependencia debe haber concluido su vínculo contractual. El empleador está obligado por ley a registrar el Aviso de Salida en la plataforma dentro de los 3 días posteriores a la separación laboral (no 15 días).\n2. **Ausencia de mora en obligaciones crediticias**: El solicitante no debe registrar créditos en mora ni figurar como garante moroso en operaciones de **[préstamos quirografarios](/procedimiento/prestamo-quirografario)** o **[préstamos hipotecarios BIESS](/procedimiento/prestamo-hipotecario)**. Si existen cuotas pendientes, deberán cancelarse o reestructurarse previamente.\n3. **Cuenta bancaria validada en el sistema**: La pensión mensual se transfiere únicamente a una cuenta de ahorros o corriente personal a nombre exclusivo del titular, verificada con el Banco Central del Ecuador.\n4. **Clave de usuario activa**: Se requiere contar con acceso al portal transaccional de asegurados sin bloqueos de seguridad.\n\nSi deseas proyectar tu fecha probable de retiro o simular tu elegibilidad con tus datos actuales, puedes apoyarte en nuestra **[calculadora de jubilación IESS](/herramientas/calculadora-jubilacion)**.\n\n---\n\n## 3. ¿Cómo se Calcula la Pensión Mensual de Vejez?\n\nEl cálculo de la pensión jubilar en el Ecuador no se basa únicamente en el último sueldo percibido, sino en una fórmula de promedio histórico diseñada para garantizar la equidad y solvencia del fondo de pensiones:\n\n### Paso A: Determinación del Promedio Salarial de los 5 Mejores Años\nEl sistema informático del IESS selecciona de oficio los **sesenta (60) meses de aportación con mayores remuneraciones registradas** durante toda la vida laboral del afiliado. No es obligatorio que estos 60 meses sean continuos; el algoritmo escoge los meses de mayor valor cotizado y calcula su promedio aritmético simple.\n\n### Paso B: Aplicación del Coeficiente de Liquidación\nEl promedio salarial obtenido se multiplica por un coeficiente porcentual fijado en la Ley de Seguridad Social. Este factor de reemplazo inicia aproximadamente en el **50% del promedio salarial para quienes cuentan con el mínimo de imposiciones (10 a 15 años de aportes)** y va aumentando gradualmente por cada año adicional cotizado hasta alcanzar el **100% de la base reguladora para quienes superan las 480 imposiciones (40 años de servicio)**.\n\n### Paso C: Topes Mínimos y Máximos Legales\nPara evitar distorsiones económicas, el Consejo Directivo del IESS regula techos mínimos y máximos para las pensiones de vejez en función del Salario Básico Unificado (SBU) del trabajador en general:\n* **Pensión mínima**: Varía entre el 50% y el 100% del SBU según el número total de años aportados. Ningún jubilado con 40 años de servicio puede percibir una pensión inferior al salario básico legal vigente.\n* **Pensión máxima**: Se ubica en un tope legal equivalente a 5.5 salarios básicos unificados para jubilados que hayan cotizado sobre techos salariales altos.\n\n---\n\n## 4. Prestaciones y Beneficios Adicionales del Jubilado\n\nAlcanzar la condición de jubilado del IESS otorga un conjunto de derechos complementarios de gran relevancia socioeconómica:\n\n* **Décima Tercera Pensión**: Pago adicional en el mes de diciembre, equivalente a la doceava parte de todas las pensiones recibidas durante el año calendario.\n* **Décima Cuarta Pensión**: Pago de un Salario Básico Unificado completo otorgado en septiembre (régimen Sierra y Amazonía) o en abril (régimen Costa e Insular).\n* **Cobertura integral de salud gratuita**: Acceso a la red médica de hospitales del IESS y prestadores externos en consulta externa, hospitalización, cirugías y entrega de medicamentos continuos sin copago.\n* **Extensión de cobertura a cónyuge o conviviente**: El pensionista de vejez puede solicitar la extensión de cobertura médica para su cónyuge o conviviente de hecho mediante una pequeña contribución porcentual mensual.\n* **Créditos preferenciales del BIESS**: Los jubilados pueden acceder a préstamos quirografarios inmediatos con descuento directo de su rol de pensión mensual y tasas de interés preferenciales.\n* **Auxilio de funerales y pensión de montepío**: Cobertura para gastos de exequias y protección económica a sobrevivientes legítimos en caso de fallecimiento.\n\n---\n\n## 5. Procedimiento Digital Paso a Paso para Tramitar la Jubilación\n\nEl trámite de jubilación por vejez en el Ecuador es 100% electrónico, gratuito y no requiere intervención de tramitadores:\n\n1. **Accede al portal institucional**: Ingresa en el navegador a [iess.gob.ec](https://www.iess.gob.ec).\n2. **Dirígete al módulo de asegurados**: Selecciona **\"Servicios en Línea\"** -> pestaña **\"Asegurados\"** -> opción **\"Pensionistas\"** -> **\"Jubilación\"**.\n3. **Autenticación ciudadana**: Introduce tu número de cédula de ciudadanía de 10 dígitos y tu clave personal de afiliado.\n4. **Verificación de precalificación**: El sistema analizará tu edad y total de imposiciones en tiempo real. Si cumples con los parámetros, mostrará el mensaje *\"Usted califica para la jubilación ordinaria de vejez\"*.\n5. **Revisión del desglose pensional**: Podrás visualizar el cálculo preliminar de tu pensión mensual, el detalle de tus 60 mejores imposiciones y la cuenta bancaria de abono.\n6. **Aceptación y radicación**: Confirma los términos legales de la solicitud electrónica y guarda el comprobante en formato PDF.\n\nLa resolución definitiva y el inicio del pago en cuenta bancaria suelen concretarse entre 15 y 30 días posteriores al registro de la solicitud. Si existen inconformidades con aportes no reconocidos o empleadores que no pagaron planillas oportunamente, puedes recurrir a nuestros **[formatos y oficios de ley](/oficios)** para presentar impugnaciones formales ante la comisión provincial correspondiente.\n",
+    "author": "equipo-editorial",
+    "publishDate": "2026-01-15",
+    "readTime": 8,
+    "image": "/og/jubilacion-por-vejez-requisitos-2026.jpg",
+    "category": "Jubilación",
+    "dateModified": "2026-11-16",
+    "sources": [
       {
-        q: '¿Cuánto cuesta el seguro voluntario del IESS al mes en 2026?',
-        a: 'El costo mínimo del seguro voluntario en 2026 es de exactamente $84,83 dólares al mes. Esta tarifa corresponde a la tasa legal del 17,60 % calculada sobre el Salario Básico Unificado vigente ($482). Si declaras un ingreso mensual mayor a este piso, tu valor a pagar aumentará de forma directamente proporcional al monto que decidas cotizar.'
+        "label": "Ley de Seguridad Social de Ecuador - Título V de las Pensiones",
+        "url": "https://www.iess.gob.ec/documents/10162/13686/Ley_de_Seguridad_Social",
+        "accessedAt": "2026-10-01"
       },
       {
-        q: '¿Cuánto se paga al IESS por afiliación voluntaria si gano más del básico?',
-        a: 'Si decides registrar ingresos superiores al básico, pagas siempre el 17,60 % de la cifra declarada. Por ejemplo, sobre un ingreso de $600 mensuales la cuota es de $105,60; para $800 asciende a $140,80; y si declaras $1.000 tu pago será de $176,00 al mes. Cotizar con valores más altos incrementa el cálculo de tu pensión de jubilación.'
-      },
-      {
-        q: '¿Qué cubre exactamente la cuota mensual de afiliación voluntaria?',
-        a: 'El aporte voluntario mensual te otorga cobertura médica integral en hospitales del IESS, cobertura de salud sin costo adicional para tus hijos menores de 18 años, pensión vitalicia por vejez o invalidez, auxilio de funerales y pensión de montepío para sobrevivientes. A partir de los seis meses de aportes continuos, también puedes solicitar préstamos quirografarios en el BIESS.'
-      },
-      {
-        q: '¿Hasta qué día del mes se puede pagar la planilla voluntaria sin recargos?',
-        a: 'La planilla mensual del seguro voluntario se debe pagar hasta el día 15 del mes siguiente al periodo de cobertura. Por ejemplo, el aporte de enero se cancela hasta el 15 de febrero. Si no pagas en ese plazo, el sistema genera intereses de mora inmediatos y, tras acumular dos meses impagos, se suspende la atención médica.'
-      },
-      {
-        q: '¿Puedo afiliarme voluntariamente si vivo en el extranjero?',
-        a: 'Sí, los ecuatorianos que residen en el exterior pueden registrarse en el régimen voluntario ecuatoriano sin importar el país donde vivan. Cotizan sobre el salario básico ecuatoriano o sobre sus ingresos declarados, y acumulan años de servicio para su jubilación en Ecuador, manteniendo además la protección médica para sus dependientes que residan en territorio nacional.'
-      },
-      {
-        q: '¿Cuánto tiempo debo esperar para atenderme en el médico tras afiliarme?',
-        a: 'Para recibir atención médica general y programada en el IESS, los afiliados voluntarios deben cumplir un periodo de carencia de seis (6) imposiciones mensuales consecutivas pagadas a tiempo. No obstante, las atenciones de emergencia con riesgo vital se atienden inmediatamente en cualquier centro hospitalario de la red pública integral de salud.'
-      },
-      {
-        q: '¿Qué pasa si dejo de pagar el seguro voluntario del IESS?',
-        a: 'Si dejas de pagar por más de 60 días continuos, el IESS da de baja automáticamente tu afiliación voluntaria para evitar que sigas acumulando deudas indefinidas. Las imposiciones que ya pagaste no se pierden en ningún caso: quedan registradas en tu historial laboral para sumarse a futuros empleos o a tu jubilación.'
-      }
-    ],
-    content: `
-# Afiliación voluntaria IESS 2026: cuánto se paga al mes
-
-Para afiliarte de forma voluntaria al IESS en 2026 debes pagar mensualmente el 17,60 % de tus ingresos declarados, con un valor mínimo obligatorio de **$84,83 al mes** calculado sobre el Salario Básico Unificado vigente de $482. Si declaras ingresos superiores, la cuota aumenta proporcionalmente garantizando cobertura de salud, pensión y préstamos.
-
----
-
-## En resumen: Datos clave sobre el valor a pagar y cobertura
-* **Valor mínimo mensual en 2026**: **$84,83 dólares**, calculado sobre el Salario Básico Unificado (SBU de $482) // VERIFICAR: valor del SBU 2026 según Acuerdo Ministerial.
-* **Porcentaje de cotización legal**: **17,60 %** sobre el total de ingresos declarados // VERIFICAR: tasa según Resolución C.D. 625 del IESS.
-* **Quiénes califican**: Profesionales independientes, trabajadores por cuenta propia, ecuatorianos residentes en el exterior y personas sin relación de dependencia activa.
-* **Fecha máxima de pago**: Hasta el día 15 del mes calendario siguiente para no incurrir en mora patronal involuntaria ni corte de coberturas.
-* **Prestaciones incluidas**: Salud completa para el titular e hijos menores de 18 años, jubilación por vejez e invalidez, montepío, auxilio de funerales y préstamos en el BIESS.
-
----
-
-## ¿Cuánto se paga al IESS por afiliación voluntaria en 2026? Tabla de aportes
-
-El monto de la cuota mensual del seguro voluntario depende del ingreso que decidas manifestar ante el Instituto Ecuatoriano de Seguridad Social. La legislación prohíbe declarar un valor inferior al Salario Básico Unificado legalmente establecido en el Ecuador ($482 para el año 2026). Sin embargo, cualquier persona puede fijar un sueldo superior según sus posibilidades económicas para obtener una jubilación más representativa.
-
-A continuación, presentamos la tabla comparativa con el valor de la aportación según el salario mensual declarado y el alcance de las coberturas asignadas:
-
-| Salario Declarado Mensual (USD) | Porcentaje de Aporte (%) | Valor Mensual a Pagar (USD) | Cobertura Médica y Prestacional |
-| :--- | :--- | :--- | :--- |
-| **$482,00 (Salario Básico Mínimo)** | **17,60 %** | **$84,83** | Salud titular + hijos menores de 18 años, jubilación base, montepío, préstamos BIESS |
-| **$600,00** | **17,60 %** | **$105,60** | Salud integral, historial de aportes para jubilación media, auxilio de funerales |
-| **$800,00** | **17,60 %** | **$140,80** | Cobertura médica especializada, mayor promedio salarial para el cálculo de pensión |
-| **$1.000,00** | **17,60 %** | **$176,00** | Salud completa, acceso a mayor cupo de crédito quirografario y montepío superior |
-| **$1.500,00** | **17,60 %** | **$264,00** | Plan de jubilación de alto rendimiento, créditos quirografarios e hipotecarios ampliados |
-| **$2.000,00** | **17,60 %** | **$352,00** | Cobertura hospitalaria completa en toda la red nacional del IESS y prestadores externos |
-
-<FactNote ids={["SBU_2026", "APORTE_VOLUNTARIO_PCT"]} />
-
-> 📊 **Simula tu cuota exacta en línea**: Puedes proyectar tu pago mensual personalizado con diferentes rangos salariales usando nuestra [calculadora de aportaciones voluntarias del IESS](/herramientas/calculadora-aporte-afiliacion-voluntaria).
-
----
-
-## Consultas frecuentes sobre el valor y costo del seguro voluntario
-
-Al momento de planificar el presupuesto personal para la seguridad social, los ciudadanos suelen formular las siguientes dudas respecto a los valores vigentes:
-
-### Seguro voluntario IESS valor a pagar 2026
-Para quienes desean empezar a cotizar por su cuenta este año, el **seguro voluntario iess valor a pagar 2026** tiene como piso $84,83 mensuales. Este valor cubre todas las contingencias médicas y la acumulación de años de jubilación sin necesidad de un contrato patronal.
-
-### Cuánto cuesta el seguro voluntario
-Cuando la gente se pregunta **cuánto cuesta el seguro voluntario**, debe considerar que no es una tarifa plana arbitraria, sino un porcentaje fijo del 17,60 % aplicado a los ingresos que uno mismo reporta. La ventaja de este esquema es que el asegurado tiene la libertad de incrementar su base imponible en cualquier momento desde el portal web.
-
-### Valor aporte voluntario IESS 2026
-El **valor aporte voluntario iess 2026** se calcula con la fórmula matemática:
-$$\\text{Aporte} = \\text{Salario Declarado} \\times 0,1760$$
-Si mantienes tu aporte durante 12 meses sobre la base mínima de $482, la inversión anual totaliza $1.017,96, lo que te garantiza un año completo de imposiciones registradas para tu historial de retiro.
-
-### Cuánto se paga al IESS por afiliación voluntaria
-Al evaluar **cuánto se paga al iess por afiliación voluntaria** frente a un seguro médico privado, el sistema público ecuatoriano ofrece una ventaja competitiva determinante: por la misma cuota de $84,83 no solo recibes atención hospitalaria y medicinas gratuitas para ti y tus hijos menores de edad, sino que además estás construyendo un fondo de jubilación vitalicia y adquiriendo el derecho a créditos hipotecarios del BIESS.
-
----
-
-## ¿Quiénes pueden afiliarse voluntariamente al IESS en Ecuador?
-
-El régimen voluntario sin relación de dependencia está abierto a una amplia variedad de perfiles ciudadanos que buscan protegerse frente a enfermedades, accidentes y vejez:
-
-1. **Profesionales independientes y autónomos**: Médicos, abogados, diseñadores, consultores, ingenieros o contadores que ejercen libremente su profesión mediante facturación electrónica.
-2. **Emprendedores y comerciantes**: Propietarios de locales comerciales, talleres artesanales o negocios familiares que no perciben un sueldo bajo nómina laboral.
-3. **Ecuatorianos residentes en el exterior**: Migrantes en Estados Unidos, España, Italia o cualquier otro país que deseen seguir acumulando semanas de cotización en Ecuador para jubilarse en su patria o proteger médicamente a sus familiares directos en territorio nacional.
-4. **Amas de casa y personas dedicadas al cuidado del hogar**: Personas que realizan tareas no remuneradas y desean acceder al régimen general de salud y pensiones completas.
-5. **Estudiantes mayores de edad**: Jóvenes mayores de 18 años que desean iniciar su récord de imposiciones desde temprana edad para alcanzar los 40 años de aportes antes de cumplir los 60 años.
-
----
-
-## Beneficios y prestaciones que cubre el aporte voluntario del 17,60 %
-
-Aportar voluntariamente te confiere prácticamente las mismas garantías que a un trabajador asalariado, con ligeras diferencias en las prestaciones estrictamente vinculadas a despidos patronales.
-
-### 1. Atención médica integral y gratuita
-* Consultas en medicina general, especialidades y subespecialidades en dispensarios y hospitales del IESS.
-* Hospitalización, cirugías programadas y de emergencia, cuidados intensivos e intervenciones de alta complejidad.
-* Entrega gratuita de medicamentos recetados por la farmacia institucional.
-* Tratamientos de rehabilitación física y atención odontológica preventiva.
-
-### 2. Cobertura automática para hijos menores de 18 años
-Tus hijos legalmente reconocidos menores de edad tienen derecho a consultas pediátricas, odontológicas, vacunas y hospitalización dentro de la red del IESS sin que tengas que pagar ninguna mensualidad adicional por cada hijo.
-
-### 3. Pensión vitalicia de jubilación por vejez e invalidez
-Cada cuota mensual pagada suma una imposición formal a tu cuenta individual. Al cumplir las combinaciones de edad y años de aportación exigidas por la ley (por ejemplo, 60 años de edad con 30 años de aportes, o cualquier edad con 40 años de cotización), recibirás una pensión mensual vitalicia ajustada a la inflación. Puedes revisar todos los detalles en la guía de [Jubilación por Vejez IESS](/procedimiento/jubilacion-vejez).
-
-### 4. Pensión de viudez y orfandad (Montepío) y auxilio de funerales
-En caso de fallecimiento del titular, el cónyuge o conviviente en unión de hecho y los hijos menores de 18 años (o hasta 21 si estudian) reciben una renta mensual sustitutiva de montepío. Además, el IESS reembolsa los gastos funerarios a través de la prestación de auxilio de funerales.
-
-### 5. Acceso a Préstamos Quirografarios e Hipotecarios en el BIESS
-* **Préstamo Quirografario**: Puedes acceder a créditos de consumo a tasas preferenciales a partir del **sexto mes de aportación continua** como afiliado voluntario. Conoce los montos y plazos en el procedimiento de [Préstamo Quirografario BIESS](/procedimiento/prestamo-quirografario).
-* **Préstamo Hipotecario**: Cumpliendo con 36 aportaciones mensuales acumuladas (las últimas 12 consecutivas), puedes calificar a préstamos para comprar vivienda propia con financiamiento de hasta 25 años plazo.
-
-> ⚠️ **Prestaciones que NO incluye el seguro voluntario**: Al no existir un empleador ni un despido patronal, la afiliación voluntaria **no incluye** seguro de desempleo, fondo de cesantía con retiro en efectivo, ni fondos de reserva mensuales. Toda la cotización del 17,60 % se destina exclusivamente a sostener los fondos de salud, invalidez, vejez y muerte.
-
----
-
-## Requisitos indispensables para afiliarse por cuenta propia
-
-Para tramitar la afiliación voluntaria no necesitas acudir a ninguna agencia física; el trámite es 100 % virtual y requiere cumplir con las siguientes condiciones:
-
-* **Cédula de identidad**: Poseer cédula de ciudadanía ecuatoriana o cédula de identidad para extranjeros residentes en Ecuador. Si resides en el exterior, puedes tramitarlo con tu cédula o pasaporte ecuatoriano.
-* **Mayoría de edad**: Tener 18 años cumplidos a la fecha de la solicitud.
-* **No registrar afiliación bajo relación de dependencia**: No puedes tener un contrato activo en nómina de ninguna empresa. Si dejaste un trabajo dependiente, tu empleador anterior debe haber registrado previamente tu aviso de salida en el sistema del IESS.
-* **No registrar deudas en mora con el IESS**: Si estuviste afiliado antes y tienes planillas pendientes o glosas patronales, deberás cancelarlas o suscribir un acuerdo de pago antes de iniciar el trámite.
-* **Cuenta bancaria para débito automático**: Contar con una cuenta de ahorros o corriente en una entidad financiera del Ecuador para autorizar el cobro recurrente mensual de las planillas.
-
----
-
-## Paso a paso para tramitar la afiliación voluntaria por internet
-
-El proceso de registro toma menos de 10 minutos si sigues estas indicaciones:
-
-### Paso 1: Ingreso al Portal Oficial del IESS
-Abre tu navegador e ingresa a la dirección oficial [iess.gob.ec](https://www.iess.gob.ec). En el menú de servicios al ciudadano, busca la sección **"Trámites Virtuales"**, haz clic en **"Asegurados"** y selecciona la opción **"Afiliación Voluntaria"**.
-
-### Paso 2: Selección de la modalidad de residencia
-El sistema te presentará tres modalidades de aseguramiento:
-1. **Independiente**: Para quienes ejercen actividades económicas por cuenta propia dentro de Ecuador.
-2. **Sin relación de dependencia**: Para quienes no perciben ingresos laborales pero desean cotizar de forma privada.
-3. **Residente en el Exterior**: Para ecuatorianos que viven fuera de las fronteras nacionales.
-
-### Paso 3: Validación de identidad
-Digita tu número de cédula de ciudadanía de 10 dígitos y tu fecha de nacimiento. El portal cruzará la información en tiempo real con el Registro Civil de Ecuador para verificar tus nombres completos y estado civil.
-
-### Paso 4: Declaración de ingresos y contacto
-* **Ingresos mensuales**: Ingresa el monto en dólares sobre el cual deseas calcular tu aporte. El sistema validará automáticamente que la cifra sea igual o superior al Salario Básico Unificado vigente ($482).
-* **Datos de contacto**: Escribe tu dirección domiciliaria exacta, número de teléfono móvil y correo electrónico activo (donde recibirás tus planillas de pago mensuales).
-
-### Paso 5: Aprobación y registro de débito automático
-Revisa el resumen de tu solicitud y el desglose de la cuota mensual a pagar. Acepta las condiciones del reglamento y autoriza el débito en tu cuenta bancaria para evitar olvidos. Al confirmar, el sistema emitirá el **Comprobante de Aceptación de Afiliación Voluntaria** en formato PDF con tu código de asegurado.
-
----
-
-## Documentos y validaciones para mantener la afiliación activa
-
-Una vez generado el registro, debes mantener en orden los siguientes respaldos:
-
-* **Comprobante de Afiliación impreso o digital**: Guarda el PDF generado para respaldar la fecha exacta de inicio de tu aseguramiento.
-* **Comprobantes de pago bancario**: Si pagas en ventanillas bancarias o mediante banca web, descarga siempre el comprobante de transferencia con el número de planilla.
-* **Clave de Afiliado activa**: Necesitarás tu contraseña para consultar aportes y pedir citas médicas. Si no la tienes, revisa nuestra guía para [Obtener la clave del IESS por primera vez](/blog/como-obtener-clave-iess-primera-vez).
-
----
-
-## Errores frecuentes al contratar y pagar la afiliación voluntaria
-
-* **Declarar ingresos por debajo del salario básico**: Intentar cotizar sobre $200 o $300 dólares. El sistema rechaza automáticamente cualquier solicitud que no alcance el salario básico legal vigente ($482 en 2026).
-* **Olvidar la fecha límite de pago (día 15)**: Muchas personas pagan el día 20 o a fin de mes. El IESS genera planillas del 1 al 15; pagar con retraso acarrea intereses de mora y suspende temporalmente la agenda de citas médicas.
-* **No registrar débito bancario automático**: Pagar manualmente todos los meses aumenta el riesgo de olvido. Configurar el débito bancario garantiza que tus aportes permanezcan al día sin preocupaciones.
-* **Buscar atención médica inmediata**: Creer que al pagar el primer aporte ya puedes agendar consultas de especialidad. Debes esperar los seis meses de carencia reglamentarios, salvo para emergencias médicas vitales.
-* **Dejar de pagar sin solicitar la desafiliación**: Si dejas de pagar, el sistema acumula dos planillas con recargos antes de darte de baja. Lo correcto es ingresar a tu portal de asegurado y tramitar la terminación del seguro voluntario formalmente cuando decidas no continuar.
-
----
-
-## Ejemplo práctico y numérico de cálculo de aportes en 2026
-
-Para comprender con total transparencia cómo se calcula la cuota, analicemos el caso de Juan, un diseñador gráfico independiente en Quito que decide asegurarse voluntariamente en el año **2026**:
-
-* **Situación laboral**: Trabaja como freelance y percibe ingresos variables promedio de $900 mensuales.
-* **Decisión de aporte**: Juan decide cotizar sobre una base imponible de **$800,00 dólares** para asegurar una mejor pensión a futuro.
-* **Fórmula aplicada**:
-  $$\\text{Cuota mensual} = \$800,00 \\times 17,60 \\% = \$140,80 \\text{ dólares}$$
-* **Desglose financiero anual**:
-  * Aporte mensual: $140,80
-  * Aporte anual (12 meses): $1.689,60
-  * Imposiciones acumuladas: 12 imposiciones completas registradas en su historial laboral.
-* **Resultado del aseguramiento**: Juan y su hija de 6 años cuentan con cobertura médica completa, y a partir del mes 7 Juan podrá solicitar un crédito quirografario en el BIESS para adquirir equipos informáticos.
-
----
-
-## Preguntas Frecuentes sobre la afiliación voluntaria del IESS
-
-### ¿Cuánto cuesta el seguro voluntario del IESS al mes en 2026?
-El costo mínimo del seguro voluntario en 2026 es de exactamente **$84,83 dólares al mes**. Esta tarifa corresponde a la tasa legal del 17,60 % calculada sobre el Salario Básico Unificado vigente ($482). Si declaras un ingreso mensual mayor a este piso, tu valor a pagar aumentará de forma directamente proporcional al monto que decidas cotizar.
-
-### ¿Cuánto se paga al IESS por afiliación voluntaria si gano más del básico?
-Si decides registrar ingresos superiores al básico, pagas siempre el 17,60 % de la cifra declarada. Por ejemplo, sobre un ingreso de $600 mensuales la cuota es de $105,60; para $800 asciende a $140,80; y si declaras $1.000 tu pago será de $176,00 al mes. Cotizar con valores más altos incrementa el cálculo de tu pensión de jubilación.
-
-### ¿Qué cubre exactamente la cuota mensual de afiliación voluntaria?
-El aporte voluntario mensual te otorga cobertura médica integral en hospitales del IESS, cobertura de salud sin costo adicional para tus hijos menores de 18 años, pensión vitalicia por vejez o invalidez, auxilio de funerales y pensión de montepío para sobrevivientes. A partir de los seis meses de aportes continuos, también puedes solicitar préstamos quirografarios en el BIESS.
-
-### ¿Hasta qué día del mes se puede pagar la planilla voluntaria sin recargos?
-La planilla mensual del seguro voluntario se debe pagar hasta el **día 15 del mes siguiente** al periodo de cobertura. Por ejemplo, el aporte de enero se cancela hasta el 15 de febrero. Si no pagas en ese plazo, el sistema genera intereses de mora inmediatos y, tras acumular dos meses impagos, se suspende la atención médica.
-
-### ¿Puedo afiliarme voluntariamente si vivo en el extranjero?
-Sí, los ecuatorianos que residen en el exterior pueden registrarse en el régimen voluntario ecuatoriano sin importar el país donde vivan. Cotizan sobre el salario básico ecuatoriano o sobre sus ingresos declarados, y acumulan años de servicio para su jubilación en Ecuador, manteniendo además la protección médica para sus dependientes que residan en territorio nacional.
-
-### ¿Cuánto tiempo debo esperar para atenderme en el médico tras afiliarme?
-Para recibir atención médica general y programada en el IESS, los afiliados voluntarios deben cumplir un periodo de carencia de **seis (6) imposiciones mensuales consecutivas** pagadas a tiempo. No obstante, las atenciones de emergencia con riesgo vital se atienden inmediatamente en cualquier centro hospitalario de la red pública integral de salud.
-
-### ¿Qué pasa si dejo de pagar el seguro voluntario del IESS?
-Si dejas de pagar por más de 60 días continuos, el IESS da de baja automáticamente tu afiliación voluntaria para evitar que sigas acumulando deudas indefinidas. Las imposiciones que ya pagaste no se pierden en ningún caso: quedan registradas en tu historial laboral para sumarse a futuros empleos o a tu jubilación.
-
----
-
-## Enlaces y guías recomendadas para tu trámite
-* Conoce los pasos para realizar el trámite institucional en el portal oficial en el procedimiento de [Afiliación Voluntaria](/procedimiento/afiliacion-voluntaria).
-* Planifica tu futuro revisando los requisitos completos de edad y aportaciones en la guía de [Jubilación por Vejez IESS](/procedimiento/jubilacion-vejez).
-* Una vez afiliado, revisa cómo [Consultar aportes e historial laboral](/blog/como-consultar-aportes-iess-historial-laboral) para monitorear tus pagos mensuales.
-* Si necesitas financiar proyectos personales, descubre las ventajas del [Préstamo Quirografario BIESS](/procedimiento/prestamo-quirografario).
-`
-  },
-  {
-    id: 'subsidio-maternidad-2026',
-    slug: 'subsidio-maternidad-iess-requisitos-calculo-2026',
-    title: 'Subsidio de maternidad IESS 2026: requisitos y cuánto pagan',
-    seoTitle: 'Subsidio de Maternidad IESS: cálculo | IESS Asistente',
-    metaDescription: 'Guía 2026 del subsidio de maternidad IESS: requisitos de 12 aportes, cálculo de los 84 días al 100%, certificado médico, trámite y acreditación.',
-    keywords: [
-      'subsidio de maternidad',
-      'cuánto es el subsidio por maternidad',
-      'certificado de maternidad iess',
-      'bono por maternidad 2026',
-      'iess maternidad subsidio',
-      'www iess gob ec subsidio de maternidad',
-      'licencia maternidad 84 dias ecuador'
-    ],
-    author: 'equipo-editorial',
-    publishDate: '2026-01-08',
-    dateModified: '2026-10-10',
-    readTime: 9,
-    readingTime: 9,
-    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
-    imageAlt: 'Madre trabajadora asegurada revisando los requisitos y liquidación del subsidio de maternidad en el portal del IESS Ecuador',
-    category: 'Salud',
-    relatedSlugs: [
-      'afiliacion-voluntaria-iess-requisitos-beneficios-2026',
-      'pension-montepio-iess-requisitos-sobrevivientes-2026',
-      'como-consultar-aportes-iess-historial-laboral'
-    ],
-    content: `
-# Subsidio de Maternidad IESS 2026: Requisitos y Cuánto Pagan
-
-El subsidio de maternidad del IESS exige doce imposiciones continuas dentro de los quince meses de referencia previos al parto para otorgar una cobertura económica del 100% de la remuneración promediada durante los 84 días de descanso obligatorio, financiada en un 75% por el seguro social y un 25% por el empleador.
-
----
-
-## En resumen: Claves del subsidio de maternidad del IESS en 2026
-
-* **Tiempo de reposo remunerado**: 84 días calendario reglamentarios (12 semanas continuas), ampliables 10 días adicionales por parto múltiple.
-* **Porcentaje total percibido**: 100% de la remuneración promedio declarada (el IESS cancela el 75% y el empleador asume el 25% restante). // VERIFICAR: En afiliadas voluntarias e independientes revisar si el seguro liquida directamente la cuota del 75% reglamentaria.
-* **Aportaciones mínimas exigidas**: 12 imposiciones mensuales consecutivas previas al parto dentro de los 15 meses anteriores a la fecha probable o real.
-* **Canal oficial de solicitud**: Módulo informático en [iess.gob.ec](https://www.iess.gob.ec) bajo la sección de Subsidios Monetarios.
-* **Requisito no negociable de cobro**: Cuenta bancaria personal registrada y validada en el portal del IESS y certificado médico validado antes de los plazos reglamentarios.
-
----
-
-> ℹ️ **Canal Institucional Oficial:** Recuerda que este portal es una guía informativa ciudadana independiente. El trámite oficial y la acreditación económica se gestionan exclusivamente en el sitio web institucional del Instituto Ecuatoriano de Seguridad Social: [www.iess.gob.ec subsidio de maternidad](https://www.iess.gob.ec). Ningún intermediario ni gestor externo tiene autorización para cobrar por la aprobación de tu descanso prenatal o postnatal.
-
----
-
-## ¿Cuánto es el subsidio por maternidad y cómo se calcula en 2026?
-
-Una de las dudas más frecuentes entre las aseguradas es cómo determinar el valor en dólares que transferirá el IESS a su cuenta bancaria personal. De acuerdo con el Código del Trabajo ecuatoriano (Art. 152) y la Ley de Seguridad Social, la madre no debe experimentar ninguna merma en su nivel de ingresos habituales durante las 12 semanas que dedica al cuidado de su hijo recién nacido.
-
-La compensación se divide en dos pagos complementarios:
-1. **Aporte del IESS (75%)**: El seguro social liquida el 75% del sueldo promedio cotizado durante los doce meses anteriores al alumbramiento, calculado sobre los 84 días calendario de reposo.
-2. **Aporte patronal obligatorio (25%)**: La empresa o institución empleadora cubre el 25% remanente directamente a través del rol de pagos mensual regular, manteniendo activas las aportaciones patronales de dicho mes.
-
-La siguiente tabla resume la estructura comparativa de cobertura, duración y porcentajes del subsidio frente a otros descansos por contingencias de salud:
-
-| Prestación Económica | Cobertura Total | Parte Asumida por el IESS | Parte Asumida por Empleador | Duración Máxima Legal | Requisito de Aportes |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Subsidio de Maternidad Ordinario** | 100% del sueldo promediado | 75% del promedio diario x 84 días | 25% mensual en rol de pagos | 84 días calendario (12 semanas) | 12 aportes continuos en 15 meses |
-| **Parto Múltiple (Gemelar o más)** | 100% del sueldo promediado | 75% del promedio diario x 94 días | 25% mensual en rol de pagos | 94 días calendario (10 días extra) | 12 aportes continuos en 15 meses |
-| **Subsidio por Enfermedad General** | 75% (días 4 al 90) / 66% (días 91 al 180) | 100% del porcentaje subsidiado | 0% (primeros 3 días asume patrono) | Hasta 180 días de reposo | Aportes continuos al día |
-| **Licencia de Paternidad (Padre)** | 100% del sueldo del trabajador | 0% (no es subsidio del IESS) | 100% asumido por el patrono | 10 a 15 días según tipo de parto | No aplica cómputo del IESS |
-
-<FactNote ids={["MATERNIDAD_SUBSIDIO_IESS_PCT", "MATERNIDAD_DIAS_DESCANSO", "MATERNIDAD_APORTES_REQ"]} />
-
----
-
-## Ejemplo práctico de liquidación del subsidio de maternidad
-
-Para comprender con exactitud la liquidación bancaria, analicemos el caso real de una trabajadora afiliada con un salario mensual estable:
-
-### Datos del caso:
-* **Remuneración mensual imponible reportada**: USD 800.00 constantes durante los últimos 12 meses previos al descanso prenatal.
-* **Período de licencia**: 84 días calendario reglamentarios.
-
-### Procedimiento de cálculo numérico:
-1. **Determinación de la base de remuneración diaria**:
-   $$\\text{Sueldo diario} = \\frac{\\text{USD } 800.00}{30 \\text{ días}} = \\text{USD } 26.67 \\text{ por día}$$
-2. **Cálculo del 75% a cargo del IESS**:
-   $$\\text{Base diaria del IESS} = \\text{USD } 26.67 \\times 75\\% = \\text{USD } 20.00 \\text{ diarios}$$
-   $$\\text{Monto total girado por el IESS} = \\text{USD } 20.00 \\times 84 \\text{ días} = \\text{USD } 1,680.00$$
-3. **Cálculo del 25% a cargo del patrono**:
-   $$\\text{Base diaria patronal} = \\text{USD } 26.67 \\times 25\\% = \\text{USD } 6.67 \\text{ diarios}$$
-   $$\\text{Monto total asumido por el empleador} = \\text{USD } 6.67 \\times 84 \\text{ días} = \\text{USD } 560.00$$
-4. **Ingreso global consolidado de la madre**:
-   $$\\text{Ingreso total durante las 12 semanas} = \\text{USD } 1,680.00 + \\text{USD } 560.00 = \\text{USD } 2,240.00$$
-   *(Equivalente exacto a USD 800.00 mensuales multiplicados por los 2.8 meses que abarcan las 12 semanas).*
-
-El valor de USD 1,680.00 se transfiere de forma íntegra a la cuenta bancaria personal de la asegurada mediante acreditación directa del Banco Central / IESS, exento de descuentos patronales, mientras que los USD 560.00 los abona la empresa en sus fechas habituales de nómina.
-
----
-
-## Requisitos indispensables para acceder al beneficio en 2026
-
-Para que la Subdirección de Prestaciones de Salud del IESS apruebe el desembolso sin glosas ni negativas automáticas, la trabajadora y la empresa deben reunir los siguientes requisitos indispensables:
-
-1. **Récord continuo de aportaciones**: Acreditar al menos **12 aportaciones mensuales continuas** dentro de los 15 meses anteriores a la fecha del alumbramiento. Si la afiliada cambió de empresa pero mantuvo continuidad de cotización sin meses en blanco, se computa la sumatoria total de manera ininterrumpida.
-2. **Condición de afiliada activa**: Mantener activa la relación de trabajo o voluntariado. El patrono no debe registrar mora patronal en los periodos de aportación que sirven de sustento a la liquidación.
-3. **Certificado médico de maternidad validado**: Contar con el certificado prenatal o de nacimiento expedido por un ginecólogo de la red institucional del IESS, o haber completado la validación en línea del certificado otorgado por médico o clínica particular.
-4. **Cuenta bancaria aprobada en el IESS**: Disponer de una cuenta de ahorros o corriente a nombre exclusivo de la madre, previamente registrada y validada en el sistema web de asegurados. No se admiten cuentas de terceros, parejas ni cuentas conjuntas no autorizadas.
-5. **Aviso de reposo patronal registrado**: El empleador debe validar el descanso por maternidad dentro de su sistema de nómina patronal institucional.
-
----
-
-## Documentos obligatorios para armar el expediente de maternidad
-
-Antes de ingresar al módulo informático del seguro social, asegúrate de tener escaneados en formato PDF legible (peso menor a 2 MB por archivo) los siguientes documentos:
-
-* **Cédula de ciudadanía o identidad** de la asegurada madre y del recién nacido (o partida de nacimiento íntegra).
-* **Certificado médico original de reposo por maternidad**: Debe consignar con claridad los nombres completos de la paciente, diagnóstico clínico, semanas de gestación, fecha probable o efectiva de parto, número de días de reposo (84 días) y firma y sello con código de registro del médico tratante en el Ministerio de Salud Pública.
-* **Epicrisis o resumen de historia clínica** (únicamente si el parto ocurrió en clínicas, sanatorios u hospitales privados).
-* **Certificado bancario emitido por la institución financiera** que demuestre la titularidad activa de la cuenta.
-
----
-
-## Paso a paso: Cómo solicitar el subsidio de maternidad en línea
-
-El trámite en el portal [iess.gob.ec](https://www.iess.gob.ec) está completamente automatizado y se realiza sin necesidad de hacer filas presenciales en ventanillas:
-
-### Paso 1: Validación del certificado médico particular (si no diste a luz en hospital del IESS)
-Si el alumbramiento o control prenatal se efectuó en una clínica privada, el certificado médico de maternidad del IESS debe ser homologado dentro del plazo de ley:
-1. Accede a [iess.gob.ec](https://www.iess.gob.ec) y dirígete a **"Trámites Virtuales"** -> **"Asegurados"** -> **"Afiliados"**.
-2. Ingresa a la opción **"Validación de Certificados Médicos"** digitando tu número de cédula y clave patronal/personal.
-3. Ingresa los datos del médico particular (número de cédula o código profesional) y la fecha de inicio del reposo.
-4. Adjunta el archivo PDF del certificado médico y la epicrisis del hospital.
-5. El sistema emitirá un comprobante de radicación y, tras la revisión del médico auditor institucional, emitirá el código de reposo validado.
-
-### Paso 2: Verificación de la cuenta bancaria personal
-1. Dentro de los servicios en línea de **"Afiliados"**, ingresa a la pestaña **"Registro y Actualización de Cuenta Bancaria"**.
-2. Verifica que la cuenta bancaria figure en estado **"Validada"** con visto bueno verde. Si no lo está, regístrala cargando el certificado bancario para evitar que el pago quede retenido.
-
-### Paso 3: Ingreso de la solicitud de subsidio monetario
-1. En el portal de afiliados, haz clic en **"Subsidios Monetarios"**.
-2. Selecciona **"Registro de Solicitud de Maternidad"**.
-3. El aplicativo verificará en tiempo real tu historial de doce aportaciones en los quince meses previos.
-4. Selecciona el certificado médico institucional o validado que ampara tus 84 días de licencia.
-5. Confirma los datos de tu cuenta bancaria y haz clic en **"Guardar y Enviar Solicitud"**.
-6. Descarga y conserva el comprobante digital en formato PDF con el número de trámite para dar seguimiento.
-
----
-
-## Errores frecuentes que demoran o anulan el pago del subsidio
-
-Evita estos errores comunes que suelen bloquear las solicitudes de miles de madres ecuatorianas cada mes:
-
-* **Dejar vencer el plazo para validar certificados de clínicas particulares**: El certificado privado debe presentarse dentro del plazo máximo reglamentario para no perder el derecho al reconocimiento económico del seguro.
-* **No verificar que la cuenta bancaria esté a nombre de la titular**: El IESS rechaza de inmediato transferencias dirigidas a cuentas bancarias del cónyuge, padres o terceros, aun cuando medie poder notariado.
-* **Mora patronal en las planillas del año previo**: Si el empleador no pagó las planillas mensuales en las fechas reglamentarias, el sistema considerará que no existen 12 cotizaciones continuas válidas hasta que la deuda sea cancelada con los respectivos intereses de mora.
-* **Confundir la licencia de maternidad con la licencia de paternidad**: Los 10 a 15 días concedidos al padre son una obligación económica exclusiva del patrono privado o estatal; el IESS no tramita ningún subsidio monetario a nombre del cónyuge.
-* **Creer que el bono o subsidio de maternidad es un trámite presencial obligatorio**: No es necesario contratar tramitadores externos. El registro se realiza de manera 100% gratuita a través de [iess.gob.ec](https://www.iess.gob.ec).
-
----
-
-## Diferencias clave: Subsidio de maternidad vs. bono del MIES y licencias especiales
-
-Es vital no confundir el **subsidio de maternidad del IESS** con programas de asistencia social estatal o descansos no remunerados:
-
-1. **Subsidio de Maternidad del IESS (Seguro Contributivo)**: Es una prestación contributiva financiada con las aportaciones de la trabajadora y del patrono. Su cobro exige récord laboral y reemplaza el salario de la madre al 100%.
-2. **Bono de Apoyo Social (MIES)**: Corresponde a transferencias condicionadas no contributivas orientadas a madres en situación de extrema pobreza o vulnerabilidad que no forman parte del sistema de seguridad social.
-3. **Licencia opcional complementaria sin sueldo**: El Código del Trabajo permite a la madre solicitar hasta 9 meses adicionales de permiso no remunerado tras los 84 días para dedicarse a la crianza; durante ese lapso no opera subsidio del IESS, aunque se mantiene el acceso a prestaciones médicas mediante aportación voluntaria.
-4. **Permiso de lactancia materna**: Una vez reincorporada al trabajo, la madre goza de una jornada reducida de 6 horas diarias durante 12 meses posteriores al parto, remunerada en su totalidad por el empleador sin intervención del seguro social.
-
----
-
-## Preguntas Frecuentes sobre el Subsidio de Maternidad IESS
-
-### ¿Cuánto tiempo tengo para cobrar el subsidio de maternidad si no lo solicité a tiempo?
-El derecho a reclamar los valores económicos del subsidio por maternidad prescribe a los doce meses contados a partir de la fecha de culminación de la licencia médica por alumbramiento. Si no tramitas la homologación y solicitud dentro de este plazo legal, los valores prescriben a favor del fondo de salud del IESS.
-
-### ¿Qué pasa con el subsidio de maternidad si mi empleador está en mora patronal?
-Si tu empresa adeuda planillas de aportaciones, el IESS no te pagará el subsidio monetario hasta que la mora sea saldada en su totalidad. No obstante, por mandato del Código del Trabajo, el empleador moroso queda obligado a asumir de su propio presupuesto el 100% de la remuneración que te correspondía percibir durante las 12 semanas de descanso.
-
-### ¿El subsidio de maternidad cubre también los gastos del parto y cesárea?
-Sí, las afiliadas que cumplen los requisitos de cotización tienen cobertura médica y obstétrica total gratuita en los hospitales del IESS y prestadores privados acreditados, incluyendo atención médica prenatal, parto normal, cesárea programada o de emergencia, anestesia, medicamentos y neonatología sin costo adicional.
-
-### ¿Cuánto paga el IESS a las afiliadas voluntarias o sin relación de dependencia por maternidad?
-Las afiliadas independientes y voluntarias que registran 12 imposiciones continuas reciben el pago directo del subsidio de salud correspondiente a la base calculada de su aporte mensual declarado. Al no contar con un patrono que cubra el 25% remanente en rol de pagos, perciben la cuota pecuniaria estipulada en el reglamento de salud del IESS. // VERIFICAR: Comprobar liquidaciones sectoriales especiales para trabajadoras del hogar.
-
-### ¿Se descuentan aportes al IESS sobre el dinero depositado por subsidio de maternidad?
-No. El depósito que realiza el IESS por concepto de subsidio pecuniario de maternidad ingresa a tu cuenta bancaria de manera íntegra, sin retención de aporte personal del 9.45% ni deducciones de impuestos, ya que constituye un beneficio de reposición salarial de la seguridad social.
-
-### ¿Cómo consultar el estado de depósito del dinero en www iess gob ec subsidio de maternidad?
-Ingresa a [iess.gob.ec](https://www.iess.gob.ec), accede a "Asegurados" -> "Afiliados" -> "Subsidios Monetarios" y presiona la opción "Consulta de Solicitud de Subsidios". El aplicativo indicará si tu trámite se encuentra en estado "Generado", "Aprobado por Auditoría Médica", "Enviado al Banco Central" o "Acreditado en Cuenta".
-
-### ¿Qué sucede si el recién nacido fallece durante o poco después del parto?
-En el lamentable evento de parto prematuro con feto viable o fallecimiento neonatal, la madre mantiene intacto su derecho a disfrutar de los 84 días de licencia de maternidad remunerada y a cobrar el 100% del subsidio pecuniario, ya que el reposo médico busca garantizar su recuperación física y psicológica integral.
-
----
-
-## Fuentes oficiales y normativa de consulta
-* **Código del Trabajo de la República del Ecuador (Art. 152 y siguientes)** - Normativa de descanso obligatorio y protección a la maternidad.
-* **Ley de Seguridad Social (Registro Oficial Suplemento 465)** - Régimen del Seguro General de Salud Individual y Familiar.
-* **Reglamento General de Prestaciones de Salud y Subsidios Pecuniarios del IESS** - Resoluciones del Consejo Directivo.
-* **Portal Oficial del Instituto Ecuatoriano de Seguridad Social**: [iess.gob.ec](https://www.iess.gob.ec).
-
----
-
-## Enlaces internos y guías complementarias
-* Si eres trabajadora independiente, revisa los costos en nuestra guía sobre [Afiliación voluntaria IESS 2026: cuánto se paga al mes](/blog/afiliacion-voluntaria-iess-requisitos-beneficios-2026).
-* Consulta el procedimiento institucional paso a paso en la sección de [Subsidio por Maternidad](/procedimiento/subsidio-maternidad).
-* Conoce los derechos familiares y de montepío en nuestra guía de [Pensión de viudez y orfandad IESS: requisitos y trámite](/blog/pension-montepio-iess-requisitos-sobrevivientes-2026).
-* Revisa tu récord laboral de cotizaciones en la guía para [Consultar aportes e historial laboral en el IESS](/blog/como-consultar-aportes-iess-historial-laboral).
-`,
-    sources: [
-      {
-        label: "Código del Trabajo de Ecuador (Art. 152)",
-        url: "https://www.trabajo.gob.ec",
-        accessedAt: "2026-10-10"
-      },
-      {
-        label: "IESS - Subsidios Pecuniarios y Prestaciones de Maternidad",
-        url: "https://www.iess.gob.ec",
-        accessedAt: "2026-10-10"
-      },
-      {
-        label: "Ley de Seguridad Social del Ecuador",
-        url: "https://www.iess.gob.ec",
-        accessedAt: "2026-10-10"
-      }
-    ],
-    faqs: [
-      {
-        q: '¿Cuánto tiempo tengo para cobrar el subsidio de maternidad si no lo solicité a tiempo?',
-        a: 'El derecho a reclamar los valores del subsidio por maternidad prescribe a los doce meses contados a partir de la finalización del reposo médico reglamentario de 84 días.'
-      },
-      {
-        q: '¿Qué pasa con el subsidio de maternidad si mi empleador está en mora patronal?',
-        a: 'El IESS retiene la liquidación del subsidio hasta que el patrono pague la mora, pero por ley la empresa queda obligada a cancelar directamente el 100% del sueldo de la madre durante su descanso.'
-      },
-      {
-        q: '¿El subsidio de maternidad cubre también los gastos del parto y cesárea?',
-        a: 'Sí, las aseguradas que cumplen con las 12 imposiciones continuas acceden a atención médica gratuita completa de controles prenatales, parto normal o cesárea y cuidados para el recién nacido en la red del IESS.'
-      },
-      {
-        q: '¿Cuánto paga el IESS a las afiliadas voluntarias por subsidio de maternidad?',
-        a: 'Perciben el subsidio pecuniario equivalente a su porcentaje de cotización sobre el salario declarado en sus aportes continuos directamente del seguro social.'
-      },
-      {
-        q: '¿Se descuentan aportes al IESS sobre el dinero depositado por subsidio de maternidad?',
-        a: 'No, el depósito correspondiente a la cuota del subsidio del IESS se entrega libre de deducciones del aporte personal del 9.45% e impuestos.'
-      },
-      {
-        q: '¿Cómo consultar el estado de depósito del dinero en www iess gob ec subsidio de maternidad?',
-        a: 'Ingresando a iess.gob.ec en "Afiliados" -> "Subsidios Monetarios" -> "Consulta de Solicitud de Subsidios" para ver la fecha de acreditación en cuenta bancaria.'
-      },
-      {
-        q: '¿Qué sucede si el recién nacido fallece durante o poco después del parto?',
-        a: 'La madre conserva íntegramente su derecho a los 84 días de reposo remunerado y a percibir el 100% de la compensación económica para su recuperación.'
+        "label": "IESS - Portal Informativo y Resoluciones del Consejo Directivo",
+        "url": "https://www.iess.gob.ec",
+        "accessedAt": "2026-10-01"
       }
     ]
   },
   {
-    id: 'prestamo-hipotecario-2026',
-    slug: 'prestamo-hipotecario-biess-requisitos-tasas-2026',
-    title: 'Préstamo Hipotecario BIESS 2026: Requisitos y Tasas de Interés',
-    seoTitle: 'Préstamos Hipotecarios BIESS: tasas | IESS Asistente',
-    metaDescription: 'Préstamo hipotecario BIESS 2026: tasas preferenciales desde el 5.0%, requisitos de afiliación, plazos de 25 años y financiamiento de vivienda en Ecuador.',
-    keywords: ['préstamo hipotecario BIESS', 'casa propia BIESS', 'crédito vivienda ecuador', 'tasa interés BIESS', 'requisitos hipotecario BIESS'],
-    content: `
-# Préstamo Hipotecario BIESS 2026: Requisitos y Tasas de Interés
-
-¿Quiere adquirir su vivienda propia en Ecuador con las mejores condiciones financieras del mercado? El Préstamo Hipotecario del BIESS para el año 2026 ofrece tasas de interés preferenciales desde el 5.0% nominal anual y plazos de pago de hasta 25 años, financiando hasta el 100% del avalúo de su primera casa de interés público. Esta es la alternativa de financiamiento a largo plazo más robusta en el mercado inmobiliario ecuatoriano, diseñada para afiliados dependientes, voluntarios y jubilados de la seguridad social.
-
-## En resumen: Datos clave sobre el Crédito Hipotecario BIESS
-* **Tasa de interés mínima**: Desde el 5.0% nominal anual para viviendas de interés público (VIP/VIS).
-* **Plazo máximo de pago**: Hasta 25 años (300 meses de plazo para amortización).
-* **Monto máximo de financiamiento**: Hasta $300,000 dólares americanos según capacidad de pago.
-* **Cobertura total**: Financiamiento del 100% en viviendas de hasta $100,000 dólares.
-* **Aportaciones obligatorias**: Mínimo 36 de aportaciones acumuladas totales en el IESS.
-
----
-
-## ¿Cuáles son las condiciones de financiamiento y tasas de interés en 2026?
-
-El Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) maneja tasas de interés altamente competitivas, subsidiadas por el Estado para promover el acceso a la vivienda propia. A diferencia de la banca privada convencional, la tasa nominal se ajusta según el valor comercial de la vivienda y el plazo de amortización solicitado.
-
-La siguiente tabla detalla la estructura vigente de financiamiento y tasas nominales anuales:
-
-| Tipo de Vivienda | Valor Comercial Máximo | Porcentaje de Financiamiento | Tasa de Interés Nominal | Plazo Máximo Permitido |
-| :--- | :--- | :--- | :--- | :--- |
-| **Interés Social (VIS)** | Hasta $45,000 | 100% del avalúo comercial | 4.99% a 5.50% anual | Hasta 25 años |
-| **Interés Público (VIP)** | Desde $45,001 hasta $100,000 | 100% del avalúo comercial | 5.51% a 6.50% anual | Hasta 25 años |
-| **Vivienda Habitual (General)** | Desde $100,001 hasta $200,000 | Hasta el 90% del avalúo comercial | 6.75% a 7.90% anual | Hasta 25 años |
-| **Vivienda de Gama Alta** | Desde $200,001 hasta $300,000 | Hasta el 80% del avalúo comercial | 7.91% a 8.50% anual | Hasta 20 años |
-| **Terrenos o Oficinas** | Según avalúo | Hasta el 80% del avalúo comercial | 8.00% a 9.50% anual | Hasta 10 años |
-
-<FactNote ids={["TASA_HIPOTECARIO_MIN", "TASA_HIPOTECARIO_MAX", "HIPOTECARIO_PLAZO_MAX_ANOS", "HIPOTECARIO_MONTO_100_COBERTURA", "HIPOTECARIO_MONTO_MAX"]} />
-
----
-
-## ¿Quiénes pueden solicitar un Préstamo Hipotecario en el BIESS?
-
-Esta prestación está disponible para todos los asegurados al sistema de seguridad social en el Ecuador que cumplan con criterios mínimos de estabilidad laboral y financiera. Esto incluye a:
-* **Afiliados bajo relación de dependencia** (sector público o privado) con relación activa de trabajo.
-* **Afiliados voluntarios e independientes** dentro del territorio nacional que paguen sus aportaciones a tiempo.
-* **Jubilados por vejez, invalidez** o discapacidad física calificada de forma oficial por la Comecap del IESS.
-
----
-
-## Requisitos obligatorios para precalificar al crédito
-
-Para que la plataforma informática del BIESS apruebe su solicitud de precalificación inmobiliaria, debe cumplir rigurosamente con los siguientes requisitos del sistema:
-
-1. **Récord de aportaciones**: Acreditar un mínimo de **36 aportaciones mensuales acumuladas** en su cuenta individual del IESS (no simultáneas).
-2. **Consecutividad**: Las últimas **12 aportaciones** deben ser consecutivas e inmediatamente anteriores a la fecha de inicio del trámite.
-3. **Estabilidad laboral**: El afiliado dependiente debe demostrar un mínimo de 12 meses de estabilidad en su empleo actual.
-4. **Capacidad de endeudamiento**: La cuota mensual estimada del dividendo hipotecario no puede superar el 40% de sus ingresos netos declarados en el IESS.
-5. **Edad límite del solicitante**: La edad del afiliado al momento de solicitar el préstamo, sumada al plazo total del crédito, no puede superar los 75 años de edad.
-6. **Historial crediticio óptimo**: Contar con una calificación de riesgo tipo "A" o "B" en el Buró de Crédito nacional, sin deudas vencidas ni demandas de cobro.
-7. **No tener obligaciones patronales o préstamos en mora**: El empleador actual no debe registrar mora patronal, y el afiliado no debe tener préstamos quirografarios en mora ni glosas patronales.
-
----
-
-## Paso a paso para realizar el trámite de solicitud
-
-El proceso de solicitud del Préstamo Hipotecario es mixto: inicia con una precalificación 100% en línea y continúa con un expediente físico entregado a los asesores del banco. Siga estos pasos sistemáticos para asegurar su aprobación:
-
-### Paso 1: Ingreso al Portal Transaccional del BIESS
-Acceda al sitio web oficial del banco [biess.fin.ec](https://www.biess.fin.ec). En el menú principal, seleccione la opción "Préstamos Hipotecarios" y haga clic en el botón de acceso al sistema. Inicie sesión digitando su número de cédula y su clave única de afiliado.
-
-### Paso 2: Selección del Tipo de Producto Inmobiliario
-Una vez dentro de su portal de asegurado, elija el destino del crédito. Las opciones disponibles son: Compra de Vivienda Terminada, Construcción de Vivienda, Adquisición de Terreno, Sustitución de Hipoteca o Remodelación/Ampliación de vivienda principal.
-
-### Paso 3: Simulación de Capacidad de Pago y Precalificación
-El sistema procesará automáticamente su historial de cotizaciones y su capacidad de pago precalculada. Introduzca el valor comercial estimado de la propiedad y el plazo de años deseado. La plataforma arrojará de forma inmediata el monto preaprobado, la tasa de interés sugerida y la tabla de amortización (cuotas fijas o decrecientes). Si está de acuerdo, presione el botón de "Precalificar".
-
-### Paso 4: Carga y Entrega de Documentación Física
-Si obtiene la precalificación favorable en la web, el sistema generará una lista de documentos de soporte. Deberá recopilarlos, imprimir la solicitud firmada y agendar una cita presencial en las oficinas del BIESS o cargar los documentos digitales en la ventanilla virtual habilitada para procesar el expediente.
-
-### Paso 5: Avalúo de la Propiedad e Instrumentación Legal
-Un perito calificado por el BIESS acudirá a inspeccionar físicamente el inmueble para determinar su valor real. Tras el avalúo favorable, se elaborará la minuta, se elevará a escritura pública en una notaría y se inscribirá la hipoteca en el Registro de la Propiedad correspondiente para proceder al desembolso al vendedor.
-
----
-
-## Documentos indispensables para armar su expediente hipotecario
-
-Una vez precalificado en línea, debe presentar los siguientes documentos en perfectas condiciones:
-
-* **Formulario de solicitud de crédito** impreso y firmado por el solicitante y su cónyuge (si aplica) desde el portal web.
-* **Copias de cédula de ciudadanía** y papeleta de votación vigentes de los intervinientes.
-* **Certificado de ingresos y roles de pago** de los últimos 3 meses, firmados por el representante de talento humano de su empresa.
-* **Estados de cuenta bancarios** de los últimos 3 meses que demuestren el flujo de ingresos declarados.
-* **Copia de la escritura pública de la propiedad** que se desea adquirir, debidamente inscrita.
-* **Certificado de Gravámenes actualizado** emitido por el Registro de la Propiedad (validez no mayor a 30 días calendario).
-* **Impuesto Predial pagado** del año fiscal corriente del inmueble objeto del crédito.
-
----
-
-## Errores frecuentes al solicitar el hipotecario y cómo prevenirlos
-
-* **Mantener deudas pequeñas en mora**: Tener un saldo vencido en una tarjeta de crédito o telefonía, aunque sea de pocos dólares, bloquea instantáneamente la precalificación. Revise su buró crediticio previamente para certificar su calificación de riesgo favorable.
-* **Inconsistencias en los datos del empleador**: Si su empresa registra retrasos leves en el pago de planillas patronales del IESS, la plataforma impedirá el trámite por mora patronal involuntaria. Verifique que su empleador esté al día.
-* **Falta de actualización de datos bancarios**: Si su cuenta personal de ahorros o corriente no está validada mediante el Centro de Atención Universal del IESS, no se podrá programar el cobro automático de dividendos ni los reembolsos.
-* **Exceder la edad máxima de desgravamen**: Intentar solicitar un crédito a 25 años de plazo teniendo 55 años de edad. En este escenario, el plazo se reducirá automáticamente a un máximo de 20 años para cumplir con el límite de 75 años de edad combinada.
-
----
-
-## Ejemplo práctico de financiamiento en 2026
-
-Tomemos como ejemplo la adquisición de una primera vivienda catalogada como Vivienda de Interés Público (VIP), con un valor comercial total de **$90,000 dólares**.
-
-* **Valor de la propiedad**: $90,000 (Vivienda VIP).
-* **Porcentaje de financiamiento**: 100% del valor comercial ($90,000), debido a que no excede el límite de cobertura de $100,000 dólares.
-* **Tasa de interés estimada**: 5.99% nominal anual fija.
-* **Plazo de amortización**: 25 años (300 dividendos mensuales).
-* **Cuota mensual estimada**: Aproximadamente $579 dólares americanos (sistema de cuotas fijas/francesas).
-* **Ingreso familiar mínimo requerido**: Un promedio de $1,450 dólares netos demostrables para cumplir con la regla del 40% de capacidad de pago familiar.
-
----
-
-## Preguntas Frecuentes sobre el Crédito Hipotecario BIESS
-
-### ¿Cuánto tiempo de mora patronal se necesita para que se bloquee el trámite?
-Cualquier retraso por parte de su empleador en el pago de las planillas mensuales del IESS (incluso de un solo día después de la fecha máxima de pago el 15 de cada mes) suspende inmediatamente el proceso de precalificación o detiene el desembolso en curso. Es requisito que el empleador esté completamente al día antes de procesar cualquier fase de la solicitud inmobiliaria.
-
-### ¿Se puede realizar abonos al capital o precancelar el Préstamo Hipotecario sin penalización?
-Sí, el BIESS permite a todos los clientes realizar abonos parciales directos al capital o precancelar el saldo total de la deuda hipotecaria en cualquier momento de la vigencia del crédito, sin cobro de multas ni penalizaciones financieras de ningún tipo. Los abonos parciales le permitirán reestructurar su deuda eligiendo entre dos opciones: disminuir el monto de la cuota mensual manteniendo el plazo inicial, o recortar el número de años del crédito manteniendo el valor de la cuota mensual.
-
-### ¿Qué sucede con mi Préstamo Hipotecario si me quedo desempleado?
-En caso de perder su empleo en relación de dependencia laboral, se activa automáticamente el **Seguro de Desgravamen y Cesantía** incorporado en su dividendo. Además, podrá acogerse a los periodos de gracia y reestructuraciones de deuda que ofrece el BIESS. Le recomendamos acudir de inmediato a las oficinas de coactivas del banco para reportar su situación, evitando que el dividendo acumule intereses de mora o caiga en estado de ejecución judicial.
-
-### ¿Puedo comprar un terreno para construcción con el Préstamo Hipotecario BIESS?
-Efectivamente, el BIESS cuenta con un producto financiero específico para la adquisición de terrenos destinados exclusivamente a la construcción de vivienda unifamiliar. Para este fin, el banco financia hasta un **80% del valor del avalúo comercial** del predio, con un plazo máximo de pago de hasta 10 años y tasas de interés competitivas. El terreno debe contar obligatoriamente con escrituras públicas en regla, delimitaciones físicas claras y servicios básicos mínimos instalados.
-
-### ¿Qué es la sustitución de hipoteca en el BIESS?
-La sustitución de hipoteca es un mecanismo financiero mediante el cual el BIESS compra la cartera de crédito hipotecario que usted mantenga vigente con cualquier institución financiera privada o cooperativa del Ecuador. Al transferir su hipoteca al BIESS, se cancela la deuda con su banco inicial y se constituye un nuevo crédito con las tasas de interés preferenciales y plazos del seguro social (hasta 25 años), reduciendo significativamente su dividendo mensual.
-
----
-
-## Enlaces de interés interno para su trámite
-* Realice solicitudes inmediatas de fondos de consumo mediante la guía de [Préstamo Quirografario](/procedimiento/prestamo-quirografario) del portal.
-* Si trabaja por cuenta propia, revise los beneficios del programa de [Afiliación Voluntaria](/procedimiento/afiliacion-voluntaria) de forma independiente.
-* Mantenga al día sus finanzas revisando cómo consultar y gestionar sus acumulados de [Fondos de Reserva](/blog/fondos-de-reserva-iess-consulta-acumulacion-retiro-2026) en línea.
-`,
-    author: 'equipo-editorial',
-    publishDate: '2026-01-20',
-    readTime: 12,
-    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
-    imageAlt: 'Vivienda y llaves de casa financiada con préstamo hipotecario del BIESS en Ecuador',
-    category: 'Préstamos',
-    dateModified: '2026-10-01',
-    sources: [
-      { label: "Banco del IESS - Crédito Inmobiliario", url: "https://www.biess.fin.ec/hipotecarios", accessedAt: "2026-10-01" },
-      { label: "Superintendencia de Bancos del Ecuador - Tasas de Referencia", url: "https://www.superbancos.gob.ec", accessedAt: "2026-10-01" }
+    "id": "prestamo-biess-2026",
+    "slug": "prestamo-quirografario-biess-requisitos-montos-2026",
+    "title": "Préstamo Quirografario BIESS 2026: Requisitos y Cómo Solicitarlo",
+    "seoTitle": "Préstamos Quirografarios BIESS: guía | IESS Asistente",
+    "metaDescription": "Guía actualizada 2026 sobre préstamo quirografario BIESS. Requisitos para afiliados activos y jubilados, montos máximos, pasos y plazos de desembolso.",
+    "keywords": [
+      "préstamo BIESS",
+      "préstamo quirografario Ecuador",
+      "crédito BIESS",
+      "BIESS requisitos"
     ],
-    relatedSlugs: [
-      'prestamo-quirografario-biess-requisitos-montos-2026',
-      'fondos-de-reserva-iess-consulta-acumulacion-retiro-2026',
-      'afiliacion-voluntaria-iess-requisitos-beneficios-2026'
-    ],
-    faqs: [
+    "content": "\n# Préstamo Quirografario BIESS 2026: Guía Completa de Solicitud y Requisitos\n\nEl **[Préstamo Quirografario](/procedimiento/prestamo-quirografario)** del Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) representa la línea de crédito de consumo más accesible y competitiva del sistema financiero nacional. Diseñado para ofrecer liquidez inmediata a trabajadores bajo relación de dependencia, afiliados voluntarios y pensionistas, este financiamiento permite cubrir emergencias médicas, consolidación de deudas, gastos educativos o proyectos familiares con tasas de interés significativamente inferiores a las del sistema bancario tradicional.\n\nEn este manual exhaustivo revisamos las condiciones de calificación actualizadas para 2026, los montos máximos autorizados, el funcionamiento de las garantías pignoradas, las diferencias entre los sistemas de amortización y el paso a paso detallado para completar la solicitud electrónica.\n\n---\n\n## 1. ¿Quiénes Califican para el Préstamo Quirografario?\n\nEl BIESS clasifica a los solicitantes en tres categorías prestacionales distintas, cada una con normativas operativas específicas:\n\n* **Afiliados bajo relación de dependencia**: Trabajadores con contrato laboral registrado ante el Ministerio del Trabajo y aportaciones patronales activas al IESS.\n* **[Afiliados voluntarios](/procedimiento/afiliacion-voluntaria)**: Profesionales independientes y trabajadores autónomos que aportan mensualmente sin empleador intermedio.\n* **Jubilados y pensionistas**: Personas que perciben pensiones de vejez, **[jubilación por invalidez](/procedimiento/jubilacion-invalidez)** o pensión de sobrevivientes de **[montepío](/procedimiento/montepio)**.\n\n---\n\n## 2. Requisitos Reglamentarios para Afiliados Activos (Normativa 2026)\n\nPara que el motor de precalificación del BIESS emita una resolución favorable inmediata, el afiliado activo debe satisfacer las siguientes exigencias concurrentes:\n\n1. **Aportaciones totales acumuladas**: Registrar un mínimo de **12 imposiciones mensuales** no simultáneas en el sistema del IESS. Estas cuotas pueden provenir de múltiples empleadores a lo largo de su historial laboral.\n2. **Monto máximo financiable**: Hasta **$38.560 dólares** (equivalente a 80 Salarios Básicos Unificados en 2026), condicionado por la capacidad de pago del solicitante y el saldo disponible en sus fondos de reserva y cesantía.\n3. **Tasa de interés nominal mínima**: Desde el **6.5% nominal anual** para créditos a plazos cortos, reajustable según los tarifarios del banco.\n4. **Plazo máximo de amortización**: Hasta **60 meses (5 años)** de plazo para el pago de dividendos mensuales.\n5. **Empleador al día en obligaciones patronales**: La empresa o institución empleadora no debe registrar glosas patronales, planillas vencidas ni convenios de purga de mora en estado de incumplimiento ante el IESS.\n6. **Fondos de garantía pignorables**: Contar con valores reales acumulados en sus cuentas individuales de **[Fondos de Reserva](/blog/fondos-de-reserva-iess-consulta-acumulacion-retiro-2026)** y/o **[Fondo de Cesantía](/blog/cesantia-seguro-desempleo-iess-como-retirar-2026)**. La cuantía total del préstamo se otorga hasta por el **95% de los fondos acumulados** que actúan como garantía prendaria líquida.\n7. **Capacidad de pago y endeudamiento**: La cuota mensual proyectada del crédito no puede comprometer más del **30% del salario promedio mensual neto** sobre el cual el afiliado aporta al instituto.\n8. **Historial crediticio y solvencia**: No registrar deudas vencidas ni cartera castigada con el IESS o el BIESS, ni figurar como garante de deudores morosos de la seguridad social.\n9. **Documento de identidad vigente**: Cédula de ciudadanía o identidad con fotografía y chip activo.\n\n<FactNote ids={[\"QUIROGRAFARIO_APORTES_REQ\", \"QUIROGRAFARIO_MONTO_MAX\", \"QUIROGRAFARIO_TASA_MIN\", \"QUIROGRAFARIO_PLAZO_MAX_MESES\"]} />\n\n> 💡 **Línea preferencial Credicasa al 2,99 %**: Si en lugar de un crédito de consumo buscas adquirir vivienda propia, el BIESS ofrece la línea preferencial **Credicasa al 2,99 % de interés anual** y hasta $65.000 dólares de financiamiento para afiliados bajo relación de dependencia con 36 aportaciones (últimas 13 consecutivas). Consulta nuestra guía del [Préstamo Hipotecario BIESS](/blog/prestamo-hipotecario-biess-requisitos-tasas-2026) para revisar todos los requisitos de vivienda.\n\n---\n\n## 3. Condiciones Específicas para Jubilados y Pensionistas\n\nLos jubilados cuentan con condiciones altamente favorables para la concesión de créditos quirografarios:\n\n* **Sin exigencia de fondos de reserva**: A diferencia de los afiliados activos, los pensionistas no requieren pignorar fondos de reserva ni cesantía. La garantía del crédito es la propia pensión mensual que transfiere el IESS.\n* **Plazos extendidos**: Los jubilados por vejez pueden diferir el pago hasta un máximo de **60 meses (5 años)** con débito directo de su pensión.\n* **Límite de edad**: El plazo de financiamiento no puede exceder el límite de edad actuarial previsto en las políticas de riesgo crediticio del banco.\n* **Débito automático**: El cobro de las cuotas mensuales se descuenta de forma directa y transparente de la nómina pensional mensual.\n\n---\n\n## 4. Tipos de Amortización: ¿Cuotas Alemanas o Cuotas Francesas?\n\nAl momento de configurar el préstamo en el simulador interactivo del BIESS, el asegurado debe elegir el sistema de amortización que mejor se adapte a su economía familiar:\n\n### Sistema Francés (Cuotas Mensuales Fijas)\nBajo esta modalidad, el prestatario abona exactamente la misma cantidad de dinero todos los meses durante todo el periodo del crédito. Al inicio del préstamo se amortiza una mayor proporción de intereses y menor capital, situación que se invierte progresivamente en los últimos meses. Es la opción preferida por quienes necesitan presupuestar un egreso fijo y predecible en su flujo de caja mensual.\n\n### Sistema Alemán (Cuotas Decrecientes)\nEn este esquema, el abono a capital es constante en todas las cuotas, lo que provoca que los intereses calculados sobre el saldo deudor disminuyan cada mes. Por lo tanto, la primera cuota es la más alta de todo el crédito y las cuotas siguientes van bajando progresivamente. A largo plazo, el sistema alemán genera un ahorro moderado en el pago total de intereses respecto al sistema francés.\n\n---\n\n## 5. Tasas de Interés y Plazos Oficiales en 2026\n\nLa tasa de interés aplicada a los préstamos quirografarios es de naturaleza reajustable trimestralmente y se encuentra indexada a las resoluciones del Directorio del Banco Central del Ecuador:\n\n| Plazo del Crédito | Tasa de Interés Nominal Referencial | Destino Financiero Sugerido |\n| :--- | :--- | :--- |\n| **Hasta 6 meses** | Desde 6.5% hasta 9.5% anual | Gastos de salud y emergencias imprevistas |\n| **De 7 a 12 meses** | Entre 10.0% y 11.2% anual | Educación, compra de electrodomésticos y viajes |\n| **De 13 a 24 meses** | Entre 11.5% y 12.8% anual | Consolidación de deudas de tarjetas de crédito |\n| **De 25 a 60 meses** | Entre 13.0% y 14.5% anual | Reparaciones integrales de vivienda o inversión comercial |\n\nEl asegurado puede adelantar pagos extraordinarios a capital o cancelar anticipadamente la totalidad del saldo insoluto en cualquier momento sin penalizaciones económicas.\n\n---\n\n## 6. Procedimiento Paso a Paso para Solicitar el Crédito en Línea\n\nEl trámite se completa en menos de diez minutos a través de la plataforma transaccional segura del BIESS:\n\n1. **Ingreso al portal bancario**: Dirígete a [biess.fin.ec](https://www.biess.fin.ec) y haz clic en el módulo **\"Préstamos Quirografarios\"** -> **\"Solicitar Préstamo\"**.\n2. **Autenticación**: Digita tu número de cédula y tu clave secreta de asegurado del IESS.\n3. **Selección del rol de afiliación**: Escoge si solicitas el crédito en calidad de **Afiliado Activo** o de **Jubilado/Pensionista**.\n4. **Calificación automática de derechos**: El algoritmo verificará en tiempo real el cumplimiento de las 12 imposiciones mínimas, los fondos disponibles y la capacidad de pago.\n5. **Simulación del monto y plazo**: Ajusta la barra deslizante para definir el capital solicitado (hasta $38.560 dólares) y selecciona el número de cuotas (hasta 60 meses) y el tipo de tabla de amortización.\n6. **Verificación de la cuenta bancaria**: El sistema te mostrará los datos de tu cuenta bancaria registrada para el desembolso.\n7. **Firma electrónica del pagaré**: Ingresa el código numérico OTP (One-Time Password) remitido a tu correo electrónico o teléfono móvil validado.\n8. **Recepción del dinero**: La acreditación interbancaria se realiza automáticamente en un plazo de **24 a 72 horas laborables**.\n\nSi necesitas redactar peticiones para el levantamiento de bloqueos de fondos o justificar inconsistencias en los roles de pago, consulta nuestra sección de **[formatos y oficios de ley](/oficios)** del portal ciudadano.\n\n---\n\n## 7. Preguntas Frecuentes sobre el Crédito Quirografario BIESS en 2026\n\n### ¿Cuánto tiempo demora la acreditación bancaria del préstamo quirografario?\nLa transferencia de los fondos a su cuenta de ahorros o corriente registrada toma habitualmente entre **24 y 72 horas laborables** una vez aprobada la solicitud y firmado el pagaré electrónico mediante el código OTP enviado a su teléfono o correo electrónico. Es indispensable que su cuenta esté validada con el Banco Central del Ecuador (BCE) a través de los sistemas del IESS.\n\n### ¿Se puede novar o renovar un préstamo quirografario vigente?\nSí. El BIESS permite la novación crediticia siempre y cuando el solicitante haya cancelado al menos el **50% del total de las cuotas mensuales pactadas** en el crédito original. En circunstancias normativas especiales o campañas de alivio financiero aprobadas por el Directorio del banco, este porcentaje puede reducirse al 25% para permitir la consolidación de saldos y la obtención de nuevo capital de trabajo o liquidez familiar.\n\n### ¿Puedo liquidar anticipadamente el crédito usando mis fondos de reserva o cesantía?\nEfectivamente. Si mantiene saldos acumulados disponibles en su fondo de reserva o cesantía que no se encuentren comprometidos en otras operaciones crediticias, puede solicitar la precancelación parcial o total del saldo deudor a través de la opción de **\"Cruce de Cuentas\"** en el portal informático del BIESS, extinguiendo la deuda sin penalidades financieras.\n\n### ¿Qué ocurre con el crédito quirografario si el trabajador queda en situación de desempleo?\nAl extinguirse la relación laboral de dependencia, el IESS suspende el descuento directo por rol de pagos. El excolaborador debe generar comprobantes individuales de pago en la plataforma del BIESS para cancelar sus dividendos mensuales en ventanillas bancarias o mediante transferencias interbancarias, evitando caer en mora y protegiendo sus fondos pignorados de una ejecución forzosa.\n",
+    "author": "equipo-editorial",
+    "publishDate": "2026-01-10",
+    "readTime": 8,
+    "image": "/og/prestamo-quirografario-biess-requisitos-montos-2026.jpg",
+    "category": "Préstamos",
+    "dateModified": "2026-11-16",
+    "sources": [
       {
-        q: '¿Cuánto tiempo de mora patronal se necesita para que se bloquee el trámite?',
-        a: 'Cualquier retraso por parte de su empleador en el pago de las planillas mensuales del IESS suspende inmediatamente el proceso de precalificación o detiene el desembolso en curso.'
+        "label": "Banco del IESS - Normativa y Requisitos de Crédito Quirografario",
+        "url": "https://www.biess.fin.ec/quirografarios",
+        "accessedAt": "2026-11-16"
       },
       {
-        q: '¿Se puede realizar abonos al capital o precancelar el Préstamo Hipotecario sin penalización?',
-        a: 'Sí, el BIESS permite realizar abonos parciales directos al capital o precancelar el saldo total de la deuda hipotecaria en cualquier momento de la vigencia del crédito sin cobro de multas ni penalizaciones.'
-      },
-      {
-        q: '¿Qué sucede con mi Préstamo Hipotecario si me quedo desempleado?',
-        a: 'Se activa automáticamente el Seguro de Desgravamen y Cesantía incorporado en su dividendo. Además, podrá acogerse a los periodos de gracia y reestructuraciones de deuda que ofrece el BIESS.'
-      },
-      {
-        q: '¿Puedo comprar un terreno para construcción con el Préstamo Hipotecario BIESS?',
-        a: 'Efectivamente, el BIESS cuenta con un producto financiero específico para terrenos que financia hasta un 80% del valor del avalúo comercial, con plazo máximo de pago de hasta 10 años.'
-      },
-      {
-        q: '¿Qué es la sustitución de hipoteca en el BIESS?',
-        a: 'La sustitución de hipoteca es un mecanismo mediante el cual el BIESS compra la cartera de crédito hipotecario de otra institución financiera del Ecuador con mejores tasas de interés.'
+        "label": "Directorio del BIESS - Manual de Créditos de Consumo y Pignoración de Fondos",
+        "url": "https://www.biess.fin.ec",
+        "accessedAt": "2026-11-16"
       }
     ]
   },
   {
-    id: 'cesantia-desempleo-2026',
-    slug: 'cesantia-seguro-desempleo-iess-como-retirar-2026',
-    title: 'Cesantía y Seguro de Desempleo IESS 2026: Cómo Retirar Fondos',
-    seoTitle: 'Cesantía y Seguro Desempleo del IESS | IESS Asistente',
-    metaDescription: 'Cómo retirar tu cesantía acumulada y solicitar el seguro de desempleo del IESS en 2026. Requisitos de la Resolución C.D. 515, plazos de 60 días y montos.',
-    keywords: ['cesantía IESS', 'seguro de desempleo Ecuador', 'retiro cesantía en línea', 'fondos cesantía IESS'],
-    content: `
-# Cesantía y Seguro de Desempleo IESS: Guía de Retiro en Caso de Cese Laboral
-
-Cuando una persona pierde su empleo en relación de dependencia en Ecuador, el IESS ofrece dos mecanismos de protección económica inmediata: el **Fondo de Cesantía** y el **Seguro de Desempleo**.
-
----
-
-## 1. Fondo de Cesantía
-Es un fondo de ahorro individual obligatorio conformado por el 2% o 3% del salario mensual de aportación del trabajador.
-
-### Requisitos para el Retiro:
-* Estar cesante al menos **60 días consecutivos**.
-* Contar con al menos **24 aportaciones mensuales no simultáneas**.
-* Registro del aviso de salida patronal en el sistema.
-* No tener préstamos quirografarios garantizados por la cesantía en estado de impago.
-
----
-
-## 2. Seguro de Desempleo (Prestación Temporal)
-Si el despido fue intempestivo o involuntario, el asegurado puede optar por el seguro de desempleo, que entrega hasta **5 pagos mensuales equivalentes al 70% del salario básico unificado**.
-`,
-    author: 'equipo-editorial',
-    publishDate: '2026-01-25',
-    readTime: 7,
-    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
-    category: 'Trámites',
-    dateModified: '2026-10-01',
-    sources: [
-      { label: "IESS - Reglamento de Cesantía y Desempleo (Res. C.D. 515)", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" },
-      { label: "Ministerio del Trabajo - Portal Único de Trámites", url: "https://www.trabajo.gob.ec", accessedAt: "2026-10-01" }
-    ]
+    "id": "afiliacion-voluntaria-2026",
+    "slug": "afiliacion-voluntaria-iess-requisitos-beneficios-2026",
+    "title": "Afiliación voluntaria IESS 2026: cuánto se paga al mes",
+    "seoTitle": "Afiliación Voluntaria al IESS: costo | IESS Asistente",
+    "metaDescription": "Aporte mensual de afiliación voluntaria al IESS en 2026: cálculo del 17.60% del sueldo, requisitos, cobertura médica, préstamos BIESS y trámite en línea.",
+    "keywords": [
+      "afiliación voluntaria IESS",
+      "seguro voluntario iess valor a pagar 2026",
+      "cuánto cuesta el seguro voluntario",
+      "valor aporte voluntario iess 2026",
+      "cuánto se paga al iess por afiliación voluntaria"
+    ],
+    "author": "equipo-editorial",
+    "publishDate": "2026-01-05",
+    "dateModified": "2026-10-10",
+    "readTime": 14,
+    "image": "/og/afiliacion-voluntaria-iess-requisitos-beneficios-2026.jpg",
+    "imageAlt": "Cuánto se paga por la afiliación voluntaria al IESS en 2026 según el salario declarado en Ecuador",
+    "category": "Trámites",
+    "relatedSlugs": [
+      "como-obtener-clave-iess-primera-vez",
+      "como-consultar-aportes-iess-historial-laboral",
+      "prestamo-quirografario-biess-requisitos-montos-2026",
+      "pension-montepio-iess-requisitos-sobrevivientes-2026"
+    ],
+    "sources": [
+      {
+        "label": "IESS - Resolución C.D. 625 (Reglamento de Aseguramiento)",
+        "url": "https://www.iess.gob.ec",
+        "accessedAt": "2026-10-10"
+      },
+      {
+        "label": "Ministerio del Trabajo de Ecuador - Salario Básico Unificado",
+        "url": "https://www.trabajo.gob.ec",
+        "accessedAt": "2026-10-10"
+      },
+      {
+        "label": "Banco del Instituto Ecuatoriano de Seguridad Social (BIESS)",
+        "url": "https://www.biess.fin.ec",
+        "accessedAt": "2026-10-10"
+      }
+    ],
+    "faqs": [
+      {
+        "q": "¿Cuánto cuesta el seguro voluntario del IESS al mes en 2026?",
+        "a": "El costo mínimo del seguro voluntario en 2026 es de exactamente $84,83 dólares al mes. Esta tarifa corresponde a la tasa legal del 17,60 % calculada sobre el Salario Básico Unificado vigente ($482). Si declaras un ingreso mensual mayor a este piso, tu valor a pagar aumentará de forma directamente proporcional al monto que decidas cotizar."
+      },
+      {
+        "q": "¿Cuánto se paga al IESS por afiliación voluntaria si gano más del básico?",
+        "a": "Si decides registrar ingresos superiores al básico, pagas siempre el 17,60 % de la cifra declarada. Por ejemplo, sobre un ingreso de $600 mensuales la cuota es de $105,60; para $800 asciende a $140,80; y si declaras $1.000 tu pago será de $176,00 al mes. Cotizar con valores más altos incrementa el cálculo de tu pensión de jubilación."
+      },
+      {
+        "q": "¿Qué cubre exactamente la cuota mensual de afiliación voluntaria?",
+        "a": "El aporte voluntario mensual te otorga cobertura médica integral en hospitales del IESS, cobertura de salud sin costo adicional para tus hijos menores de 18 años, pensión vitalicia por vejez o invalidez, auxilio de funerales y pensión de montepío para sobrevivientes. A partir de los seis meses de aportes continuos, también puedes solicitar préstamos quirografarios en el BIESS."
+      },
+      {
+        "q": "¿Hasta qué día del mes se puede pagar la planilla voluntaria sin recargos?",
+        "a": "La planilla mensual del seguro voluntario se debe pagar hasta el día 15 del mes siguiente al periodo de cobertura. Por ejemplo, el aporte de enero se cancela hasta el 15 de febrero. Si no pagas en ese plazo, el sistema genera intereses de mora inmediatos y, tras acumular dos meses impagos, se suspende la atención médica."
+      },
+      {
+        "q": "¿Puedo afiliarme voluntariamente si vivo en el extranjero?",
+        "a": "Sí, los ecuatorianos que residen en el exterior pueden registrarse en el régimen voluntario ecuatoriano sin importar el país donde vivan. Cotizan sobre el salario básico ecuatoriano o sobre sus ingresos declarados, y acumulan años de servicio para su jubilación en Ecuador, manteniendo además la protección médica para sus dependientes que residan en territorio nacional."
+      },
+      {
+        "q": "¿Cuánto tiempo debo esperar para atenderme en el médico tras afiliarme?",
+        "a": "Para recibir atención médica general y programada en el IESS, los afiliados voluntarios deben cumplir un periodo de carencia de seis (6) imposiciones mensuales consecutivas pagadas a tiempo. No obstante, las atenciones de emergencia con riesgo vital se atienden inmediatamente en cualquier centro hospitalario de la red pública integral de salud."
+      },
+      {
+        "q": "¿Qué pasa si dejo de pagar el seguro voluntario del IESS?",
+        "a": "Si dejas de pagar por más de 60 días continuos, el IESS da de baja automáticamente tu afiliación voluntaria para evitar que sigas acumulando deudas indefinidas. Las imposiciones que ya pagaste no se pierden en ningún caso: quedan registradas en tu historial laboral para sumarse a futuros empleos o a tu jubilación."
+      }
+    ],
+    "content": "\n# Afiliación voluntaria IESS 2026: cuánto se paga al mes\n\nPara afiliarte de forma voluntaria al IESS en 2026 debes pagar mensualmente el 17,60 % de tus ingresos declarados, con un valor mínimo obligatorio de **$84,83 al mes** calculado sobre el Salario Básico Unificado vigente de $482. Si declaras ingresos superiores, la cuota aumenta proporcionalmente garantizando cobertura de salud, pensión y préstamos.\n\n---\n\n## En resumen: Datos clave sobre el valor a pagar y cobertura\n* **Valor mínimo mensual en 2026**: **$84,83 dólares**, calculado sobre el Salario Básico Unificado (SBU de $482) // VERIFICAR: valor del SBU 2026 según Acuerdo Ministerial.\n* **Porcentaje de cotización legal**: **17,60 %** sobre el total de ingresos declarados // VERIFICAR: tasa según Resolución C.D. 625 del IESS.\n* **Quiénes califican**: Profesionales independientes, trabajadores por cuenta propia, ecuatorianos residentes en el exterior y personas sin relación de dependencia activa.\n* **Fecha máxima de pago**: Hasta el día 15 del mes calendario siguiente para no incurrir en mora patronal involuntaria ni corte de coberturas.\n* **Prestaciones incluidas**: Salud completa para el titular e hijos menores de 18 años, jubilación por vejez e invalidez, montepío, auxilio de funerales y préstamos en el BIESS.\n\n---\n\n## ¿Cuánto se paga al IESS por afiliación voluntaria en 2026? Tabla de aportes\n\nEl monto de la cuota mensual del seguro voluntario depende del ingreso que decidas manifestar ante el Instituto Ecuatoriano de Seguridad Social. La legislación prohíbe declarar un valor inferior al Salario Básico Unificado legalmente establecido en el Ecuador ($482 para el año 2026). Sin embargo, cualquier persona puede fijar un sueldo superior según sus posibilidades económicas para obtener una jubilación más representativa.\n\nA continuación, presentamos la tabla comparativa con el valor de la aportación según el salario mensual declarado y el alcance de las coberturas asignadas:\n\n| Salario Declarado Mensual (USD) | Porcentaje de Aporte (%) | Valor Mensual a Pagar (USD) | Cobertura Médica y Prestacional |\n| :--- | :--- | :--- | :--- |\n| **$482,00 (Salario Básico Mínimo)** | **17,60 %** | **$84,83** | Salud titular + hijos menores de 18 años, jubilación base, montepío, préstamos BIESS |\n| **$600,00** | **17,60 %** | **$105,60** | Salud integral, historial de aportes para jubilación media, auxilio de funerales |\n| **$800,00** | **17,60 %** | **$140,80** | Cobertura médica especializada, mayor promedio salarial para el cálculo de pensión |\n| **$1.000,00** | **17,60 %** | **$176,00** | Salud completa, acceso a mayor cupo de crédito quirografario y montepío superior |\n| **$1.500,00** | **17,60 %** | **$264,00** | Plan de jubilación de alto rendimiento, créditos quirografarios e hipotecarios ampliados |\n| **$2.000,00** | **17,60 %** | **$352,00** | Cobertura hospitalaria completa en toda la red nacional del IESS y prestadores externos |\n\n<FactNote ids={[\"SBU_2026\", \"APORTE_VOLUNTARIO_PCT\"]} />\n\n> 📊 **Simula tu cuota exacta en línea**: Puedes proyectar tu pago mensual personalizado con diferentes rangos salariales usando nuestra [calculadora de aportaciones voluntarias del IESS](/herramientas/calculadora-aporte-afiliacion-voluntaria).\n\n---\n\n## Consultas frecuentes sobre el valor y costo del seguro voluntario\n\nAl momento de planificar el presupuesto personal para la seguridad social, los ciudadanos suelen formular las siguientes dudas respecto a los valores vigentes:\n\n### Seguro voluntario IESS valor a pagar 2026\nPara quienes desean empezar a cotizar por su cuenta este año, el **seguro voluntario iess valor a pagar 2026** tiene como piso $84,83 mensuales. Este valor cubre todas las contingencias médicas y la acumulación de años de jubilación sin necesidad de un contrato patronal.\n\n### Cuánto cuesta el seguro voluntario\nCuando la gente se pregunta **cuánto cuesta el seguro voluntario**, debe considerar que no es una tarifa plana arbitraria, sino un porcentaje fijo del 17,60 % aplicado a los ingresos que uno mismo reporta. La ventaja de este esquema es que el asegurado tiene la libertad de incrementar su base imponible en cualquier momento desde el portal web.\n\n### Valor aporte voluntario IESS 2026\nEl **valor aporte voluntario iess 2026** se calcula con la fórmula matemática:\n$$\\text{Aporte} = \\text{Salario Declarado} \\times 0,1760$$\nSi mantienes tu aporte durante 12 meses sobre la base mínima de $482, la inversión anual totaliza $1.017,96, lo que te garantiza un año completo de imposiciones registradas para tu historial de retiro.\n\n### Cuánto se paga al IESS por afiliación voluntaria\nAl evaluar **cuánto se paga al iess por afiliación voluntaria** frente a un seguro médico privado, el sistema público ecuatoriano ofrece una ventaja competitiva determinante: por la misma cuota de $84,83 no solo recibes atención hospitalaria y medicinas gratuitas para ti y tus hijos menores de edad, sino que además estás construyendo un fondo de jubilación vitalicia y adquiriendo el derecho a créditos hipotecarios del BIESS.\n\n---\n\n## ¿Quiénes pueden afiliarse voluntariamente al IESS en Ecuador?\n\nEl régimen voluntario sin relación de dependencia está abierto a una amplia variedad de perfiles ciudadanos que buscan protegerse frente a enfermedades, accidentes y vejez:\n\n1. **Profesionales independientes y autónomos**: Médicos, abogados, diseñadores, consultores, ingenieros o contadores que ejercen libremente su profesión mediante facturación electrónica.\n2. **Emprendedores y comerciantes**: Propietarios de locales comerciales, talleres artesanales o negocios familiares que no perciben un sueldo bajo nómina laboral.\n3. **Ecuatorianos residentes en el exterior**: Migrantes en Estados Unidos, España, Italia o cualquier otro país que deseen seguir acumulando semanas de cotización en Ecuador para jubilarse en su patria o proteger médicamente a sus familiares directos en territorio nacional.\n4. **Amas de casa y personas dedicadas al cuidado del hogar**: Personas que realizan tareas no remuneradas y desean acceder al régimen general de salud y pensiones completas.\n5. **Estudiantes mayores de edad**: Jóvenes mayores de 18 años que desean iniciar su récord de imposiciones desde temprana edad para alcanzar los 40 años de aportes antes de cumplir los 60 años.\n\n---\n\n## Beneficios y prestaciones que cubre el aporte voluntario del 17,60 %\n\nAportar voluntariamente te confiere prácticamente las mismas garantías que a un trabajador asalariado, con ligeras diferencias en las prestaciones estrictamente vinculadas a despidos patronales.\n\n### 1. Atención médica integral y gratuita\n* Consultas en medicina general, especialidades y subespecialidades en dispensarios y hospitales del IESS.\n* Hospitalización, cirugías programadas y de emergencia, cuidados intensivos e intervenciones de alta complejidad.\n* Entrega gratuita de medicamentos recetados por la farmacia institucional.\n* Tratamientos de rehabilitación física y atención odontológica preventiva.\n\n### 2. Cobertura automática para hijos menores de 18 años\nTus hijos legalmente reconocidos menores de edad tienen derecho a consultas pediátricas, odontológicas, vacunas y hospitalización dentro de la red del IESS sin que tengas que pagar ninguna mensualidad adicional por cada hijo.\n\n### 3. Pensión vitalicia de jubilación por vejez e invalidez\nCada cuota mensual pagada suma una imposición formal a tu cuenta individual. Al cumplir las combinaciones de edad y años de aportación exigidas por la ley (por ejemplo, 60 años de edad con 30 años de aportes, o cualquier edad con 40 años de cotización), recibirás una pensión mensual vitalicia ajustada a la inflación. Puedes revisar todos los detalles en la guía de [Jubilación por Vejez IESS](/procedimiento/jubilacion-vejez).\n\n### 4. Pensión de viudez y orfandad (Montepío) y auxilio de funerales\nEn caso de fallecimiento del titular, el cónyuge o conviviente en unión de hecho y los hijos menores de 18 años (o hasta 21 si estudian) reciben una renta mensual sustitutiva de montepío. Además, el IESS reembolsa los gastos funerarios a través de la prestación de auxilio de funerales.\n\n### 5. Acceso a Préstamos Quirografarios e Hipotecarios en el BIESS\n* **Préstamo Quirografario**: Puedes acceder a créditos de consumo a tasas preferenciales a partir del **sexto mes de aportación continua** como afiliado voluntario. Conoce los montos y plazos en el procedimiento de [Préstamo Quirografario BIESS](/procedimiento/prestamo-quirografario).\n* **Préstamo Hipotecario**: Cumpliendo con 36 aportaciones mensuales acumuladas (las últimas 12 consecutivas), puedes calificar a préstamos para comprar vivienda propia con financiamiento de hasta 25 años plazo.\n\n> ⚠️ **Prestaciones que NO incluye el seguro voluntario**: Al no existir un empleador ni un despido patronal, la afiliación voluntaria **no incluye** seguro de desempleo, fondo de cesantía con retiro en efectivo, ni fondos de reserva mensuales. Toda la cotización del 17,60 % se destina exclusivamente a sostener los fondos de salud, invalidez, vejez y muerte.\n\n---\n\n## Requisitos indispensables para afiliarse por cuenta propia\n\nPara tramitar la afiliación voluntaria no necesitas acudir a ninguna agencia física; el trámite es 100 % virtual y requiere cumplir con las siguientes condiciones:\n\n* **Cédula de identidad**: Poseer cédula de ciudadanía ecuatoriana o cédula de identidad para extranjeros residentes en Ecuador. Si resides en el exterior, puedes tramitarlo con tu cédula o pasaporte ecuatoriano.\n* **Mayoría de edad**: Tener 18 años cumplidos a la fecha de la solicitud.\n* **No registrar afiliación bajo relación de dependencia**: No puedes tener un contrato activo en nómina de ninguna empresa. Si dejaste un trabajo dependiente, tu empleador anterior debe haber registrado previamente tu aviso de salida en el sistema del IESS.\n* **No registrar deudas en mora con el IESS**: Si estuviste afiliado antes y tienes planillas pendientes o glosas patronales, deberás cancelarlas o suscribir un acuerdo de pago antes de iniciar el trámite.\n* **Cuenta bancaria para débito automático**: Contar con una cuenta de ahorros o corriente en una entidad financiera del Ecuador para autorizar el cobro recurrente mensual de las planillas.\n\n---\n\n## Paso a paso para tramitar la afiliación voluntaria por internet\n\nEl proceso de registro toma menos de 10 minutos si sigues estas indicaciones:\n\n### Paso 1: Ingreso al Portal Oficial del IESS\nAbre tu navegador e ingresa a la dirección oficial [iess.gob.ec](https://www.iess.gob.ec). En el menú de servicios al ciudadano, busca la sección **\"Trámites Virtuales\"**, haz clic en **\"Asegurados\"** y selecciona la opción **\"Afiliación Voluntaria\"**.\n\n### Paso 2: Selección de la modalidad de residencia\nEl sistema te presentará tres modalidades de aseguramiento:\n1. **Independiente**: Para quienes ejercen actividades económicas por cuenta propia dentro de Ecuador.\n2. **Sin relación de dependencia**: Para quienes no perciben ingresos laborales pero desean cotizar de forma privada.\n3. **Residente en el Exterior**: Para ecuatorianos que viven fuera de las fronteras nacionales.\n\n### Paso 3: Validación de identidad\nDigita tu número de cédula de ciudadanía de 10 dígitos y tu fecha de nacimiento. El portal cruzará la información en tiempo real con el Registro Civil de Ecuador para verificar tus nombres completos y estado civil.\n\n### Paso 4: Declaración de ingresos y contacto\n* **Ingresos mensuales**: Ingresa el monto en dólares sobre el cual deseas calcular tu aporte. El sistema validará automáticamente que la cifra sea igual o superior al Salario Básico Unificado vigente ($482).\n* **Datos de contacto**: Escribe tu dirección domiciliaria exacta, número de teléfono móvil y correo electrónico activo (donde recibirás tus planillas de pago mensuales).\n\n### Paso 5: Aprobación y registro de débito automático\nRevisa el resumen de tu solicitud y el desglose de la cuota mensual a pagar. Acepta las condiciones del reglamento y autoriza el débito en tu cuenta bancaria para evitar olvidos. Al confirmar, el sistema emitirá el **Comprobante de Aceptación de Afiliación Voluntaria** en formato PDF con tu código de asegurado.\n\n---\n\n## Documentos y validaciones para mantener la afiliación activa\n\nUna vez generado el registro, debes mantener en orden los siguientes respaldos:\n\n* **Comprobante de Afiliación impreso o digital**: Guarda el PDF generado para respaldar la fecha exacta de inicio de tu aseguramiento.\n* **Comprobantes de pago bancario**: Si pagas en ventanillas bancarias o mediante banca web, descarga siempre el comprobante de transferencia con el número de planilla.\n* **Clave de Afiliado activa**: Necesitarás tu contraseña para consultar aportes y pedir citas médicas. Si no la tienes, revisa nuestra guía para [Obtener la clave del IESS por primera vez](/blog/como-obtener-clave-iess-primera-vez).\n\n---\n\n## Errores frecuentes al contratar y pagar la afiliación voluntaria\n\n* **Declarar ingresos por debajo del salario básico**: Intentar cotizar sobre $200 o $300 dólares. El sistema rechaza automáticamente cualquier solicitud que no alcance el salario básico legal vigente ($482 en 2026).\n* **Olvidar la fecha límite de pago (día 15)**: Muchas personas pagan el día 20 o a fin de mes. El IESS genera planillas del 1 al 15; pagar con retraso acarrea intereses de mora y suspende temporalmente la agenda de citas médicas.\n* **No registrar débito bancario automático**: Pagar manualmente todos los meses aumenta el riesgo de olvido. Configurar el débito bancario garantiza que tus aportes permanezcan al día sin preocupaciones.\n* **Buscar atención médica inmediata**: Creer que al pagar el primer aporte ya puedes agendar consultas de especialidad. Debes esperar los seis meses de carencia reglamentarios, salvo para emergencias médicas vitales.\n* **Dejar de pagar sin solicitar la desafiliación**: Si dejas de pagar, el sistema acumula dos planillas con recargos antes de darte de baja. Lo correcto es ingresar a tu portal de asegurado y tramitar la terminación del seguro voluntario formalmente cuando decidas no continuar.\n\n---\n\n## Ejemplo práctico y numérico de cálculo de aportes en 2026\n\nPara comprender con total transparencia cómo se calcula la cuota, analicemos el caso de Juan, un diseñador gráfico independiente en Quito que decide asegurarse voluntariamente en el año **2026**:\n\n* **Situación laboral**: Trabaja como freelance y percibe ingresos variables promedio de $900 mensuales.\n* **Decisión de aporte**: Juan decide cotizar sobre una base imponible de **$800,00 dólares** para asegurar una mejor pensión a futuro.\n* **Fórmula aplicada**:\n  $$\\text{Cuota mensual} = $800,00 \\times 17,60 \\% = $140,80 \\text{ dólares}$$\n* **Desglose financiero anual**:\n  * Aporte mensual: $140,80\n  * Aporte anual (12 meses): $1.689,60\n  * Imposiciones acumuladas: 12 imposiciones completas registradas en su historial laboral.\n* **Resultado del aseguramiento**: Juan y su hija de 6 años cuentan con cobertura médica completa, y a partir del mes 7 Juan podrá solicitar un crédito quirografario en el BIESS para adquirir equipos informáticos.\n\n---\n\n## Preguntas Frecuentes sobre la afiliación voluntaria del IESS\n\n### ¿Cuánto cuesta el seguro voluntario del IESS al mes en 2026?\nEl costo mínimo del seguro voluntario en 2026 es de exactamente **$84,83 dólares al mes**. Esta tarifa corresponde a la tasa legal del 17,60 % calculada sobre el Salario Básico Unificado vigente ($482). Si declaras un ingreso mensual mayor a este piso, tu valor a pagar aumentará de forma directamente proporcional al monto que decidas cotizar.\n\n### ¿Cuánto se paga al IESS por afiliación voluntaria si gano más del básico?\nSi decides registrar ingresos superiores al básico, pagas siempre el 17,60 % de la cifra declarada. Por ejemplo, sobre un ingreso de $600 mensuales la cuota es de $105,60; para $800 asciende a $140,80; y si declaras $1.000 tu pago será de $176,00 al mes. Cotizar con valores más altos incrementa el cálculo de tu pensión de jubilación.\n\n### ¿Qué cubre exactamente la cuota mensual de afiliación voluntaria?\nEl aporte voluntario mensual te otorga cobertura médica integral en hospitales del IESS, cobertura de salud sin costo adicional para tus hijos menores de 18 años, pensión vitalicia por vejez o invalidez, auxilio de funerales y pensión de montepío para sobrevivientes. A partir de los seis meses de aportes continuos, también puedes solicitar préstamos quirografarios en el BIESS.\n\n### ¿Hasta qué día del mes se puede pagar la planilla voluntaria sin recargos?\nLa planilla mensual del seguro voluntario se debe pagar hasta el **día 15 del mes siguiente** al periodo de cobertura. Por ejemplo, el aporte de enero se cancela hasta el 15 de febrero. Si no pagas en ese plazo, el sistema genera intereses de mora inmediatos y, tras acumular dos meses impagos, se suspende la atención médica.\n\n### ¿Puedo afiliarme voluntariamente si vivo en el extranjero?\nSí, los ecuatorianos que residen en el exterior pueden registrarse en el régimen voluntario ecuatoriano sin importar el país donde vivan. Cotizan sobre el salario básico ecuatoriano o sobre sus ingresos declarados, y acumulan años de servicio para su jubilación en Ecuador, manteniendo además la protección médica para sus dependientes que residan en territorio nacional.\n\n### ¿Cuánto tiempo debo esperar para atenderme en el médico tras afiliarme?\nPara recibir atención médica general y programada en el IESS, los afiliados voluntarios deben cumplir un periodo de carencia de **seis (6) imposiciones mensuales consecutivas** pagadas a tiempo. No obstante, las atenciones de emergencia con riesgo vital se atienden inmediatamente en cualquier centro hospitalario de la red pública integral de salud.\n\n### ¿Qué pasa si dejo de pagar el seguro voluntario del IESS?\nSi dejas de pagar por más de 60 días continuos, el IESS da de baja automáticamente tu afiliación voluntaria para evitar que sigas acumulando deudas indefinidas. Las imposiciones que ya pagaste no se pierden en ningún caso: quedan registradas en tu historial laboral para sumarse a futuros empleos o a tu jubilación.\n\n---\n\n## Enlaces y guías recomendadas para tu trámite\n* Conoce los pasos para realizar el trámite institucional en el portal oficial en el procedimiento de [Afiliación Voluntaria](/procedimiento/afiliacion-voluntaria).\n* Planifica tu futuro revisando los requisitos completos de edad y aportaciones en la guía de [Jubilación por Vejez IESS](/procedimiento/jubilacion-vejez).\n* Una vez afiliado, revisa cómo [Consultar aportes e historial laboral](/blog/como-consultar-aportes-iess-historial-laboral) para monitorear tus pagos mensuales.\n* Si necesitas financiar proyectos personales, descubre las ventajas del [Préstamo Quirografario BIESS](/procedimiento/prestamo-quirografario).\n"
   },
   {
-    id: 'fondos-reserva-2026',
-    slug: 'fondos-de-reserva-iess-consulta-acumulacion-retiro-2026',
-    title: 'Fondos de Reserva IESS 2026: Consulta, Retiro y Acumulación',
-    seoTitle: 'Fondos de Reserva del IESS: retiro | IESS Asistente',
-    metaDescription: 'Descubre cómo consultar y retirar tus Fondos de Reserva en el IESS en 2026. Reglas de 36 aportes, pago mensualizado vs acumulado y solicitud bancaria.',
-    keywords: ['fondos de reserva IESS', 'consultar fondos reserva', 'retirar fondos de reserva', 'acumulación fondos reserva'],
-    content: `
-# Fondos de Reserva IESS 2026: Todo lo que debes saber
-
-El **Fondo de Reserva** es un beneficio de ley equivalente a un mes de sueldo por cada año completo trabajado para el mismo empleador (o el 8.33% de la remuneración mensual).
-
----
-
-## ¿Mensualizar o Acumular en el IESS?
-* **Pago Mensualizado**: El empleador deposita el 8.33% directamente en tu rol de pagos mensual.
-* **Acumulación en el IESS**: Si presentas la solicitud de acumulación en el portal web, el empleador transfiere el dinero al IESS para que gane intereses y sirva como garantía crediticia.
-
----
-
-## ¿Cuándo puedo retirar mis fondos acumulados?
-1. **Afiliados activos**: Tras cumplir al menos 36 aportaciones mensuales acumuladas (pueden ser continuas o discontinuas).
-2. **Jubilados o mayores de 60 años**: Pueden retirar el saldo total disponible en cualquier momento sin esperar las 36 aportaciones.
-3. **Cesantes**: Tras haber transcurrido al menos dos meses de cesantía legal certificada.
-`,
-    author: 'equipo-editorial',
-    publishDate: '2026-02-02',
-    readTime: 6,
-    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
-    category: 'Trámites',
-    dateModified: '2026-10-01',
-    sources: [
-      { label: "Normativa sobre Fondos de Reserva del IESS", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" }
-    ]
-  },
-  {
-    id: 'montepio-pension-2026',
-    slug: 'pension-montepio-iess-requisitos-sobrevivientes-2026',
-    title: 'Pensión de viudez y orfandad IESS: requisitos y trámite',
-    seoTitle: 'Pensión de Montepío del IESS: trámite | IESS Asistente',
-    metaDescription: 'Guía completa sobre la pensión de viudez y orfandad (montepío) del IESS en 2026. Requisitos de aportes del fallecido, documentos, pasos y porcentajes.',
-    keywords: [
-      'viudez y orfandad',
-      'orfandad y viudez',
-      'viudez',
-      'trámite de montepío iess',
-      'pensión montepío IESS',
-      'muerte de afiliado IESS'
+    "id": "subsidio-maternidad-2026",
+    "slug": "subsidio-maternidad-iess-requisitos-calculo-2026",
+    "title": "Subsidio de maternidad IESS 2026: requisitos y cuánto pagan",
+    "seoTitle": "Subsidio de Maternidad IESS: cálculo | IESS Asistente",
+    "metaDescription": "Guía 2026 del subsidio de maternidad IESS: requisitos de 12 aportes, el IESS paga 75 % y el empleador 25 %, completando 100 % del sueldo y trámite en línea.",
+    "keywords": [
+      "subsidio de maternidad",
+      "cuánto es el subsidio por maternidad",
+      "certificado de maternidad iess",
+      "bono por maternidad 2026",
+      "iess maternidad subsidio",
+      "www iess gob ec subsidio de maternidad",
+      "licencia maternidad 84 dias ecuador"
     ],
-    content: `
-# Pensión de viudez y orfandad IESS: requisitos, porcentaje y trámite de montepío
-
-La **pensión de viudez y orfandad** del IESS (también denominada legalmente montepío) es una prestación económica mensual vitalicia o temporal que protege a los derechohabientes del afiliado o jubilado fallecido que acreditó al menos 60 meses de aportes totales o 6 aportaciones en sus últimos 12 meses laborales.
-
----
-
-## En resumen: Claves de la pensión de viudez y orfandad
-
-* **Derechohabientes amparados**: Cónyuge o conviviente en unión de hecho legalmente reconocida (viudez), hijos menores de 18 años o hasta 21 años que certifiquen estudios regulares (orfandad), e hijos de cualquier edad con discapacidad total.
-* **Aportes indispensables del fallecido**: Acreditar un mínimo de 6 imposiciones mensuales dentro de los últimos 12 meses previos al deceso, o al menos 36 imposiciones totales a lo largo de su historial laboral (o hallarse en goce de jubilación por vejez o invalidez).
-* **Distribución de la pensión**: Cuando concurren cónyuge e hijos huérfanos, la viuda o viudo percibe hasta el 40 % de la pensión base y los hijos se reparten el 40 % restante en partes iguales; de no existir hijos, la pensión de viudez alcanza hasta el 60 % // VERIFICAR: confirmar porcentajes exactos con la Dirección de Pensiones del IESS.
-* **Cobertura de ascendientes (padres)**: Solo a falta absoluta de cónyuge e hijos con derecho, los padres del causante pueden solicitar montepío si demuestran haber dependido económicamente de él de manera directa y exclusiva.
-* **Modalidad del trámite**: El ingreso de la solicitud se realiza de manera 100 % virtual a través del portal oficial iess.gob.ec, con registro de cuenta bancaria personal para transferencias mensuales.
-
----
-
-## Tabla de beneficiarios, condiciones de acceso y porcentajes de montepío
-
-En el siguiente cuadro se sintetizan las condiciones reglamentarias para cada categoría de derechohabiente según la Ley de Seguridad Social y la normativa interna del IESS:
-
-| Tipo de Beneficiario | Condición Legal y Límite de Edad | Requisitos Probatorios | Porcentaje Estimado de Pensión |
-| :--- | :--- | :--- | :--- |
-| **Cónyuge sobreviviente (Viudez)** | Matrimonio civil inscrito ante el Registro Civil | Partida de matrimonio y cédula de identidad vigente | 60 % (sin hijos concurrentes) o 40 % (con hijos) |
-| **Conviviente en unión de hecho** | Unión de hecho estable y monogámica legalmente registrada | Acta notarial o sentencia judicial inscrita en el Registro Civil | 60 % (sin hijos concurrentes) o 40 % (con hijos) |
-| **Hijos menores de edad (Orfandad)** | Menores de 18 años cumplidos | Partida de nacimiento íntegra | 40 % a repartir en cuotas iguales entre los huérfanos |
-| **Hijos estudiantes (18 a 21 años)** | Entre 18 y 21 años con matrícula académica activa | Certificado de asistencia regular a universidad o instituto superior | Concurre en la cuota de orfandad (40 % compartido) |
-| **Hijos con discapacidad** | Cualquier edad (beneficio vitalicio) | Carné del Conadis/MSP o dictamen pericial de la Comecap | Concurre en la cuota de orfandad permanente |
-| **Madre o padre sobreviviente (Ascendientes)** | Sin cónyuge ni hijos concurrentes | Demostración formal de dependencia económica y desamparo | Porción residual reglamentaria fijada por el IESS |
-
-<FactNote ids={["MONTEPIO_VIUDEZ_PCT", "MONTEPIO_ORFANDAD_PCT"]} />
-
----
-
-## ¿Quién puede cobrar la pensión de viudez y orfandad?
-
-El régimen de seguridad social ecuatoriano establece con rigurosidad las prelaciones y calidades de las personas con derecho a beneficiarse de la prestación económica mensual tras el fallecimiento del afiliado o pensionista.
-
-### 1. Viudez: Cónyuge o conviviente en unión de hecho
-Tiene derecho preferente el cónyuge sobreviviente. En el caso de parejas que compartieron una vida en común bajo unión de hecho, esta debe haber sido inscrita solemnemente ante un notario o legalizada en el Registro Civil del Ecuador con anterioridad al fallecimiento. La ley no discrimina por razón de género: ampara tanto a la viuda como al viudo supérstite.
-
-### 2. Orfandad: Hijos biológicos o adoptivos del afiliado fallecido
-La pensión de orfandad se distribuye entre los hijos que reúnan cualquiera de las siguientes circunstancias:
-* **Menores de 18 años**: El derecho se adquiere de forma inmediata con la sola presentación de la partida de nacimiento que justifique la filiación.
-* **Hijos entre 18 y 21 años**: El beneficio se extiende siempre que cursen estudios presenciales o virtuales regulares en entidades educativas reconocidas por el Senescyt o el Ministerio de Educación. La interrupción o abandono de los estudios extingue automáticamente la mensualidad.
-* **Hijos con discapacidad física o mental calificada**: Reciben la pensión de orfandad con carácter vitalicio, independientemente de su edad cronológica, tras la respectiva evaluación del Ministerio de Salud Pública o la Comisión Médica Calificadora de Incapacidades (Comecap) del IESS.
-
-### 3. Ascendientes: Pensión para padres desamparados
-Si el afiliado o jubilado fallece sin dejar cónyuge, conviviente reconocido ni descendientes directos menores de 21 años o con discapacidad, la madre o el padre pueden solicitar la pensión de montepío. Para ello, deben demostrar de forma pericial que carecen de ingresos propios suficientes y que dependían económicamente de las aportaciones del afiliado causante.
-
----
-
-## Requisitos de aportes del afiliado fallecido para causar montepío
-
-Para que los familiares sobrevivientes adquieran el derecho a percibir la pensión mensual de viudez y orfandad, el asegurado difunto debía reunir condiciones mínimas en su historial de cotizaciones:
-
-1. **Afiliado activo en relación de dependencia o voluntario**:
-   * Registrar al menos **6 imposiciones mensuales continuas o discontinuas dentro de los últimos 12 meses anteriores a la fecha de la defunción**, o
-   * Acumular un mínimo histórico de **36 imposiciones mensuales** (3 años de cotizaciones) a lo largo de toda su vida laboral en el IESS.
-2. **Afiliado en goce de jubilación (Pensionista de Vejez o Invalidez)**:
-   * Genera derecho automático e inmediato de montepío a favor de sus causahabientes desde el mes siguiente a su muerte, sin exigir cotizaciones adicionales en el año corriente.
-3. **Muerte por accidente de trabajo o enfermedad profesional**:
-   * Si el deceso ocurrió a causa de un siniestro laboral o patología derivada de su actividad productiva, no se exige un tiempo mínimo de aportación previa, siempre que se encuentre cubierto por el Seguro General de Riesgos del Trabajo del IESS.
-
----
-
-## Documentos obligatorios para tramitar la pensión de viudez y orfandad
-
-Antes de iniciar el registro digital en la plataforma del IESS, los beneficiarios deben digitalizar en formato PDF los siguientes documentos legibles:
-
-* **Partida o certificado de defunción del causante**, debidamente emitida por la Dirección General de Registro Civil, Identificación y Cedulación del Ecuador.
-* **Cédula de ciudadanía o identidad** de la viuda, viudo o conviviente supérstite y de todos los hijos solicitantes.
-* **Partida de matrimonio íntegra** actualizada o certificado de inscripción de la **unión de hecho** en el Registro Civil.
-* **Partidas de nacimiento** de cada uno de los hijos menores de edad o estudiantes.
-* **Certificado de estudios vigente** emitido por la universidad, colegio o instituto superior registrado para los hijos de 18 a 21 años.
-* **Certificado de cuenta bancaria activa** a nombre personal de cada beneficiario mayor de edad (o del tutor o representante legal de los menores), debidamente validada en el sistema del IESS.
-* En caso de discapacidad: **Carné o certificado de discapacidad emitido por el Ministerio de Salud Pública (MSP)** o resolución médica emitida por la Comecap.
-
----
-
-## Paso a paso: Cómo realizar el trámite de montepío en el IESS
-
-El trámite de viudez y orfandad se procesa principalmente en línea a través de la infraestructura transaccional del seguro social ecuatoriano:
-
-### Paso 1: Certificar el fallecimiento en el Registro Civil
-Asegúrate de que la defunción del afiliado esté inscrita y validada en la base de datos nacional del Registro Civil. El sistema informático del IESS cruza los datos en tiempo real antes de permitir la apertura de cualquier solicitud póstuma.
-
-### Paso 2: Acceso al portal institucional del IESS
-Ingresa a la página oficial [iess.gob.ec](https://www.iess.gob.ec). En el menú de navegación selecciona la categoría **Servicios en Línea**, ingresa a la pestaña **Asegurados**, luego haz clic en **Pensionistas** y presiona la opción **Montepío**.
-
-### Paso 3: Identificación del derechohabiente
-Digita el número de cédula del causahabiente solicitante (viuda, viudo o representante de los hijos huérfanos) y su clave personal de afiliado o pensionista. Si el deudo no cuenta con clave de acceso previa, puede solicitarla siguiendo los pasos de [Cómo obtener la clave del IESS por primera vez](/blog/como-obtener-clave-iess-primera-vez).
-
-### Paso 4: Ingreso de la solicitud de viudez y orfandad
-Selecciona la opción "Registro de Solicitud de Montepío". El sistema solicitará la cédula del afiliado fallecido y cargará su historial de imposiciones. Selecciona el tipo de vínculo jurídico (cónyuge, hijo menor de 18 años, hijo estudiante hasta 21 años, o padre dependiente).
-
-### Paso 5: Carga de expedientes y cuenta bancaria
-Adjunta los documentos probatorios requeridos en formato digital. Confirma la cuenta de ahorros o corriente bancaria donde se efectuarán las transferencias del dividendo mensual de la pensión.
-
-### Paso 6: Verificación y resolución administrativa
-El IESS genera un número de trámite para seguimiento. La Dirección de Pensiones audita el expediente en un plazo regular de 15 a 30 días laborables. Una vez calificada la prestación, se emitirá la resolución que aprueba el pago mensual retroactivo a la fecha de la defunción del causante.
-
----
-
-## Errores frecuentes al gestionar el montepío y cómo prevenirlos
-
-* **Uniones de hecho no protocolizadas**: Intentar tramitar la pensión de viudez presentando únicamente declaraciones juramentadas notariales realizadas tras la muerte del afiliado. El IESS exige que la unión de hecho se encuentre inscrita formalmente en el Registro Civil con antelación.
-* **No actualizar los certificados de estudio anualmente**: En el caso de hijos huérfanos entre 18 y 21 años, no subir la matrícula o certificado de asistencia semestral ocasiona la suspensión inmediata del giro de la pensión mensual de orfandad.
-* **Cuentas bancarias de terceros o bloqueadas**: Tratar de registrar la cuenta de un pariente o una cuenta mancomunada. Cada beneficiario mayor de edad debe contar con una cuenta bancaria unipersonal activa y validada.
-* **Desconocimiento del derecho de ascendientes**: Asumir que la pensión caduca si el afiliado soltero no tuvo hijos. Si los progenitores dependían económicamente de su salario, tienen derecho a pedir el auxilio póstumo.
-* **Aportes insuficientes en el último año**: Presentar la solicitud cuando el afiliado cesante no alcanzó las 6 imposiciones en los 12 meses previos a su muerte ni completó las 36 aportaciones globales. En estos casos, se debe consultar si califica para la devolución de fondos de cesantía o reserva acumulados.
-
----
-
-## Ejemplo práctico: Cálculo y distribución de una pensión de montepío
-
-Para comprender cómo opera el reparto económico entre viudez y orfandad, analicemos el siguiente caso hipotético:
-
-* **Causante**: Afiliado en relación de dependencia fallecido que devengaba un salario formal promedio de $750 dólares durante sus mejores 5 años de aportación, generando una pensión teórica de vejez estimada en **$600 dólares mensuales**.
-* **Sobrevivientes**: Cónyuge supérstite y 2 hijos menores de edad (10 y 14 años).
-* **Distribución de la pensión familiar** // VERIFICAR: porcentajes referenciales de distribución:
-  * **Porción de Viudez (Cónyuge)**: Al concurrir con hijos menores, recibe el **40 %** de la cuantía base: \`$600 * 40 % = $240 dólares mensuales\`.
-  * **Porción de Orfandad (2 Hijos)**: Los descendientes se reparten el **40 %** de la cuantía base en partes iguales: \`$600 * 40 % = $240 dólares\`, correspondiendo a cada hijo un monto de **$120 dólares mensuales**.
-  * **Monto total desembolsado por el IESS**: $480 dólares mensuales a la familia sobreviviente, con derecho a transferencias puntuales durante los primeros días de cada mes.
-
-Si los hijos cumplen los 18 años y no continúan estudios superiores, su cuota de orfandad se extingue, y la porción de viudez puede ser recalculada conforme a la reglamentación aplicable de la Dirección de Pensiones.
-
----
-
-## Preguntas frecuentes sobre viudez y orfandad IESS
-
-### ¿Qué es la pensión de montepío del IESS y quién la recibe?
-La pensión de montepío es la renta mensual que otorga el IESS a los deudos de un afiliado o jubilado fallecido. La reciben el cónyuge o conviviente sobreviviente (pensión de viudez), los hijos menores de edad o hasta los 21 años que estudian (pensión de orfandad), los hijos de cualquier edad con discapacidad, y subsidiariamente los padres desamparados económicamente.
-
-### ¿Hasta qué edad pueden cobrar los hijos la pensión de orfandad?
-Los hijos cobran la pensión de orfandad automáticamente hasta los 18 años. Si acreditan encontrarse matriculados y asistiendo a clases regulares en colegios, institutos técnicos o universidades, la pensión se extiende hasta los 21 años de edad cumplidos. En el caso de hijos con discapacidad física o intelectual total calificada, la prestación tiene carácter vitalicio.
-
-### ¿Qué pasa con la pensión de viudez si la persona viuda vuelve a casarse?
-De acuerdo con la Ley de Seguridad Social ecuatoriana, si el cónyuge o conviviente beneficiario de una pensión de viudez contrae nuevo matrimonio civil o registra una nueva unión de hecho ante las autoridades competentes, pierde de forma automática e irrevocable el derecho a seguir percibiendo la mensualidad de viudez.
-
-### ¿Cuántos aportes debía tener el afiliado fallecido para que sus familiares cobren montepío?
-El afiliado causante debía tener al menos 6 imposiciones registradas en los 12 meses previos a su muerte, o un total acumulado mínimo de 36 imposiciones durante su vida laboral. Si la persona ya era jubilada por vejez o invalidez al instante de su muerte, los familiares tienen derecho directo sin requerir aportes recientes.
-
-### ¿Pueden cobrar montepío la viuda y la conviviente al mismo tiempo?
-No. El ordenamiento legal ecuatoriano prohíbe la doble asignación marital. Tiene derecho preferente quien justifique el matrimonio subsistente legal, salvo que judicialmente se haya disuelto la sociedad conyugal y se certifique una unión de hecho posterior válidamente inscrita en el Registro Civil con convivencia continuada hasta el momento del fallecimiento.
-
-### ¿Cómo se tramita la pensión de viudez y orfandad si vivo en el extranjero?
-Los ecuatorianos migrantes o derechohabientes radicados fuera del país pueden ingresar la solicitud en línea a través de iess.gob.ec con su clave de usuario. Para la documentación emitida en el exterior (certificados de defunción o matrimonios internacionales), estos deben estar debidamente apostillados conforme al Convenio de La Haya o legalizados consularmente.
-
-### ¿Qué trámite deben realizar los hijos estudiantes para no perder la pensión al cumplir 18 años?
-Al cumplir los 18 años, el beneficiario de orfandad debe ingresar periódicamente a los servicios en línea del IESS y adjuntar el certificado de matrícula y asistencia vigente extendido por el centro de educación superior avalado. Si no se entrega esta certificación al inicio de cada ciclo académico, el sistema detiene temporalmente la acreditación bancaria de la pensión.
-
----
-
-## Fuentes oficiales y normativa legal consultada
-
-* **Ley de Seguridad Social del Ecuador (Registro Oficial Suplemento 465)**: Marco general de las prestaciones de viudez, orfandad y auxilios póstumos del Seguro General Obligatorio.
-* **Resolución C.D. 554 del Consejo Directivo del IESS**: Normas reguladoras del Seguro de Invalidez, Vejez y Muerte, administración de cuotas y prelación de derechohabientes.
-* **Dirección General de Registro Civil, Identificación y Cedulación del Ecuador**: Requisitos para la validación de actas de defunción, uniones de hecho y parentesco filial.
-
----
-
-## Enlaces internos de interés
-
-* Conoce los requisitos y plazos de la [Jubilación por Vejez](/procedimiento/jubilacion-vejez) para trabajadores con historial completo.
-* Si el asegurado cesante requiere proteger sus ingresos, revisa cómo funciona la [Cesantía y Seguro de Desempleo](/blog/cesantia-seguro-desempleo-iess-como-retirar-2026).
-* Aprende a verificar tus cotizaciones históricas en la guía de [Consulta de aportes e historial laboral del IESS](/blog/como-consultar-aportes-iess-historial-laboral).
-* Revisa cómo gestionar la [Afiliación Voluntaria del IESS](/blog/afiliacion-voluntaria-iess-requisitos-beneficios-2026) para mantener cobertura médica y de jubilación.
-`,
-    author: 'equipo-editorial',
-    publishDate: '2026-02-10',
-    readTime: 11,
-    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
-    imageAlt: 'Trámite de pensión de viudez y orfandad del IESS para cónyuge e hijos sobrevivientes',
-    category: 'Jubilación',
-    dateModified: '2026-10-09',
-    sources: [
-      { label: "IESS - Reglamento de Viudez y Orfandad (Montepío)", url: "https://www.iess.gob.ec", accessedAt: "2026-10-09" },
-      { label: "Ley de Seguridad Social - Prestaciones por Muerte", url: "https://www.iess.gob.ec/documents/10162/13686/Ley_de_Seguridad_Social", accessedAt: "2026-10-09" },
-      { label: "Registro Civil del Ecuador - Certificaciones de Defunción y Parentesco", url: "https://www.registrocivil.gob.ec", accessedAt: "2026-10-09" }
+    "author": "equipo-editorial",
+    "publishDate": "2026-01-08",
+    "dateModified": "2026-11-16",
+    "readTime": 9,
+    "readingTime": 9,
+    "image": "/og/subsidio-maternidad-iess-requisitos-calculo-2026.jpg",
+    "imageAlt": "Madre trabajadora asegurada revisando los requisitos y liquidación del subsidio de maternidad en el portal del IESS Ecuador",
+    "category": "Salud",
+    "relatedSlugs": [
+      "afiliacion-voluntaria-iess-requisitos-beneficios-2026",
+      "pension-montepio-iess-requisitos-sobrevivientes-2026",
+      "como-consultar-aportes-iess-historial-laboral"
     ],
-    relatedSlugs: [
-      'jubilacion-vejez-iess-requisitos-calculo-pension-2026',
-      'jubilacion-invalidez-iess-requisitos-comecap-2026',
-      'cesantia-seguro-desempleo-iess-como-retirar-2026'
+    "content": "\n# Subsidio de Maternidad IESS 2026: Requisitos y Cuánto Pagan\n\nEl subsidio de maternidad del IESS exige doce imposiciones continuas dentro de los quince meses de referencia previos al parto para otorgar una cobertura económica donde el IESS paga 75 % y el empleador 25 %, completando 100 % del sueldo durante los 84 días de descanso obligatorio.\n\n---\n\n## En resumen: Claves del subsidio de maternidad del IESS en 2026\n\n* **Tiempo de reposo remunerado**: 84 días calendario reglamentarios (12 semanas continuas), ampliables 10 días adicionales por parto múltiple.\n* **Porcentaje total percibido**: 100% de la remuneración promedio declarada (el IESS cancela el 75% y el empleador asume el 25% restante). // VERIFICAR: En afiliadas voluntarias e independientes revisar si el seguro liquida directamente la cuota del 75% reglamentaria.\n* **Aportaciones mínimas exigidas**: 12 imposiciones mensuales consecutivas previas al parto dentro de los 15 meses anteriores a la fecha probable o real.\n* **Canal oficial de solicitud**: Módulo informático en [iess.gob.ec](https://www.iess.gob.ec) bajo la sección de Subsidios Monetarios.\n* **Requisito no negociable de cobro**: Cuenta bancaria personal registrada y validada en el portal del IESS y certificado médico validado antes de los plazos reglamentarios.\n\n---\n\n> ℹ️ **Canal Institucional Oficial:** Recuerda que este portal es una guía informativa ciudadana independiente. El trámite oficial y la acreditación económica se gestionan exclusivamente en el sitio web institucional del Instituto Ecuatoriano de Seguridad Social: [www.iess.gob.ec subsidio de maternidad](https://www.iess.gob.ec). Ningún intermediario ni gestor externo tiene autorización para cobrar por la aprobación de tu descanso prenatal o postnatal.\n\n---\n\n## ¿Cuánto es el subsidio por maternidad y cómo se calcula en 2026?\n\nUna de las dudas más frecuentes entre las aseguradas es cómo determinar el valor en dólares que transferirá el IESS a su cuenta bancaria personal. De acuerdo con el Código del Trabajo ecuatoriano (Art. 152) y la Ley de Seguridad Social, la madre no debe experimentar ninguna merma en su nivel de ingresos habituales durante las 12 semanas que dedica al cuidado de su hijo recién nacido.\n\nLa compensación se divide en dos pagos complementarios:\n1. **Aporte del IESS (75%)**: El seguro social liquida el 75% del sueldo promedio cotizado durante los doce meses anteriores al alumbramiento, calculado sobre los 84 días calendario de reposo.\n2. **Aporte patronal obligatorio (25%)**: La empresa o institución empleadora cubre el 25% remanente directamente a través del rol de pagos mensual regular, manteniendo activas las aportaciones patronales de dicho mes.\n\nLa siguiente tabla resume la estructura comparativa de cobertura, duración y porcentajes del subsidio frente a otros descansos por contingencias de salud:\n\n| Prestación Económica | Cobertura Total | Parte Asumida por el IESS | Parte Asumida por Empleador | Duración Máxima Legal | Requisito de Aportes |\n| :--- | :--- | :--- | :--- | :--- | :--- |\n| **Subsidio de Maternidad Ordinario** | 100% del sueldo promediado | 75% del promedio diario x 84 días | 25% mensual en rol de pagos | 84 días calendario (12 semanas) | 12 aportes continuos en 15 meses |\n| **Parto Múltiple (Gemelar o más)** | 100% del sueldo promediado | 75% del promedio diario x 94 días | 25% mensual en rol de pagos | 94 días calendario (10 días extra) | 12 aportes continuos en 15 meses |\n| **Subsidio por Enfermedad General** | 75% (días 4 al 90) / 66% (días 91 al 180) | 100% del porcentaje subsidiado | 0% (primeros 3 días asume patrono) | Hasta 180 días de reposo | Aportes continuos al día |\n| **Licencia de Paternidad (Padre)** | 100% del sueldo del trabajador | 0% (no es subsidio del IESS) | 100% asumido por el patrono | 10 a 15 días según tipo de parto | No aplica cómputo del IESS |\n\n<FactNote ids={[\"MATERNIDAD_SUBSIDIO_IESS_PCT\", \"MATERNIDAD_DIAS_DESCANSO\", \"MATERNIDAD_APORTES_REQ\"]} />\n\n---\n\n## Ejemplo práctico de liquidación del subsidio de maternidad\n\nPara comprender con exactitud la liquidación bancaria, analicemos el caso real de una trabajadora afiliada con un salario mensual estable:\n\n### Datos del caso:\n* **Remuneración mensual imponible reportada**: USD 800.00 constantes durante los últimos 12 meses previos al descanso prenatal.\n* **Período de licencia**: 84 días calendario reglamentarios.\n\n### Procedimiento de cálculo numérico:\n1. **Determinación de la base de remuneración diaria**:\n   $$\\text{Sueldo diario} = \\frac{\\text{USD } 800.00}{30 \\text{ días}} = \\text{USD } 26.67 \\text{ por día}$$\n2. **Cálculo del 75% a cargo del IESS**:\n   $$\\text{Base diaria del IESS} = \\text{USD } 26.67 \\times 75\\% = \\text{USD } 20.00 \\text{ diarios}$$\n   $$\\text{Monto total girado por el IESS} = \\text{USD } 20.00 \\times 84 \\text{ días} = \\text{USD } 1,680.00$$\n3. **Cálculo del 25% a cargo del patrono**:\n   $$\\text{Base diaria patronal} = \\text{USD } 26.67 \\times 25\\% = \\text{USD } 6.67 \\text{ diarios}$$\n   $$\\text{Monto total asumido por el empleador} = \\text{USD } 6.67 \\times 84 \\text{ días} = \\text{USD } 560.00$$\n4. **Ingreso global consolidado de la madre**:\n   $$\\text{Ingreso total durante las 12 semanas} = \\text{USD } 1,680.00 + \\text{USD } 560.00 = \\text{USD } 2,240.00$$\n   *(Equivalente exacto a USD 800.00 mensuales multiplicados por los 2.8 meses que abarcan las 12 semanas).*\n\nEl valor de USD 1,680.00 se transfiere de forma íntegra a la cuenta bancaria personal de la asegurada mediante acreditación directa del Banco Central / IESS, exento de descuentos patronales, mientras que los USD 560.00 los abona la empresa en sus fechas habituales de nómina.\n\n---\n\n## Requisitos indispensables para acceder al beneficio en 2026\n\nPara que la Subdirección de Prestaciones de Salud del IESS apruebe el desembolso sin glosas ni negativas automáticas, la trabajadora y la empresa deben reunir los siguientes requisitos indispensables:\n\n1. **Récord continuo de aportaciones**: Acreditar al menos **12 aportaciones mensuales continuas** dentro de los 15 meses anteriores a la fecha del alumbramiento. Si la afiliada cambió de empresa pero mantuvo continuidad de cotización sin meses en blanco, se computa la sumatoria total de manera ininterrumpida.\n2. **Condición de afiliada activa**: Mantener activa la relación de trabajo o voluntariado. El patrono no debe registrar mora patronal en los periodos de aportación que sirven de sustento a la liquidación.\n3. **Certificado médico de maternidad validado**: Contar con el certificado prenatal o de nacimiento expedido por un ginecólogo de la red institucional del IESS, o haber completado la validación en línea del certificado otorgado por médico o clínica particular.\n4. **Cuenta bancaria aprobada en el IESS**: Disponer de una cuenta de ahorros o corriente a nombre exclusivo de la madre, previamente registrada y validada en el sistema web de asegurados. No se admiten cuentas de terceros, parejas ni cuentas conjuntas no autorizadas.\n5. **Aviso de reposo patronal registrado**: El empleador debe validar el descanso por maternidad dentro de su sistema de nómina patronal institucional.\n\n---\n\n## Documentos obligatorios para armar el expediente de maternidad\n\nAntes de ingresar al módulo informático del seguro social, asegúrate de tener escaneados en formato PDF legible (peso menor a 2 MB por archivo) los siguientes documentos:\n\n* **Cédula de ciudadanía o identidad** de la asegurada madre y del recién nacido (o partida de nacimiento íntegra).\n* **Certificado médico original de reposo por maternidad**: Debe consignar con claridad los nombres completos de la paciente, diagnóstico clínico, semanas de gestación, fecha probable o efectiva de parto, número de días de reposo (84 días) y firma y sello con código de registro del médico tratante en el Ministerio de Salud Pública.\n* **Epicrisis o resumen de historia clínica** (únicamente si el parto ocurrió en clínicas, sanatorios u hospitales privados).\n* **Certificado bancario emitido por la institución financiera** que demuestre la titularidad activa de la cuenta.\n\n---\n\n## Paso a paso: Cómo solicitar el subsidio de maternidad en línea\n\nEl trámite en el portal [iess.gob.ec](https://www.iess.gob.ec) está completamente automatizado y se realiza sin necesidad de hacer filas presenciales en ventanillas:\n\n### Paso 1: Validación del certificado médico particular (si no diste a luz en hospital del IESS)\nSi el alumbramiento o control prenatal se efectuó en una clínica privada, el certificado médico de maternidad del IESS debe ser homologado dentro del plazo de ley:\n1. Accede a [iess.gob.ec](https://www.iess.gob.ec) y dirígete a **\"Trámites Virtuales\"** -> **\"Asegurados\"** -> **\"Afiliados\"**.\n2. Ingresa a la opción **\"Validación de Certificados Médicos\"** digitando tu número de cédula y clave patronal/personal.\n3. Ingresa los datos del médico particular (número de cédula o código profesional) y la fecha de inicio del reposo.\n4. Adjunta el archivo PDF del certificado médico y la epicrisis del hospital.\n5. El sistema emitirá un comprobante de radicación y, tras la revisión del médico auditor institucional, emitirá el código de reposo validado.\n\n### Paso 2: Verificación de la cuenta bancaria personal\n1. Dentro de los servicios en línea de **\"Afiliados\"**, ingresa a la pestaña **\"Registro y Actualización de Cuenta Bancaria\"**.\n2. Verifica que la cuenta bancaria figure en estado **\"Validada\"** con visto bueno verde. Si no lo está, regístrala cargando el certificado bancario para evitar que el pago quede retenido.\n\n### Paso 3: Ingreso de la solicitud de subsidio monetario\n1. En el portal de afiliados, haz clic en **\"Subsidios Monetarios\"**.\n2. Selecciona **\"Registro de Solicitud de Maternidad\"**.\n3. El aplicativo verificará en tiempo real tu historial de doce aportaciones en los quince meses previos.\n4. Selecciona el certificado médico institucional o validado que ampara tus 84 días de licencia.\n5. Confirma los datos de tu cuenta bancaria y haz clic en **\"Guardar y Enviar Solicitud\"**.\n6. Descarga y conserva el comprobante digital en formato PDF con el número de trámite para dar seguimiento.\n\n---\n\n## Errores frecuentes que demoran o anulan el pago del subsidio\n\nEvita estos errores comunes que suelen bloquear las solicitudes de miles de madres ecuatorianas cada mes:\n\n* **Dejar vencer el plazo para validar certificados de clínicas particulares**: El certificado privado debe presentarse dentro del plazo máximo reglamentario para no perder el derecho al reconocimiento económico del seguro.\n* **No verificar que la cuenta bancaria esté a nombre de la titular**: El IESS rechaza de inmediato transferencias dirigidas a cuentas bancarias del cónyuge, padres o terceros, aun cuando medie poder notariado.\n* **Mora patronal en las planillas del año previo**: Si el empleador no pagó las planillas mensuales en las fechas reglamentarias, el sistema considerará que no existen 12 cotizaciones continuas válidas hasta que la deuda sea cancelada con los respectivos intereses de mora.\n* **Confundir la licencia de maternidad con la licencia de paternidad**: Los 10 a 15 días concedidos al padre son una obligación económica exclusiva del patrono privado o estatal; el IESS no tramita ningún subsidio monetario a nombre del cónyuge.\n* **Creer que el bono o subsidio de maternidad es un trámite presencial obligatorio**: No es necesario contratar tramitadores externos. El registro se realiza de manera 100% gratuita a través de [iess.gob.ec](https://www.iess.gob.ec).\n\n---\n\n## Diferencias clave: Subsidio de maternidad vs. bono del MIES y licencias especiales\n\nEs vital no confundir el **subsidio de maternidad del IESS** con programas de asistencia social estatal o descansos no remunerados:\n\n1. **Subsidio de Maternidad del IESS (Seguro Contributivo)**: Es una prestación contributiva financiada con las aportaciones de la trabajadora y del patrono. Su cobro exige récord laboral y el IESS paga 75 % y el empleador 25 %, completando 100 % del sueldo.\n2. **Bono de Apoyo Social (MIES)**: Corresponde a transferencias condicionadas no contributivas orientadas a madres en situación de extrema pobreza o vulnerabilidad que no forman parte del sistema de seguridad social.\n3. **Licencia opcional complementaria sin sueldo**: El Código del Trabajo permite a la madre solicitar hasta 9 meses adicionales de permiso no remunerado tras los 84 días para dedicarse a la crianza; durante ese lapso no opera subsidio del IESS, aunque se mantiene el acceso a prestaciones médicas mediante aportación voluntaria.\n4. **Permiso de lactancia materna**: Una vez reincorporada al trabajo, la madre goza de una jornada reducida de 6 horas diarias durante 12 meses posteriores al parto, remunerada en su totalidad por el empleador sin intervención del seguro social.\n\n---\n\n## Licencia de 14 semanas: sentencia de la Corte Provincial de Pichincha (junio 2026)\n\nEn junio de 2026, una sentencia emitida por la Corte Provincial de Pichincha y el debate parlamentario de un proyecto de reforma al Código del Trabajo plantearon la posibilidad de extender la licencia remunerada por maternidad a 14 semanas (98 días calendario), con la finalidad de alinear la normativa ecuatoriana a los convenios internacionales sobre protección a la maternidad.\n\nNo obstante, es indispensable destacar que el alcance general de esta sentencia no se encuentra plenamente confirmado ni universalmente implementado en todas las instituciones del sector público y empresas privadas del país. Por consiguiente, no se puede afirmar que rija actualmente de manera obligatoria y automática para todas las trabajadoras en Ecuador. Se recomienda a las aseguradas verificar el alcance y las directrices administrativas vigentes directamente en iess.gob.ec y ante el Ministerio del Trabajo antes de programar su descanso prenatal y postnatal.\n\n---\n\n## Preguntas Frecuentes sobre el Subsidio de Maternidad IESS\n\n### ¿Cuánto tiempo tengo para cobrar el subsidio de maternidad si no lo solicité a tiempo?\nEl derecho a reclamar los valores económicos del subsidio por maternidad prescribe a los doce meses contados a partir de la fecha de culminación de la licencia médica por alumbramiento. Si no tramitas la homologación y solicitud dentro de este plazo legal, los valores prescriben a favor del fondo de salud del IESS.\n\n### ¿Qué pasa con el subsidio de maternidad si mi empleador está en mora patronal?\nSi tu empresa adeuda planillas de aportaciones, el IESS no te pagará el subsidio monetario hasta que la mora sea saldada en su totalidad. No obstante, por mandato del Código del Trabajo, el empleador moroso queda obligado a asumir de su propio presupuesto el 100% de la remuneración que te correspondía percibir durante las 12 semanas de descanso.\n\n### ¿El subsidio de maternidad cubre también los gastos del parto y cesárea?\nSí, las afiliadas que cumplen los requisitos de cotización tienen cobertura médica y obstétrica total gratuita en los hospitales del IESS y prestadores privados acreditados, incluyendo atención médica prenatal, parto normal, cesárea programada o de emergencia, anestesia, medicamentos y neonatología sin costo adicional.\n\n### ¿Cuánto paga el IESS a las afiliadas voluntarias o sin relación de dependencia por maternidad?\nLas afiliadas independientes y voluntarias que registran 12 imposiciones continuas reciben el pago directo del subsidio de salud correspondiente a la base calculada de su aporte mensual declarado. Al no contar con un patrono que cubra el 25% remanente en rol de pagos, perciben la cuota pecuniaria estipulada en el reglamento de salud del IESS. // VERIFICAR: Comprobar liquidaciones sectoriales especiales para trabajadoras del hogar.\n\n### ¿Se descuentan aportes al IESS sobre el dinero depositado por subsidio de maternidad?\nNo. El depósito que realiza el IESS por concepto de subsidio pecuniario de maternidad ingresa a tu cuenta bancaria de manera íntegra, sin retención de aporte personal del 9.45% ni deducciones de impuestos, ya que constituye un beneficio de reposición salarial de la seguridad social.\n\n### ¿Cómo consultar el estado de depósito del dinero en www iess gob ec subsidio de maternidad?\nIngresa a [iess.gob.ec](https://www.iess.gob.ec), accede a \"Asegurados\" -> \"Afiliados\" -> \"Subsidios Monetarios\" y presiona la opción \"Consulta de Solicitud de Subsidios\". El aplicativo indicará si tu trámite se encuentra en estado \"Generado\", \"Aprobado por Auditoría Médica\", \"Enviado al Banco Central\" o \"Acreditado en Cuenta\".\n\n### ¿Qué sucede si el recién nacido fallece durante o poco después del parto?\nEn el lamentable evento de parto prematuro con feto viable o fallecimiento neonatal, la madre mantiene intacto su derecho a disfrutar de los 84 días de licencia de maternidad remunerada y a cobrar el 100% del subsidio pecuniario, ya que el reposo médico busca garantizar su recuperación física y psicológica integral.\n\n---\n\n## Fuentes oficiales y normativa de consulta\n* **Código del Trabajo de la República del Ecuador (Art. 152 y siguientes)** - Normativa de descanso obligatorio y protección a la maternidad.\n* **Ley de Seguridad Social (Registro Oficial Suplemento 465)** - Régimen del Seguro General de Salud Individual y Familiar.\n* **Reglamento General de Prestaciones de Salud y Subsidios Pecuniarios del IESS** - Resoluciones del Consejo Directivo.\n* **Portal Oficial del Instituto Ecuatoriano de Seguridad Social**: [iess.gob.ec](https://www.iess.gob.ec).\n\n---\n\n## Enlaces internos y guías complementarias\n* Si eres trabajadora independiente, revisa los costos en nuestra guía sobre [Afiliación voluntaria IESS 2026: cuánto se paga al mes](/blog/afiliacion-voluntaria-iess-requisitos-beneficios-2026).\n* Consulta el procedimiento institucional paso a paso en la sección de [Subsidio por Maternidad](/procedimiento/subsidio-maternidad).\n* Conoce los derechos familiares y de montepío en nuestra guía de [Pensión de viudez y orfandad IESS: requisitos y trámite](/blog/pension-montepio-iess-requisitos-sobrevivientes-2026).\n* Revisa tu récord laboral de cotizaciones en la guía para [Consultar aportes e historial laboral en el IESS](/blog/como-consultar-aportes-iess-historial-laboral).\n",
+    "sources": [
+      {
+        "label": "Código del Trabajo de Ecuador (Art. 152)",
+        "url": "https://www.trabajo.gob.ec",
+        "accessedAt": "2026-10-10"
+      },
+      {
+        "label": "IESS - Subsidios Pecuniarios y Prestaciones de Maternidad",
+        "url": "https://www.iess.gob.ec",
+        "accessedAt": "2026-10-10"
+      },
+      {
+        "label": "Ley de Seguridad Social del Ecuador",
+        "url": "https://www.iess.gob.ec",
+        "accessedAt": "2026-10-10"
+      }
     ],
-    faqs: [
+    "faqs": [
       {
-        q: '¿Qué es la pensión de montepío del IESS y quién la recibe?',
-        a: 'La pensión de montepío es la renta mensual que otorga el IESS a los deudos de un afiliado o jubilado fallecido: cónyuge o conviviente (viudez), hijos menores de edad o hasta 21 años estudiantes (orfandad), e hijos con discapacidad.'
+        "q": "¿Cuánto tiempo tengo para cobrar el subsidio de maternidad si no lo solicité a tiempo?",
+        "a": "El derecho a reclamar los valores del subsidio por maternidad prescribe a los doce meses contados a partir de la finalización del reposo médico reglamentario de 84 días."
       },
       {
-        q: '¿Hasta qué edad pueden cobrar los hijos la pensión de orfandad?',
-        a: 'Los hijos cobran automáticamente hasta los 18 años. Si acreditan encontrarse matriculados y asistiendo a estudios regulares en instituciones reconocidas, la pensión se extiende hasta los 21 años. Con discapacidad calificada es vitalicia.'
+        "q": "¿Qué pasa con el subsidio de maternidad si mi empleador está en mora patronal?",
+        "a": "El IESS retiene la liquidación del subsidio hasta que el patrono pague la mora, pero por ley la empresa queda obligada a cancelar directamente el 100% del sueldo de la madre durante su descanso."
       },
       {
-        q: '¿Qué pasa con la pensión de viudez si la persona viuda vuelve a casarse?',
-        a: 'Si el cónyuge o conviviente beneficiario de una pensión de viudez contrae nuevo matrimonio civil o registra una nueva unión de hecho, pierde de forma automática e irrevocable el derecho a percibir la pensión.'
+        "q": "¿El subsidio de maternidad cubre también los gastos del parto y cesárea?",
+        "a": "Sí, las aseguradas que cumplen con las 12 imposiciones continuas acceden a atención médica gratuita completa de controles prenatales, parto normal o cesárea y cuidados para el recién nacido en la red del IESS."
       },
       {
-        q: '¿Cuántos aportes debía tener el afiliado fallecido para que sus familiares cobren montepío?',
-        a: 'El afiliado causante debía tener al menos 6 imposiciones registradas en los 12 meses previos a su muerte, o un total acumulado mínimo de 36 imposiciones laborales históricas. Los jubilados generan derecho automático.'
+        "q": "¿Cuánto paga el IESS a las afiliadas voluntarias por subsidio de maternidad?",
+        "a": "Perciben el subsidio pecuniario equivalente a su porcentaje de cotización sobre el salario declarado en sus aportes continuos directamente del seguro social."
       },
       {
-        q: '¿Pueden cobrar montepío la viuda y la conviviente al mismo tiempo?',
-        a: 'No. El ordenamiento legal ecuatoriano prohíbe la doble asignación marital. Tiene derecho quien justifique el matrimonio formal o la unión de hecho debidamente inscrita en el Registro Civil con convivencia comprobada.'
+        "q": "¿Se descuentan aportes al IESS sobre el dinero depositado por subsidio de maternidad?",
+        "a": "No, el depósito correspondiente a la cuota del subsidio del IESS se entrega libre de deducciones del aporte personal del 9.45% e impuestos."
       },
       {
-        q: '¿Cómo se tramita la pensión de viudez y orfandad si vivo en el extranjero?',
-        a: 'Se puede ingresar la solicitud en línea a través de iess.gob.ec con clave de usuario. La documentación de defunción o matrimonio generada en el extranjero debe estar debidamente apostillada o legalizada consularmente.'
+        "q": "¿Cómo consultar el estado de depósito del dinero en www iess gob ec subsidio de maternidad?",
+        "a": "Ingresando a iess.gob.ec en \"Afiliados\" -> \"Subsidios Monetarios\" -> \"Consulta de Solicitud de Subsidios\" para ver la fecha de acreditación en cuenta bancaria."
       },
       {
-        q: '¿Qué trámite deben realizar los hijos estudiantes para no perder la pensión al cumplir 18 años?',
-        a: 'Deben ingresar a los servicios en línea del IESS y subir el certificado de matrícula y asistencia académica vigente al inicio de cada ciclo escolar o universitario para mantener activa la acreditación mensual.'
+        "q": "¿Qué sucede si el recién nacido fallece durante o poco después del parto?",
+        "a": "La madre conserva íntegramente su derecho a los 84 días de reposo remunerado y a percibir el 100% de la compensación económica para su recuperación."
       }
     ]
   },
   {
-    id: 'jubilacion-invalidez-2026',
-    slug: 'jubilacion-invalidez-iess-requisitos-comecap-2026',
-    title: 'Jubilación por Invalidez IESS 2026: Requisitos y Evaluación Comecap',
-    seoTitle: 'Jubilación por Invalidez IESS: pasos | IESS Asistente',
-    metaDescription: 'Jubilación por invalidez en el IESS en 2026. Evaluación de la Comisión Médica Comecap, grados de incapacidad laboral y requisitos de aportaciones mínimas.',
-    keywords: ['jubilación por invalidez IESS', 'comecap iess', 'enfermedad catastrófica iess jubilación', 'incapacidad permanente iess'],
-    content: `
-# Jubilación por Invalidez en el IESS: Proceso y Dictamen Médico
-
-La **Jubilación por Invalidez** protege a los trabajadores que, a causa de un accidente común o enfermedad no laboral, sufren una alteración física o psíquica que les incapacita de forma permanente para continuar ejerciendo su profesión.
-
----
-
-## Requisitos para Calificar ante la Comecap
-1. **Aportaciones previas**: Acreditar al menos **60 imposiciones mensuales** (5 años de aportes), de las cuales al menos 6 deben ser continuas e inmediatamente anteriores a la incapacidad.
-2. **Dictamen de Incapacidad**: La Comisión de Valuación de Incapacidades (Comecap) debe emitir un informe que certifique un porcentaje de pérdida de capacidad laboral igual o superior al **65%**.
-3. **Enfermedades Catastróficas**: Los afiliados diagnosticados con enfermedades oncológicas o insuficiencia renal crónica reciben atención prioritaria y reducción en los plazos reglamentarios de calificación.
-`,
-    author: 'equipo-editorial',
-    publishDate: '2026-02-18',
-    readTime: 7,
-    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
-    category: 'Salud',
-    dateModified: '2026-10-01',
-    sources: [
-      { label: "Normas de Calificación de Discapacidades de Ecuador", url: "https://www.salud.gob.ec", accessedAt: "2026-10-01" },
-      { label: "IESS Comisión Médica Comecap", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" }
+    "id": "prestamo-hipotecario-2026",
+    "slug": "prestamo-hipotecario-biess-requisitos-tasas-2026",
+    "title": "Préstamo Hipotecario BIESS 2026: Requisitos y Tasas de Interés",
+    "seoTitle": "Préstamos Hipotecarios BIESS: tasas | IESS Asistente",
+    "metaDescription": "Préstamo hipotecario BIESS 2026: tasas del 6.8% al 9.1% en líneas no preferenciales, programa Credicasa al 2.99%, requisitos y crédito de vivienda.",
+    "keywords": [
+      "préstamo hipotecario BIESS",
+      "casa propia BIESS",
+      "crédito vivienda ecuador",
+      "tasa interés BIESS",
+      "requisitos hipotecario BIESS"
+    ],
+    "content": "\n# Préstamo Hipotecario BIESS 2026: Requisitos y Tasas de Interés\n\n¿Quiere adquirir su vivienda propia en Ecuador con las mejores condiciones financieras del mercado? El Préstamo Hipotecario del BIESS para el año 2026 ofrece tasas nominales para líneas no preferenciales entre el 6.8% y el 9.1% anual con plazos de pago de hasta 25 años, además del programa preferencial Credicasa al 2.99% de interés anual para viviendas de hasta $65.000 dólares. Esta es la alternativa de financiamiento a largo plazo más robusta en el mercado inmobiliario ecuatoriano, diseñada para afiliados dependientes, voluntarios y jubilados de la seguridad social.\n\n## En resumen: Datos clave sobre el Crédito Hipotecario BIESS\n* **Tasas nominales no preferenciales**: Entre el 6.8% y el 9.1% anual para compra de vivienda habitual, construcción o remodelación según el tarifario vigente.\n* **Línea preferencial Credicasa**: Tasa preferencial del 2.99% anual fija para primera vivienda con financiamiento de hasta $65.000 dólares.\n* **Plazo máximo de amortización**: Hasta 25 años (300 meses de plazo para amortización según la edad del asegurado).\n* **Requisito de aportes para Credicasa**: 36 imposiciones acumuladas en el IESS, de las cuales al menos las últimas 13 deben ser consecutivas (afiliados dependientes).\n* **Requisito general de aportes**: Al menos 36 imposiciones acumuladas en la cuenta individual de seguridad social.\n\n---\n\n## ¿Cuáles son las condiciones de financiamiento y tasas de interés en 2026?\n\nEl Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) maneja diferentes líneas de financiamiento inmobiliario. Para proyectos residenciales estándar y vivienda habitual no preferencial, las tasas nominales oscilan entre el 6.8% y el 9.1% anual. Al mismo tiempo, el banco impulsa programas preferenciales de acceso a la primera vivienda propia, destacando la línea **Credicasa con una tasa de interés del 2.99% anual** para inmuebles de hasta $65.000 dólares.\n\nLa siguiente tabla detalla la estructura comparativa de líneas de financiamiento inmobiliario vigentes en el BIESS:\n\n| Línea de Financiamiento | Monto Máximo de Financiamiento | Tasa de Interés Nominal Anual | Plazo Máximo Permitido |\n| :--- | :--- | :--- | :--- |\n| **Credicasa (Primera Vivienda)** | Hasta $65.000 dólares | 2.99% anual fija | Hasta 25 años |\n| **Vivienda Habitual (No Preferencial)** | Sujeto a capacidad de endeudamiento y avalúo | 6.80% a 7.90% anual | Hasta 25 años |\n| **Adquisición / Construcción Mayor** | Sujeto a capacidad de endeudamiento y avalúo | 7.91% a 9.10% anual | Hasta 25 años |\n| **Terrenos para Vivienda** | Hasta el 80% del avalúo comercial | 8.00% a 9.50% anual | Hasta 10 años |\n\n<FactNote ids={[\"TASA_HIPOTECARIO_MIN\", \"TASA_HIPOTECARIO_MAX\", \"HIPOTECARIO_PLAZO_MAX_ANOS\", \"CREDICASA_TASA\", \"CREDICASA_MONTO_MAX\", \"CREDICASA_APORTES_REQ\"]} />\n\n---\n\n## ¿Quiénes pueden solicitar un Préstamo Hipotecario en el BIESS?\n\nEsta prestación está disponible para todos los asegurados al sistema de seguridad social en el Ecuador que cumplan con criterios mínimos de estabilidad laboral y financiera. Esto incluye a:\n* **Afiliados bajo relación de dependencia** (sector público o privado) con relación activa de trabajo.\n* **Afiliados voluntarios e independientes** dentro del territorio nacional que paguen sus aportaciones a tiempo.\n* **Jubilados por vejez, invalidez** o discapacidad física calificada de forma oficial por la Comecap del IESS.\n\n---\n\n## Requisitos obligatorios para precalificar al crédito\n\nPara que la plataforma informática del BIESS apruebe su solicitud de precalificación inmobiliaria, debe cumplir rigurosamente con los siguientes requisitos del sistema:\n\n1. **Récord de aportaciones**: Acreditar un mínimo de **36 aportaciones mensuales acumuladas** en su cuenta individual del IESS (no simultáneas). Para el programa preferencial Credicasa, las últimas 13 imposiciones deben ser continuas e inmediatas bajo relación de dependencia.\n2. **Consecutividad**: Demostrar aportes al día y continuidad en las cotizaciones previas al trámite.\n3. **Estabilidad laboral**: El afiliado dependiente debe demostrar estabilidad en su empleo actual.\n4. **Capacidad de endeudamiento**: La cuota mensual estimada del dividendo hipotecario no puede superar el 40% de sus ingresos netos declarados en el IESS.\n5. **Edad límite del solicitante**: La edad del afiliado al momento de solicitar el préstamo, sumada al plazo total del crédito, no puede superar los 75 años de edad.\n6. **Historial crediticio óptimo**: Contar con una calificación de riesgo favorable en el Buró de Crédito nacional, sin deudas vencidas ni demandas de cobro judicial.\n7. **No tener obligaciones patronales o préstamos en mora**: El empleador actual no debe registrar mora patronal, y el afiliado no debe tener préstamos quirografarios en mora ni glosas patronales.\n\n---\n\n## Paso a paso para realizar el trámite de solicitud\n\nEl proceso de solicitud del Préstamo Hipotecario es mixto: inicia con una precalificación 100% en línea y continúa con un expediente físico entregado a los asesores del banco. Siga estos pasos sistemáticos para asegurar su aprobación:\n\n### Paso 1: Ingreso al Portal Transaccional del BIESS\nAcceda al sitio web oficial del banco [biess.fin.ec](https://www.biess.fin.ec). En el menú principal, seleccione la opción \"Préstamos Hipotecarios\" y haga clic en el botón de acceso al sistema. Inicie sesión digitando su número de cédula y su clave única de afiliado.\n\n### Paso 2: Selección del Tipo de Producto Inmobiliario\nUna vez dentro de su portal de asegurado, elija el destino del crédito. Las opciones disponibles son: Compra de Vivienda Terminada (incluyendo Credicasa si cumple las condiciones), Construcción de Vivienda, Adquisición de Terreno, Sustitución de Hipoteca o Remodelación/Ampliación de vivienda principal.\n\n### Paso 3: Simulación de Capacidad de Pago y Precalificación\nEl sistema procesará automáticamente su historial de cotizaciones y su capacidad de pago precalculada. Introduzca el valor comercial estimado de la propiedad y el plazo de años deseado. La plataforma arrojará de forma inmediata el monto preaprobado, la tasa de interés sugerida y la tabla de amortización (cuotas fijas o decrecientes). Si está de acuerdo, presione el botón de \"Precalificar\".\n\n### Paso 4: Carga y Entrega de Documentación Física\nSi obtiene la precalificación favorable en la web, el sistema generará una lista de documentos de soporte. Deberá recopilarlos, imprimir la solicitud firmada y agendar una cita presencial en las oficinas del BIESS o cargar los documentos digitales en la ventanilla virtual habilitada para procesar el expediente.\n\n### Paso 5: Avalúo de la Propiedad e Instrumentación Legal\nUn perito calificado por el BIESS acudirá a inspeccionar físicamente el inmueble para determinar su valor real. Tras el avalúo favorable, se elaborará la minuta, se elevará a escritura pública en una notaría y se inscribirá la hipoteca en el Registro de la Propiedad correspondiente para proceder al desembolso al vendedor.\n\n---\n\n## Documentos indispensables para armar su expediente hipotecario\n\nUna vez precalificado en línea, debe presentar los siguientes documentos en perfectas condiciones:\n\n* **Formulario de solicitud de crédito** impreso y firmado por el solicitante y su cónyuge (si aplica) desde el portal web.\n* **Copias de cédula de ciudadanía** y papeleta de votación vigentes de los intervinientes.\n* **Certificado de ingresos y roles de pago** de los últimos 3 meses, firmados por el representante de talento humano de su empresa.\n* **Estados de cuenta bancarios** de los últimos 3 meses que demuestren el flujo de ingresos declarados.\n* **Copia de la escritura pública de la propiedad** que se desea adquirir, debidamente inscrita.\n* **Certificado de Gravámenes actualizado** emitido por el Registro de la Propiedad (validez no mayor a 30 días calendario).\n* **Impuesto Predial pagado** del año fiscal corriente del inmueble objeto del crédito.\n\n---\n\n## Errores frecuentes al solicitar el hipotecario y cómo prevenirlos\n\n* **Mantener deudas pequeñas en mora**: Tener un saldo vencido en una tarjeta de crédito o telefonía, aunque sea de pocos dólares, bloquea instantáneamente la precalificación. Revise su buró crediticio previamente para certificar su calificación de riesgo favorable.\n* **Inconsistencias en los datos del empleador**: Si su empresa registra retrasos leves en el pago de planillas patronales del IESS, la plataforma impedirá el trámite por mora patronal involuntaria. Verifique que su empleador esté al día.\n* **Falta de actualización de datos bancarios**: Si su cuenta personal de ahorros o corriente no está validada mediante el Centro de Atención Universal del IESS, no se podrá programar el cobro automático de dividendos ni los reembolsos.\n* **Exceder la edad máxima de desgravamen**: Intentar solicitar un crédito a 25 años de plazo teniendo 55 años de edad. En este escenario, el plazo se reducirá automáticamente a un máximo de 20 años para cumplir con el límite de 75 años de edad combinada.\n\n---\n\n## Ejemplo práctico de financiamiento en 2026\n\nTomemos como ejemplo la adquisición de una primera vivienda mediante el programa preferencial **Credicasa del BIESS**, con un monto de financiamiento de **$65,000 dólares**:\n\n* **Línea de crédito**: Credicasa primera vivienda.\n* **Monto financiado**: $65,000 dólares americanos.\n* **Tasa de interés preferencial**: 2.99% nominal anual fija.\n* **Plazo de amortización**: 25 años (300 dividendos mensuales).\n* **Cuota mensual estimada**: Aproximadamente $307 dólares mensuales bajo el sistema de cuotas fijas (más seguros obligatorios de desgravamen e incendio).\n* **Ingreso familiar mínimo requerido**: Un promedio de $770 dólares netos demostrables para cumplir con la regla del 40% de capacidad de pago familiar.\n\n---\n\n## Preguntas Frecuentes sobre el Crédito Hipotecario BIESS\n\n### ¿Cuánto tiempo de mora patronal se necesita para que se bloquee el trámite?\nCualquier retraso por parte de su empleador en el pago de las planillas mensuales del IESS (incluso de un solo día después de la fecha máxima de pago el 15 de cada mes) suspende inmediatamente el proceso de precalificación o detiene el desembolso en curso. Es requisito que el empleador esté completamente al día antes de procesar cualquier fase de la solicitud inmobiliaria.\n\n### ¿Se puede realizar abonos al capital o precancelar el Préstamo Hipotecario sin penalización?\nSí, el BIESS permite a todos los clientes realizar abonos parciales directos al capital o precancelar el saldo total de la deuda hipotecaria en cualquier momento de la vigencia del crédito, sin cobro de multas ni penalizaciones financieras de ningún tipo. Los abonos parciales le permitirán reestructurar su deuda eligiendo entre dos opciones: disminuir el monto de la cuota mensual manteniendo el plazo inicial, o recortar el número de años del crédito manteniendo el valor de la cuota mensual.\n\n### ¿Qué sucede con mi Préstamo Hipotecario si me quedo desempleado?\nEn caso de perder su empleo en relación de dependencia laboral, se activa automáticamente el **Seguro de Desgravamen y Cesantía** incorporado en su dividendo. Además, podrá acogerse a los periodos de gracia y reestructuraciones de deuda que ofrece el BIESS. Le recomendamos acudir de inmediato a las oficinas de coactivas del banco para reportar su situación, evitando que el dividendo acumule intereses de mora o caiga en estado de ejecución judicial.\n\n### ¿Puedo comprar un terreno para construcción con el Préstamo Hipotecario BIESS?\nEfectivamente, el BIESS cuenta con un producto financiero específico para la adquisición de terrenos destinados exclusivamente a la construcción de vivienda unifamiliar. Para este fin, el banco financia hasta un **80% del valor del avalúo comercial** del predio, con un plazo máximo de pago de hasta 10 años y tasas de interés competitivas. El terreno debe contar obligatoriamente con escrituras públicas en regla, delimitaciones físicas claras y servicios básicos mínimos instalados.\n\n### ¿Qué es la sustitución de hipoteca en el BIESS?\nLa sustitución de hipoteca es un mecanismo financiero mediante el cual el BIESS compra la cartera de crédito hipotecario que usted mantenga vigente con cualquier institución financiera privada o cooperativa del Ecuador. Al transferir su hipoteca al BIESS, se cancela la deuda con su banco inicial y se constituye un nuevo crédito con las tasas de interés preferenciales y plazos del seguro social (hasta 25 años), reduciendo significativamente su dividendo mensual.\n\n---\n\n## Enlaces de interés interno para su trámite\n* Valide sus datos bancarios y personales consultando nuestra guía de [actualización de datos y cuenta en el IESS](/procedimiento/actualizacion-datos).\n* Realice solicitudes inmediatas de fondos de consumo mediante la guía de [Préstamo Quirografario](/procedimiento/prestamo-quirografario) del portal.\n* Si trabaja por cuenta propia, revise los beneficios del programa de [Afiliación Voluntaria](/procedimiento/afiliacion-voluntaria) de forma independiente.\n* Mantenga al día sus finanzas revisando cómo consultar y gestionar sus acumulados de [Fondos de Reserva](/blog/fondos-de-reserva-iess-consulta-acumulacion-retiro-2026) en línea.\n",
+    "author": "equipo-editorial",
+    "publishDate": "2026-01-20",
+    "readTime": 12,
+    "image": "/og/prestamo-hipotecario-biess-requisitos-tasas-2026.jpg",
+    "imageAlt": "Vivienda y llaves de casa financiada con préstamo hipotecario del BIESS en Ecuador",
+    "category": "Préstamos",
+    "dateModified": "2026-11-16",
+    "sources": [
+      {
+        "label": "Banco del IESS - Crédito Inmobiliario",
+        "url": "https://www.biess.fin.ec/hipotecarios",
+        "accessedAt": "2026-11-16"
+      },
+      {
+        "label": "Superintendencia de Bancos del Ecuador - Tasas de Referencia",
+        "url": "https://www.superbancos.gob.ec",
+        "accessedAt": "2026-11-16"
+      }
+    ],
+    "relatedSlugs": [
+      "prestamo-quirografario-biess-requisitos-montos-2026",
+      "fondos-de-reserva-iess-consulta-acumulacion-retiro-2026",
+      "afiliacion-voluntaria-iess-requisitos-beneficios-2026"
+    ],
+    "faqs": [
+      {
+        "q": "¿Cuánto tiempo de mora patronal se necesita para que se bloquee el trámite?",
+        "a": "Cualquier retraso por parte de su empleador en el pago de las planillas mensuales del IESS suspende inmediatamente el proceso de precalificación o detiene el desembolso en curso."
+      },
+      {
+        "q": "¿Se puede realizar abonos al capital o precancelar el Préstamo Hipotecario sin penalización?",
+        "a": "Sí, el BIESS permite realizar abonos parciales directos al capital o precancelar el saldo total de la deuda hipotecaria en cualquier momento de la vigencia del crédito sin cobro de multas ni penalizaciones."
+      },
+      {
+        "q": "¿Qué sucede con mi Préstamo Hipotecario si me quedo desempleado?",
+        "a": "Se activa automáticamente el Seguro de Desgravamen y Cesantía incorporado en su dividendo. Además, podrá acogerse a los periodos de gracia y reestructuraciones de deuda que ofrece el BIESS."
+      },
+      {
+        "q": "¿Puedo comprar un terreno para construcción con el Préstamo Hipotecario BIESS?",
+        "a": "Efectivamente, el BIESS cuenta con un producto financiero específico para terrenos que financia hasta un 80% del valor del avalúo comercial, con plazo máximo de pago de hasta 10 años."
+      },
+      {
+        "q": "¿Qué es la sustitución de hipoteca en el BIESS?",
+        "a": "La sustitución de hipoteca es un mecanismo mediante el cual el BIESS compra la cartera de crédito hipotecario de otra institución financiera del Ecuador con mejores tasas de interés."
+      }
     ]
   },
   {
-    id: 'glosas-patronales-2026',
-    slug: 'impugnacion-glosas-mora-patronal-iess-convenio-pago-2026',
-    title: 'Impugnación de Glosas Patronales IESS 2026: Plazos y Descargos',
-    seoTitle: 'Impugnación de Glosas IESS: plazos | IESS Asistente',
-    metaDescription: 'Guía para impugnar glosas patronales del IESS en 2026. Plazo legal de 20 días, descargos normativos, purga de mora y convenios de pago.',
-    keywords: ['glosas patronales IESS', 'mora patronal ecuador', 'impugnar glosa IESS', 'convenio de pago IESS'],
-    content: `
-# Impugnación de Glosas y Resolución de Mora Patronal ante el IESS
-
-Las **Glosas Patronales** son determinaciones de deuda económica emitidas por el IESS contra empleadores por presuntas faltas en aportaciones, diferencias salariales o falta de afiliación oportuna.
-
----
-
-## Plazo Fatal para Impugnar: 20 Días
-De acuerdo con el Código Tributario y el Reglamento de Coactivas del IESS:
-* El empleador notificado tiene exactamente **20 días hábiles** para presentar su escrito de impugnación formal adjuntando roles de pago firmados, comprobantes bancarios y descargos.
-* Si no se impugna en este lapso, la glosa adquiere fuerza coactiva y puede derivar en bloqueos de cuentas bancarias y prohibición de enajenar bienes.
-
----
-
-## Convenios de Pago y Exoneraciones
-Los empleadores que mantengan moras pueden acogerse a los **Convenios de Purga de Mora** hasta a 36 meses plazo, levantando de inmediato los bloqueos crediticios para sus colaboradores.
-`,
-    author: 'equipo-editorial',
-    publishDate: '2026-02-24',
-    readTime: 8,
-    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
-    category: 'Trámites',
-    dateModified: '2026-10-01',
-    sources: [
-      { label: "Código Orgánico General de Procesos - COGEP", url: "https://www.funcionjudicial.gob.ec", accessedAt: "2026-10-01" },
-      { label: "IESS - Instructivo para Impugnación de Glosas", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" }
+    "id": "cesantia-desempleo-2026",
+    "slug": "cesantia-seguro-desempleo-iess-como-retirar-2026",
+    "title": "Cesantía y Seguro de Desempleo IESS 2026: Cómo Retirar Fondos",
+    "seoTitle": "Cesantía y Seguro Desempleo del IESS | IESS Asistente",
+    "metaDescription": "Cómo retirar tu cesantía acumulada y solicitar el seguro de desempleo del IESS en 2026. Requisitos de la Resolución C.D. 515, plazos de 60 días y montos.",
+    "keywords": [
+      "cesantía IESS",
+      "seguro de desempleo Ecuador",
+      "retiro cesantía en línea",
+      "fondos cesantía IESS"
+    ],
+    "content": "# Cesantía y Seguro de Desempleo IESS 2026: Cómo Retirar Fondos y Requisitos\n\nLa pérdida de un empleo representa uno de los momentos de mayor vulnerabilidad económica para cualquier trabajador en el Ecuador. Para mitigar esta contingencia laboral, la seguridad social ecuatoriana contempla dos mecanismos de protección pecuniaria independientes y complementarios: el **[Fondo de Cesantía](/procedimiento/cesantia-desempleo)** y la prestación temporal del **Seguro de Desempleo**. Ambos beneficios están diseñados para brindar liquidez inmediata a los asegurados bajo relación de dependencia que han concluido sus funciones en el sector público o privado.\n\nEn esta guía técnica y actualizada a la normativa de 2026, revisamos en detalle las diferencias fundamentales entre ambas prestaciones, las condiciones indispensables para su cobro, la regla obligatoria de los 60 días de espera ininterrumpida, la tabla de liquidación de las cinco cuotas mensuales y el paso a paso para completar el trámite 100% por internet.\n\n---\n\n## 1. Fondo de Cesantía vs. Seguro de Desempleo: Diferencias Clave\n\nEs muy frecuente que los asegurados confundan estos dos conceptos o asuman que se trata del mismo beneficio. Aunque ambos se originan ante el cese de la actividad productiva, su origen financiero y forma de pago son completamente distintos:\n\n| Característica / Criterio | Fondo de Cesantía (Ahorro Individual) | Seguro de Desempleo (Prestación Temporal) |\n| :--- | :--- | :--- |\n| **Naturaleza jurídica** | Fondo de capitalización individual acumulado mes a mes. | Prestación solidaria de contingencia temporal por despido o cese involuntario. |\n| **Monto a percibir** | El 100% del saldo acumulado registrado en la cuenta individual de cesantía. | Hasta 5 pagos mensuales decrecientes basados en el 70% del Salario Básico Unificado. |\n| **Forma de pago** | Un solo desembolso íntegro acreditado a la cuenta bancaria del asegurado. | Transferencias mensuales sucesivas durante un periodo máximo de cinco (5) meses. |\n| **Requisito de aportaciones** | Mínimo 24 imposiciones mensuales no simultáneas en el IESS. | Mínimo 24 imposiciones no simultáneas, con al menos 6 consecutivas previas al despido. |\n| **Causal de terminación** | Renuncia voluntaria, despido intempestivo, desahucio o mutuo acuerdo. | Exclusivamente por despido intempestivo, terminación unilateral o causas involuntarias. |\n| **Tiempo de espera legal** | 60 días calendario ininterrumpidos de encontrarse en estado cesante. | 60 días calendario de cesantía; debe solicitarse entre el día 61 y el día 105 posterior al cese. |\n\n---\n\n## 2. Requisitos Reglamentarios para Retirar el Fondo de Cesantía\n\nPara solicitar la entrega total de los recursos acumulados en la cuenta individual de cesantía, el afiliado debe verificar que su expediente en los servidores del IESS cumpla rigurosamente con los siguientes requisitos:\n\n1. **Estado de cesantía legal ininterrumpido**: Haber cumplido al menos **60 días consecutivos sin relación laboral activa**. El sistema informático valida automáticamente que el empleador haya registrado el **[aviso de entrada y salida](/procedimiento/aviso-entrada-salida)** en el portal patronal.\n2. **Aportaciones acumuladas mínimas**: Registrar al menos **24 imposiciones mensuales no simultáneas** a lo largo de su historial laboral histórico. Estas aportaciones pueden haber sido generadas con múltiples patronos.\n3. **No registrar solicitudes activas de reingreso**: No haber reanudado un nuevo contrato laboral bajo relación de dependencia antes de cumplir los 60 días de carencia reglamentaria.\n4. **Cuenta bancaria aprobada y validada**: Contar con una cuenta de ahorros o corriente personal a nombre exclusivo del titular, verificada previamente en el módulo de **[actualización de cuenta bancaria](/procedimiento/actualizacion-datos)** del IESS con el Banco Central del Ecuador.\n5. **No mantener créditos en mora**: No figurar con cuotas en mora en **[préstamos quirografarios](/procedimiento/prestamo-quirografario)** ni tener glosas pendientes en donde el fondo de cesantía se encuentre pignorado como garantía crediticia líquida.\n\n---\n\n## 3. Seguro de Desempleo: Montos, Cuotas y Cómo Opera en 2026\n\nEl Seguro de Desempleo es una cobertura especial creada por la Ley Orgánica para la Promoción del Trabajo Juvenil, Regulación Excepcional de la Jornada de Trabajo y Cesantía y Desempleo. Esta prestación económica tiene un componente fijo solidario y un componente variable financiado con los fondos de la cuenta individual:\n\n### Estructura de Pagos del Seguro de Desempleo:\n* **Duración**: Se concede por un plazo máximo de **cinco (5) meses consecutivos**.\n* **Primer mes**: Pago equivalente al **70% del Salario Básico Unificado (SBU)** fijado para los trabajadores en general.\n* **Segundo mes**: Pago equivalente al **65% del Salario Básico Unificado**.\n* **Tercer mes**: Pago equivalente al **60% del Salario Básico Unificado**.\n* **Cuarto mes**: Pago equivalente al **55% del Salario Básico Unificado**.\n* **Quinto mes**: Pago equivalente al **50% del Salario Básico Unificado**.\n\n> ⚠️ **Plazo perentorio de solicitud**: El asegurado dispone de una ventana de tiempo estricta para solicitar el Seguro de Desempleo: debe ingresar el trámite a partir del **día 61 de haber cesado en funciones y hasta un plazo máximo de 105 días calendario**. Si deja transcurrir más de 105 días sin radicar la solicitud en la web, el derecho al seguro temporal caduca y únicamente podrá solicitar la devolución ordinaria de su fondo de cesantía acumulado.\n\n---\n\n## 4. Simulación Numérica: Ejemplo Real de Liquidación\n\nAnalicemos el caso de una trabajadora en Quito que fue desvinculada de su empresa tras 4 años continuos de labores con un sueldo promedio de $700 dólares:\n\n* **Saldo en la cuenta individual de cesantía**: $1,680.00 dólares acumulados.\n* **Opción A (Retiro ordinario de Cesantía)**: Al cumplirse el día 61 de cesantía, ingresa a la plataforma y solicita la liquidación. El IESS transfiere los **$1,680.00 dólares netos** a su cuenta bancaria en una sola transferencia interbancaria.\n* **Opción B (Seguro de Desempleo Temporal)**: Si la trabajadora opta por el Seguro de Desempleo para contar con un flujo mensual mientras busca un nuevo empleo, el IESS liquidará mensualmente las 5 cuotas reglamentarias indexadas al SBU de 2026. Si durante el tercer mes la trabajadora es contratada en una nueva empresa y se registra su nuevo aviso de entrada, el seguro de desempleo se suspende automáticamente y el saldo remanente no consumido de su cuenta individual se mantiene seguro en su fondo de cesantía.\n\n---\n\n## 5. Paso a Paso para Solicitar el Retiro por Internet\n\nEl trámite es completamente virtual, gratuito y no requiere la entrega de documentos físicos en ventanillas:\n\n1. **Ingreso al portal institucional**: Abre tu navegador e ingresa a [iess.gob.ec](https://www.iess.gob.ec).\n2. **Acceso a la sección de asegurados**: Selecciona **\"Servicios en Línea\"** -> pestaña **\"Asegurados\"** -> módulo **\"Afiliados\"** -> opción **\"Cesantía\"** o **\"Seguro de Desempleo\"**.\n3. **Autenticación**: Digita tu número de cédula de 10 dígitos y tu clave personal de afiliado.\n4. **Verificación de precalificación**: El sistema comprobará en tiempo real si han transcurrido los 60 días desde la fecha del aviso de salida registrado por tu exempleador y si cuentas con las 24 imposiciones mínimas.\n5. **Confirmación de la cuenta bancaria**: Revisa que la cuenta bancaria desplegada en pantalla sea la tuya y se encuentre en estado activo.\n6. **Aceptación y radicación**: Acepta los términos legales y presiona el botón de envío. El sistema emitirá un comprobante en formato PDF con el código único de seguimiento del trámite.\n7. **Acreditación del dinero**: La transferencia se hace efectiva habitualmente dentro de los **5 a 10 días laborables** posteriores a la aprobación del trámite.\n\nSi encuentras trabas por mora patronal o irregularidades en las fechas registradas por la empresa, puedes apoyarte en nuestra sección de **[formatos y oficios de reclamo](/oficios)** para exigir la regularización inmediata de tus aportes.\n\n---\n\n## 6. Errores Frecuentes al Tramitar la Cesantía\n\n* **Intentar ingresar el trámite antes del día 61**: La plataforma rechaza automáticamente las solicitudes realizadas en el día 58 o 59. El conteo de 60 días inicia al día siguiente de la fecha de cese registrada en el aviso de salida.\n* **No verificar el aviso de salida previo**: Si el patrono no subió el aviso de salida al IESS, la plataforma te considerará trabajador activo y no habilitará la opción de retiro.\n* **Tener créditos quirografarios en mora**: Si mantienes un crédito activo del BIESS, el saldo de la cesantía pignorada no podrá liberarse hasta que el préstamo sea debidamente cancelado o cruzado contra la deuda.\n* **Cuentas bancarias a nombre de cónyuge o familiares**: El IESS rechaza de inmediato depósitos a cuentas de terceros. La cuenta debe pertenecer con exclusividad al titular de la cédula.\n\n---\n\n## 7. Preguntas Frecuentes sobre Cesantía y Desempleo en el IESS\n\n### ¿Pierdo mi cesantía si renuncio voluntariamente a mi trabajo?\nNo. El fondo de cesantía constituye un ahorro de capitalización individual que te pertenece por ley. Aunque renuncies de forma voluntaria o salgas por visto bueno o mutuo acuerdo, tienes el derecho inalienable de retirar el 100% de tu saldo de cesantía tras cumplir los 60 días de inactividad laboral.\n\n### ¿Se pueden retirar a la vez los fondos de reserva y la cesantía?\nSí. Son dos prestaciones completamente independientes. Si cumples con las condiciones para retirar tus **[fondos de reserva acumulados](/blog/fondos-de-reserva-iess-consulta-acumulacion-retiro-2026)** (tener 36 aportaciones o encontrarte cesante por más de 60 días) y además cumples los requisitos de la cesantía, puedes ingresar ambas solicitudes en el portal del IESS y recibirás las transferencias en tu cuenta bancaria.\n\n### ¿Qué sucede con los fondos de cesantía si el afiliado fallece?\nEn caso de defunción del asegurado, el saldo total acumulado en su fondo de cesantía no se pierde; este dinero se entrega directamente a sus derechohabientes legítimos (cónyuge supérstite e hijos menores o con discapacidad) junto con el trámite de montepío y auxilios de funerales.\n\n---\n\n## 8. Enlaces de Interés Interno\n* Consulta el procedimiento oficial institucional en la guía de [Cesantía y Desempleo](/procedimiento/cesantia-desempleo).\n* Conoce los requisitos y plazos de tus ahorros en la guía de [Fondos de Reserva del IESS](/blog/fondos-de-reserva-iess-consulta-acumulacion-retiro-2026).\n* Si tu exempleador demoró tu salida, revisa las reglas de [Aviso de Entrada y Salida Patronal](/procedimiento/aviso-entrada-salida).\n* Si requieres financiamiento rápido mientras encuentras trabajo, revisa cómo opera el [Préstamo Quirografario](/procedimiento/prestamo-quirografario).\n",
+    "author": "equipo-editorial",
+    "publishDate": "2026-01-25",
+    "readTime": 8,
+    "image": "/og/cesantia-seguro-desempleo-iess-como-retirar-2026.jpg",
+    "category": "Trámites",
+    "dateModified": "2026-10-01",
+    "sources": [
+      {
+        "label": "IESS - Reglamento del Fondo de Cesantía y Seguro de Desempleo (Res. C.D. 515)",
+        "url": "https://www.iess.gob.ec",
+        "accessedAt": "2026-10-01"
+      },
+      {
+        "label": "Ley de Seguridad Social de Ecuador - Seguro de Cesantía y Desempleo",
+        "url": "https://www.iess.gob.ec/documents/10162/13686/Ley_de_Seguridad_Social",
+        "accessedAt": "2026-10-01"
+      }
     ]
   },
   {
-    id: 'aviso-entrada-salida-2026',
-    slug: 'aviso-entrada-salida-iess-plazos-multas-empleadores-2026',
-    title: 'Avisos de Entrada y Salida IESS 2026: Plazos y Sanciones',
-    seoTitle: 'Avisos de Entrada y Salida IESS: ley | IESS Asistente',
-    metaDescription: 'Plazos legales de aviso de entrada y aviso de salida en el IESS para 2026. Evita multas y responsabilidad patronal registrando a tiempo.',
-    keywords: ['aviso de entrada IESS', 'aviso de salida IESS', 'afiliación de trabajadores ecuador', 'multas IESS empleador'],
-    content: `
-# Avisos de Entrada y Salida en el IESS: Marco Legal para Empleadores y Trabajadores
-
-El registro correcto del inicio y fin de la relación laboral es una de las obligaciones patronales más estrictas de la Ley de Seguridad Social.
-
----
-
-## Plazos Reglamentarios
-* **Aviso de Entrada**: Debe registrarse desde el **primer día de labores** del trabajador (hasta un máximo de 15 días posteriores sin recargo retroactivo).
-* **Aviso de Salida**: Debe ingresarse dentro de los **15 días hábiles posteriores al cese de la relación laboral**.
-
----
-
-## Peligros de la Falta de Registro
-* Si no se registra la salida, la plataforma continúa facturando planillas mensuales al empleador con intereses de mora acumulados.
-* La falta de aviso de salida bloquea al extrabajador para solicitar su jubilación, cesantía o fondo de reserva.
-`,
-    author: 'equipo-editorial',
-    publishDate: '2026-03-01',
-    readTime: 5,
-    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
-    category: 'Trámites',
-    dateModified: '2026-10-01',
-    sources: [
-      { label: "Ley de Seguridad Social, Art. 73", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" },
-      { label: "Reglamento General de Colecturía IESS", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" }
+    "id": "fondos-reserva-2026",
+    "slug": "fondos-de-reserva-iess-consulta-acumulacion-retiro-2026",
+    "title": "Fondos de Reserva IESS 2026: Consulta, Retiro y Acumulación",
+    "seoTitle": "Fondos de Reserva del IESS: retiro | IESS Asistente",
+    "metaDescription": "Descubre cómo consultar y retirar tus Fondos de Reserva en el IESS en 2026. Reglas de 36 aportes, pago mensualizado vs acumulado y solicitud bancaria.",
+    "keywords": [
+      "fondos de reserva IESS",
+      "consultar fondos reserva",
+      "retirar fondos de reserva",
+      "acumulación fondos reserva"
+    ],
+    "content": "# Fondos de Reserva IESS 2026: Consulta, Retiro y Acumulación\n\nEl **Fondo de Reserva** representa una de las conquistas históricas más trascendentales de los trabajadores en el Ecuador. Consagrado en el artículo 275 de la Ley de Seguridad Social y en el Código del Trabajo, este beneficio patrimonial obliga al empleador a transferir el equivalente al **8.33% de la remuneración mensual** de cada colaborador por cada año de servicios ininterrumpidos prestados a la misma entidad. En términos sencillos, equivale a un mes de salario adicional por cada año completo de labores.\n\nEn esta guía integral para el año 2026, explicamos con rigor normativo el dilema de acumular o mensualizar los fondos, las condiciones reglamentarias para solicitar el retiro bancario, las fórmulas de liquidación del 8.33% y el trámite digital paso a paso en el portal oficial del seguro social.\n\n---\n\n## 1. El Gran Dilema: ¿Mensualizar en Rol de Pagos o Acumular en el IESS?\n\nDesde la promulgación de las reformas legales al sistema de pago de fondos de reserva, todo trabajador bajo relación de dependencia en el Ecuador tiene la potestad de decidir cómo administrar este patrimonio:\n\n### Opción A: Pago Mensualizado en el Rol de Pagos\nBajo esta modalidad, el empleador abona el 8.33% del sueldo directamente en la nómina mensual junto con la quincena o fin de mes.\n* **Ventaja primordial**: Aumenta la liquidez corriente del hogar para solventar gastos inmediatos de alimentación, arriendo, servicios básicos o colegiaturas.\n* **Desventaja**: Al diluirse en el gasto corriente mensual, se pierde la disciplina del ahorro a largo plazo y no se generan intereses financieros acumulados.\n\n### Opción B: Acumulación en el IESS\nEl trabajador ingresa una solicitud electrónica en el portal del IESS para que el empleador transfiera el 8.33% mes a mes a las arcas de la seguridad social.\n* **Ventajas sustanciales**:\n  1. **Generación de rendimientos**: El dinero acumulado gana intereses basados en la tasa pasiva referencial del Banco Central del Ecuador (BCE) administrada por el BIESS.\n  2. **Garantía crediticia líquida**: El saldo acumulado actúa como pignoración indispensable para acceder a montos máximos en **[préstamos quirografarios del BIESS](/procedimiento/prestamo-quirografario)**.\n  3. **Inembargabilidad y ahorro forzoso**: Crea un fondo de respaldo patrimonial para emergencias familiares de envergadura.\n* Si deseas cambiar tu modalidad de cobro, puedes consultar nuestro instructivo sobre **[acumulación y mensualización de fondos de reserva](/fondos-reserva/acumulacion-mensualizacion)**.\n\n---\n\n## 2. Requisitos Reglamentarios para Retirar los Fondos Acumulados\n\nNo todos los trabajadores pueden solicitar la devolución de sus fondos de reserva en cualquier momento. El IESS impone criterios técnicos según el estado laboral y la edad del asegurado:\n\n### Caso 1: Afiliados Activos bajo Relación de Dependencia\n* Deben registrar al menos **36 aportaciones mensuales acumuladas** de fondos de reserva en el IESS.\n* Estas 36 aportaciones pueden ser continuas o discontinuas y generadas con uno o varios empleadores a lo largo de su vida laboral.\n* Si un afiliado ya completó 36 aportes y retira sus fondos, para su siguiente retiro deberá acumular nuevamente un mínimo de 36 imposiciones adicionales.\n\n### Caso 2: Afiliados Cesantes (Desempleados)\n* Si te encuentras desempleado y tu exempleador ya registró el aviso de salida, debes esperar **dos meses calendario (60 días ininterrumpidos)** en estado cesante para solicitar la devolución total de tus saldos acumulados, sin importar si alcanzaste o no las 36 aportaciones mínimas.\n\n### Caso 3: Jubilados y Afiliados Mayores de 60 Años\n* Tienen derecho preferente y prioritario: pueden solicitar el retiro de la totalidad de sus fondos de reserva disponibles en cualquier momento y tantas veces como lo deseen, sin exigencia de acumular 36 imposiciones previas.\n\n---\n\n## 3. Tabla Comparativa de Condiciones de Retiro\n\nEn el siguiente cuadro se sintetizan las condiciones de elegibilidad según el perfil del asegurado ante el IESS:\n\n| Tipo de Asegurado | Imposiciones Requeridas | Tiempo de Espera | Frecuencia de Retiro Permitida |\n| :--- | :--- | :--- | :--- |\n| **Afiliado Activo** | 36 imposiciones de fondos de reserva | Sin tiempo de espera si cumple las 36 cuotas | Cada vez que complete un nuevo ciclo de 36 cuotas |\n| **Afiliado Cesante** | Cualquier número de cuotas disponibles | 60 días calendario continuos sin empleo | Inmediato tras certificarse los 60 días de cese |\n| **Jubilado por Vejez/Invalidez** | Sin mínimo de cuotas exigido | Inmediato en cualquier fecha | Ilimitado (según disponibilidad de saldo) |\n| **Adulto Mayor (>60 años)** | Sin mínimo de cuotas exigido | Inmediato en cualquier fecha | Ilimitado (según disponibilidad de saldo) |\n\n---\n\n## 4. Cálculo Matemático del 8.33% y Casos Prácticos en 2026\n\nPara comprender con exactitud cuánto dinero se acumula mensualmente en tu cuenta individual de fondos de reserva, analicemos la fórmula básica de liquidación:\n\n$$\\text{Fondo Mensual} = \\text{Salario Imponible Total} \\times 0.08333$$\n\n*(El salario imponible incluye el sueldo básico, horas extraordinarias, suplementarias, bonificaciones y comisiones habituales).*\n\n### Proyecciones según nivel salarial en Ecuador:\n1. **Trabajador con Salario Básico Unificado ($482.00 en 2026)**:\n   * Aporte mensual de fondo: $482.00 \\times 8.333\\% = \\mathbf{\\$40.17 \\text{ dólares}}$.\n   * Acumulado anual (12 meses): $\\$482.00 \\text{ dólares}$ (equivalente a un sueldo completo).\n   * Acumulado en 3 años (36 aportaciones): $\\mathbf{\\$1,446.00 \\text{ dólares}}$ más intereses de rendimiento.\n2. **Profesional con Salario de $1,000.00 dólares**:\n   * Aporte mensual de fondo: $1,000.00 \\times 8.333\\% = \\mathbf{\\$83.33 \\text{ dólares}}$.\n   * Acumulado anual (12 meses): $\\$1,000.00 \\text{ dólares}$.\n   * Acumulado en 3 años (36 aportaciones): $\\mathbf{\\$3,000.00 \\text{ dólares}}$ de capital líquido disponible.\n\n---\n\n## 5. Trámite Paso a Paso para Retirar los Fondos por Internet\n\nEl proceso de devolución es completamente digital, seguro y se efectúa a través de los servidores del IESS:\n\n1. **Ingreso al portal institucional**: Entra a [iess.gob.ec](https://www.iess.gob.ec).\n2. **Acceso al módulo de fondos**: Dirígete a **\"Servicios en Línea\"** -> pestaña **\"Asegurados\"** -> módulo **\"Afiliados\"** -> presiona **\"Fondos de Reserva\"**.\n3. **Autenticación ciudadana**: Digita tu número de cédula y tu clave secreta de asegurado.\n4. **Consulta de saldos**: En el menú lateral izquierdo, haz clic en **\"Cuenta Individual\"**. Podrás ver el desglose detallado de todos los aportes cancelados por tus empleadores, intereses ganados y el saldo total disponible para retirar.\n5. **Solicitud de devolución**: Presiona la opción **\"Solicitud de Devolución de Fondos de Reserva\"**. El sistema validará automáticamente si cumples los requisitos (36 aportes, 60 días cesante o mayor de 60 años).\n6. **Verificación bancaria**: Confirma que la cuenta de ahorros o corriente desplegada sea la tuya. Si no coincide o está inactiva, realiza previamente la **[actualización de cuenta bancaria](/procedimiento/actualizacion-datos)**.\n7. **Confirmación y desembolso**: Haz clic en enviar. El IESS acreditará los recursos en tu cuenta bancaria en un plazo aproximado de **3 a 5 días laborables**. Para más detalles del proceso, revisa nuestra guía de **[devolución y retiro de fondos de reserva](/fondos-reserva/devolucion)**.\n\n---\n\n## 6. Causales de Bloqueo y Retención de Fondos de Reserva\n\nEn ocasiones, el sistema no permite retirar los fondos aun cumpliendo las 36 aportaciones. Las causas más recurrentes de bloqueo son:\n\n* **Pignoración activa por préstamos del BIESS**: Si mantienes un crédito quirografario vigente, tus fondos de reserva sirven de garantía líquida y no pueden retirarse hasta que la deuda sea cancelada o cruzada.\n* **Retención judicial por pensiones alimenticias (SUPA)**: Las órdenes judiciales emitidas por jueces de familia a través del Sistema Único de Pensiones Alimenticias congelan de oficio el saldo para garantizar los alimentos de menores de edad.\n* **Mora patronal de la empresa**: Si tu empleador generó las planillas pero no depositó el dinero en el IESS, los fondos constan como adeudados y no pueden devolverse hasta que la empresa cancele la deuda patronal.\n* **Inconsistencias en la cuenta bancaria**: Si tu cuenta bancaria registrada fue cerrada o no está validada por el Banco Central del Ecuador, el pago quedará represado.\n\nSi consideras que existe una retención indebida o una omisión de aportes patronales, puedes descargar nuestros **[formatos y oficios de reclamo](/oficios)** para elevar peticiones formales ante las direcciones provinciales del IESS.\n\n---\n\n## 7. Preguntas Frecuentes sobre Fondos de Reserva del IESS\n\n### ¿Pierdo mis fondos de reserva si renuncio a la empresa?\nBajo ninguna circunstancia. Los fondos de reserva son un derecho adquirido inalienable que forma parte de tu patrimonio personal. Aunque renuncies o seas despedido, el dinero acumulado permanece seguro en tu cuenta individual del IESS generando rendimientos hasta que decidas retirarlo o utilizarlo como garantía de crédito.\n\n### ¿Se pagan impuestos o deducciones sobre los fondos de reserva?\nNo. Los fondos de reserva están legalmente exentos del impuesto a la renta y no sufren retenciones de aportes personales ni descuentos tributarios al momento de su cobro en cuenta bancaria.\n\n### ¿Puedo utilizar mis fondos de reserva para pagar mi préstamo hipotecario?\nSí. El BIESS permite realizar cruces de cuentas para amortizar dividendos vencidos o hacer abonos extraordinarios de capital en operaciones de crédito hipotecario, ayudando a disminuir el plazo o el dividendo mensual de tu financiamiento de vivienda.\n\n---\n\n## 8. Enlaces Internos Recomendados\n* Conoce los pasos para solicitar el pago directo en la guía de [Acumulación y Mensualización](/fondos-reserva/acumulacion-mensualizacion).\n* Revisa las instrucciones para el cobro en el instructivo de [Devolución de Fondos de Reserva](/fondos-reserva/devolucion).\n* Utiliza tus acumulados como garantía crediticia en la guía de [Préstamo Quirografario](/procedimiento/prestamo-quirografario).\n* Si estás desempleado, revisa las opciones de cobro en [Cesantía y Seguro de Desempleo](/procedimiento/cesantia-desempleo).\n",
+    "author": "equipo-editorial",
+    "publishDate": "2026-02-02",
+    "readTime": 9,
+    "image": "/og/fondos-de-reserva-iess-consulta-acumulacion-retiro-2026.jpg",
+    "category": "Trámites",
+    "dateModified": "2026-10-01",
+    "sources": [
+      {
+        "label": "Ley de Seguridad Social de Ecuador - Artículos 275 al 282 (Fondos de Reserva)",
+        "url": "https://www.iess.gob.ec/documents/10162/13686/Ley_de_Seguridad_Social",
+        "accessedAt": "2026-10-01"
+      },
+      {
+        "label": "Código del Trabajo del Ecuador - Registro Oficial Suplemento 167",
+        "url": "https://www.trabajo.gob.ec",
+        "accessedAt": "2026-10-01"
+      }
     ]
   },
   {
-    id: 'actualizacion-datos-cau-2026',
-    slug: 'actualizacion-datos-cuenta-bancaria-cau-iess-2026',
-    title: 'Actualización de Datos IESS 2026: Trámite Virtual de Cuenta Bancaria',
-    seoTitle: 'Actualizar Datos y Cuenta en el IESS | IESS Asistente',
-    metaDescription: 'Cómo actualizar tu correo, teléfono y validar tu cuenta bancaria en el IESS en 2026 sin acudir a ventanillas. Requisitos de la Resolución C.D. 625.',
-    keywords: ['actualizar datos IESS', 'registrar cuenta bancaria IESS', 'clave IESS desbloqueo', 'CAU iess turnos'],
-    content: `
-# Actualización de Datos Personales y Registro de Cuenta Bancaria en el IESS
-
-Mantener actualizados tus datos de contacto y tu cuenta bancaria es indispensable para recibir a tiempo los desembolsos de quirografarios, fondos de reserva y subsidios de maternidad o enfermedad.
-
----
-
-## Pasos para Registrar o Cambiar tu Cuenta Bancaria en Línea:
-1. Accede a [iess.gob.ec](https://www.iess.gob.ec) -> **"Servicios en Línea"** -> **"Asegurados"** -> **"Afiliados"** -> **"Actualización de Datos de Afiliado"**.
-2. Ingresa tu cédula y clave de usuario.
-3. Dirígete a la sección de **"Cuenta Bancaria"** e introduce el banco, tipo de cuenta (ahorros/corriente) y número completo.
-4. El sistema cruzará información con el Banco Central del Ecuador (BCE) para validar que la cuenta esté activa y a nombre exclusivo del titular.
-`,
-    author: 'equipo-editorial',
-    publishDate: '2026-03-05',
-    readTime: 6,
-    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
-    category: 'Trámites',
-    dateModified: '2026-10-01',
-    sources: [
-      { label: "Banco Central del Ecuador - Validación de Cuentas", url: "https://www.bce.fin.ec", accessedAt: "2026-10-01" },
-      { label: "Resolución C.D. 625 - Reglamento de Atención Universal IESS", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" }
+    "id": "montepio-pension-2026",
+    "slug": "pension-montepio-iess-requisitos-sobrevivientes-2026",
+    "title": "Pensión de viudez y orfandad IESS: requisitos y trámite",
+    "seoTitle": "Pensión de Montepío del IESS: trámite | IESS Asistente",
+    "metaDescription": "Guía completa sobre la pensión de viudez y orfandad (montepío) del IESS en 2026. Requisitos de aportes del fallecido, documentos, pasos y porcentajes.",
+    "keywords": [
+      "viudez y orfandad",
+      "orfandad y viudez",
+      "viudez",
+      "trámite de montepío iess",
+      "pensión montepío IESS",
+      "muerte de afiliado IESS"
+    ],
+    "content": "\n# Pensión de viudez y orfandad IESS: requisitos, porcentaje y trámite de montepío\n\nLa **pensión de viudez y orfandad** del IESS (también denominada legalmente montepío) es una prestación económica mensual vitalicia o temporal que protege a los derechohabientes del afiliado o jubilado fallecido que acreditó al menos 60 meses de aportes totales o 6 aportaciones en sus últimos 12 meses laborales.\n\n---\n\n## En resumen: Claves de la pensión de viudez y orfandad\n\n* **Derechohabientes amparados**: Cónyuge o conviviente en unión de hecho legalmente reconocida (viudez), hijos menores de 18 años o hasta 21 años que certifiquen estudios regulares (orfandad), e hijos de cualquier edad con discapacidad total.\n* **Aportes indispensables del fallecido**: Acreditar un mínimo de 6 imposiciones mensuales dentro de los últimos 12 meses previos al deceso, o al menos 36 imposiciones totales a lo largo de su historial laboral (o hallarse en goce de jubilación por vejez o invalidez).\n* **Distribución de la pensión**: Cuando concurren cónyuge e hijos huérfanos, la viuda o viudo percibe hasta el 40 % de la pensión base y los hijos se reparten el 40 % restante en partes iguales; de no existir hijos, la pensión de viudez alcanza hasta el 60 % // VERIFICAR: confirmar porcentajes exactos con la Dirección de Pensiones del IESS.\n* **Cobertura de ascendientes (padres)**: Solo a falta absoluta de cónyuge e hijos con derecho, los padres del causante pueden solicitar montepío si demuestran haber dependido económicamente de él de manera directa y exclusiva.\n* **Modalidad del trámite**: El ingreso de la solicitud se realiza de manera 100 % virtual a través del portal oficial iess.gob.ec, con registro de cuenta bancaria personal para transferencias mensuales.\n\n---\n\n## Tabla de beneficiarios, condiciones de acceso y porcentajes de montepío\n\nEn el siguiente cuadro se sintetizan las condiciones reglamentarias para cada categoría de derechohabiente según la Ley de Seguridad Social y la normativa interna del IESS:\n\n| Tipo de Beneficiario | Condición Legal y Límite de Edad | Requisitos Probatorios | Porcentaje Estimado de Pensión |\n| :--- | :--- | :--- | :--- |\n| **Cónyuge sobreviviente (Viudez)** | Matrimonio civil inscrito ante el Registro Civil | Partida de matrimonio y cédula de identidad vigente | 60 % (sin hijos concurrentes) o 40 % (con hijos) |\n| **Conviviente en unión de hecho** | Unión de hecho estable y monogámica legalmente registrada | Acta notarial o sentencia judicial inscrita en el Registro Civil | 60 % (sin hijos concurrentes) o 40 % (con hijos) |\n| **Hijos menores de edad (Orfandad)** | Menores de 18 años cumplidos | Partida de nacimiento íntegra | 40 % a repartir en cuotas iguales entre los huérfanos |\n| **Hijos estudiantes (18 a 21 años)** | Entre 18 y 21 años con matrícula académica activa | Certificado de asistencia regular a universidad o instituto superior | Concurre en la cuota de orfandad (40 % compartido) |\n| **Hijos con discapacidad** | Cualquier edad (beneficio vitalicio) | Carné del Conadis/MSP o dictamen pericial de la Comecap | Concurre en la cuota de orfandad permanente |\n| **Madre o padre sobreviviente (Ascendientes)** | Sin cónyuge ni hijos concurrentes | Demostración formal de dependencia económica y desamparo | Porción residual reglamentaria fijada por el IESS |\n\n<FactNote ids={[\"MONTEPIO_VIUDEZ_PCT\", \"MONTEPIO_ORFANDAD_PCT\"]} />\n\n---\n\n## ¿Quién puede cobrar la pensión de viudez y orfandad?\n\nEl régimen de seguridad social ecuatoriano establece con rigurosidad las prelaciones y calidades de las personas con derecho a beneficiarse de la prestación económica mensual tras el fallecimiento del afiliado o pensionista.\n\n### 1. Viudez: Cónyuge o conviviente en unión de hecho\nTiene derecho preferente el cónyuge sobreviviente. En el caso de parejas que compartieron una vida en común bajo unión de hecho, esta debe haber sido inscrita solemnemente ante un notario o legalizada en el Registro Civil del Ecuador con anterioridad al fallecimiento. La ley no discrimina por razón de género: ampara tanto a la viuda como al viudo supérstite.\n\n### 2. Orfandad: Hijos biológicos o adoptivos del afiliado fallecido\nLa pensión de orfandad se distribuye entre los hijos que reúnan cualquiera de las siguientes circunstancias:\n* **Menores de 18 años**: El derecho se adquiere de forma inmediata con la sola presentación de la partida de nacimiento que justifique la filiación.\n* **Hijos entre 18 y 21 años**: El beneficio se extiende siempre que cursen estudios presenciales o virtuales regulares en entidades educativas reconocidas por el Senescyt o el Ministerio de Educación. La interrupción o abandono de los estudios extingue automáticamente la mensualidad.\n* **Hijos con discapacidad física o mental calificada**: Reciben la pensión de orfandad con carácter vitalicio, independientemente de su edad cronológica, tras la respectiva evaluación del Ministerio de Salud Pública o la Comisión Médica Calificadora de Incapacidades (Comecap) del IESS.\n\n### 3. Ascendientes: Pensión para padres desamparados\nSi el afiliado o jubilado fallece sin dejar cónyuge, conviviente reconocido ni descendientes directos menores de 21 años o con discapacidad, la madre o el padre pueden solicitar la pensión de montepío. Para ello, deben demostrar de forma pericial que carecen de ingresos propios suficientes y que dependían económicamente de las aportaciones del afiliado causante.\n\n---\n\n## Requisitos de aportes del afiliado fallecido para causar montepío\n\nPara que los familiares sobrevivientes adquieran el derecho a percibir la pensión mensual de viudez y orfandad, el asegurado difunto debía reunir condiciones mínimas en su historial de cotizaciones:\n\n1. **Afiliado activo en relación de dependencia o voluntario**:\n   * Registrar al menos **6 imposiciones mensuales continuas o discontinuas dentro de los últimos 12 meses anteriores a la fecha de la defunción**, o\n   * Acumular un mínimo histórico de **36 imposiciones mensuales** (3 años de cotizaciones) a lo largo de toda su vida laboral en el IESS.\n2. **Afiliado en goce de jubilación (Pensionista de Vejez o Invalidez)**:\n   * Genera derecho automático e inmediato de montepío a favor de sus causahabientes desde el mes siguiente a su muerte, sin exigir cotizaciones adicionales en el año corriente.\n3. **Muerte por accidente de trabajo o enfermedad profesional**:\n   * Si el deceso ocurrió a causa de un siniestro laboral o patología derivada de su actividad productiva, no se exige un tiempo mínimo de aportación previa, siempre que se encuentre cubierto por el Seguro General de Riesgos del Trabajo del IESS.\n\n---\n\n## Documentos obligatorios para tramitar la pensión de viudez y orfandad\n\nAntes de iniciar el registro digital en la plataforma del IESS, los beneficiarios deben digitalizar en formato PDF los siguientes documentos legibles:\n\n* **Partida o certificado de defunción del causante**, debidamente emitida por la Dirección General de Registro Civil, Identificación y Cedulación del Ecuador.\n* **Cédula de ciudadanía o identidad** de la viuda, viudo o conviviente supérstite y de todos los hijos solicitantes.\n* **Partida de matrimonio íntegra** actualizada o certificado de inscripción de la **unión de hecho** en el Registro Civil.\n* **Partidas de nacimiento** de cada uno de los hijos menores de edad o estudiantes.\n* **Certificado de estudios vigente** emitido por la universidad, colegio o instituto superior registrado para los hijos de 18 a 21 años.\n* **Certificado de cuenta bancaria activa** a nombre personal de cada beneficiario mayor de edad (o del tutor o representante legal de los menores), debidamente validada en el sistema del IESS.\n* En caso de discapacidad: **Carné o certificado de discapacidad emitido por el Ministerio de Salud Pública (MSP)** o resolución médica emitida por la Comecap.\n\n---\n\n## Paso a paso: Cómo realizar el trámite de montepío en el IESS\n\nEl trámite de viudez y orfandad se procesa principalmente en línea a través de la infraestructura transaccional del seguro social ecuatoriano:\n\n### Paso 1: Certificar el fallecimiento en el Registro Civil\nAsegúrate de que la defunción del afiliado esté inscrita y validada en la base de datos nacional del Registro Civil. El sistema informático del IESS cruza los datos en tiempo real antes de permitir la apertura de cualquier solicitud póstuma.\n\n### Paso 2: Acceso al portal institucional del IESS\nIngresa a la página oficial [iess.gob.ec](https://www.iess.gob.ec). En el menú de navegación selecciona la categoría **Servicios en Línea**, ingresa a la pestaña **Asegurados**, luego haz clic en **Pensionistas** y presiona la opción **Montepío**.\n\n### Paso 3: Identificación del derechohabiente\nDigita el número de cédula del causahabiente solicitante (viuda, viudo o representante de los hijos huérfanos) y su clave personal de afiliado o pensionista. Si el deudo no cuenta con clave de acceso previa, puede solicitarla siguiendo los pasos de [Cómo obtener la clave del IESS por primera vez](/blog/como-obtener-clave-iess-primera-vez).\n\n### Paso 4: Ingreso de la solicitud de viudez y orfandad\nSelecciona la opción \"Registro de Solicitud de Montepío\". El sistema solicitará la cédula del afiliado fallecido y cargará su historial de imposiciones. Selecciona el tipo de vínculo jurídico (cónyuge, hijo menor de 18 años, hijo estudiante hasta 21 años, o padre dependiente).\n\n### Paso 5: Carga de expedientes y cuenta bancaria\nAdjunta los documentos probatorios requeridos en formato digital. Confirma la cuenta de ahorros o corriente bancaria donde se efectuarán las transferencias del dividendo mensual de la pensión.\n\n### Paso 6: Verificación y resolución administrativa\nEl IESS genera un número de trámite para seguimiento. La Dirección de Pensiones audita el expediente en un plazo regular de 15 a 30 días laborables. Una vez calificada la prestación, se emitirá la resolución que aprueba el pago mensual retroactivo a la fecha de la defunción del causante.\n\n---\n\n## Errores frecuentes al gestionar el montepío y cómo prevenirlos\n\n* **Uniones de hecho no protocolizadas**: Intentar tramitar la pensión de viudez presentando únicamente declaraciones juramentadas notariales realizadas tras la muerte del afiliado. El IESS exige que la unión de hecho se encuentre inscrita formalmente en el Registro Civil con antelación.\n* **No actualizar los certificados de estudio anualmente**: En el caso de hijos huérfanos entre 18 y 21 años, no subir la matrícula o certificado de asistencia semestral ocasiona la suspensión inmediata del giro de la pensión mensual de orfandad.\n* **Cuentas bancarias de terceros o bloqueadas**: Tratar de registrar la cuenta de un pariente o una cuenta mancomunada. Cada beneficiario mayor de edad debe contar con una cuenta bancaria unipersonal activa y validada.\n* **Desconocimiento del derecho de ascendientes**: Asumir que la pensión caduca si el afiliado soltero no tuvo hijos. Si los progenitores dependían económicamente de su salario, tienen derecho a pedir el auxilio póstumo.\n* **Aportes insuficientes en el último año**: Presentar la solicitud cuando el afiliado cesante no alcanzó las 6 imposiciones en los 12 meses previos a su muerte ni completó las 36 aportaciones globales. En estos casos, se debe consultar si califica para la devolución de fondos de cesantía o reserva acumulados.\n\n---\n\n## Ejemplo práctico: Cálculo y distribución de una pensión de montepío\n\nPara comprender cómo opera el reparto económico entre viudez y orfandad, analicemos el siguiente caso hipotético:\n\n* **Causante**: Afiliado en relación de dependencia fallecido que devengaba un salario formal promedio de $750 dólares durante sus mejores 5 años de aportación, generando una pensión teórica de vejez estimada en **$600 dólares mensuales**.\n* **Sobrevivientes**: Cónyuge supérstite y 2 hijos menores de edad (10 y 14 años).\n* **Distribución de la pensión familiar** // VERIFICAR: porcentajes referenciales de distribución:\n  * **Porción de Viudez (Cónyuge)**: Al concurrir con hijos menores, recibe el **40 %** de la cuantía base: `$600 * 40 % = $240 dólares mensuales`.\n  * **Porción de Orfandad (2 Hijos)**: Los descendientes se reparten el **40 %** de la cuantía base en partes iguales: `$600 * 40 % = $240 dólares`, correspondiendo a cada hijo un monto de **$120 dólares mensuales**.\n  * **Monto total desembolsado por el IESS**: $480 dólares mensuales a la familia sobreviviente, con derecho a transferencias puntuales durante los primeros días de cada mes.\n\nSi los hijos cumplen los 18 años y no continúan estudios superiores, su cuota de orfandad se extingue, y la porción de viudez puede ser recalculada conforme a la reglamentación aplicable de la Dirección de Pensiones.\n\n---\n\n## Preguntas frecuentes sobre viudez y orfandad IESS\n\n### ¿Qué es la pensión de montepío del IESS y quién la recibe?\nLa pensión de montepío es la renta mensual que otorga el IESS a los deudos de un afiliado o jubilado fallecido. La reciben el cónyuge o conviviente sobreviviente (pensión de viudez), los hijos menores de edad o hasta los 21 años que estudian (pensión de orfandad), los hijos de cualquier edad con discapacidad, y subsidiariamente los padres desamparados económicamente.\n\n### ¿Hasta qué edad pueden cobrar los hijos la pensión de orfandad?\nLos hijos cobran la pensión de orfandad automáticamente hasta los 18 años. Si acreditan encontrarse matriculados y asistiendo a clases regulares en colegios, institutos técnicos o universidades, la pensión se extiende hasta los 21 años de edad cumplidos. En el caso de hijos con discapacidad física o intelectual total calificada, la prestación tiene carácter vitalicio.\n\n### ¿Qué pasa con la pensión de viudez si la persona viuda vuelve a casarse?\nDe acuerdo con la Ley de Seguridad Social ecuatoriana, si el cónyuge o conviviente beneficiario de una pensión de viudez contrae nuevo matrimonio civil o registra una nueva unión de hecho ante las autoridades competentes, pierde de forma automática e irrevocable el derecho a seguir percibiendo la mensualidad de viudez.\n\n### ¿Cuántos aportes debía tener el afiliado fallecido para que sus familiares cobren montepío?\nEl afiliado causante debía tener al menos 6 imposiciones registradas en los 12 meses previos a su muerte, o un total acumulado mínimo de 36 imposiciones durante su vida laboral. Si la persona ya era jubilada por vejez o invalidez al instante de su muerte, los familiares tienen derecho directo sin requerir aportes recientes.\n\n### ¿Pueden cobrar montepío la viuda y la conviviente al mismo tiempo?\nNo. El ordenamiento legal ecuatoriano prohíbe la doble asignación marital. Tiene derecho preferente quien justifique el matrimonio subsistente legal, salvo que judicialmente se haya disuelto la sociedad conyugal y se certifique una unión de hecho posterior válidamente inscrita en el Registro Civil con convivencia continuada hasta el momento del fallecimiento.\n\n### ¿Cómo se tramita la pensión de viudez y orfandad si vivo en el extranjero?\nLos ecuatorianos migrantes o derechohabientes radicados fuera del país pueden ingresar la solicitud en línea a través de iess.gob.ec con su clave de usuario. Para la documentación emitida en el exterior (certificados de defunción o matrimonios internacionales), estos deben estar debidamente apostillados conforme al Convenio de La Haya o legalizados consularmente.\n\n### ¿Qué trámite deben realizar los hijos estudiantes para no perder la pensión al cumplir 18 años?\nAl cumplir los 18 años, el beneficiario de orfandad debe ingresar periódicamente a los servicios en línea del IESS y adjuntar el certificado de matrícula y asistencia vigente extendido por el centro de educación superior avalado. Si no se entrega esta certificación al inicio de cada ciclo académico, el sistema detiene temporalmente la acreditación bancaria de la pensión.\n\n---\n\n## Fuentes oficiales y normativa legal consultada\n\n* **Ley de Seguridad Social del Ecuador (Registro Oficial Suplemento 465)**: Marco general de las prestaciones de viudez, orfandad y auxilios póstumos del Seguro General Obligatorio.\n* **Resolución C.D. 554 del Consejo Directivo del IESS**: Normas reguladoras del Seguro de Invalidez, Vejez y Muerte, administración de cuotas y prelación de derechohabientes.\n* **Dirección General de Registro Civil, Identificación y Cedulación del Ecuador**: Requisitos para la validación de actas de defunción, uniones de hecho y parentesco filial.\n\n---\n\n## Enlaces internos de interés\n\n* Conoce los requisitos y plazos de la [Jubilación por Vejez](/procedimiento/jubilacion-vejez) para trabajadores con historial completo.\n* Si el asegurado cesante requiere proteger sus ingresos, revisa cómo funciona la [Cesantía y Seguro de Desempleo](/blog/cesantia-seguro-desempleo-iess-como-retirar-2026).\n* Aprende a verificar tus cotizaciones históricas en la guía de [Consulta de aportes e historial laboral del IESS](/blog/como-consultar-aportes-iess-historial-laboral).\n* Revisa cómo gestionar la [Afiliación Voluntaria del IESS](/blog/afiliacion-voluntaria-iess-requisitos-beneficios-2026) para mantener cobertura médica y de jubilación.\n",
+    "author": "equipo-editorial",
+    "publishDate": "2026-02-10",
+    "readTime": 11,
+    "image": "/og/pension-montepio-iess-requisitos-sobrevivientes-2026.jpg",
+    "imageAlt": "Trámite de pensión de viudez y orfandad del IESS para cónyuge e hijos sobrevivientes",
+    "category": "Jubilación",
+    "dateModified": "2026-10-09",
+    "sources": [
+      {
+        "label": "IESS - Reglamento de Viudez y Orfandad (Montepío)",
+        "url": "https://www.iess.gob.ec",
+        "accessedAt": "2026-10-09"
+      },
+      {
+        "label": "Ley de Seguridad Social - Prestaciones por Muerte",
+        "url": "https://www.iess.gob.ec/documents/10162/13686/Ley_de_Seguridad_Social",
+        "accessedAt": "2026-10-09"
+      },
+      {
+        "label": "Registro Civil del Ecuador - Certificaciones de Defunción y Parentesco",
+        "url": "https://www.registrocivil.gob.ec",
+        "accessedAt": "2026-10-09"
+      }
+    ],
+    "relatedSlugs": [
+      "jubilacion-vejez-iess-requisitos-calculo-pension-2026",
+      "jubilacion-invalidez-iess-requisitos-comecap-2026",
+      "cesantia-seguro-desempleo-iess-como-retirar-2026"
+    ],
+    "faqs": [
+      {
+        "q": "¿Qué es la pensión de montepío del IESS y quién la recibe?",
+        "a": "La pensión de montepío es la renta mensual que otorga el IESS a los deudos de un afiliado o jubilado fallecido: cónyuge o conviviente (viudez), hijos menores de edad o hasta 21 años estudiantes (orfandad), e hijos con discapacidad."
+      },
+      {
+        "q": "¿Hasta qué edad pueden cobrar los hijos la pensión de orfandad?",
+        "a": "Los hijos cobran automáticamente hasta los 18 años. Si acreditan encontrarse matriculados y asistiendo a estudios regulares en instituciones reconocidas, la pensión se extiende hasta los 21 años. Con discapacidad calificada es vitalicia."
+      },
+      {
+        "q": "¿Qué pasa con la pensión de viudez si la persona viuda vuelve a casarse?",
+        "a": "Si el cónyuge o conviviente beneficiario de una pensión de viudez contrae nuevo matrimonio civil o registra una nueva unión de hecho, pierde de forma automática e irrevocable el derecho a percibir la pensión."
+      },
+      {
+        "q": "¿Cuántos aportes debía tener el afiliado fallecido para que sus familiares cobren montepío?",
+        "a": "El afiliado causante debía tener al menos 6 imposiciones registradas en los 12 meses previos a su muerte, o un total acumulado mínimo de 36 imposiciones laborales históricas. Los jubilados generan derecho automático."
+      },
+      {
+        "q": "¿Pueden cobrar montepío la viuda y la conviviente al mismo tiempo?",
+        "a": "No. El ordenamiento legal ecuatoriano prohíbe la doble asignación marital. Tiene derecho quien justifique el matrimonio formal o la unión de hecho debidamente inscrita en el Registro Civil con convivencia comprobada."
+      },
+      {
+        "q": "¿Cómo se tramita la pensión de viudez y orfandad si vivo en el extranjero?",
+        "a": "Se puede ingresar la solicitud en línea a través de iess.gob.ec con clave de usuario. La documentación de defunción o matrimonio generada en el extranjero debe estar debidamente apostillada o legalizada consularmente."
+      },
+      {
+        "q": "¿Qué trámite deben realizar los hijos estudiantes para no perder la pensión al cumplir 18 años?",
+        "a": "Deben ingresar a los servicios en línea del IESS y subir el certificado de matrícula y asistencia académica vigente al inicio de cada ciclo escolar o universitario para mantener activa la acreditación mensual."
+      }
     ]
   },
   {
-    id: 'como-obtener-clave-iess-primera-vez',
-    slug: 'como-obtener-clave-iess-primera-vez',
-    title: 'Cómo obtener la clave del IESS por primera vez y recuperarla',
-    seoTitle: 'Clave del IESS por Primera Vez: guía | IESS Asistente',
-    metaDescription: 'Guía paso a paso para obtener tu clave de afiliado del IESS por primera vez en 2026. Proceso virtual, desbloqueo y recuperación rápida.',
-    keywords: ['clave del iess por primera vez', 'recuperar clave iess', 'desbloquear clave iess', 'solicitar clave iess'],
-    category: 'Trámites',
-    publishDate: '2026-03-10',
-    dateModified: '2026-10-01',
-    readTime: 12,
-    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
-    imageAlt: 'Proceso virtual para obtener o desbloquear la clave del IESS por primera vez en Ecuador',
-    author: 'equipo-editorial',
-    relatedSlugs: [
-      'actualizacion-datos-cuenta-bancaria-cau-iess-2026',
-      'como-consultar-aportes-iess-historial-laboral',
-      'afiliacion-voluntaria-iess-requisitos-beneficios-2026'
+    "id": "jubilacion-invalidez-2026",
+    "slug": "jubilacion-invalidez-iess-requisitos-comecap-2026",
+    "title": "Jubilación por Invalidez IESS 2026: Requisitos y Evaluación Comecap",
+    "seoTitle": "Jubilación por Invalidez IESS: pasos | IESS Asistente",
+    "metaDescription": "Jubilación por invalidez en el IESS en 2026. Evaluación de la Comisión Médica Comecap, grados de incapacidad laboral y requisitos de aportaciones mínimas.",
+    "keywords": [
+      "jubilación por invalidez IESS",
+      "comecap iess",
+      "enfermedad catastrófica iess jubilación",
+      "incapacidad permanente iess"
     ],
-    sources: [
-      { label: "IESS - Solicitud de Clave de Afiliado", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" },
-      { label: "Resolución C.D. 625 - Reglamento de Atención Universal", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" }
-    ],
-    faqs: [
+    "content": "# Jubilación por Invalidez IESS 2026: Requisitos y Evaluación Comecap\n\nLa **[Jubilación por Invalidez del IESS](/procedimiento/jubilacion-invalidez)** es una prestación económica y de salud vitalicia instituida por la Ley de Seguridad Social para proteger a los trabajadores que, a consecuencia de una enfermedad común o un accidente no profesional, sufren una pérdida permanente y definitiva de su capacidad para desempeñar sus labores habituales. A diferencia de la **[jubilación por vejez](/procedimiento/jubilacion-vejez)**, que premia la longevidad y los años de servicio productivo, la pensión de invalidez opera como un escudo de amparo social ante circunstancias de salud sobrevenidas que impiden la autosuficiencia laboral.\n\nEn esta guía detallada y actualizada para el año 2026, analizamos los requisitos normativos de aportaciones, el funcionamiento de la Comisión Médica de Calificación de la Incapacidad (Comecap), el umbral del 65% de menoscabo laboral, las excepciones legales para enfermedades catastróficas y el trámite paso a paso para acceder a la pensión.\n\n---\n\n## 1. ¿Qué se Considera Invalidez según la Ley de Seguridad Social?\n\nEl artículo 186 de la Ley de Seguridad Social define el estado de invalidez como la incapacidad absoluta y permanente para el trabajo, sobrevenida a un afiliado activo o cesante:\n* **Invalidez Total y Permanente**: Aquella alteración física, sensorial o psíquica sobrevenida que inhabilita por completo al asegurado para el desempeño de las tareas fundamentales de su profesión habitual, o de cualquier otra ocupación compatible con sus conocimientos y aptitudes.\n* **Pérdida de capacidad igual o superior al 65%**: La normativa técnica del IESS exige que el daño psicofísico evaluado por los médicos peritos alcance o supere el umbral del 65% de pérdida de capacidad funcional integral para conceder la pensión definitiva.\n* **Diferencia con el Subsidio de Enfermedad**: El **[subsidio por enfermedad común](/procedimiento/subsidio-enfermedad)** cubre incapacidades temporales de hasta 180 días de reposo. Cuando el cuadro clínico se torna irreversible o sobrepasa el periodo de recuperación médica, se da inicio al trámite de jubilación por invalidez.\n\n---\n\n## 2. Requisitos de Aportaciones en 2026 para Calificar\n\nPara que la Dirección de Pensiones del IESS tramite una solicitud de invalidez, el asegurado debe acreditar una densidad de cotización mínima:\n\n1. **Aportaciones acumuladas totales**: Registrar un mínimo de **60 imposiciones mensuales (5 años completos de aportes)** a lo largo de toda su vida laboral en la seguridad social.\n2. **Consecutividad indispensable**: Al menos **seis (6) imposiciones mensuales** deben ser consecutivas e inmediatamente anteriores a la fecha de inicio de la incapacidad o enfermedad.\n3. **Periodo de protección para cesantes**: Si el afiliado perdió su trabajo pero sobreviene la invalidez dentro de los dos años posteriores al cese, mantiene el derecho a solicitar la prestación siempre que registre un mínimo de 120 imposiciones acumuladas históricas.\n4. **Ausencia de mora en aportaciones**: Si se trata de un afiliado voluntario o independiente, debe encontrarse completamente al día en sus pagos mensuales. En trabajadores bajo dependencia, el empleador no debe mantener glosas no impugnadas por mora patronal.\n5. **Cuenta bancaria validada**: Disponer de una cuenta bancaria personal validada en el portal del IESS mediante el procedimiento de **[actualización de cuenta bancaria](/procedimiento/actualizacion-datos)**.\n\n---\n\n## 3. Régimen Especial para Enfermedades Catastróficas y Raras\n\nEl ordenamiento jurídico ecuatoriano y la Constitución brindan una protección reforzada a los afiliados diagnosticados con **enfermedades catastróficas, raras o huérfanas** (tales como cáncer en estadios avanzados, insuficiencia renal crónica terminal, esclerosis múltiple o trasplantes de órganos vitales):\n* **Prioridad procedimental de auditoría**: Los expedientes de solicitantes con enfermedades catastróficas no se sujetan a los turnos ordinarios de espera y son auditados con carácter urgente en un plazo máximo de 15 días hábiles.\n* **Dispensa de plazos de carencia**: Cuando la invalidez sobreviene a causa de una patología catastrófica debidamente certificada por especialistas de la red pública integral de salud, la Comecap flexibiliza las valoraciones temporales para garantizar la continuidad inmediata de los ingresos vitales del paciente y de sus dependientes.\n\n---\n\n## 4. ¿Cómo Funciona la Evaluación Médica de la Comecap?\n\nLa **Comisión Médica de Calificación de la Incapacidad (Comecap)** es el cuerpo colegiado médico-legal del IESS encargado de dictaminar el grado de menoscabo laboral del solicitante:\n\n| Fase del Proceso Médico | Actividades Realizadas | Documentos Requeridos |\n| :--- | :--- | :--- |\n| **1. Auditoría de Expediente** | Revisión de historias clínicas, exámenes de laboratorio e informes de especialistas. | Epicrisis hospitalaria, biopsias, resonancias y reportes médicos originales con código MSP. |\n| **2. Valoración Presencial** | Evaluación física, neurológica y funcional ante la junta de médicos calificadores. | Cédula de identidad original y carné del Conadis/MSP (si lo posee). |\n| **3. Dictamen Pericial** | Aplicación del baremo legal para cuantificar el porcentaje exacto de pérdida de capacidad. | Baremo técnico de incapacidades laborales del IESS. |\n| **4. Emisión de Resolución** | Si el porcentaje es $ge 65%$, se emite la Resolución Favorable de Incapacidad Permanente. | Notificación digital al correo electrónico del afiliado. |\n\n---\n\n## 5. Cálculo Matemático de la Pensión Mensual de Invalidez\n\nLa pensión mensual de invalidez se calcula bajo principios matemáticos similares a los de la jubilación por vejez, aplicando una base reguladora equitativa:\n\n### Fórmula Base:\n1. **Determinación del Promedio Salarial**: Se toma el promedio de los **sesenta (60) meses de mayor remuneración registrada** (los mejores 5 años de aportaciones) durante toda la trayectoria laboral del afiliado.\n2. **Coeficiente de Reemplazo**: Sobre el promedio obtenido, se aplica un coeficiente porcentual que parte de un piso del **43.75% al 50% de la base reguladora para quienes cuentan con 5 a 10 años de aportes**, y que se incrementa en función de los años adicionales aportados.\n3. **Pensión Mínima Legal**: Ninguna pensión de invalidez puede ser inferior al 50% del Salario Básico Unificado (SBU) vigente en el Ecuador para el año 2026.\n4. **Beneficios Complementarios**: El pensionista de invalidez percibe además la décima tercera y décima cuarta pensión anuales, auxilio funerario, y cobertura médica integral gratuita de por vida en la red del IESS.\n\n---\n\n## 6. Procedimiento Paso a Paso para Solicitar la Jubilación por Invalidez\n\nEl trámite combina una fase inicial virtual con una valoración médica presencial obligatoria:\n\n1. **Ingreso al portal oficial**: Accede a [iess.gob.ec](https://www.iess.gob.ec) -> **\"Servicios en Línea\"** -> **\"Asegurados\"** -> **\"Pensionistas\"** -> **\"Jubilación por Invalidez\"**.\n2. **Autenticación del solicitante**: Digita tu número de cédula y clave personal de afiliado.\n3. **Registro de la solicitud electrónica**: Llena el formulario con la descripción de tu padecimiento clínico, médico tratante, hospital donde recibes atención y número de contacto.\n4. **Carga del expediente clínico**: Adjunta en formato PDF los certificados médicos originales, epicrisis de hospitalización y exámenes complementarios emitidos por los especialistas.\n5. **Cita médica ante la Comecap**: El sistema emitirá el comprobante de radicación con la fecha, hora y dispensario médico donde deberás comparecer ante la comisión evaluadora.\n6. **Resolución y notificación**: Tras la sesión médica, el IESS emitirá la resolución definitiva en un plazo regular de 30 a 45 días laborables. Si la resolución es favorable, el pago de la pensión se acreditará en tu cuenta bancaria registrada con efecto retroactivo a la fecha de radicación.\n\nSi la Comecap niega tu calificación y consideras que el dictamen no refleja tu estado clínico real, puedes recurrir a nuestros **[formatos y oficios de ley](/oficios)** para presentar un recurso de apelación médica ante la Comisión Nacional de Apelaciones del IESS dentro de los plazos reglamentarios.\n\n---\n\n## 7. Preguntas Frecuentes sobre la Jubilación por Invalidez\n\n### ¿Puedo seguir trabajando formalmente si cobro pensión de invalidez?\nNo en la misma actividad profesional que motivó la declaratoria de incapacidad absoluta. Si un pensionista de invalidez vuelve a registrar aportaciones patronales bajo la misma rama de actividad, el IESS presume la recuperación de su capacidad psicofísica y suspende de inmediato la pensión mensual. No obstante, el asegurado puede realizar actividades autónomas compatibles con sus limitaciones de salud.\n\n### ¿La pensión de invalidez es vitalicia o temporal?\nInicialmente, la pensión de invalidez puede ser declarada con carácter provisional sujeta a revisiones médicas periódicas cada dos o tres años. Si la afección es de naturaleza degenerativa, irreversible o el pensionista supera los 60 años de edad, la pensión adquiere automáticamente carácter definitivo y vitalicio, transformándose de oficio en pensión ordinaria de vejez.\n\n### ¿Qué ocurre con la pensión en caso de fallecimiento del pensionista de invalidez?\nEl fallecimiento de un pensionista de invalidez genera de manera automática el derecho a la pensión de montepío (viudez y orfandad) a favor de su cónyuge e hijos menores o dependientes con discapacidad, así como el desembolso del auxilio para gastos de funerales.\n\n---\n\n## 8. Enlaces Internos Recomendados\n* Consulta los requisitos en la guía de [Jubilación por Invalidez](/procedimiento/jubilacion-invalidez).\n* Compara con las condiciones de la [Jubilación Ordinaria por Vejez](/procedimiento/jubilacion-vejez).\n* Conoce los pasos previos en la guía de [Subsidio por Enfermedad](/procedimiento/subsidio-enfermedad).\n* Asegura el cobro de tu pensión realizando la [Actualización de Cuenta Bancaria](/procedimiento/actualizacion-datos).\n",
+    "author": "equipo-editorial",
+    "publishDate": "2026-02-18",
+    "readTime": 9,
+    "image": "/og/jubilacion-invalidez-iess-requisitos-comecap-2026.jpg",
+    "category": "Salud",
+    "dateModified": "2026-10-01",
+    "sources": [
       {
-        q: '¿Qué se necesita para sacar la clave del IESS por primera vez?',
-        a: 'Para obtener la clave del IESS por primera vez necesita ser afiliado activo o cesante, tener su cédula de identidad a la mano, responder preguntas de validación de identidad en el portal y poseer un correo registrado.'
+        "label": "Ley de Seguridad Social del Ecuador - Seguro de Invalidez, Vejez y Muerte",
+        "url": "https://www.iess.gob.ec/documents/10162/13686/Ley_de_Seguridad_Social",
+        "accessedAt": "2026-10-01"
       },
       {
-        q: '¿Cuánto tiempo tarda en activarse la clave del IESS luego del desbloqueo virtual?',
-        a: 'El proceso de desbloqueo virtual o generación por primera vez es de carácter inmediato. Una vez que apruebe las preguntas de seguridad y confirme el enlace enviado a su correo, la clave se activa en segundos.'
-      },
-      {
-        q: '¿Qué pasa si mi correo electrónico registrado en el IESS ya no está activo?',
-        a: 'Si ya no tiene acceso al correo electrónico registrado en el IESS, no podrá finalizar la validación virtual. En este escenario, deberá acudir de forma presencial a un Centro de Atención Universal (CAU).'
-      },
-      {
-        q: '¿Por qué se bloquea la clave del IESS frecuentemente?',
-        a: 'La clave se bloquea de forma automática tras registrar tres intentos fallidos consecutivos en el inicio de sesión. Esto ocurre como una medida estricta de seguridad digital para proteger sus datos personales.'
-      },
-      {
-        q: '¿Puedo solicitar la clave del IESS si soy extranjero sin cédula ecuatoriana?',
-        a: 'Sí, los ciudadanos extranjeros con código provisional de afiliación o pasaporte de identificación pueden solicitarla acudiendo presencialmente a ventanillas del IESS con su documento original.'
+        "label": "IESS - Reglamento de la Comisión de Valuación de Incapacidades (Comecap)",
+        "url": "https://www.iess.gob.ec",
+        "accessedAt": "2026-10-01"
       }
-    ],
-    content: `
-# Cómo obtener la clave del IESS por primera vez y recuperarla
-
-Para acceder a cualquier trámite o consulta en la plataforma informática de la seguridad social de Ecuador, contar con una clave patronal o personal de asegurado activa es indispensable. Si desea generar su contraseña por primera vez o ha perdido sus credenciales, en este artículo detallamos el proceso digital completo y seguro para restablecer el acceso a su portal transaccional en 2026. Conozca las directrices oficiales para la obtención y desbloqueo de forma autónoma.
-
-## En resumen: Datos clave sobre la obtención de la clave IESS
-* **Costo del trámite**: El proceso es 100% gratuito y se realiza directamente en línea sin intermediarios.
-* **Requisito fundamental**: Estar previamente registrado en la base de datos del IESS (como afiliado o jubilado).
-* **Canal preferente**: Generación virtual a través de la página web oficial iess.gob.ec.
-* **Acción presencial**: Obligatoria únicamente si no aprueba las preguntas de validación o su correo está desactualizado.
-* **Bloqueo de seguridad**: Tres intentos erróneos bloquean automáticamente el acceso a su cuenta personal.
-
----
-
-## ¿Cuáles son los requisitos obligatorios para solicitar la clave?
-
-La plataforma del IESS exige que el solicitante apruebe un estricto protocolo de seguridad digital para evitar el robo de identidad y el fraude electrónico. Las condiciones generales obligatorias para generar o cambiar su credencial son las siguientes:
-
-| Tipo de Asegurado | Documento Requerido | Requisito Digital | Canal de Atención |
-| :--- | :--- | :--- | :--- |
-| **Afiliado Activo** | Cédula de identidad vigente | Correo activo registrado en el IESS | 100% Virtual o presencial |
-| **Afiliado Voluntario** | Cédula o pasaporte | Correo y cuenta bancaria validada | 100% Virtual o presencial |
-| **Jubilado / Pensionista** | Cédula de ciudadanía | Historial laboral visible | Presencial (Ventanilla CAU) |
-| **Extranjero con código** | Pasaporte o credencial de refugiado | Datos de contacto ingresados | Exclusivamente presencial |
-
----
-
-## Paso a paso para obtener su clave del IESS por primera vez
-
-El trámite de solicitud inicial es completamente digital y puede realizarlo desde cualquier dispositivo con acceso a internet. Siga con precisión estas instrucciones para evitar inconvenientes en la validación:
-
-### Paso 1: Ingreso al Portal de Generación de Claves
-Acceda al sitio web oficial [iess.gob.ec](https://www.iess.gob.ec). En la página de inicio, busque y haga clic en la opción **"Trámites Virtuales"**, luego seleccione el portal de **"Asegurados"** y escoja la opción **"Afiliados"**. Finalmente, busque el servicio de **"Generar / Recuperar Clave"**.
-
-### Paso 2: Validación de Identidad y Cédula
-El sistema le solicitará ingresar su número de cédula de ciudadanía. Escríbalo de forma continua sin guiones ni espacios. El sistema cruzará información inmediata con la base de datos del Registro Civil de Ecuador para validar que la identidad ingresada corresponda a un asegurado activo o cesante.
-
-### Paso 3: Responder Preguntas Desafío de Seguridad
-Para cerciorarse de que usted es el titular legítimo del trámite, la plataforma arrojará una serie de preguntas de opción múltiple referentes a su vida laboral o financiera (por ejemplo: nombres de empleadores anteriores, bancos donde posee cuentas, o meses con aportaciones registradas). Debe responderlas de forma exacta; si falla en tres intentos, el proceso virtual se inhabilitará.
-
-### Paso 4: Confirmación mediante Enlace de Correo
-Si supera el cuestionario de preguntas, el sistema le enviará un enlace de verificación de un solo uso al correo electrónico que tiene registrado en la base de datos institucional. Dispone de un plazo máximo de **15 minutos** para abrir el correo, hacer clic en el enlace y definir su nueva clave de acceso de 8 caracteres alfanuméricos.
-
----
-
-## Cómo recuperar o desbloquear su clave del IESS en línea
-
-Si su clave fue bloqueada debido a intentos incorrectos o no recuerda los caracteres, el portal web del IESS dispone de un canal de recuperación expedito para afiliados activos y cesantes.
-
-1. **Acceder a la opción de recuperación**: Ingrese al portal de ingreso del afiliado en iess.gob.ec y haga clic en el botón de **"¿Olvidó su clave?"**.
-2. **Ingreso de datos**: Introduzca su número de cédula y complete el captcha de validación de seguridad visual.
-3. **Respuesta a preguntas de control**: Responda las tres preguntas de validación personal que generó al momento de registrar su cuenta por primera vez.
-4. **Envío de enlace de desbloqueo**: Si las respuestas son correctas, el portal enviará el enlace de reinicio a su dirección de correo electrónico registrada. Siga las instrucciones del enlace para establecer su contraseña nueva.
-
----
-
-## Documentos necesarios para el trámite en ventanilla (CAU)
-
-Si no logra superar el cuestionario virtual de seguridad debido a datos obsoletos, o si su correo electrónico registrado ya no existe, debe realizar la actualización biométrica presencial. Los documentos indispensables son:
-
-* **Original de su cédula de identidad** en perfectas condiciones y vigente.
-* **Copia de la papeleta de votación** del último proceso electoral obligatorio en Ecuador.
-* **Formulario físico de desbloqueo de clave** firmado por el titular del derecho.
-* **Certificado de cuenta bancaria** activo y emitido por su entidad financiera nacional (si desea validar cuenta a la par).
-
----
-
-## Errores frecuentes al gestionar su clave de seguridad y cómo prevenirlos
-
-* **Equivocarse en las preguntas de control financiero**: Muchas personas olvidan el nombre legal exacto de sus empleadores históricos y fallan las preguntas. Le sugerimos revisar previamente su historial laboral o roles de pago viejos para refrescar la memoria.
-* **Retraso en abrir el enlace de correo**: El correo de confirmación de clave suele tardar de 1 a 2 minutos. Si no hace clic en el enlace dentro de los 15 minutos reglamentarios, el token de seguridad caducará y tendrá que reiniciar todo el trámite.
-* **Usar claves genéricas o fáciles de adivinar**: El sistema rechaza claves simples como fechas de nacimiento, secuencias consecutivas (12345678) o nombres propios. Utilice una combinación de letras mayúsculas, minúsculas y números para salvaguardar sus datos.
-
----
-
-## Ejemplo práctico de restablecimiento de accesos en 2026
-
-Supongamos que un afiliado independiente desea recuperar su contraseña bloqueada en el mes de marzo del año **2026**.
-
-* **Estado inicial**: Clave bloqueada por 3 intentos fallidos consecutivos tras confundir su contraseña con la de su banca en línea.
-* **Acción virtual**: Ingresa a iess.gob.ec, presiona "Desbloquear clave", introduce cédula y aprueba las preguntas desafío referentes a su SBU estimado en la aportación.
-* **Aprobación de token**: Recibe en su buzón de correo personal el token biométrico digital de confirmación.
-* **Resultado**: Al hacer clic en el enlace, el afiliado ingresa una nueva contraseña robusta y retoma de inmediato el control de su cuenta para consultar aportaciones o solicitar créditos en el BIESS.
-
----
-
-## Preguntas Frecuentes sobre la clave de afiliado del IESS
-
-### ¿Qué puedo hacer si se inhabilita el proceso digital por responder mal las preguntas de control?
-Si falla las preguntas de validación personal de forma repetida, el sistema bloqueará temporalmente la opción digital por seguridad. En este caso, la única alternativa legal para salvaguardar la integridad de su información es acudir de forma presencial a un Centro de Atención Universal del IESS con su cédula de identidad para que un analista verifique su identidad en ventanilla y proceda a resetear su cuenta.
-
-### ¿Se puede solicitar el desbloqueo de clave mediante un tercero o con una carta de autorización?
-No, el trámite de desbloqueo de clave del IESS o la entrega de contraseñas es un procedimiento estrictas y estrictamente **personal e intransferible** por motivos de confidencialidad de datos. No se acepta delegar el trámite mediante cartas de autorización simples. Únicamente se procesará a través de un tercero en caso de poseer un poder notarial amplio y específico que faculte la gestión ante el IESS.
-
-### ¿Qué características de seguridad debe cumplir mi nueva clave del IESS?
-La contraseña del portal de asegurados debe cumplir obligatoriamente con una serie de criterios de complejidad para ser aceptada por los servidores de la institución: debe tener una extensión exacta de entre 8 y 15 caracteres, incluir al menos una letra mayúscula, una letra minúscula, un número del 0 al 9, y no poseer caracteres especiales como asteriscos, guiones o barras.
-
-### ¿Tiene algún costo o vigencia la clave que genero por internet?
-La generación de su clave por primera vez y su posterior utilización en línea es un servicio de carácter **gratuito e indefinido**. No tiene fecha de caducidad obligatoria, sin embargo, los protocolos de seguridad digital de la institución sugieren realizar un cambio voluntario de la contraseña al menos una vez al año para mitigar riesgos de vulnerabilidades cibernéticas.
-
-### ¿Puedo utilizar la misma clave de afiliado para el portal transaccional del BIESS?
-Efectivamente, la clave personal que asigne a su cuenta de asegurado en el portal general del IESS es la misma credencial de validación de identidad que utilizará para ingresar al sistema de préstamos quirografarios o hipotecarios del portal del BIESS. No requiere generar contraseñas diferenciadas para ambas plataformas.
-
----
-
-## Enlaces de interés interno para su trámite
-* Tras obtener su clave de seguridad, aprenda a [Consultar aportaciones e historial laboral](/blog/como-consultar-aportes-iess-historial-laboral) en línea.
-* Gestione sus finanzas solicitando de manera ágil un [Préstamo Quirografario BIESS](/procedimiento/prestamo-quirografario) con su nueva credencial.
-* Explore los requisitos necesarios para afiliarse por su cuenta mediante la guía de [Afiliación Voluntaria](/procedimiento/afiliacion-voluntaria) del portal.
-`
+    ]
   },
   {
-    id: 'como-consultar-aportes-iess-historial-laboral',
-    slug: 'como-consultar-aportes-iess-historial-laboral',
-    title: 'Cómo consultar aportes del IESS e historial laboral en línea',
-    seoTitle: 'Consulta de Aportes del IESS en línea | IESS Asistente',
-    metaDescription: 'Guía completa para consultar tus aportaciones del IESS y descargar tu historial laboral en 2026. Requisitos, cálculo de aportes y pasos digitales.',
-    keywords: ['consultar aportes iess', 'historial laboral iess', 'aportaciones iess', 'iess historial de aportes'],
-    category: 'Trámites',
-    publishDate: '2026-03-12',
-    dateModified: '2026-10-01',
-    readTime: 12,
-    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
-    imageAlt: 'Visualización digital del historial laboral y aportaciones acumuladas en la plataforma del IESS de Ecuador',
-    author: 'equipo-editorial',
-    relatedSlugs: [
-      'como-obtener-clave-iess-primera-vez',
-      'fondos-de-reserva-iess-consulta-acumulacion-retiro-2026',
-      'jubilacion-por-vejez-requisitos-2026'
+    "id": "glosas-patronales-2026",
+    "slug": "impugnacion-glosas-mora-patronal-iess-convenio-pago-2026",
+    "title": "Impugnación de Glosas Patronales IESS 2026: Plazos y Descargos",
+    "seoTitle": "Impugnación de Glosas IESS: plazos | IESS Asistente",
+    "metaDescription": "Guía para impugnar glosas patronales del IESS en 2026. Plazo legal de 20 días, descargos normativos, purga de mora y convenios de pago.",
+    "keywords": [
+      "glosas patronales IESS",
+      "mora patronal ecuador",
+      "impugnar glosa IESS",
+      "convenio de pago IESS"
     ],
-    sources: [
-      { label: "IESS - Consulta de Aportes en Línea", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" },
-      { label: "Ley de Seguridad Social de Ecuador - Artículos de Recaudación", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" }
-    ],
-    faqs: [
+    "content": "# Impugnación de Glosas Patronales y Mora del IESS 2026: Guía Legal y Plazos\n\nEn el ejercicio de sus facultades legales de recaudación y auditoría, el Instituto Ecuatoriano de Seguridad Social (IESS) emite periódicamente **Glosas Patronales** en contra de empleadores personas naturales y jurídicas. Estas determinaciones de deuda económica surgen por presuntas omisiones en aportes mensuales, pagos extemporáneos de planillas, subdeclaración de remuneraciones frente a las tablas sectoriales del Ministerio del Trabajo, o por responsabilidad patronal derivada de accidentes y atenciones médicas hospitalarias.\n\nUna notificación de glosa patronal no equivale a una sentencia definitiva de cobro forzoso; constituye un acto administrativo determinativo susceptible de ser desvirtuado mediante pruebas documentales. En esta guía técnica y legal para el año 2026, explicamos el plazo fatal de **20 días hábiles** para impugnar, los requisitos de los descargos normativos, los Convenios de Purga de Mora y las estrategias para evitar juicios coactivos y embargos.\n\n---\n\n## 1. ¿Qué es una Glosa Patronal y Cuáles son sus Causas Principales?\n\nUna glosa patronal es una liquidación formal de cobro que el IESS notifica a un empleador cuando los auditores o los sistemas automatizados detectan presuntas infracciones a la Ley de Seguridad Social:\n\n1. **Glosas por Mora y Falta de Afiliación**: Notificadas cuando un trabajador prestó servicios sin estar afiliado oportunamente desde el primer día de labores, de conformidad con las directrices de **[aviso de entrada y salida](/procedimiento/aviso-entrada-salida)**.\n2. **Glosas por Diferencias Salariales (Subdeclaración)**: Se producen cuando el sueldo reportado en las planillas del IESS es inferior al Salario Básico Unificado ($482 en 2026) o al salario mínimo sectorial fijado en las comisiones sectoriales del Ministerio del Trabajo.\n3. **Glosas por [Responsabilidad Patronal](/procedimiento/responsabilidad-patronal)**: Se generan cuando un trabajador sufre un accidente laboral o requiere atención médica urgente en hospitales del IESS y su empleador se encuentra en mora de planillas patronales. En este caso, el IESS asume la atención pero traslada el 100% de los costos hospitalarios, quirúrgicos y de rehabilitación al patrono moroso con un recargo adicional del 10% al 20%.\n4. **Glosas por Aportes y Fondos de Reserva en Mora**: Originadas por planillas no canceladas hasta el día 15 del mes calendario siguiente. Si deseas conocer cómo los auditores verifican deudas, revisa nuestra sección de **[guía de empleadores sobre glosas](/empleadores/glosas)**.\n\n---\n\n## 2. El Plazo Fatal de 20 Días Hábiles para Impugnar\n\nDe conformidad con el artículo 91 de la Ley de Seguridad Social, el Código Orgánico Administrativo (COA) y el Reglamento de Reclamos del IESS, el empleador notificado con una glosa dispone de un plazo perentorio de:\n\n> ⏳ **Exactamente veinte (20) días hábiles**, contados a partir del día siguiente a la fecha de recepción de la notificación formal en el buzón electrónico del empleador o notificación física por boleta.\n\n### Efectos Legales del Vencimiento del Plazo:\n* **Firmeza del Acto Administrativo**: Si el empleador no presenta su escrito formal de descargos dentro de los 20 días hábiles, la glosa queda ejecutoriada de pleno derecho.\n* **Emisión del Título de Crédito**: La Dirección de Recaudación emite inmediatamente el título de crédito correspondiente con intereses de mora acumulados y recargos de ley.\n* **Inicio del Juicio Coactivo**: El expediente pasa a los Juzgados de Coactivas del IESS, los cuales ordenan en menos de 72 horas el bloqueo de cuentas bancarias en todo el sistema financiero nacional, la prohibición de enajenar vehículos e inmuebles, y la retención de pagos a favor del Estado.\n\n---\n\n## 3. Estructura y Requisitos del Escrito de Impugnación\n\nPara que la Comisión Provincial de Prestaciones y Reclamos admita a trámite la impugnación y no la rechace de plano por vicios de forma, el escrito legal debe cumplir con los siguientes requisitos del Código Orgánico General de Procesos (COGEP):\n\n* **Autoridad destinataria**: Dirigido al Director Provincial del IESS o a la Comisión Provincial de Prestaciones y Reclamos de la jurisdicción territorial correspondiente.\n* **Identificación del compareciente**: Nombres completos, número de RUC o cédula patronal, nombramiento vigente del Representante Legal debidamente inscrito en el Registro Mercantil.\n* **Individualización de la glosa**: Número de oficio, fecha de notificación y monto exacto de la determinación impugnada.\n* **Fundamentos de hecho y de derecho**: Explicación cronológica y clara de las razones que demuestran que la glosa carece de fundamento técnico o legal.\n* **Anuncio de pruebas de descargo**:\n  - Roles de pago mensuales firmados por el trabajador o acreditaciones bancarias de transferencia de nómina.\n  - Copia certificada del contrato de trabajo registrado en el Sistema Único de Trabajo (SUT).\n  - Comprobantes de pago electrónico de planillas del IESS canceladas oportunamente.\n  - Actas de finiquito firmadas y legalizadas ante el Ministerio del Trabajo.\n* **Domicilio judicial y casillero electrónico**: Correo electrónico y casillero judicial para recibir futuras notificaciones procesales.\n\nPara redactar tu escrito con precisión técnica, descarga y adapta nuestros **[modelos y formatos de oficios de impugnación](/oficios)**.\n\n---\n\n## 4. Convenios de Purga de Mora: Solución ante Deudas Exigibles\n\nEn aquellos casos en que la glosa patronal es legítima y la empresa no cuenta con justificativos para desvirtuar la mora, la Ley de Seguridad Social permite suscribir un **Convenio de Purga de Mora**:\n\n| Términos del Convenio | Parámetros Reglamentarios Vigentes en 2026 |\n| :--- | :--- |\n| **Plazo Máximo de Financiamiento** | Hasta un máximo de **treinta y seis (36) meses plazo**. |\n| **Cuota Inicial Obligatoria** | Desde el 10% hasta el 20% del total de la deuda consolidada al momento de la firma. |\n| **Tasa de Interés Aplicable** | Tasa legal de interés por mora patronal fijada trimestralmente por el Banco Central del Ecuador. |\n| **Garantías Exigidas** | Garantía personal, póliza de seguros de caución o hipoteca según la cuantía de la deuda. |\n| **Efecto de Rehabilitación** | Levantamiento inmediato de medidas cautelares y rehabilitación de derechos crediticios en el BIESS para los trabajadores. |\n\n---\n\n## 5. El Procedimiento de Ejecución Coactiva del IESS\n\nCuando una deuda adquiere firmeza y se niega la impugnación, el procedimiento de cobro forzoso avanza en las siguientes etapas coercitivas:\n\n1. **Auto de Pago**: El juez de coactivas requiere al deudor el pago íntegro de la obligación dentro de los tres (3) días hábiles posteriores a la citación, so pena de embargo.\n2. **Medidas Cautelares Preventivas**: De oficio, se remiten oficios electrónicos a la Superintendencia de Bancos y al Banco Central para retener fondos en cuentas corrientes y de ahorros del deudor y de sus garantes.\n3. **Inscripción de Prohibición de Enajenar**: Se notifica a los Registradores de la Propiedad y a la Agencia Nacional de Tránsito (ANT) la prohibición de venta de bienes raíces y automotores de la empresa y del representante legal solidario.\n4. **Embargo y Remate**: Si no se verifica el pago, se embargan bienes muebles e inmuebles para ser valorados pericialmente y subastados en el portal de remates públicos institucionales.\n\n---\n\n## 6. Caso Práctico: Desestimación de una Glosa Patronal en 2026\n\nUna empresa constructora en Guayaquil fue notificada con una glosa de **$4,500.00 dólares** por supuesta falta de afiliación de un maestro de obra durante 6 meses del año 2025:\n* **Estrategia Legal**: La empresa revisó sus archivos y constató que el trabajador laboró bajo contrato de prestación de servicios autónomos con RUC y factura, y que posteriormente firmó un contrato laboral de 3 meses que sí fue afiliado con su respectivo aviso de entrada.\n* **Actuación**: Dentro de los primeros 12 días hábiles de la notificación, la constructora radicó su escrito de impugnación adjuntando facturas autorizadas por el SRI, transferencias bancarias y el contrato laboral legalizado en el SUT.\n* **Resolución**: La Comisión Provincial de Prestaciones y Reclamos aceptó los descargos, declaró la nulidad de la glosa patronal por inexistencia de relación de dependencia previa y archivó el expediente sin cobro de multas ni intereses.\n\n---\n\n## 7. Preguntas Frecuentes sobre Glosas Patronales\n\n### ¿La presentación de la impugnación suspende el cobro coactivo?\nSí. La presentación oportuna del escrito de impugnación dentro de los 20 días hábiles suspende de pleno derecho la exigibilidad de la glosa y prohíbe a los funcionarios del IESS emitir títulos de crédito o iniciar medidas coactivas mientras el recurso administrativo no sea resuelto en última instancia.\n\n### ¿El representante legal de una empresa responde con su patrimonio personal por glosas del IESS?\nSí. El Código Tributario y la Ley de Seguridad Social establecen la **responsabilidad solidaria e ilimitada del Representante Legal** por las obligaciones patronales generadas durante su periodo de administración, facultando al juez de coactivas a ordenar medidas cautelares sobre sus cuentas y bienes personales.\n\n### ¿Se pueden impugnar las resoluciones de responsabilidad patronal médica?\nEfectivamente. Si la empresa demuestra que el accidente no ocurrió en el lugar ni en la jornada de trabajo (accidente extralaboral), o que el trabajador no estuvo impedido de atención por causa imputable al empleador, la glosa por subsidios de salud puede ser reducida o revocada.\n\n---\n\n## 8. Enlaces Internos Recomendados\n* Consulta las normativas para empresas en la [Guía de Glosas Patronales para Empleadores](/empleadores/glosas).\n* Conoce los riesgos de salud y accidentes en [Responsabilidad Patronal IESS](/procedimiento/responsabilidad-patronal).\n* Evita infracciones cumpliendo los plazos de [Aviso de Entrada y Salida Patronal](/procedimiento/aviso-entrada-salida).\n* Descarga modelos de descargos en nuestra sección de [Formatos y Oficios de Ley](/oficios).\n",
+    "author": "equipo-editorial",
+    "publishDate": "2026-02-24",
+    "readTime": 9,
+    "image": "/og/impugnacion-glosas-mora-patronal-iess-convenio-pago-2026.jpg",
+    "category": "Trámites",
+    "dateModified": "2026-10-01",
+    "sources": [
       {
-        q: '¿Cómo puedo saber cuántas aportaciones tengo acumuladas en el IESS?',
-        a: 'Para consultar el número total de aportaciones, ingrese a iess.gob.ec -> Asegurados -> Afiliados -> Historial Laboral. Coloque su cédula y clave. En la sección "Aportes" podrá visualizar el desglose consolidado de sus imposiciones.'
+        "label": "Código Orgánico General de Procesos - COGEP",
+        "url": "https://www.funcionjudicial.gob.ec",
+        "accessedAt": "2026-10-01"
       },
       {
-        q: '¿Por qué no se reflejan mis aportes del mes actual en el historial laboral?',
-        a: 'Los empleadores tienen plazo legal de pago de planillas hasta el día 15 del mes siguiente al laborado. Por consiguiente, el aporte del mes en curso se verá reflejado en su historial laboral después del pago patronal.'
-      },
-      {
-        q: '¿Se puede descargar el historial de aportes en formato PDF oficial?',
-        a: 'Sí, la plataforma del IESS permite generar y descargar un documento consolidado de su historial de aportes en formato PDF, el cual cuenta con un código QR y firma digital para validez legal de trámites.'
-      },
-      {
-        q: '¿Qué hacer si detecto que un empleador no pagó mis aportes al IESS?',
-        a: 'Si constata la falta de aportes de un empleador, puede entablar una queja formal digital o reclamo por falta de afiliación en iess.gob.ec. El IESS iniciará una inspección patronal y emitirá glosas con intereses.'
-      },
-      {
-        q: '¿Las aportaciones acumuladas con distintos empleadores se suman para la jubilación?',
-        a: 'Efectivamente, todas las cotizaciones y aportes mensuales registrados legítimamente a lo largo de su trayectoria profesional se suman y consolidan de forma automática en su historial laboral unificado.'
+        "label": "IESS - Instructivo para Impugnación de Glosas y Coactivas",
+        "url": "https://www.iess.gob.ec",
+        "accessedAt": "2026-10-01"
       }
-    ],
-    content: `
-# Cómo consultar aportes del IESS e historial laboral en línea
-
-El historial laboral unificado es el documento digital más relevante para los asegurados en Ecuador, ya que detalla con exactitud las imposiciones mensuales acumuladas a lo largo de su vida laboral activa. Si necesita verificar si su empleador se encuentra al día con los pagos patronales, calcular su proyección para jubilación, o certificar su tiempo de servicio para créditos del BIESS, en esta guía detallamos cómo consultar y descargar sus aportes en 2026.
-
-## En resumen: Datos clave sobre el historial de aportes IESS
-* **Gratuidad del servicio**: La consulta y descarga de aportes no tiene costo alguno en el portal.
-* **Tiempo de actualización**: Los aportes se registran hasta el 15 del mes siguiente al laborado.
-* **Uso primordial**: Indispensable para calificar a préstamos quirografarios o iniciar trámites de pensión.
-* **Validación de autenticidad**: El historial en PDF cuenta con un código de validación seguro.
-* **Resolución de inconsistencias**: Permite identificar mora patronal de empleadores a tiempo para evitar multas.
-
----
-
-## Estructura de aportación ordinaria en Ecuador (Tasa de cotización)
-
-El monto aportado mensualmente a su cuenta individual del IESS depende directamente de su salario declarado en nómina. El aporte es compartido entre el trabajador y el empleador.
-
-La estructura oficial de aportaciones se define de la siguiente manera:
-
-| Tipo de Afiliado | Aporte Personal (% de sueldo) | Aporte Patronal (% de sueldo) | Cotización Total Acumulada |
-| :--- | :--- | :--- | :--- |
-| **Bajo relación de dependencia** | 9.45% (descuento al trabajador) | 11.15% (pago del empleador) | 20.60% del salario neto |
-| **Afiliado Voluntario** | 17.60% (asumido por el titular) | 0.00% (sin empleador) | 17.60% del salario neto |
-| **Servidor Público ordinario** | 11.45% (descuento en rol) | 9.15% (asumido por el Estado) | 20.60% del salario neto |
-| **Trabajador Independiente** | 17.60% (asumido por el titular) | 0.00% (sin empleador) | 17.60% del salario neto |
-
----
-
-## Paso a paso para consultar su historial de aportes por internet
-
-Siga estas indicaciones técnicas para ingresar al módulo de consulta laboral del IESS y visualizar su historial consolidado:
-
-### Paso 1: Acceso al Sistema de Afiliados
-Ingrese a la dirección web oficial [iess.gob.ec](https://www.iess.gob.ec). En la barra superior de servicios interactivos, seleccione **"Servicios en Línea"**, haga clic en **"Asegurados"** y escoja la opción de **"Afiliados"**. En el catálogo digital, busque el servicio denominado **"Historial Laboral"**.
-
-### Paso 2: Validación con Credenciales de Acceso
-Digite su número de cédula de ciudadanía de 10 dígitos y su clave de seguridad personal unificada. Resuelva las comprobaciones de captcha si la plataforma se las solicita por seguridad del servidor.
-
-### Paso 3: Visualización de Imposiciones Consolidadas
-Una vez dentro del portal personal del afiliado, diríjase al menú lateral izquierdo y seleccione la opción **"Consultas"**, luego haga clic en **"Aportes"**. El sistema le mostrará una tabla interactiva detallada con todos los meses cotizados, salarios declarados, nombres de empleadores de nómina y el estado del pago del aporte (si consta cancelado, en planilla o en mora).
-
-### Paso 4: Generación y Descarga del Historial Laboral consolidado
-Para certificar su tiempo de aportaciones ante entidades externas o bancarias:
-1. En el menú de consultas, seleccione **"Historial Laboral"** o **"Resumen de Aportes"**.
-2. El portal web compilará toda su información de trayectoria y generará un archivo consolidado en formato PDF.
-3. Descargue el archivo en su ordenador. Verifique que cuente con el sello digital, código QR de validación y firma de control oficial del IESS para su plena validez en trámites.
-
----
-
-## Documentos necesarios para reclamos de aportaciones omitidas
-
-Si al consultar su historial constata que faltan meses aportados o que un empleador nunca reportó su afiliación debidamente:
-
-* **Roles de pago originales** firmados por el representante legal o sellados por el departamento contable de la empresa.
-* **Contrato de trabajo legalizado** debidamente ingresado ante el Ministerio del Trabajo de Ecuador.
-* **Copia de los estados de cuenta bancarios** de nómina que demuestren el depósito regular de su sueldo mensual.
-* **Acta de finiquito o liquidación** de ser el caso en que se haya finalizado la relación laboral del reclamante.
-
----
-
-## Errores comunes al revisar sus imposiciones acumuladas
-
-* **Creer que el aporte del mes actual se refleja inmediatamente**: Muchos afiliados revisan el sistema el día 5 de cada mes y creen que hay mora. Los empleadores disponen legalmente hasta el día 15 de cada mes para cancelar las planillas de cotización del mes anterior.
-* **Confundir aportes simultáneos como imposiciones dobles**: Si trabaja para dos empleadores al mismo tiempo en el mismo mes, acumula aportación doble en dinero, pero para el cómputo de la jubilación solo se contabiliza como **una sola imposición de tiempo mensual** ordinaria.
-* **No actualizar su cuenta bancaria para subsidios asociados**: Si el historial de aportes está completo pero no tiene la cuenta registrada en el CAU, los subsidios derivados de esas aportaciones (por enfermedad o maternidad) no se acreditarán.
-
----
-
-## Ejemplo práctico del cálculo de aportaciones en 2026
-
-Veamos cómo se realiza el cálculo mensual de cotización para un afiliado dependiente en el año **2026** que percibe un sueldo mensual básico de **$1,000 dólares**.
-
-* **Sueldo bruto nominal**: $1,000.
-* **Aporte personal (9.45%)**: Se descuenta $94.50 dólares directamente de su rol de pagos mensual.
-* **Aporte patronal (11.15%)**: El empleador asume el pago de $111.50 dólares por su cuenta (este valor no se descuenta de su salario).
-* **Ingreso total en las arcas del IESS**: $206.00 dólares destinados a financiar sus fondos individuales y de salud general.
-* **Resultado en el Historial**: Tras realizarse el depósito patronal, el historial laboral unificado sumará automáticamente una (1) imposición consolidada para el récord de su jubilación.
-
----
-
-## Preguntas Frecuentes sobre el Historial Laboral del IESS
-
-### ¿Qué significa el estado "En Planilla" en mi historial de aportaciones?
-El estado "En Planilla" indica que su empleador ya ha generado la planilla mensual de pago en el módulo del IESS y el valor está precalculado, pero todavía no se ha efectivizado el depósito de dinero correspondiente. Este estado suele aparecer entre el 1 y el 14 de cada mes y es una situación ordinaria previa al cobro definitivo de aportes.
-
-### ¿Se pueden recuperar aportaciones omitidas por una empresa que ya cerró o quebró?
-Sí, es factible reclamar aportaciones de empresas disueltas o liquidadas. Debe ingresar una denuncia formal ante la Dirección de Inspección y Control de Recaudación del IESS adjuntando todos sus justificativos documentales de relación laboral histórica. El IESS establecerá una glosa de cobro coactivo con intereses y multas acumulados en contra de los antiguos accionistas y representantes legales.
-
-### ¿Cuántos aportes necesito para solicitar mi préstamo quirografario del BIESS?
-Para calificar a un crédito quirografario del BIESS en 2026, el sistema exige un mínimo de **36 aportaciones mensuales totales acumuladas** a lo largo de su vida laboral activa. Adicionalmente, las últimas **12 aportaciones** deben ser consecutivas e inmediatamente anteriores a la fecha en que ingresa su simulación crediticia.
-
-### ¿Qué validez legal tiene el historial laboral en PDF que descargo de internet?
-El historial de aportaciones unificado descargado de la plataforma del IESS cuenta con plena validez jurídica para cualquier trámite legal, administrativo o consular dentro y fuera del país. Esto se debe a que incorpora un certificado de firma electrónica del IESS y un código QR único que permite a los funcionarios verificar su autenticidad en tiempo real.
-
-### ¿Puedo unificar las aportaciones si he cotizado como voluntario y bajo dependencia laboral?
-Sí, las aportaciones realizadas de forma independiente como afiliado voluntario y las acumuladas como trabajador en relación de dependencia laboral se consolidan y unifican de forma **automática** bajo su número único de cédula en su historial laboral general. No requiere realizar trámites de homologación o unificación presenciales.
-
----
-
-## Enlaces de interés interno para su trámite
-* Tras certificar sus aportaciones, consulte las condiciones para acceder a la [Jubilación por Vejez IESS](/procedimiento/jubilacion-vejez) del portal.
-* Gestione sus finanzas personales solicitando un [Préstamo Quirografario BIESS](/procedimiento/prestamo-quirografario) de manera virtual.
-* Si le falta la clave para ingresar al portal de consultas, revise cómo [Obtener y Desbloquear su clave del IESS](/blog/como-obtener-clave-iess-primera-vez) en minutos.
-`
+    ]
   },
   {
-    id: 'como-saber-si-estoy-afiliado-al-iess',
-    slug: 'como-saber-si-estoy-afiliado-al-iess',
-    title: 'Cómo saber si estoy afiliado al IESS: Consulta de estado',
-    seoTitle: 'Cómo Saber si Estoy Afiliado al IESS | IESS Asistente',
-    metaDescription: 'Guía independiente para consultar si estás afiliado al IESS en 2026. Descarga tu certificado de afiliación y verifica tu estado laboral actual.',
-    keywords: ['cómo saber si estoy afiliado al IESS', 'consultar afiliación IESS', 'certificado de afiliación IESS', 'verificar afiliación IESS'],
-    category: 'Trámites',
-    publishDate: '2026-03-15',
-    dateModified: '2026-10-01',
-    readTime: 12,
-    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
-    imageAlt: 'Formulario digital para verificar el estado de afiliación activa o cesante en el IESS',
-    author: 'equipo-editorial',
-    relatedSlugs: [
-      'como-obtener-clave-iess-primera-vez',
-      'como-consultar-aportes-iess-historial-laboral',
-      'afiliacion-voluntaria-iess-requisitos-beneficios-2026'
+    "id": "aviso-entrada-salida-2026",
+    "slug": "aviso-entrada-salida-iess-plazos-multas-empleadores-2026",
+    "title": "Avisos de Entrada y Salida IESS 2026: Plazos y Sanciones",
+    "seoTitle": "Avisos de Entrada y Salida IESS: ley | IESS Asistente",
+    "metaDescription": "Plazos legales de aviso de entrada y aviso de salida en el IESS para 2026. Evita multas y responsabilidad patronal registrando a tiempo.",
+    "keywords": [
+      "aviso de entrada IESS",
+      "aviso de salida IESS",
+      "afiliación de trabajadores ecuador",
+      "multas IESS empleador"
     ],
-    sources: [
-      { label: "IESS - Consulta de Afiliación", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" },
-      { label: "Ley de Seguridad Social de Ecuador - Derechos del Afiliado", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" }
-    ],
-    faqs: [
+    "content": "# Avisos de Entrada y Salida IESS 2026: Plazos, Multas y Responsabilidad Patronal\n\nEl registro correcto y oportuno del inicio y de la culminación de la relación laboral constituye una de las obligaciones patronales más rigurosas de la legislación social en el Ecuador. Consagrado en el artículo 73 de la Ley de Seguridad Social y en el Código del Trabajo, el régimen de **[Avisos de Entrada y Salida del IESS](/procedimiento/aviso-entrada-salida)** exige a todos los empleadores (sean personas jurídicas, pequeños negocios o empleadores del sector doméstico) reportar en la plataforma transaccional cualquier novedad contractual de sus trabajadores dentro de plazos fatales legalmente establecidos.\n\nOmitir o dilatar estos registros acarrea gravosas contingencias económicas: facturación ficticia continuada de planillas, recargos de mora patronal, glosas de **[responsabilidad patronal](/procedimiento/responsabilidad-patronal)** ante accidentes laborales e incluso sanciones penales tipificadas en el Código Orgánico Integral Penal (COIP). En esta guía integral para 2026, analizamos los plazos normativos, las multas vigentes y el procedimiento paso a paso para gestionar avisos de forma digital.\n\n---\n\n## 1. El Aviso de Entrada: Marco Normativo y Plazos Legales\n\nEl Aviso de Entrada es el acto formal mediante el cual el empleador notifica a la seguridad social que una persona ha comenzado a laborar bajo su subordinación jurídica y dependencia económica:\n\n### Plazo Obligatorio de Registro:\n* **Principio general**: El derecho a la seguridad social nace desde el **primer día de labores** del trabajador en la empresa.\n* **Plazo reglamentario de gracia**: El IESS otorga al empleador un plazo máximo de **quince (15) días calendario** posteriores a la fecha efectiva de ingreso del colaborador para registrar el aviso de entrada en el sistema sin incurrir en multas por afiliación extemporánea.\n* Si el registro se efectúa a partir del día 16, la plataforma transaccional catalogará la afiliación como extemporánea y liquidará automáticamente intereses de mora patronal calculados retroactivamente desde la fecha real de ingreso.\n\n> ⚠️ **Principio de Irrenunciabilidad**: Ningún convenio privado, periodo de prueba o renuncia firmada por el trabajador tiene validez legal para aplazar la afiliación al IESS. Afiliar desde el primer día es una obligación de orden público ineludible. Si aún no cuentas con clave de empleador, revisa las instrucciones de **[registro patronal de empleadores](/empleadores/registro-patronal)**.\n\n---\n\n## 2. El Aviso de Salida: Plazos y Peligros de la Omisión Patronal\n\nCuando se extingue la relación de trabajo (por renuncia voluntaria, despido intempestivo, terminación del contrato a plazo fijo, mutuo acuerdo o visto bueno), el empleador tiene la obligación correlativa de comunicar el cese de funciones:\n\n### Plazo Legal Obligatorio:\n* El aviso de salida debe registrarse obligatoriamente dentro de los **quince (15) días hábiles posteriores a la fecha de terminación efectiva de las labores**.\n\n### Graves Consecuencias de Olvidar Registrar el Aviso de Salida:\n1. **Facturación Ininterrumpida de Planillas**: Los servidores del IESS continúan asumiendo que el trabajador sigue prestando servicios en la nómina de la empresa y continuarán facturando mes a mes las planillas de aportaciones con la respectiva acumulación de intereses de mora.\n2. **Bloqueo de Derechos del Trabajador Cesante**: La omisión del aviso de salida impide que el extrabajador califique para el cobro del **[fondo de cesantía y seguro de desempleo](/procedimiento/cesantia-desempleo)** o para la devolución de sus fondos de reserva acumulados, provocando reclamos y denuncias laborales ante el Ministerio del Trabajo.\n3. **Imposibilidad de Jubilación**: El trabajador desvinculado no podrá radicar su solicitud electrónica de pensión jubilar de vejez si en el sistema todavía consta como empleado activo.\n\n---\n\n## 3. Tabla Resumen de Plazos, Multas y Sanciones Legales\n\nEn el siguiente cuadro se sintetiza el marco sancionatorio aplicable en el Ecuador durante el año 2026:\n\n| Concepto Patronal | Plazo Legal Permitido | Consecuencia por Registro Tardío o Falta de Registro | Base Legal Aplicable |\n| :--- | :--- | :--- | :--- |\n| **Aviso de Entrada** | Hasta 15 días posteriores al ingreso | Intereses de mora retroactivos y glosas de responsabilidad patronal médica inmediata. | Ley de Seguridad Social, Art. 73. |\n| **Aviso de Salida** | Hasta 15 días hábiles posteriores al cese | Facturación forzosa continua de planillas patronales con mora e intereses acumulativos. | Reglamento General de Colecturía IESS. |\n| **No Afiliación Dolosa** | Desde el día 1 de trabajo | Delito tipificado en el Código Orgánico Integral Penal (COIP): prisión de 3 a 7 días. | Código Orgánico Integral Penal, Art. 244. |\n| **Accidente sin Afiliación** | Inmediato | El empleador asume el 100% de los costos hospitalarios, cirugías, pensiones y recargos del 20%. | Reglamento del Seguro de Riesgos del Trabajo. |\n\n---\n\n## 4. Procedimiento Digital Paso a Paso para Registrar Avisos\n\nEl trámite se completa en pocos minutos en el portal oficial del seguro social ecuatoriano:\n\n### Registro de Aviso de Entrada:\n1. Ingresa a [iess.gob.ec](https://www.iess.gob.ec) y dirígete a la sección **\"Empleadores\"** -> **\"Servicios en Línea\"** -> **\"Avisos de Entrada y Salida\"**.\n2. Digita tu número de cédula o código patronal y tu clave patronal unificada.\n3. En el menú transaccional, selecciona la opción **\"Registro de Novedades\"** -> **\"Aviso de Entrada\"**.\n4. Introduce el número de cédula de ciudadanía de 10 dígitos del nuevo colaborador.\n5. Define la fecha exacta de inicio laboral, el tipo de relación de trabajo (jornada completa, tiempo parcial o artesanal) y el salario mensual pactado (no inferior al SBU de $482 proyectado para 2026).\n6. Presiona el botón de envío y descarga el comprobante digital de afiliación en formato PDF para el archivo de talento humano.\n\n### Registro de Aviso de Salida:\n1. Dentro del portal de empleadores, accede a la sección **\"Aviso de Salida\"**.\n2. Selecciona al colaborador de la lista activa de la nómina patronal o introduce su número de cédula.\n3. Ingresa la fecha exacta del último día de labores efectivas y selecciona la causal de terminación conforme al Código del Trabajo (despido, renuncia, desahucio, etc.).\n4. Confirma la operación y genera el comprobante digital de salida. Entrega una copia impresa o digital al extrabajador para respaldar su proceso de cobro de cesantía.\n\n---\n\n## 5. El Riesgo de la Responsabilidad Patronal por Omisión de Entrada\n\nEl mayor riesgo patrimonial para una empresa no radica en la multa por extemporaneidad, sino en la **Responsabilidad Patronal**:\n* Si un trabajador no afiliado o con aviso de entrada tardío sufre un accidente de tránsito, una caída en obra o una complicación médica que requiere atención de emergencia en el hospital del IESS, los médicos atenderán al paciente para salvar su vida.\n* No obstante, la Subdirección de Auditoría Médica liquidará todos los gastos causados (terapia intensiva, medicamentos de alta complejidad, prótesis y sueldos de reposo) y emitirá una glosa ejecutoriada de cobro inmediato en contra del patrono con un recargo punitivo del 20%.\n\nSi mantienes discrepancias por planillas liquidadas indebidamente con posterioridad a la salida de un trabajador, revisa nuestros **[formatos y modelos de oficios](/oficios)** para solicitar la anulación retroactiva de planillas ante la Coordinación de Afiliación y Control Técnico del IESS.\n\n---\n\n## 6. Preguntas Frecuentes sobre Avisos de Entrada y Salida\n\n### ¿Qué se debe hacer si se digitó erróneamente la fecha de ingreso o salida?\nSi cometiste un error de digitación en la fecha del aviso de entrada o salida, el sistema informático del IESS no permite la modificación libre en línea para prevenir fraudes. El empleador debe ingresar un trámite formal de **\"Modificación de Novedades Patronales\"** a través del sistema de ventanilla virtual o documental, adjuntando el contrato de trabajo legalizado en el SUT o el acta de finiquito firmada ante inspector de trabajo para certificar las fechas reales.\n\n### ¿Se debe registrar aviso de entrada para contratos a tiempo parcial o pasantías?\nSí. Los trabajadores bajo jornada parcial permanente cotizan sobre los días y horas efectivamente trabajadas pero deben contar con su aviso de entrada desde el primer día. En el caso de pasantías juveniles normadas por la Ley de Pasantías, la empresa está obligada a afiliarlos al régimen general con un aporte patronal calculado sobre el Salario Básico Unificado vigente.\n\n### ¿El aviso de salida exime al empleador del pago de aportes de ese mes?\nEl aviso de salida extingue la obligación de cotizar a partir del día siguiente a la fecha de cese; no obstante, el empleador debe cancelar obligatoriamente la planilla correspondiente a los días efectivamente laborados por el trabajador durante ese último mes antes del día 15 del mes siguiente.\n\n---\n\n## 7. Enlaces Internos Recomendados\n* Conoce los pasos para realizar el trámite en [Aviso de Entrada y Salida](/procedimiento/aviso-entrada-salida).\n* Obtén tu clave patronal consultando la guía de [Registro Patronal de Empleadores](/empleadores/registro-patronal).\n* Si tu salida laboral está registrada, revisa cómo retirar tu [Cesantía y Desempleo](/procedimiento/cesantia-desempleo).\n* Descarga modelos de cartas y peticiones en nuestra sección de [Formatos y Oficios de Ley](/oficios).\n",
+    "author": "equipo-editorial",
+    "publishDate": "2026-03-01",
+    "readTime": 9,
+    "image": "/og/aviso-entrada-salida-iess-plazos-multas-empleadores-2026.jpg",
+    "category": "Trámites",
+    "dateModified": "2026-10-01",
+    "sources": [
       {
-        q: '¿Cómo puedo verificar si estoy afiliado al IESS solo con mi número de cédula?',
-        a: 'Para consultar si se encuentra afiliado, ingrese al portal oficial del IESS (iess.gob.ec), diríjase a la sección "Servicios en Línea", seleccione "Asegurados" -> "Ciudadanos" y elija la opción "Certificado de Afiliación". Digite su número de cédula de ciudadanía de diez dígitos y su fecha de nacimiento; el sistema generará de forma inmediata su estado de afiliación actual sin necesidad de clave.'
+        "label": "Ley de Seguridad Social de Ecuador - Artículos 73 y 89 (Avisos de Entrada y Salida)",
+        "url": "https://www.iess.gob.ec/documents/10162/13686/Ley_de_Seguridad_Social",
+        "accessedAt": "2026-10-01"
       },
       {
-        q: '¿Qué significa el estado "Cesante" en mi consulta de afiliación del IESS?',
-        a: 'El estado de "Cesante" significa que actualmente no registra aportaciones activas al sistema de seguridad social. Esto sucede comúnmente cuando un afiliado bajo relación de dependencia ha sido desvinculado de su puesto de trabajo y su antiguo empleador ya registró el aviso de salida obligatorio en la plataforma transaccional.'
-      },
-      {
-        q: '¿Cuánto tiempo tiene un empleador para registrar mi afiliación al IESS?',
-        a: 'De acuerdo con el artículo 73 de la Ley de Seguridad Social, el empleador tiene la obligación legal de registrar el aviso de entrada desde el primer día de labores del trabajador. El registro extemporáneo genera sanciones de mora patronal, intereses y responsabilidad patronal en caso de siniestros o atenciones médicas.'
-      },
-      {
-        q: '¿Puedo recibir atención médica si mi empleador está en mora con el IESS?',
-        a: 'Sí, los afiliados bajo relación de dependencia tienen derecho a recibir atención médica de emergencia y maternidad aun cuando su empleador se encuentre en mora. No obstante, el IESS cobrará posteriormente al empleador moroso todos los costos de la atención brindada mediante glosas de responsabilidad patronal.'
-      },
-      {
-        q: '¿Qué validez legal tiene el certificado de afiliación que descargo por internet?',
-        a: 'El certificado de afiliación descargado del portal del IESS en formato PDF tiene plena validez legal en Ecuador para cualquier trámite institucional, académico, laboral o consular. El documento cuenta con una firma digital institucional y un código QR de validación que permite verificar su autenticidad en tiempo real.'
-      },
-      {
-        q: '¿Cómo puedo afiliarme de forma independiente si mi consulta dice que estoy cesante?',
-        a: 'Si se encuentra cesante y trabaja de forma autónoma o independiente, puede solicitar la afiliación voluntaria en línea. Debe ingresar a la opción de "Afiliación Voluntaria" en el portal web, colocar su número de cédula y declarar un ingreso mensual no menor al Salario Básico Unificado vigente ($482 para el año 2026) para cotizar con la tasa de aportación del 17.60%.'
+        "label": "Reglamento General de Afiliación, Recaudación y Control Patronal del IESS",
+        "url": "https://www.iess.gob.ec",
+        "accessedAt": "2026-10-01"
       }
-    ],
-    content: `
-# Cómo saber si estoy afiliado al IESS: Guía de Consulta de Estado
-
-Para verificar si te encuentras registrado activamente en el sistema de seguridad social de Ecuador, puedes realizar una consulta rápida en línea utilizando tu número de cédula. Este servicio virtual te permite conocer de forma inmediata si estás afiliado al IESS, si tu empleador ha registrado tu aviso de entrada de manera oportuna, o si te encuentras en estado cesante. Conocer tu estado de aportación es fundamental para acceder a servicios de salud, solicitar préstamos quirografarios o planificar tu jubilación en el año 2026.
-
----
-
-## En resumen: Datos clave sobre la verificación de afiliación al IESS
-* **Costo del trámite**: El proceso de consulta y descarga del certificado de afiliación es 100% gratuito.
-* **Requisito de acceso**: Únicamente se requiere el número de cédula de ciudadanía o el código provisional para extranjeros. No se requiere clave de usuario.
-* **Tipos de estado**: El sistema mostrará tres estados posibles: Activo, Cesante o No Registrado.
-* **Actualización del sistema**: Los avisos de entrada o de salida se reflejan de forma inmediata una vez procesados por el empleador.
-* **Validez legal**: El certificado en formato PDF descargado tiene vigencia de 30 días y cuenta con validación por código QR.
-
----
-
-## ¿Cuáles son los estados de afiliación en el IESS y qué significan?
-
-Cuando realizas la consulta en la plataforma oficial del IESS, el sistema cruzará tu información de identidad y aportes para emitir un diagnóstico de tu situación de aseguramiento. Es indispensable comprender qué implica cada uno de los estados reportados para evitar sorpresas al momento de requerir servicios médicos o prestaciones económicas:
-
-| Estado Reportado | Significado Legal | Cobertura de Salud Activa | Acceso a Créditos BIESS |
-| :--- | :--- | :--- | :--- |
-| **Activo** | Registras aportaciones vigentes bajo relación de dependencia, voluntaria o independiente. | Sí, de forma ilimitada (tras cumplir meses de carencia). | Sí, sujeto a requisitos de aportación acumulada. |
-| **Cesante** | Has dejado de cotizar. El empleador registró tu aviso de salida o suspendiste el pago voluntario. | Sí, hasta 60 días de protección de salud posterior al cese. | No, no se puede calificar a nuevos préstamos estando cesante. |
-| **No Registrado / Sin historial** | Tu número de cédula no se encuentra ingresado en la base de datos de asegurados del IESS. | No, sin acceso a prestaciones médicas ni de jubilación. | No, requiere historial previo de cotizaciones. |
-
----
-
-## Paso a paso para consultar si estás afiliado al IESS en línea
-
-El Instituto Ecuatoriano de Seguridad Social ha simplificado este proceso para que cualquier ciudadano pueda verificar su estado laboral sin necesidad de ingresar con una contraseña. Siga estas instrucciones detalladas para realizar la consulta de manera rápida y segura:
-
-### Paso 1: Navegar a la sección de Certificados en Línea
-Abre tu navegador de internet favorito y dirígete al portal web oficial del IESS: [iess.gob.ec](https://www.iess.gob.ec). En el menú principal de la página, busca la pestaña **"Servicios en Línea"**, desliza el cursor y haz clic en **"Asegurados"**. A continuación, selecciona la opción **"Ciudadanos"** y pulsa sobre el enlace interactivo denominado **"Certificado de Afiliación"**.
-
-### Paso 2: Ingresar los datos de identidad
-Una vez redirigido a la aplicación web de certificados de afiliación, el sistema te solicitará ingresar los datos del consultante. Introduce tu número de cédula de ciudadanía de 10 dígitos de forma continua (sin utilizar guiones o espacios). En el siguiente campo, digita tu fecha de nacimiento seleccionando el día, mes y año en el calendario interactivo que aparece en pantalla.
-
-### Paso 3: Responder la verificación de seguridad
-Por motivos de protección contra sistemas automatizados y seguridad de datos personales, el portal web del IESS te pedirá que completes un captcha sencillo o ingreses caracteres de validación visual. Digita los caracteres tal como aparecen en la imagen y haz clic en el botón de **"Consultar"**.
-
-### Paso 4: Visualizar el estado y descargar el Certificado en PDF
-La plataforma procesará la solicitud en fracciones de segundo. Si te encuentras afiliado de forma activa, la pantalla mostrará un botón interactivo para **"Descargar Certificado de Afiliación"**. Al hacer clic en este botón, se generará y guardará de forma automática un archivo en formato PDF en tu dispositivo. Este documento certifica oficialmente tus derechos vigentes y detalla si te encuentras cotizando como afiliado activo.
-
----
-
-## Documentos necesarios para regularizar tu estado de afiliación
-
-En situaciones donde la consulta digital arroje un estado erróneo, o si trabajas en una empresa y tu estado sigue apareciendo como "Cesante" debido a una omisión patronal, deberás recopilar documentación probatoria para interponer un reclamo formal ante el IESS:
-
-* **Original de la cédula de ciudadanía** del asegurado afectado.
-* **Copia del contrato de trabajo** debidamente registrado y legalizado ante el Ministerio del Trabajo de Ecuador.
-* **Roles de pago mensuales** debidamente firmados y sellados que evidencien el descuento del aporte personal del 9.45%.
-* **Certificado de cuenta bancaria** validado por el IESS para descartar problemas de cobros anteriores.
-* **Historial de transacciones de aportes** (para cotejar si existen meses de mora que impidan la emisión regular de tus certificados de derechos).
-
----
-
-## Errores frecuentes al consultar el estado de afiliación y cómo evitarlos
-
-* **Ingresar el número de cédula con guión o espacios**: La plataforma informática del IESS es sensible a los caracteres especiales. Si ingresas el guión intermedio de tu cédula, el sistema arrojará un error de formato. Escribe los 10 dígitos numéricos de forma completamente unida.
-* **Confundir la vigencia del certificado**: El certificado de afiliación descargado tiene una vigencia de validez de exactamente **30 días de calendario** a partir de la fecha de su emisión. Si presentas un documento impreso con una antigüedad mayor para un trámite público o privado, será rechazado y deberás descargarlo nuevamente en línea.
-* **Suponer que el aviso de entrada es inmediato para la cobertura de salud**: Aunque el aviso de entrada te califica como activo en pocas horas, para gozar de atención médica de especialidad (no emergencias), el IESS exige un período mínimo de cotización continua (generalmente 3 meses consecutivos de aportes para afiliados dependientes y 6 meses para voluntarios).
-
----
-
-## Ejemplo práctico de verificación de afiliación en 2026
-
-Supongamos la situación de un trabajador que inicia sus labores en una empresa privada en la ciudad de Quito en el mes de marzo de **2026**.
-
-* **Día de inicio laboral**: 2 de marzo de 2026.
-* **Salario acordado**: $500.00 mensuales (superior al Salario Básico Unificado de $482 proyectado para 2026).
-* **Acción del empleador**: Registra el aviso de entrada el mismo 2 de marzo de 2026 para cumplir con el artículo 73 de la Ley de Seguridad Social.
-* **Verificación del trabajador**: El 3 de marzo de 2026, el trabajador ingresa a iess.gob.ec, digita su cédula y descarga su certificado de afiliación.
-* **Resultado de la consulta**: El estado reportado es **"Activo"**, confirmando que ya se encuentra protegido por el seguro general obligatorio y acumulando imposiciones para su historial.
-
----
-
-## Preguntas Frecuentes sobre la verificación de afiliación al IESS
-
-### ¿Por qué mi consulta de afiliación dice "No registra aportaciones" si estoy trabajando actualmente?
-Este problema suele originarse por dos causas comunes: la primera es que tu empleador aún no ha registrado tu aviso de entrada en el sistema transaccional del IESS, lo cual constituye una infracción legal sujeta a multas. La segunda causa es que la empresa se encuentra en mora patronal severa y las planillas mensuales de aportes no han sido canceladas. En ambos escenarios, debes solicitar de inmediato al departamento de recursos humanos la regularización de tu situación o ingresar una queja laboral en línea.
-
-### ¿Puedo descargar mi certificado de afiliación si soy extranjero con código provisional?
-Sí, los ciudadanos extranjeros que se encuentran afiliados al IESS bajo un código provisional de afiliación o que cotizan mediante su número de pasaporte pueden consultar su estado y descargar su certificado de afiliación oficial. El proceso es idéntico: deben ingresar al portal de consulta de certificados y digitar su código de afiliación asignado de forma manual en lugar del número de cédula tradicional.
-
-### ¿Se puede consultar el estado de afiliación de una persona fallecida?
-No de forma directa a través del módulo simplificado para ciudadanos. Por motivos de privacidad de datos, el sistema de consulta en línea bloquea la generación de certificados de afiliación activos para personas cuyo estado civil consta como fallecido en la base de datos unificada del Registro Civil de Ecuador. Los familiares que requieran certificar el historial laboral de un afiliado fallecido para trámites de pensión de montepío o auxilio de funerales deben realizar la solicitud presencialmente en ventanillas del IESS.
-
-### ¿La consulta de afiliación sirve para verificar si estoy afiliado al Seguro Social Campesino?
-Efectivamente, la base de datos general del IESS consolida la información de todos los regímenes prestacionales del país. Al realizar la consulta en línea, si te encuentras registrado bajo el régimen especial del Seguro Social Campesino (SSC), el certificado de afiliación emitido detallará expresamente tu condición de beneficiario activo de este seguro, indicando la provincia y el dispensario médico campesino al cual te encuentras adscrito.
-
-### ¿Por cuánto tiempo se mantiene mi cobertura médica en el IESS si me quedo desempleado?
-El Reglamento de Salud del IESS contempla un periodo de gracia denominado **"Periodo de Protección"** para todos los afiliados bajo relación de dependencia que han quedado cesantes. Durante un lapso máximo de **60 días consecutivos (2 meses)** posteriores a la fecha de registro del aviso de salida laboral, el asegurado y sus dependientes calificados mantienen plenamente el derecho a recibir atención médica general, ginecológica, odontológica y de maternidad en los centros de salud de la red institucional.
-
----
-
-## Enlaces de interés interno para su trámite
-* Aprende a descargar el documento en la guía paso a paso de [Descarga de Certificado de Afiliación](/certificados/afiliacion).
-* Si te encuentras cesante, revisa cómo reactivar tus derechos mediante la [Afiliación Voluntaria en Ecuador](/procedimiento/afiliacion-voluntaria).
-* Una vez confirmado tu estado activo, puedes proceder a [Consultar tus aportes e historial laboral](/blog/como-consultar-aportes-iess-historial-laboral) acumulados en línea.
-`
+    ]
   },
   {
-    id: 'afiliacion-trabajo-hogar-iess-requisitos',
-    slug: 'afiliacion-trabajo-hogar-iess-requisitos',
-    title: 'Afiliación trabajo hogar IESS requisitos y costo 2026',
-    seoTitle: 'Afiliación Trabajo del Hogar al IESS | IESS Asistente',
-    metaDescription: 'Requisitos, costo mensual y beneficios de la afiliación para trabajadoras del hogar y amas de casa en el IESS para 2026. Guía de registro paso a paso.',
-    keywords: ['afiliación trabajo hogar IESS requisitos', 'afiliar trabajadora del hogar IESS', 'seguro de amas de casa IESS', 'costo afiliación doméstica'],
-    category: 'Trámites',
-    publishDate: '2026-03-18',
-    dateModified: '2026-10-01',
-    readTime: 12,
-    image: '/og/jubilacion-por-vejez-requisitos-2026.jpg',
-    imageAlt: 'Afiliación a la seguridad social para personas trabajadoras del hogar y amas de casa en Ecuador',
-    author: 'equipo-editorial',
-    relatedSlugs: [
-      'como-obtener-clave-iess-primera-vez',
-      'como-consultar-aportes-iess-historial-laboral',
-      'afiliacion-voluntaria-iess-requisitos-beneficios-2026'
+    "id": "actualizacion-datos-cau-2026",
+    "slug": "actualizacion-datos-cuenta-bancaria-cau-iess-2026",
+    "title": "Actualización de Datos IESS 2026: Trámite Virtual de Cuenta Bancaria",
+    "seoTitle": "Actualizar Datos y Cuenta en el IESS | IESS Asistente",
+    "metaDescription": "Cómo actualizar tu correo, teléfono y validar tu cuenta bancaria en el IESS en 2026 sin acudir a ventanillas. Requisitos de la Resolución C.D. 625.",
+    "keywords": [
+      "actualizar datos IESS",
+      "registrar cuenta bancaria IESS",
+      "clave IESS desbloqueo",
+      "CAU iess turnos"
     ],
-    sources: [
-      { label: "Ley de Seguridad Social de Ecuador - Régimen Especial de Trabajo del Hogar", url: "https://www.iess.gob.ec", accessedAt: "2026-10-01" },
-      { label: "Ministerio del Trabajo de Ecuador - Tablas de Salarios Mínimos Domestic", url: "https://www.trabajo.gob.ec", accessedAt: "2026-10-01" }
+    "content": "# Actualización de Datos y Cuenta Bancaria en el IESS 2026: Trámite Virtual y CAU\n\nMantener actualizados los datos personales, el número de teléfono móvil, la dirección de correo electrónico y la cuenta bancaria en el Instituto Ecuatoriano de Seguridad Social (IESS) es un requisito técnico indispensable para todos los afiliados, jubilados y pensionistas en el Ecuador. La infraestructura informática del seguro social utiliza esta información para transferir oportunamente los desembolsos de **[préstamos quirografarios del BIESS](/procedimiento/prestamo-quirografario)**, las devoluciones de fondos de reserva, los retiros de cesantía, los subsidios monetarios de maternidad y las pensiones mensuales vitalicias de jubilación.\n\nUna cuenta bancaria mal registrada, inactiva o con bloqueos de titularidad paraliza por completo cualquier transferencia pecuniaria del Estado. En esta guía completa y actualizada para 2026, explicamos cómo registrar y cambiar tu cuenta bancaria por internet, el funcionamiento de la validación interbancaria con el Banco Central del Ecuador (BCE), los casos en que se requiere acudir presencialmente al Centro de Atención Universal (CAU) y los pasos para actualizar tus canales de contacto digital.\n\n---\n\n## 1. ¿Por Qué es Indispensable Validar la Cuenta Bancaria en el IESS?\n\nA diferencia de una empresa privada que puede emitir cheques físicos de pago, el IESS opera exclusivamente a través del Sistema de Pagos Interbancarios (SPI) administrado por el Banco Central del Ecuador:\n* **Transferencias directas y seguras**: Todas las prestaciones económicas aprobadas (pensiones de vejez, montepío, subsidios de incapacidad temporal y préstamos) se acreditan directamente en la cuenta bancaria del asegurado.\n* **Titularidad unipersonal estricta**: Por disposiciones estrictas de la Resolución C.D. 625 del IESS y de la Ley de Prevención de Lavado de Activos, el titular de la cuenta bancaria debe coincidir de forma unívoca con el número de cédula de ciudadanía del solicitante.\n* **Prohibición de cuentas de terceros y mancomunadas**: El IESS rechaza de inmediato depósitos dirigidos a cuentas bancarias de cónyuges, padres, hijos o empresas, aun cuando exista autorización notarial por poder general.\n\n---\n\n## 2. Requisitos Previos para el Registro o Modificación Bancaria\n\nAntes de ingresar al módulo informático del seguro social, asegúrate de verificar las siguientes condiciones en tu institución financiera nacional:\n\n1. **Cuenta bancaria activa**: La cuenta de ahorros o corriente (en bancos públicos, bancos privados o cooperativas de ahorro y crédito reguladas por la SEPS) debe encontrarse en estado plenamente activa y operativa.\n2. **Cédula de identidad vigente**: El número de identificación registrado en tu entidad bancaria debe ser exactamente el mismo registrado ante el Registro Civil y el IESS.\n3. **Clave de asegurado habilitada**: Contar con acceso funcional a tu portal web de afiliado. Si la has olvidado o se encuentra bloqueada, revisa nuestra guía sobre **[cómo obtener y desbloquear la clave del IESS por primera vez](/blog/como-obtener-clave-iess-primera-vez)**.\n4. **Certificado bancario digital**: Disponer de un certificado de cuenta bancaria emitido por tu banco en formato PDF (validez no mayor a 30 días) que consigne tu nombre completo, número de cuenta y tipo de producto financiero.\n\n---\n\n## 3. Paso a Paso para Registrar o Cambiar tu Cuenta Bancaria en Línea\n\nEl trámite de registro o actualización es 100% virtual para la inmensa mayoría de afiliados que ya cuentan con validación de identidad previa:\n\n### Paso 1: Ingreso al Sistema de Servicios en Línea\nAbre tu navegador web e ingresa a [iess.gob.ec](https://www.iess.gob.ec). En el portal principal, selecciona **\"Servicios en Línea\"** -> dirígete a la pestaña **\"Asegurados\"** -> haz clic en **\"Afiliados\"** (o **\"Pensionistas\"** según tu condición) -> y selecciona la opción interactiva **\"Registro y Actualización de Cuenta Bancaria\"**.\n\n### Paso 2: Autenticación Segura\nEscribe tu número de cédula de ciudadanía de 10 dígitos y tu contraseña personal de asegurado. Resuelve el mecanismo de seguridad visual captcha si el sistema te lo solicita.\n\n### Paso 3: Selección de Entidad Financiera y Número de Cuenta\nEn el formulario electrónico desplegado:\n* Selecciona en el menú desplegable la entidad financiera nacional donde mantienes tu cuenta (por ejemplo: Banco Pichincha, Banco Guayaquil, Banco del Pacífico, Cooperativa JEP, etc.).\n* Escoge el tipo de producto: **Cuenta de Ahorros** o **Cuenta Corriente**.\n* Digita el número de cuenta completo, asegurándote de no omitir ceros iniciales ni ingresar espacios o caracteres alfanuméricos.\n\n### Paso 4: Carga de Documentación y Confirmación\nAdjunta el archivo PDF legible de tu certificado bancario. Lee la declaración juramentada de titularidad de la cuenta y presiona el botón de **\"Guardar y Enviar Solicitud\"**. El portal emitirá un comprobante de radicación digital con fecha y código de control.\n\n---\n\n## 4. El Proceso de Validación Interbancaria con el Banco Central (BCE)\n\nUna vez ingresada la solicitud en la web, el IESS no autoriza el desembolso de manera inmediata:\n* El aplicativo web remite electrónicamente una consulta al Banco Central del Ecuador (BCE).\n* El BCE cruza la información en tiempo real con la base de datos de la institución financiera receptora para validar que el nombre y la cédula pertenezcan al titular legítimo.\n* **Tiempos de respuesta**: Este cruce de compensación demora habitualmente entre **24 y 48 horas laborables**.\n* **Verificación de estado**: Puedes volver a ingresar al módulo bancario del IESS para comprobar el estado:\n  - **\"En Trámite / Pendiente\"**: La información se encuentra en proceso de cruce interbancario.\n  - **\"Validada / Aprobada\"**: Cuenta con visto bueno verde institucional; a partir de este momento recibirás todos tus pagos en esta cuenta.\n  - **\"Rechazada\"**: Existe discrepancia entre la cédula o nombres reportados por el banco frente al IESS.\n\nPara consultar el procedimiento de homologación detallado, revisa nuestra guía sobre el **[procedimiento de actualización de datos y cuenta bancaria](/procedimiento/actualizacion-datos)**.\n\n---\n\n## 5. ¿Cuándo es Obligatorio Acudir Presencialmente al CAU?\n\nExisten situaciones particulares en las cuales el sistema de validación virtual bloquea el trámite por motivos de seguridad informática, exigiendo la comparecencia presencial del afiliado ante un **Centro de Atención Universal (CAU)** del IESS:\n\n1. **Bloqueo biométrico de identidad**: Cuando el sistema detecta discrepancias en los nombres, apellidos o estado civil entre el Registro Civil y el IESS.\n2. **Ciudadanos extranjeros sin cédula ecuatoriana**: Asegurados que cotizan bajo código provisional de afiliación o número de pasaporte deben validar su cuenta físicamente en ventanilla presentando su pasaporte original y certificado bancario sellado.\n3. **Desbloqueo de clave de pensionistas**: Los jubilados de la tercera edad que olvidaron su clave deben acudir presencialmente al CAU para verificación de huella dactilar.\n4. **Cuentas bancarias de cooperativas no homologadas en línea**: Ciertas cooperativas de ahorro y crédito regionales no cuentan con interconexión directa al SPI del BCE, requiriendo registro manual por un asesor de ventanilla.\n\n> 💡 **Cómo agendar un turno presencial**: Para evitar largas filas en las agencias del IESS, ingresa a [iess.gob.ec](https://www.iess.gob.ec) -> sección **\"Turno en Línea\"**, selecciona la provincia, agencia CAU y la fecha y hora deseada para ser atendido.\n\n---\n\n## 6. Actualización de Celular y Correo Electrónico para Códigos OTP\n\nAdemás de la cuenta bancaria, mantener actualizado tu número de teléfono móvil y correo electrónico es fundamental:\n* Al solicitar un **[crédito quirografario](/procedimiento/prestamo-quirografario)** en el BIESS o solicitar la jubilación en línea, el sistema remite un código numérico temporal de un solo uso (One-Time Password - OTP) a tu teléfono móvil y correo electrónico para autorizar la transacción.\n* Si cambiaste de número telefónico y no lo actualizaste en el IESS, no podrás recibir el código OTP y el crédito quedará paralizado. Puedes modificar tus datos de contacto dentro del portal de afiliados en la pestaña **\"Información Personal\"** completando las preguntas de desafío de seguridad.\n\nSi tus solicitudes de actualización son rechazadas reiteradamente sin justificación clara, utiliza nuestros **[modelos de oficios y peticiones](/oficios)** para ingresar un requerimiento administrativo formal ante la Dirección Provincial del IESS.\n\n---\n\n## 7. Preguntas Frecuentes sobre la Cuenta Bancaria en el IESS\n\n### ¿Puedo registrar una cuenta bancaria digital de cooperativas o billeteras electrónicas?\nSí, siempre y cuando la entidad financiera (cooperativa de ahorro y crédito o banco digital) esté plenamente autorizada por la Superintendencia de Economía Popular y Solidaria (SEPS) o la Superintendencia de Bancos, y cuente con código de interconexión SPI activo con el Banco Central del Ecuador.\n\n### ¿Qué sucede con los valores de un subsidio o pensión si mi cuenta fue cerrada por el banco?\nSi el IESS intenta transferir una pensión o subsidio a una cuenta bancaria cerrada o inactiva, la transferencia es rechazada automáticamente por el Banco Central del Ecuador y el dinero retorna a las cuentas de tránsito del IESS. El valor retenido no se pierde: quedará represado como valor pendiente de cobro hasta que el afiliado ingrese y valide una cuenta bancaria activa.\n\n### ¿Tiene algún costo registrar o cambiar la cuenta bancaria en el IESS?\nNo. El trámite de registro, modificación o validación de cuentas bancarias en el portal del IESS y en los Centros de Atención Universal es un servicio público de carácter **100% gratuito** que no requiere ningún pago a funcionarios ni gestores.\n\n---\n\n## 8. Enlaces Internos Recomendados\n* Consulta las directrices oficiales en el [Procedimiento de Actualización de Datos](/procedimiento/actualizacion-datos).\n* Si requieres recuperar tus accesos, aprende a [Obtener y Desbloquear la Clave del IESS](/blog/como-obtener-clave-iess-primera-vez).\n* Con tu cuenta validada, gestiona de forma inmediata tu [Préstamo Quirografario BIESS](/procedimiento/prestamo-quirografario).\n* Descarga modelos de solicitudes en nuestra sección de [Formatos y Oficios de Ley](/oficios).\n",
+    "author": "equipo-editorial",
+    "publishDate": "2026-03-05",
+    "readTime": 9,
+    "image": "/og/actualizacion-datos-cuenta-bancaria-cau-iess-2026.jpg",
+    "category": "Trámites",
+    "dateModified": "2026-10-01",
+    "sources": [
+      {
+        "label": "Resolución C.D. 625 - Reglamento de Aseguramiento y Atención Universal del IESS",
+        "url": "https://www.iess.gob.ec",
+        "accessedAt": "2026-10-01"
+      },
+      {
+        "label": "Banco Central del Ecuador - Manual del Sistema de Pagos Interbancarios (SPI)",
+        "url": "https://www.bce.fin.ec",
+        "accessedAt": "2026-10-01"
+      }
+    ]
+  },
+  {
+    "id": "como-obtener-clave-iess-primera-vez",
+    "slug": "como-obtener-clave-iess-primera-vez",
+    "title": "Cómo obtener la clave del IESS por primera vez y recuperarla",
+    "seoTitle": "Clave del IESS por Primera Vez: guía | IESS Asistente",
+    "metaDescription": "Guía paso a paso para obtener tu clave de afiliado del IESS por primera vez en 2026. Proceso virtual, desbloqueo y recuperación rápida.",
+    "keywords": [
+      "clave del iess por primera vez",
+      "recuperar clave iess",
+      "desbloquear clave iess",
+      "solicitar clave iess"
     ],
-    faqs: [
+    "category": "Trámites",
+    "publishDate": "2026-03-10",
+    "dateModified": "2026-10-01",
+    "readTime": 12,
+    "image": "/og/como-obtener-clave-iess-primera-vez.jpg",
+    "imageAlt": "Proceso virtual para obtener o desbloquear la clave del IESS por primera vez en Ecuador",
+    "author": "equipo-editorial",
+    "relatedSlugs": [
+      "actualizacion-datos-cuenta-bancaria-cau-iess-2026",
+      "como-consultar-aportes-iess-historial-laboral",
+      "afiliacion-voluntaria-iess-requisitos-beneficios-2026"
+    ],
+    "sources": [
       {
-        q: '¿Qué es la afiliación para el trabajo del hogar no remunerado en Ecuador?',
-        a: 'Es un régimen de protección especial de la seguridad social destinado a personas dedicadas de forma exclusiva a las tareas domésticas y de cuidado en su propio hogar (como amas de casa), sin recibir un sueldo. El costo de la aportación mensual se calcula según el nivel de ingresos del núcleo familiar y cuenta con un subsidio parcial financiado por el Estado.'
+        "label": "IESS - Solicitud de Clave de Afiliado",
+        "url": "https://www.iess.gob.ec",
+        "accessedAt": "2026-10-01"
       },
       {
-        q: '¿Cuál es la diferencia entre una trabajadora del hogar remunerada y el seguro de amas de casa?',
-        a: 'La trabajadora del hogar remunerada (empleada doméstica) tiene una relación laboral de dependencia, recibe un sueldo de un empleador y cotiza bajo el régimen general obligatorio (tasa del 20.60%). Por otro lado, la persona dedicada al trabajo del hogar no remunerado (ama de casa) no tiene un empleador, no recibe remuneración y cotiza en el seguro especial con aportes subsidiados basados en el nivel de ingresos de su hogar.'
-      },
-      {
-        q: '¿Cuáles son los requisitos de afiliación para el trabajo del hogar en 2026?',
-        a: 'Los requisitos para trabajadoras del hogar remuneradas incluyen cédula del empleador y de la trabajadora, y registro del contrato de trabajo en el Ministerio del Trabajo. Para el seguro de trabajo del hogar no remunerado (amas de casa), se requiere cédula de identidad, tener entre 15 y 65 años de edad, y registrar los datos de ingresos socioeconómicos del núcleo familiar en la base de datos del Ministerio de Inclusión Económica y Social (MIES).'
-      },
-      {
-        q: '¿Cuánto se paga mensualmente por afiliar a una trabajadora del hogar en 2026?',
-        a: 'El costo mensual de afiliación para una trabajadora del hogar bajo relación de dependencia se calcula aplicando la tasa del 20.60% sobre el sueldo declarado (que no puede ser menor al Salario Básico Unificado de $482 proyectado para 2026). Esto equivale a un aporte mensual de $99.29 dólares, dividido en un 9.45% de aporte personal ($45.55) y un 11.15% de aporte patronal ($53.74).'
-      },
-      {
-        q: '¿Qué prestaciones y beneficios incluye el seguro para el trabajo del hogar no remunerado?',
-        a: 'Este seguro especial brinda cobertura para jubilación por vejez (tras cumplir las imposiciones requeridas), pensión de invalidez por enfermedades catastróficas o accidentes, pensión de montepío para sobrevivientes y auxilio de funerales. Es fundamental recalcar que este seguro subsidiado para amas de casa **no incluye** atención de salud general en hospitales del IESS ni cobertura para préstamos del BIESS.'
-      },
-      {
-        q: '¿Cómo se registra el contrato de una empleada doméstica en el Ministerio del Trabajo?',
-        a: 'El empleador debe ingresar al portal oficial SUT (Sistema Único de Trabajo) del Ministerio del Trabajo, registrar sus datos patronales y llenar el formulario del contrato de trabajo del sector doméstico, especificando la jornada de labores (completa o parcial) y el sueldo. Posteriormente, el contrato se descarga, se firma por ambas partes y se sube escaneado al sistema en un plazo máximo de 15 días.'
+        "label": "Resolución C.D. 625 - Reglamento de Atención Universal",
+        "url": "https://www.iess.gob.ec",
+        "accessedAt": "2026-10-01"
       }
     ],
-    content: `
-# Afiliación Trabajo Hogar IESS: Requisitos, Costos y Beneficios en 2026
-
-La afiliación de personas trabajadoras del hogar y personas dedicadas al trabajo del hogar no remunerado en Ecuador es un derecho fundamental respaldado por la Ley de Seguridad Social y la Constitución. Este mecanismo de protección permite acceder a prestaciones médicas, jubilación, auxilio de funerales y seguro de cesantía mediante aportaciones calculadas de manera equitativa. En esta guía detallamos los requisitos obligatorios, los costos mensuales para el año 2026 y el proceso paso a paso para afiliar correctamente a una trabajadora del hogar o registrarse en el seguro especial para amas de casa.
-
----
-
-## En resumen: Datos clave sobre la afiliación del trabajo del hogar
-* **Modalidades de afiliación**: Existen dos regímenes diferenciados: Trabajo del Hogar Remunerado (relación de dependencia) y Trabajo del Hogar No Remunerado (seguro de amas de casa).
-* **Base de cálculo salarial**: Para trabajadoras remuneradas, el aporte mínimo se calcula sobre el Salario Básico Unificado vigente ($482 para el año 2026).
-* **Tasa de cotización**: El régimen remunerado aporta el 20.60% del salario; el régimen no remunerado aporta tarifas subsidiadas progresivas según ingresos del núcleo familiar.
-* **Cobertura de salud general**: Únicamente disponible para trabajadoras remuneradas bajo relación de dependencia. El seguro de amas de casa no posee atención médica general ordinaria en centros del IESS.
-* **Jubilación**: Ambos regímenes acumulan años de servicio y aportaciones válidas para solicitar la pensión de jubilación por vejez del IESS.
-
----
-
-## Comparativa de Modalidades: Trabajo del Hogar Remunerado vs. No Remunerado
-
-Es fundamental que los ciudadanos distingan con precisión las dos modalidades existentes de aseguramiento para el sector doméstico y del hogar en Ecuador, ya que sus aportaciones, requisitos y coberturas prestacionales difieren significativamente:
-
-| Característica / Régimen | Trabajo del Hogar Remunerado (Empleadas Domésticas) | Trabajo del Hogar No Remunerado (Amas de Casa) |
-| :--- | :--- | :--- |
-| **Relación de Trabajo** | Dependiente (Existe un empleador y pago de sueldo). | Autónoma / Familiar (Labores propias del hogar sin remuneración). |
-| **Tasa de Aportación** | **20.60% del salario** (9.45% personal + 11.15% patronal). | Escala subsidiada por el Estado (según ingresos familiares). |
-| **Base Imponible Mínima** | Salario Básico Unificado ($482 en el año 2026). | Salario del núcleo familiar cruzado con base de datos del MIES. |
-| **Atención Médica IESS** | Sí, cobertura ilimitada en consulta externa, cirugía y medicinas. | No. La cobertura médica básica se canaliza vía Salud Pública (MSP). |
-| **Acceso a Préstamos BIESS** | Sí, califica a préstamos quirografarios e hipotecarios. | No, este seguro especial no califica para productos de crédito. |
-| **Prestaciones de Jubilación** | Sí, jubilación por vejez, invalidez y montepío ordinaria. | Sí, pensión de jubilación reducida, invalidez y montepío especial. |
-
----
-
-## Requisitos obligatorios para la afiliación en 2026
-
-Para proceder con la inscripción formal en cualquiera de los dos regímenes, se deben cumplir condiciones documentales y biográficas específicas determinadas por el IESS y el Ministerio del Trabajo de Ecuador:
-
-### Para Trabajadoras del Hogar Remuneradas (Relación de Dependencia)
-1. **Cédula de ciudadanía o identidad** vigente de la trabajadora del hogar.
-2. **Cédula de identidad y papeleta de votación** del empleador doméstico.
-3. **Contrato de trabajo escrito** de jornada laboral (completa, parcial o por horas) registrado y validado en el Sistema Único de Trabajo (SUT) del Ministerio del Trabajo.
-4. **Dirección exacta de la vivienda** del empleador y planilla de un servicio básico (agua, luz o teléfono) que valide el domicilio de labores.
-5. **Cuenta bancaria de la trabajadora** debidamente registrada y autorizada en el portal del IESS.
-
-### Para el Trabajo del Hogar No Remunerado (Amas de Casa - Seguro Especial)
-1. **Cédula de identidad ecuatoriana** vigente del solicitante.
-2. **Rango de edad**: Tener entre 15 y 65 años de edad cumplidos a la fecha de la solicitud de afiliación.
-3. **Registro Social del MIES**: Encontrarse registrado en la base de datos de información socioeconómica del Ministerio de Inclusión Económica y Social (MIES) para determinar el nivel de ingresos de su núcleo familiar.
-4. **No registrar afiliación activa** en ningún otro régimen de la seguridad social del IESS, ISSFA, o ISSPOL al momento de realizar la inscripción.
-
----
-
-## Proceso de registro paso a paso para la afiliación
-
-A continuación, se describen los pasos estructurados que deben realizar los empleadores domésticos y las personas interesadas en afiliarse al seguro especial de amas de casa:
-
-### Paso 1: Registro del Empleador Doméstico en el IESS
-El empleador que contrata una trabajadora remunerada del hogar debe obtener un número de registro patronal. Para esto, ingrese a [iess.gob.ec](https://www.iess.gob.ec), diríjase a **"Empleadores"** -> **"Registro de Empleador"** -> **"Trabajo Doméstico"**. Ingrese su cédula de identidad y complete el formulario digital para generar su código patronal.
-
-### Paso 2: Registro del Aviso de Entrada de la Trabajadora
-Con su clave patronal generada, acceda al portal de empleadores en línea. Diríjase a la sección de **"Avisos de Entrada y Salida"** e ingrese el número de cédula de su trabajadora del hogar. Escriba la fecha de inicio de labores, el sueldo pactado (respetando los mínimos legales de cotización) y el tipo de jornada. Confirme el envío del aviso de entrada. El sistema generará el comprobante digital de afiliación de forma inmediata.
-
-### Paso 3: Inscripción en el Seguro No Remunerado (Amas de Casa)
-Si lo que desea es afiliarse de forma individual al seguro de trabajo del hogar no remunerado:
-1. Ingrese a [iess.gob.ec](https://www.iess.gob.ec) -> **"Asegurados"** -> **"Afiliados"** -> **"Trabajo del Hogar No Remunerado"**.
-2. Digite su número de cédula de ciudadanía de 10 dígitos y su fecha de nacimiento completa.
-3. El sistema cruzará información con el Registro Social del MIES para validar su nivel socioeconómico familiar.
-4. Defina el aporte mensual según la tabla de rangos que despliegue el portal e ingrese su correo electrónico de contacto.
-5. Genere y guarde su comprobante digital de aceptación de afiliación especial.
-
----
-
-## Costo mensual y cálculo de la aportación en 2026
-
-### 1. Trabajadoras del Hogar Remuneradas (Bajo relación de dependencia)
-Para el año **2026**, se proyecta un Salario Básico Unificado (SBU) de **$482 dólares**. Por consiguiente, la aportación mensual obligatoria mínima para una empleada del sector doméstico contratada a jornada completa se desglosa matemáticamente de la siguiente manera:
-
-* **Sueldo base mínimo cotizable**: $482.00.
-* **Aporte Patronal (11.15%)**: $53.74 dólares asumidos por el empleador por concepto de cotización patronal obligatoria.
-* **Aporte Personal (9.45%)**: $45.55 dólares descontados de la remuneración mensual de la trabajadora.
-* **Monto total consolidado de la planilla mensual**: $99.29 dólares pagados de forma íntegra a través del portal de recaudación del IESS.
-
-### 2. Trabajo del Hogar No Remunerado (Amas de Casa - Seguro Especial)
-El aporte para las personas dedicadas al trabajo doméstico no remunerado no se calcula sobre el salario personal (pues no existe remuneración), sino que se aplica una escala subsidiada en función de los ingresos del núcleo familiar:
-
-| Nivel de Ingresos de la Familia | Aporte Mensual del Asegurado ($) | Subsidio Financiado por el Estado ($) | Cotización Total Destinada a la Jubilación |
-| :--- | :--- | :--- | :--- |
-| **Bajo la línea de pobreza** | $2.00 dólares mensuales | Financiado por el Estado | Seguro Especial de Invalidez y Vejez |
-| **Ingresos Familiares hasta el 50% de 1 SBU** | $9.64 dólares mensuales | Financiado por el Estado | Seguro Especial de Invalidez y Vejez |
-| **Ingresos Familiares entre el 50% y 1 SBU** | $19.28 dólares mensuales | Financiado por el Estado | Seguro Especial de Invalidez y Vejez |
-| **Ingresos Familiares superiores a 1 SBU** | Proporcional de la escala | Sin subsidio fiscal directo | Seguro Especial de Invalidez y Vejez |
-
----
-
-## Errores frecuentes al afiliar al sector del hogar y cómo prevenirlos
-
-* **Creer que el aporte patronal del 11.15% se le puede descontar a la trabajadora**: Esto constituye una infracción a las leyes laborales del Ecuador. El aporte patronal debe ser asumido de forma exclusiva por el empleador doméstico, mientras que el descuento permitido en el rol de pagos es únicamente el del 9.45% del aporte personal de la empleada.
-* **No registrar el aviso de salida al finalizar la relación de servicio**: Si la trabajadora del hogar doméstica renuncia o es desvinculada, y el empleador olvida ingresar el aviso de salida en el portal del IESS dentro del plazo máximo de **15 días hábiles**, el sistema continuará generando planillas mensuales de cobro con acumulación de intereses de mora que deberán cancelarse obligatoriamente.
-* **Suponer que el seguro de amas de casa cubre emergencias médicas en hospitales del IESS**: Es sumamente común afiliarse al seguro de trabajo del hogar no remunerado pensando que se obtendrán turnos médicos o cirugías en el IESS. Este seguro especial subsidiado por ley cubre únicamente prestaciones de jubilación por vejez, pensiones por invalidez y muerte (montepío) y auxilios de funerales. La atención de salud de las amas de casa se brinda en la red del Ministerio de Salud Pública (MSP) de forma gratuita.
-
----
-
-## Ejemplo práctico del costo de afiliación doméstica por jornada parcial en 2026
-
-Imaginemos el caso de una trabajadora del hogar que labora para un empleador doméstico de forma parcial, cubriendo exactamente **medio tiempo (4 horas diarias)** de lunes a viernes en el año **2026**.
-
-* **Salario proporcional declarado (Medio tiempo)**: $241.00 dólares mensuales (equivalente al 50% del SBU de $482 proyectado).
-* **Aporte personal (9.45%)**: Se le descuenta de su sueldo la suma de $22.77 dólares.
-* **Aporte patronal (11.15%)**: El empleador asume el pago de $26.87 dólares por concepto de su obligación.
-* **Costo de planilla consolidado**: El empleador cancela de forma mensual la suma de $49.64 dólares en los canales autorizados de recaudación del IESS.
-* **Beneficio acumulado**: La trabajadora acumula imposiciones mensuales válidas para su récord de jubilación futura y cuenta con seguro médico y de cesantía completo en el IESS.
-
----
-
-## Preguntas Frecuentes sobre la afiliación del trabajo del hogar
-
-### ¿Qué pasa si una empleada doméstica trabaja por horas o días para distintos empleadores?
-El Reglamento del IESS contempla el esquema de **"Afiliación por Días o Tiempo Parcial"**. En este escenario, cada uno de los empleadores domésticos para los cuales presta servicios la trabajadora del hogar debe registrar de forma individual un número patronal y registrar un aviso de entrada, declarando de forma proporcional el número de días que labora al mes y el sueldo percibido. Las aportaciones y salarios de todos los empleadores domésticos se consolidan unificadamente a favor de la trabajadora en su historial laboral del IESS.
-
-### ¿Se tiene derecho al pago de fondos de reserva y décimos en el trabajo doméstico remunerado?
-Efectivamente. Las trabajadoras del hogar remuneradas gozan exactamente de los mismos derechos laborales y de seguridad social que cualquier otro trabajador del régimen general obligatorio de Ecuador. Esto implica el derecho a percibir el décimo tercer sueldo (Bono Navideño), décimo cuarto sueldo (Bono Escolar) y la acumulación o pago mensual de sus fondos de reserva una vez que la trabajadora haya cumplido su primer año completo de labores con el mismo empleador doméstico.
-
-### ¿Se puede afiliar al seguro especial de amas de casa si ya se recibe una pensión de montepío?
-Sí, la ley permite la afiliación en el régimen de trabajo del hogar no remunerado para personas que ya perciben una pensión por viudez u orfandad (montepío), siempre y cuando el solicitante se dedique de forma exclusiva a las tareas del hogar no remuneradas en su propio domicilio, cumpla con el rango de edad (entre 15 y 65 años) y no registre una afiliación activa de aportes en relación de dependencia o voluntaria de forma simultánea.
-
-### ¿Qué sanciones existen para un empleador que no afilia a su trabajadora del hogar?
-No afiliar a los trabajadores de la construcción, trabajadores agrícolas o trabajadoras del hogar desde el primer día de labores constituye una infracción legal muy grave en el Código del Trabajo y en la Ley de Seguridad Social de Ecuador. Además de la acumulación de glosas por mora e intereses, la Fiscalía del Estado puede iniciar procesos penales por el delito de "Falta de Afiliación del Trabajador a la Seguridad Social", sancionado con penas privativas de libertad de tres a siete días de acuerdo con las reformas vigentes en la legislación penal de Ecuador.
-
-### ¿Se puede retirar el fondo de cesantía en el seguro especial de amas de casa?
-No. El seguro de afiliación para el trabajo del hogar no remunerado (amas de casa) se enfoca exclusivamente en la acumulación de aportes para solventar las contingencias de vejez (jubilación), invalidez y muerte. Como consecuencia de su estructura subsidiada por el Estado, este régimen no incluye aportaciones para el fondo de cesantía ni fondos de reserva. Por consiguiente, las amas de casa afiliadas en este seguro especial no cuentan con saldos de cesantía acumulados para retirar del IESS.
-
----
-
-## Enlaces de interés interno para su trámite
-* Antes de afiliar a su trabajadora del hogar, aprenda cómo [Obtener la clave del IESS por primera vez](/blog/como-obtener-clave-iess-primera-vez) para gestionar el módulo patronal en línea.
-* Si desea afiliarse sin empleador, conozca las ventajas y condiciones del régimen de [Afiliación Voluntaria en Ecuador](/procedimiento/afiliacion-voluntaria) del portal.
-* Una vez afiliada la trabajadora del hogar, aprenda a [Consultar aportes e historial laboral](/blog/como-consultar-aportes-iess-historial-laboral) de manera mensual para verificar el pago correcto de sus planillas.
-`
+    "faqs": [
+      {
+        "q": "¿Qué se necesita para sacar la clave del IESS por primera vez?",
+        "a": "Para obtener la clave del IESS por primera vez necesita ser afiliado activo o cesante, tener su cédula de identidad a la mano, responder preguntas de validación de identidad en el portal y poseer un correo registrado."
+      },
+      {
+        "q": "¿Cuánto tiempo tarda en activarse la clave del IESS luego del desbloqueo virtual?",
+        "a": "El proceso de desbloqueo virtual o generación por primera vez es de carácter inmediato. Una vez que apruebe las preguntas de seguridad y confirme el enlace enviado a su correo, la clave se activa en segundos."
+      },
+      {
+        "q": "¿Qué pasa si mi correo electrónico registrado en el IESS ya no está activo?",
+        "a": "Si ya no tiene acceso al correo electrónico registrado en el IESS, no podrá finalizar la validación virtual. En este escenario, deberá acudir de forma presencial a un Centro de Atención Universal (CAU)."
+      },
+      {
+        "q": "¿Por qué se bloquea la clave del IESS frecuentemente?",
+        "a": "La clave se bloquea de forma automática tras registrar tres intentos fallidos consecutivos en el inicio de sesión. Esto ocurre como una medida estricta de seguridad digital para proteger sus datos personales."
+      },
+      {
+        "q": "¿Puedo solicitar la clave del IESS si soy extranjero sin cédula ecuatoriana?",
+        "a": "Sí, los ciudadanos extranjeros con código provisional de afiliación o pasaporte de identificación pueden solicitarla acudiendo presencialmente a ventanillas del IESS con su documento original."
+      }
+    ],
+    "content": "\n# Cómo obtener la clave del IESS por primera vez y recuperarla\n\nPara acceder a cualquier trámite o consulta en la plataforma informática de la seguridad social de Ecuador, contar con una clave patronal o personal de asegurado activa es indispensable. Si desea generar su contraseña por primera vez o ha perdido sus credenciales, en este artículo detallamos el proceso digital completo y seguro para restablecer el acceso a su portal transaccional en 2026. Conozca las directrices oficiales para la obtención y desbloqueo de forma autónoma.\n\n## En resumen: Datos clave sobre la obtención de la clave IESS\n* **Costo del trámite**: El proceso es 100% gratuito y se realiza directamente en línea sin intermediarios.\n* **Requisito fundamental**: Estar previamente registrado en la base de datos del IESS (como afiliado o jubilado).\n* **Canal preferente**: Generación virtual a través de la página web oficial iess.gob.ec.\n* **Acción presencial**: Obligatoria únicamente si no aprueba las preguntas de validación o su correo está desactualizado.\n* **Bloqueo de seguridad**: Tres intentos erróneos bloquean automáticamente el acceso a su cuenta personal.\n\n---\n\n## ¿Cuáles son los requisitos obligatorios para solicitar la clave?\n\nLa plataforma del IESS exige que el solicitante apruebe un estricto protocolo de seguridad digital para evitar el robo de identidad y el fraude electrónico. Las condiciones generales obligatorias para generar o cambiar su credencial son las siguientes:\n\n| Tipo de Asegurado | Documento Requerido | Requisito Digital | Canal de Atención |\n| :--- | :--- | :--- | :--- |\n| **Afiliado Activo** | Cédula de identidad vigente | Correo activo registrado en el IESS | 100% Virtual o presencial |\n| **Afiliado Voluntario** | Cédula o pasaporte | Correo y cuenta bancaria validada | 100% Virtual o presencial |\n| **Jubilado / Pensionista** | Cédula de ciudadanía | Historial laboral visible | Presencial (Ventanilla CAU) |\n| **Extranjero con código** | Pasaporte o credencial de refugiado | Datos de contacto ingresados | Exclusivamente presencial |\n\n---\n\n## Paso a paso para obtener su clave del IESS por primera vez\n\nEl trámite de solicitud inicial es completamente digital y puede realizarlo desde cualquier dispositivo con acceso a internet. Siga con precisión estas instrucciones para evitar inconvenientes en la validación:\n\n### Paso 1: Ingreso al Portal de Generación de Claves\nAcceda al sitio web oficial [iess.gob.ec](https://www.iess.gob.ec). En la página de inicio, busque y haga clic en la opción **\"Trámites Virtuales\"**, luego seleccione el portal de **\"Asegurados\"** y escoja la opción **\"Afiliados\"**. Finalmente, busque el servicio de **\"Generar / Recuperar Clave\"**.\n\n### Paso 2: Validación de Identidad y Cédula\nEl sistema le solicitará ingresar su número de cédula de ciudadanía. Escríbalo de forma continua sin guiones ni espacios. El sistema cruzará información inmediata con la base de datos del Registro Civil de Ecuador para validar que la identidad ingresada corresponda a un asegurado activo o cesante.\n\n### Paso 3: Responder Preguntas Desafío de Seguridad\nPara cerciorarse de que usted es el titular legítimo del trámite, la plataforma arrojará una serie de preguntas de opción múltiple referentes a su vida laboral o financiera (por ejemplo: nombres de empleadores anteriores, bancos donde posee cuentas, o meses con aportaciones registradas). Debe responderlas de forma exacta; si falla en tres intentos, el proceso virtual se inhabilitará.\n\n### Paso 4: Confirmación mediante Enlace de Correo\nSi supera el cuestionario de preguntas, el sistema le enviará un enlace de verificación de un solo uso al correo electrónico que tiene registrado en la base de datos institucional. Dispone de un plazo máximo de **15 minutos** para abrir el correo, hacer clic en el enlace y definir su nueva clave de acceso de 8 caracteres alfanuméricos.\n\n---\n\n## Cómo recuperar o desbloquear su clave del IESS en línea\n\nSi su clave fue bloqueada debido a intentos incorrectos o no recuerda los caracteres, el portal web del IESS dispone de un canal de recuperación expedito para afiliados activos y cesantes.\n\n1. **Acceder a la opción de recuperación**: Ingrese al portal de ingreso del afiliado en iess.gob.ec y haga clic en el botón de **\"¿Olvidó su clave?\"**.\n2. **Ingreso de datos**: Introduzca su número de cédula y complete el captcha de validación de seguridad visual.\n3. **Respuesta a preguntas de control**: Responda las tres preguntas de validación personal que generó al momento de registrar su cuenta por primera vez.\n4. **Envío de enlace de desbloqueo**: Si las respuestas son correctas, el portal enviará el enlace de reinicio a su dirección de correo electrónico registrada. Siga las instrucciones del enlace para establecer su contraseña nueva.\n\n---\n\n## Documentos necesarios para el trámite en ventanilla (CAU)\n\nSi no logra superar el cuestionario virtual de seguridad debido a datos obsoletos, o si su correo electrónico registrado ya no existe, debe realizar la actualización biométrica presencial. Los documentos indispensables son:\n\n* **Original de su cédula de identidad** en perfectas condiciones y vigente.\n* **Copia de la papeleta de votación** del último proceso electoral obligatorio en Ecuador.\n* **Formulario físico de desbloqueo de clave** firmado por el titular del derecho.\n* **Certificado de cuenta bancaria** activo y emitido por su entidad financiera nacional (si desea validar cuenta a la par).\n\n---\n\n## Errores frecuentes al gestionar su clave de seguridad y cómo prevenirlos\n\n* **Equivocarse en las preguntas de control financiero**: Muchas personas olvidan el nombre legal exacto de sus empleadores históricos y fallan las preguntas. Le sugerimos revisar previamente su historial laboral o roles de pago viejos para refrescar la memoria.\n* **Retraso en abrir el enlace de correo**: El correo de confirmación de clave suele tardar de 1 a 2 minutos. Si no hace clic en el enlace dentro de los 15 minutos reglamentarios, el token de seguridad caducará y tendrá que reiniciar todo el trámite.\n* **Usar claves genéricas o fáciles de adivinar**: El sistema rechaza claves simples como fechas de nacimiento, secuencias consecutivas (12345678) o nombres propios. Utilice una combinación de letras mayúsculas, minúsculas y números para salvaguardar sus datos.\n\n---\n\n## Ejemplo práctico de restablecimiento de accesos en 2026\n\nSupongamos que un afiliado independiente desea recuperar su contraseña bloqueada en el mes de marzo del año **2026**.\n\n* **Estado inicial**: Clave bloqueada por 3 intentos fallidos consecutivos tras confundir su contraseña con la de su banca en línea.\n* **Acción virtual**: Ingresa a iess.gob.ec, presiona \"Desbloquear clave\", introduce cédula y aprueba las preguntas desafío referentes a su SBU estimado en la aportación.\n* **Aprobación de token**: Recibe en su buzón de correo personal el token biométrico digital de confirmación.\n* **Resultado**: Al hacer clic en el enlace, el afiliado ingresa una nueva contraseña robusta y retoma de inmediato el control de su cuenta para consultar aportaciones o solicitar créditos en el BIESS.\n\n---\n\n## Preguntas Frecuentes sobre la clave de afiliado del IESS\n\n### ¿Qué puedo hacer si se inhabilita el proceso digital por responder mal las preguntas de control?\nSi falla las preguntas de validación personal de forma repetida, el sistema bloqueará temporalmente la opción digital por seguridad. En este caso, la única alternativa legal para salvaguardar la integridad de su información es acudir de forma presencial a un Centro de Atención Universal del IESS con su cédula de identidad para que un analista verifique su identidad en ventanilla y proceda a resetear su cuenta.\n\n### ¿Se puede solicitar el desbloqueo de clave mediante un tercero o con una carta de autorización?\nNo, el trámite de desbloqueo de clave del IESS o la entrega de contraseñas es un procedimiento estrictas y estrictamente **personal e intransferible** por motivos de confidencialidad de datos. No se acepta delegar el trámite mediante cartas de autorización simples. Únicamente se procesará a través de un tercero en caso de poseer un poder notarial amplio y específico que faculte la gestión ante el IESS.\n\n### ¿Qué características de seguridad debe cumplir mi nueva clave del IESS?\nLa contraseña del portal de asegurados debe cumplir obligatoriamente con una serie de criterios de complejidad para ser aceptada por los servidores de la institución: debe tener una extensión exacta de entre 8 y 15 caracteres, incluir al menos una letra mayúscula, una letra minúscula, un número del 0 al 9, y no poseer caracteres especiales como asteriscos, guiones o barras.\n\n### ¿Tiene algún costo o vigencia la clave que genero por internet?\nLa generación de su clave por primera vez y su posterior utilización en línea es un servicio de carácter **gratuito e indefinido**. No tiene fecha de caducidad obligatoria, sin embargo, los protocolos de seguridad digital de la institución sugieren realizar un cambio voluntario de la contraseña al menos una vez al año para mitigar riesgos de vulnerabilidades cibernéticas.\n\n### ¿Puedo utilizar la misma clave de afiliado para el portal transaccional del BIESS?\nEfectivamente, la clave personal que asigne a su cuenta de asegurado en el portal general del IESS es la misma credencial de validación de identidad que utilizará para ingresar al sistema de préstamos quirografarios o hipotecarios del portal del BIESS. No requiere generar contraseñas diferenciadas para ambas plataformas.\n\n---\n\n## Enlaces de interés interno para su trámite\n* Si necesita registrar su cuenta de ahorros para préstamos o subsidios, revise el trámite de [actualización de datos bancarios](/procedimiento/actualizacion-datos).\n* Tras obtener su clave de seguridad, aprenda a [Consultar aportaciones e historial laboral](/blog/como-consultar-aportes-iess-historial-laboral) en línea.\n* Gestione sus finanzas solicitando de manera ágil un [Préstamo Quirografario BIESS](/procedimiento/prestamo-quirografario) con su nueva credencial.\n* Explore los requisitos necesarios para afiliarse por su cuenta mediante la guía de [Afiliación Voluntaria](/procedimiento/afiliacion-voluntaria) del portal.\n"
+  },
+  {
+    "id": "como-consultar-aportes-iess-historial-laboral",
+    "slug": "como-consultar-aportes-iess-historial-laboral",
+    "title": "Cómo consultar aportes del IESS e historial laboral en línea",
+    "seoTitle": "Consulta de Aportes del IESS en línea | IESS Asistente",
+    "metaDescription": "Guía completa para consultar tus aportaciones del IESS y descargar tu historial laboral en 2026. Requisitos, cálculo de aportes y pasos digitales.",
+    "keywords": [
+      "consultar aportes iess",
+      "historial laboral iess",
+      "aportaciones iess",
+      "iess historial de aportes"
+    ],
+    "category": "Trámites",
+    "publishDate": "2026-03-12",
+    "dateModified": "2026-10-01",
+    "readTime": 12,
+    "image": "/og/como-consultar-aportes-iess-historial-laboral.jpg",
+    "imageAlt": "Visualización digital del historial laboral y aportaciones acumuladas en la plataforma del IESS de Ecuador",
+    "author": "equipo-editorial",
+    "relatedSlugs": [
+      "como-obtener-clave-iess-primera-vez",
+      "fondos-de-reserva-iess-consulta-acumulacion-retiro-2026",
+      "jubilacion-por-vejez-requisitos-2026"
+    ],
+    "sources": [
+      {
+        "label": "IESS - Consulta de Aportes en Línea",
+        "url": "https://www.iess.gob.ec",
+        "accessedAt": "2026-10-01"
+      },
+      {
+        "label": "Ley de Seguridad Social de Ecuador - Artículos de Recaudación",
+        "url": "https://www.iess.gob.ec",
+        "accessedAt": "2026-10-01"
+      }
+    ],
+    "faqs": [
+      {
+        "q": "¿Cómo puedo saber cuántas aportaciones tengo acumuladas en el IESS?",
+        "a": "Para consultar el número total de aportaciones, ingrese a iess.gob.ec -> Asegurados -> Afiliados -> Historial Laboral. Coloque su cédula y clave. En la sección \"Aportes\" podrá visualizar el desglose consolidado de sus imposiciones."
+      },
+      {
+        "q": "¿Por qué no se reflejan mis aportes del mes actual en el historial laboral?",
+        "a": "Los empleadores tienen plazo legal de pago de planillas hasta el día 15 del mes siguiente al laborado. Por consiguiente, el aporte del mes en curso se verá reflejado en su historial laboral después del pago patronal."
+      },
+      {
+        "q": "¿Se puede descargar el historial de aportes en formato PDF oficial?",
+        "a": "Sí, la plataforma del IESS permite generar y descargar un documento consolidado de su historial de aportes en formato PDF, el cual cuenta con un código QR y firma digital para validez legal de trámites."
+      },
+      {
+        "q": "¿Qué hacer si detecto que un empleador no pagó mis aportes al IESS?",
+        "a": "Si constata la falta de aportes de un empleador, puede entablar una queja formal digital o reclamo por falta de afiliación en iess.gob.ec. El IESS iniciará una inspección patronal y emitirá glosas con intereses."
+      },
+      {
+        "q": "¿Las aportaciones acumuladas con distintos empleadores se suman para la jubilación?",
+        "a": "Efectivamente, todas las cotizaciones y aportes mensuales registrados legítimamente a lo largo de su trayectoria profesional se suman y consolidan de forma automática en su historial laboral unificado."
+      }
+    ],
+    "content": "\n# Cómo consultar aportes del IESS e historial laboral en línea\n\nEl historial laboral unificado es el documento digital más relevante para los asegurados en Ecuador, ya que detalla con exactitud las imposiciones mensuales acumuladas a lo largo de su vida laboral activa. Si necesita verificar si su empleador se encuentra al día con los pagos patronales, calcular su proyección para jubilación, o certificar su tiempo de servicio para créditos del BIESS, en esta guía detallamos cómo consultar y descargar sus aportes en 2026.\n\n## En resumen: Datos clave sobre el historial de aportes IESS\n* **Gratuidad del servicio**: La consulta y descarga de aportes no tiene costo alguno en el portal.\n* **Tiempo de actualización**: Los aportes se registran hasta el 15 del mes siguiente al laborado.\n* **Uso primordial**: Indispensable para calificar a préstamos quirografarios o iniciar trámites de pensión.\n* **Validación de autenticidad**: El historial en PDF cuenta con un código de validación seguro.\n* **Resolución de inconsistencias**: Permite identificar mora patronal de empleadores a tiempo para evitar multas.\n\n---\n\n## Estructura de aportación ordinaria en Ecuador (Tasa de cotización)\n\nEl monto aportado mensualmente a su cuenta individual del IESS depende directamente de su salario declarado en nómina. El aporte es compartido entre el trabajador y el empleador.\n\nLa estructura oficial de aportaciones se define de la siguiente manera:\n\n| Tipo de Afiliado | Aporte Personal (% de sueldo) | Aporte Patronal (% de sueldo) | Cotización Total Acumulada |\n| :--- | :--- | :--- | :--- |\n| **Bajo relación de dependencia** | 9.45% (descuento al trabajador) | 11.15% (pago del empleador) | 20.60% del salario neto |\n| **Afiliado Voluntario** | 17.60% (asumido por el titular) | 0.00% (sin empleador) | 17.60% del salario neto |\n| **Servidor Público ordinario** | 11.45% (descuento en rol) | 9.15% (asumido por el Estado) | 20.60% del salario neto |\n| **Trabajador Independiente** | 17.60% (asumido por el titular) | 0.00% (sin empleador) | 17.60% del salario neto |\n\n---\n\n## Paso a paso para consultar su historial de aportes por internet\n\nSiga estas indicaciones técnicas para ingresar al módulo de consulta laboral del IESS y visualizar su historial consolidado:\n\n### Paso 1: Acceso al Sistema de Afiliados\nIngrese a la dirección web oficial [iess.gob.ec](https://www.iess.gob.ec). En la barra superior de servicios interactivos, seleccione **\"Servicios en Línea\"**, haga clic en **\"Asegurados\"** y escoja la opción de **\"Afiliados\"**. En el catálogo digital, busque el servicio denominado **\"Historial Laboral\"**.\n\n### Paso 2: Validación con Credenciales de Acceso\nDigite su número de cédula de ciudadanía de 10 dígitos y su clave de seguridad personal unificada. Resuelva las comprobaciones de captcha si la plataforma se las solicita por seguridad del servidor.\n\n### Paso 3: Visualización de Imposiciones Consolidadas\nUna vez dentro del portal personal del afiliado, diríjase al menú lateral izquierdo y seleccione la opción **\"Consultas\"**, luego haga clic en **\"Aportes\"**. El sistema le mostrará una tabla interactiva detallada con todos los meses cotizados, salarios declarados, nombres de empleadores de nómina y el estado del pago del aporte (si consta cancelado, en planilla o en mora).\n\n### Paso 4: Generación y Descarga del Historial Laboral consolidado\nPara certificar su tiempo de aportaciones ante entidades externas o bancarias:\n1. En el menú de consultas, seleccione **\"Historial Laboral\"** o **\"Resumen de Aportes\"**.\n2. El portal web compilará toda su información de trayectoria y generará un archivo consolidado en formato PDF.\n3. Descargue el archivo en su ordenador. Verifique que cuente con el sello digital, código QR de validación y firma de control oficial del IESS para su plena validez en trámites.\n\n---\n\n## Documentos necesarios para reclamos de aportaciones omitidas\n\nSi al consultar su historial constata que faltan meses aportados o que un empleador nunca reportó su afiliación debidamente:\n\n* **Roles de pago originales** firmados por el representante legal o sellados por el departamento contable de la empresa.\n* **Contrato de trabajo legalizado** debidamente ingresado ante el Ministerio del Trabajo de Ecuador.\n* **Copia de los estados de cuenta bancarios** de nómina que demuestren el depósito regular de su sueldo mensual.\n* **Acta de finiquito o liquidación** de ser el caso en que se haya finalizado la relación laboral del reclamante.\n\n---\n\n## Errores comunes al revisar sus imposiciones acumuladas\n\n* **Creer que el aporte del mes actual se refleja inmediatamente**: Muchos afiliados revisan el sistema el día 5 de cada mes y creen que hay mora. Los empleadores disponen legalmente hasta el día 15 de cada mes para cancelar las planillas de cotización del mes anterior.\n* **Confundir aportes simultáneos como imposiciones dobles**: Si trabaja para dos empleadores al mismo tiempo en el mismo mes, acumula aportación doble en dinero, pero para el cómputo de la jubilación solo se contabiliza como **una sola imposición de tiempo mensual** ordinaria.\n* **No actualizar su cuenta bancaria para subsidios asociados**: Si el historial de aportes está completo pero no tiene la cuenta registrada en el CAU, los subsidios derivados de esas aportaciones (por enfermedad o maternidad) no se acreditarán.\n\n---\n\n## Ejemplo práctico del cálculo de aportaciones en 2026\n\nVeamos cómo se realiza el cálculo mensual de cotización para un afiliado dependiente en el año **2026** que percibe un sueldo mensual básico de **$1,000 dólares**.\n\n* **Sueldo bruto nominal**: $1,000.\n* **Aporte personal (9.45%)**: Se descuenta $94.50 dólares directamente de su rol de pagos mensual.\n* **Aporte patronal (11.15%)**: El empleador asume el pago de $111.50 dólares por su cuenta (este valor no se descuenta de su salario).\n* **Ingreso total en las arcas del IESS**: $206.00 dólares destinados a financiar sus fondos individuales y de salud general.\n* **Resultado en el Historial**: Tras realizarse el depósito patronal, el historial laboral unificado sumará automáticamente una (1) imposición consolidada para el récord de su jubilación.\n\n---\n\n## Preguntas Frecuentes sobre el Historial Laboral del IESS\n\n### ¿Qué significa el estado \"En Planilla\" en mi historial de aportaciones?\nEl estado \"En Planilla\" indica que su empleador ya ha generado la planilla mensual de pago en el módulo del IESS y el valor está precalculado, pero todavía no se ha efectivizado el depósito de dinero correspondiente. Este estado suele aparecer entre el 1 y el 14 de cada mes y es una situación ordinaria previa al cobro definitivo de aportes.\n\n### ¿Se pueden recuperar aportaciones omitidas por una empresa que ya cerró o quebró?\nSí, es factible reclamar aportaciones de empresas disueltas o liquidadas. Debe ingresar una denuncia formal ante la Dirección de Inspección y Control de Recaudación del IESS adjuntando todos sus justificativos documentales de relación laboral histórica. El IESS establecerá una glosa de cobro coactivo con intereses y multas acumulados en contra de los antiguos accionistas y representantes legales.\n\n### ¿Cuántos aportes necesito para solicitar mi préstamo quirografario del BIESS?\nPara calificar a un crédito quirografario del BIESS en 2026, el sistema exige un mínimo de **36 aportaciones mensuales totales acumuladas** a lo largo de su vida laboral activa. Adicionalmente, las últimas **12 aportaciones** deben ser consecutivas e inmediatamente anteriores a la fecha en que ingresa su simulación crediticia.\n\n### ¿Qué validez legal tiene el historial laboral en PDF que descargo de internet?\nEl historial de aportaciones unificado descargado de la plataforma del IESS cuenta con plena validez jurídica para cualquier trámite legal, administrativo o consular dentro y fuera del país. Esto se debe a que incorpora un certificado de firma electrónica del IESS y un código QR único que permite a los funcionarios verificar su autenticidad en tiempo real.\n\n### ¿Puedo unificar las aportaciones si he cotizado como voluntario y bajo dependencia laboral?\nSí, las aportaciones realizadas de forma independiente como afiliado voluntario y las acumuladas como trabajador en relación de dependencia laboral se consolidan y unifican de forma **automática** bajo su número único de cédula en su historial laboral general. No requiere realizar trámites de homologación o unificación presenciales.\n\n---\n\n## Enlaces de interés interno para su trámite\n* Conozca cómo acumular o solicitar el pago de sus [fondos de reserva](/fondos-reserva/acumulacion-mensualizacion) mensuales.\n* Tras certificar sus aportaciones, consulte las condiciones para acceder a la [Jubilación por Vejez IESS](/procedimiento/jubilacion-vejez) del portal.\n* Gestione sus finanzas personales solicitando un [Préstamo Quirografario BIESS](/procedimiento/prestamo-quirografario) de manera virtual.\n* Si le falta la clave para ingresar al portal de consultas, revise cómo [Obtener y Desbloquear su clave del IESS](/blog/como-obtener-clave-iess-primera-vez) en minutos.\n"
+  },
+  {
+    "id": "como-saber-si-estoy-afiliado-al-iess",
+    "slug": "como-saber-si-estoy-afiliado-al-iess",
+    "title": "Cómo saber si estoy afiliado al IESS: Consulta de estado",
+    "seoTitle": "Cómo Saber si Estoy Afiliado al IESS | IESS Asistente",
+    "metaDescription": "Guía independiente para consultar si estás afiliado al IESS en 2026. Descarga tu certificado de afiliación y verifica tu estado laboral actual.",
+    "keywords": [
+      "cómo saber si estoy afiliado al IESS",
+      "consultar afiliación IESS",
+      "certificado de afiliación IESS",
+      "verificar afiliación IESS"
+    ],
+    "category": "Trámites",
+    "publishDate": "2026-03-15",
+    "dateModified": "2026-10-01",
+    "readTime": 12,
+    "image": "/og/como-saber-si-estoy-afiliado-al-iess.jpg",
+    "imageAlt": "Formulario digital para verificar el estado de afiliación activa o cesante en el IESS",
+    "author": "equipo-editorial",
+    "relatedSlugs": [
+      "como-obtener-clave-iess-primera-vez",
+      "como-consultar-aportes-iess-historial-laboral",
+      "afiliacion-voluntaria-iess-requisitos-beneficios-2026"
+    ],
+    "sources": [
+      {
+        "label": "IESS - Consulta de Afiliación",
+        "url": "https://www.iess.gob.ec",
+        "accessedAt": "2026-10-01"
+      },
+      {
+        "label": "Ley de Seguridad Social de Ecuador - Derechos del Afiliado",
+        "url": "https://www.iess.gob.ec",
+        "accessedAt": "2026-10-01"
+      }
+    ],
+    "faqs": [
+      {
+        "q": "¿Cómo puedo verificar si estoy afiliado al IESS solo con mi número de cédula?",
+        "a": "Para consultar si se encuentra afiliado, ingrese al portal oficial del IESS (iess.gob.ec), diríjase a la sección \"Servicios en Línea\", seleccione \"Asegurados\" -> \"Ciudadanos\" y elija la opción \"Certificado de Afiliación\". Digite su número de cédula de ciudadanía de diez dígitos y su fecha de nacimiento; el sistema generará de forma inmediata su estado de afiliación actual sin necesidad de clave."
+      },
+      {
+        "q": "¿Qué significa el estado \"Cesante\" en mi consulta de afiliación del IESS?",
+        "a": "El estado de \"Cesante\" significa que actualmente no registra aportaciones activas al sistema de seguridad social. Esto sucede comúnmente cuando un afiliado bajo relación de dependencia ha sido desvinculado de su puesto de trabajo y su antiguo empleador ya registró el aviso de salida obligatorio en la plataforma transaccional."
+      },
+      {
+        "q": "¿Cuánto tiempo tiene un empleador para registrar mi afiliación al IESS?",
+        "a": "De acuerdo con el artículo 73 de la Ley de Seguridad Social, el empleador tiene la obligación legal de registrar el aviso de entrada desde el primer día de labores del trabajador. El registro extemporáneo genera sanciones de mora patronal, intereses y responsabilidad patronal en caso de siniestros o atenciones médicas."
+      },
+      {
+        "q": "¿Puedo recibir atención médica si mi empleador está en mora con el IESS?",
+        "a": "Sí, los afiliados bajo relación de dependencia tienen derecho a recibir atención médica de emergencia y maternidad aun cuando su empleador se encuentre en mora. No obstante, el IESS cobrará posteriormente al empleador moroso todos los costos de la atención brindada mediante glosas de responsabilidad patronal."
+      },
+      {
+        "q": "¿Qué validez legal tiene el certificado de afiliación que descargo por internet?",
+        "a": "El certificado de afiliación descargado del portal del IESS en formato PDF tiene plena validez legal en Ecuador para cualquier trámite institucional, académico, laboral o consular. El documento cuenta con una firma digital institucional y un código QR de validación que permite verificar su autenticidad en tiempo real."
+      },
+      {
+        "q": "¿Cómo puedo afiliarme de forma independiente si mi consulta dice que estoy cesante?",
+        "a": "Si se encuentra cesante y trabaja de forma autónoma o independiente, puede solicitar la afiliación voluntaria en línea. Debe ingresar a la opción de \"Afiliación Voluntaria\" en el portal web, colocar su número de cédula y declarar un ingreso mensual no menor al Salario Básico Unificado vigente ($482 para el año 2026) para cotizar con la tasa de aportación del 17.60%."
+      }
+    ],
+    "content": "\n# Cómo saber si estoy afiliado al IESS: Guía de Consulta de Estado\n\nPara verificar si te encuentras registrado activamente en el sistema de seguridad social de Ecuador, puedes realizar una consulta rápida en línea utilizando tu número de cédula. Este servicio virtual te permite conocer de forma inmediata si estás afiliado al IESS, si tu empleador ha registrado tu aviso de entrada de manera oportuna, o si te encuentras en estado cesante. Conocer tu estado de aportación es fundamental para acceder a servicios de salud, solicitar préstamos quirografarios o planificar tu jubilación en el año 2026.\n\n---\n\n## En resumen: Datos clave sobre la verificación de afiliación al IESS\n* **Costo del trámite**: El proceso de consulta y descarga del certificado de afiliación es 100% gratuito.\n* **Requisito de acceso**: Únicamente se requiere el número de cédula de ciudadanía o el código provisional para extranjeros. No se requiere clave de usuario.\n* **Tipos de estado**: El sistema mostrará tres estados posibles: Activo, Cesante o No Registrado.\n* **Actualización del sistema**: Los avisos de entrada o de salida se reflejan de forma inmediata una vez procesados por el empleador.\n* **Validez legal**: El certificado en formato PDF descargado tiene vigencia de 30 días y cuenta con validación por código QR.\n\n---\n\n## ¿Cuáles son los estados de afiliación en el IESS y qué significan?\n\nCuando realizas la consulta en la plataforma oficial del IESS, el sistema cruzará tu información de identidad y aportes para emitir un diagnóstico de tu situación de aseguramiento. Es indispensable comprender qué implica cada uno de los estados reportados para evitar sorpresas al momento de requerir servicios médicos o prestaciones económicas:\n\n| Estado Reportado | Significado Legal | Cobertura de Salud Activa | Acceso a Créditos BIESS |\n| :--- | :--- | :--- | :--- |\n| **Activo** | Registras aportaciones vigentes bajo relación de dependencia, voluntaria o independiente. | Sí, de forma ilimitada (tras cumplir meses de carencia). | Sí, sujeto a requisitos de aportación acumulada. |\n| **Cesante** | Has dejado de cotizar. El empleador registró tu aviso de salida o suspendiste el pago voluntario. | Sí, hasta 60 días de protección de salud posterior al cese. | No, no se puede calificar a nuevos préstamos estando cesante. |\n| **No Registrado / Sin historial** | Tu número de cédula no se encuentra ingresado en la base de datos de asegurados del IESS. | No, sin acceso a prestaciones médicas ni de jubilación. | No, requiere historial previo de cotizaciones. |\n\n---\n\n## Paso a paso para consultar si estás afiliado al IESS en línea\n\nEl Instituto Ecuatoriano de Seguridad Social ha simplificado este proceso para que cualquier ciudadano pueda verificar su estado laboral sin necesidad de ingresar con una contraseña. Siga estas instrucciones detalladas para realizar la consulta de manera rápida y segura:\n\n### Paso 1: Navegar a la sección de Certificados en Línea\nAbre tu navegador de internet favorito y dirígete al portal web oficial del IESS: [iess.gob.ec](https://www.iess.gob.ec). En el menú principal de la página, busca la pestaña **\"Servicios en Línea\"**, desliza el cursor y haz clic en **\"Asegurados\"**. A continuación, selecciona la opción **\"Ciudadanos\"** y pulsa sobre el enlace interactivo denominado **\"Certificado de Afiliación\"**.\n\n### Paso 2: Ingresar los datos de identidad\nUna vez redirigido a la aplicación web de certificados de afiliación, el sistema te solicitará ingresar los datos del consultante. Introduce tu número de cédula de ciudadanía de 10 dígitos de forma continua (sin utilizar guiones o espacios). En el siguiente campo, digita tu fecha de nacimiento seleccionando el día, mes y año en el calendario interactivo que aparece en pantalla.\n\n### Paso 3: Responder la verificación de seguridad\nPor motivos de protección contra sistemas automatizados y seguridad de datos personales, el portal web del IESS te pedirá que completes un captcha sencillo o ingreses caracteres de validación visual. Digita los caracteres tal como aparecen en la imagen y haz clic en el botón de **\"Consultar\"**.\n\n### Paso 4: Visualizar el estado y descargar el Certificado en PDF\nLa plataforma procesará la solicitud en fracciones de segundo. Si te encuentras afiliado de forma activa, la pantalla mostrará un botón interactivo para **\"Descargar Certificado de Afiliación\"**. Al hacer clic en este botón, se generará y guardará de forma automática un archivo en formato PDF en tu dispositivo. Este documento certifica oficialmente tus derechos vigentes y detalla si te encuentras cotizando como afiliado activo.\n\n---\n\n## Documentos necesarios para regularizar tu estado de afiliación\n\nEn situaciones donde la consulta digital arroje un estado erróneo, o si trabajas en una empresa y tu estado sigue apareciendo como \"Cesante\" debido a una omisión patronal, deberás recopilar documentación probatoria para interponer un reclamo formal ante el IESS:\n\n* **Original de la cédula de ciudadanía** del asegurado afectado.\n* **Copia del contrato de trabajo** debidamente registrado y legalizado ante el Ministerio del Trabajo de Ecuador.\n* **Roles de pago mensuales** debidamente firmados y sellados que evidencien el descuento del aporte personal del 9.45%.\n* **Certificado de cuenta bancaria** validado por el IESS para descartar problemas de cobros anteriores.\n* **Historial de transacciones de aportes** (para cotejar si existen meses de mora que impidan la emisión regular de tus certificados de derechos).\n\n---\n\n## Errores frecuentes al consultar el estado de afiliación y cómo evitarlos\n\n* **Ingresar el número de cédula con guión o espacios**: La plataforma informática del IESS es sensible a los caracteres especiales. Si ingresas el guión intermedio de tu cédula, el sistema arrojará un error de formato. Escribe los 10 dígitos numéricos de forma completamente unida.\n* **Confundir la vigencia del certificado**: El certificado de afiliación descargado tiene una vigencia de validez de exactamente **30 días de calendario** a partir de la fecha de su emisión. Si presentas un documento impreso con una antigüedad mayor para un trámite público o privado, será rechazado y deberás descargarlo nuevamente en línea.\n* **Suponer que el aviso de entrada es inmediato para la cobertura de salud**: Aunque el aviso de entrada te califica como activo en pocas horas, para gozar de atención médica de especialidad (no emergencias), el IESS exige un período mínimo de cotización continua (generalmente 3 meses consecutivos de aportes para afiliados dependientes y 6 meses para voluntarios).\n\n---\n\n## Ejemplo práctico de verificación de afiliación en 2026\n\nSupongamos la situación de un trabajador que inicia sus labores en una empresa privada en la ciudad de Quito en el mes de marzo de **2026**.\n\n* **Día de inicio laboral**: 2 de marzo de 2026.\n* **Salario acordado**: $500.00 mensuales (superior al Salario Básico Unificado de $482 proyectado para 2026).\n* **Acción del empleador**: Registra el aviso de entrada el mismo 2 de marzo de 2026 para cumplir con el artículo 73 de la Ley de Seguridad Social.\n* **Verificación del trabajador**: El 3 de marzo de 2026, el trabajador ingresa a iess.gob.ec, digita su cédula y descarga su certificado de afiliación.\n* **Resultado de la consulta**: El estado reportado es **\"Activo\"**, confirmando que ya se encuentra protegido por el seguro general obligatorio y acumulando imposiciones para su historial.\n\n---\n\n## Preguntas Frecuentes sobre la verificación de afiliación al IESS\n\n### ¿Por qué mi consulta de afiliación dice \"No registra aportaciones\" si estoy trabajando actualmente?\nEste problema suele originarse por dos causas comunes: la primera es que tu empleador aún no ha registrado tu aviso de entrada en el sistema transaccional del IESS, lo cual constituye una infracción legal sujeta a multas. La segunda causa es que la empresa se encuentra en mora patronal severa y las planillas mensuales de aportes no han sido canceladas. En ambos escenarios, debes solicitar de inmediato al departamento de recursos humanos la regularización de tu situación o ingresar una queja laboral en línea.\n\n### ¿Puedo descargar mi certificado de afiliación si soy extranjero con código provisional?\nSí, los ciudadanos extranjeros que se encuentran afiliados al IESS bajo un código provisional de afiliación o que cotizan mediante su número de pasaporte pueden consultar su estado y descargar su certificado de afiliación oficial. El proceso es idéntico: deben ingresar al portal de consulta de certificados y digitar su código de afiliación asignado de forma manual en lugar del número de cédula tradicional.\n\n### ¿Se puede consultar el estado de afiliación de una persona fallecida?\nNo de forma directa a través del módulo simplificado para ciudadanos. Por motivos de privacidad de datos, el sistema de consulta en línea bloquea la generación de certificados de afiliación activos para personas cuyo estado civil consta como fallecido en la base de datos unificada del Registro Civil de Ecuador. Los familiares que requieran certificar el historial laboral de un afiliado fallecido para trámites de pensión de montepío o auxilio de funerales deben realizar la solicitud presencialmente en ventanillas del IESS.\n\n### ¿La consulta de afiliación sirve para verificar si estoy afiliado al Seguro Social Campesino?\nEfectivamente, la base de datos general del IESS consolida la información de todos los regímenes prestacionales del país. Al realizar la consulta en línea, si te encuentras registrado bajo el régimen especial del Seguro Social Campesino (SSC), el certificado de afiliación emitido detallará expresamente tu condición de beneficiario activo de este seguro, indicando la provincia y el dispensario médico campesino al cual te encuentras adscrito.\n\n### ¿Por cuánto tiempo se mantiene mi cobertura médica en el IESS si me quedo desempleado?\nEl Reglamento de Salud del IESS contempla un periodo de gracia denominado **\"Periodo de Protección\"** para todos los afiliados bajo relación de dependencia que han quedado cesantes. Durante un lapso máximo de **60 días consecutivos (2 meses)** posteriores a la fecha de registro del aviso de salida laboral, el asegurado y sus dependientes calificados mantienen plenamente el derecho a recibir atención médica general, ginecológica, odontológica y de maternidad en los centros de salud de la red institucional.\n\n---\n\n## Enlaces de interés interno para su trámite\n* Conozca los plazos reglamentarios para empleadores revisando la normativa de [aviso de entrada y salida del IESS](/procedimiento/aviso-entrada-salida).\n* Aprende a descargar el documento en la guía paso a paso de [Descarga de Certificado de Afiliación](/certificados/afiliacion).\n* Si te encuentras cesante, revisa cómo reactivar tus derechos mediante la [Afiliación Voluntaria en Ecuador](/procedimiento/afiliacion-voluntaria).\n* Una vez confirmado tu estado activo, puedes proceder a [Consultar tus aportes e historial laboral](/blog/como-consultar-aportes-iess-historial-laboral) acumulados en línea.\n"
+  },
+  {
+    "id": "afiliacion-trabajo-hogar-iess-requisitos",
+    "slug": "afiliacion-trabajo-hogar-iess-requisitos",
+    "title": "Afiliación trabajo hogar IESS requisitos y costo 2026",
+    "seoTitle": "Afiliación Trabajo del Hogar al IESS | IESS Asistente",
+    "metaDescription": "Requisitos, costo mensual y beneficios de la afiliación para trabajadoras del hogar y amas de casa en el IESS para 2026. Guía de registro paso a paso.",
+    "keywords": [
+      "afiliación trabajo hogar IESS requisitos",
+      "afiliar trabajadora del hogar IESS",
+      "seguro de amas de casa IESS",
+      "costo afiliación doméstica"
+    ],
+    "category": "Trámites",
+    "publishDate": "2026-03-18",
+    "dateModified": "2026-10-01",
+    "readTime": 12,
+    "image": "/og/afiliacion-trabajo-hogar-iess-requisitos.jpg",
+    "imageAlt": "Afiliación a la seguridad social para personas trabajadoras del hogar y amas de casa en Ecuador",
+    "author": "equipo-editorial",
+    "relatedSlugs": [
+      "como-obtener-clave-iess-primera-vez",
+      "como-consultar-aportes-iess-historial-laboral",
+      "afiliacion-voluntaria-iess-requisitos-beneficios-2026"
+    ],
+    "sources": [
+      {
+        "label": "Ley de Seguridad Social de Ecuador - Régimen Especial de Trabajo del Hogar",
+        "url": "https://www.iess.gob.ec",
+        "accessedAt": "2026-10-01"
+      },
+      {
+        "label": "Ministerio del Trabajo de Ecuador - Tablas de Salarios Mínimos Domestic",
+        "url": "https://www.trabajo.gob.ec",
+        "accessedAt": "2026-10-01"
+      }
+    ],
+    "faqs": [
+      {
+        "q": "¿Qué es la afiliación para el trabajo del hogar no remunerado en Ecuador?",
+        "a": "Es un régimen de protección especial de la seguridad social destinado a personas dedicadas de forma exclusiva a las tareas domésticas y de cuidado en su propio hogar (como amas de casa), sin recibir un sueldo. El costo de la aportación mensual se calcula según el nivel de ingresos del núcleo familiar y cuenta con un subsidio parcial financiado por el Estado."
+      },
+      {
+        "q": "¿Cuál es la diferencia entre una trabajadora del hogar remunerada y el seguro de amas de casa?",
+        "a": "La trabajadora del hogar remunerada (empleada doméstica) tiene una relación laboral de dependencia, recibe un sueldo de un empleador y cotiza bajo el régimen general obligatorio (tasa del 20.60%). Por otro lado, la persona dedicada al trabajo del hogar no remunerado (ama de casa) no tiene un empleador, no recibe remuneración y cotiza en el seguro especial con aportes subsidiados basados en el nivel de ingresos de su hogar."
+      },
+      {
+        "q": "¿Cuáles son los requisitos de afiliación para el trabajo del hogar en 2026?",
+        "a": "Los requisitos para trabajadoras del hogar remuneradas incluyen cédula del empleador y de la trabajadora, y registro del contrato de trabajo en el Ministerio del Trabajo. Para el seguro de trabajo del hogar no remunerado (amas de casa), se requiere cédula de identidad, tener entre 15 y 65 años de edad, y registrar los datos de ingresos socioeconómicos del núcleo familiar en la base de datos del Ministerio de Inclusión Económica y Social (MIES)."
+      },
+      {
+        "q": "¿Cuánto se paga mensualmente por afiliar a una trabajadora del hogar en 2026?",
+        "a": "El costo mensual de afiliación para una trabajadora del hogar bajo relación de dependencia se calcula aplicando la tasa del 20.60% sobre el sueldo declarado (que no puede ser menor al Salario Básico Unificado de $482 proyectado para 2026). Esto equivale a un aporte mensual de $99.29 dólares, dividido en un 9.45% de aporte personal ($45.55) y un 11.15% de aporte patronal ($53.74)."
+      },
+      {
+        "q": "¿Qué prestaciones y beneficios incluye el seguro para el trabajo del hogar no remunerado?",
+        "a": "Este seguro especial brinda cobertura para jubilación por vejez (tras cumplir las imposiciones requeridas), pensión de invalidez por enfermedades catastróficas o accidentes, pensión de montepío para sobrevivientes y auxilio de funerales. Es fundamental recalcar que este seguro subsidiado para amas de casa **no incluye** atención de salud general en hospitales del IESS ni cobertura para préstamos del BIESS."
+      },
+      {
+        "q": "¿Cómo se registra el contrato de una empleada doméstica en el Ministerio del Trabajo?",
+        "a": "El empleador debe ingresar al portal oficial SUT (Sistema Único de Trabajo) del Ministerio del Trabajo, registrar sus datos patronales y llenar el formulario del contrato de trabajo del sector doméstico, especificando la jornada de labores (completa o parcial) y el sueldo. Posteriormente, el contrato se descarga, se firma por ambas partes y se sube escaneado al sistema en un plazo máximo de 15 días."
+      }
+    ],
+    "content": "\n# Afiliación Trabajo Hogar IESS: Requisitos, Costos y Beneficios en 2026\n\nLa afiliación de personas trabajadoras del hogar y personas dedicadas al trabajo del hogar no remunerado en Ecuador es un derecho fundamental respaldado por la Ley de Seguridad Social y la Constitución. Este mecanismo de protección permite acceder a prestaciones médicas, jubilación, auxilio de funerales y seguro de cesantía mediante aportaciones calculadas de manera equitativa. En esta guía detallamos los requisitos obligatorios, los costos mensuales para el año 2026 y el proceso paso a paso para afiliar correctamente a una trabajadora del hogar o registrarse en el seguro especial para amas de casa.\n\n---\n\n## En resumen: Datos clave sobre la afiliación del trabajo del hogar\n* **Modalidades de afiliación**: Existen dos regímenes diferenciados: Trabajo del Hogar Remunerado (relación de dependencia) y Trabajo del Hogar No Remunerado (seguro de amas de casa).\n* **Base de cálculo salarial**: Para trabajadoras remuneradas, el aporte mínimo se calcula sobre el Salario Básico Unificado vigente ($482 para el año 2026).\n* **Tasa de cotización**: El régimen remunerado aporta el 20.60% del salario; el régimen no remunerado aporta tarifas subsidiadas progresivas según ingresos del núcleo familiar.\n* **Cobertura de salud general**: Únicamente disponible para trabajadoras remuneradas bajo relación de dependencia. El seguro de amas de casa no posee atención médica general ordinaria en centros del IESS.\n* **Jubilación**: Ambos regímenes acumulan años de servicio y aportaciones válidas para solicitar la pensión de jubilación por vejez del IESS.\n\n---\n\n## Comparativa de Modalidades: Trabajo del Hogar Remunerado vs. No Remunerado\n\nEs fundamental que los ciudadanos distingan con precisión las dos modalidades existentes de aseguramiento para el sector doméstico y del hogar en Ecuador, ya que sus aportaciones, requisitos y coberturas prestacionales difieren significativamente:\n\n| Característica / Régimen | Trabajo del Hogar Remunerado (Empleadas Domésticas) | Trabajo del Hogar No Remunerado (Amas de Casa) |\n| :--- | :--- | :--- |\n| **Relación de Trabajo** | Dependiente (Existe un empleador y pago de sueldo). | Autónoma / Familiar (Labores propias del hogar sin remuneración). |\n| **Tasa de Aportación** | **20.60% del salario** (9.45% personal + 11.15% patronal). | Escala subsidiada por el Estado (según ingresos familiares). |\n| **Base Imponible Mínima** | Salario Básico Unificado ($482 en el año 2026). | Salario del núcleo familiar cruzado con base de datos del MIES. |\n| **Atención Médica IESS** | Sí, cobertura ilimitada en consulta externa, cirugía y medicinas. | No. La cobertura médica básica se canaliza vía Salud Pública (MSP). |\n| **Acceso a Préstamos BIESS** | Sí, califica a préstamos quirografarios e hipotecarios. | No, este seguro especial no califica para productos de crédito. |\n| **Prestaciones de Jubilación** | Sí, jubilación por vejez, invalidez y montepío ordinaria. | Sí, pensión de jubilación reducida, invalidez y montepío especial. |\n\n---\n\n## Requisitos obligatorios para la afiliación en 2026\n\nPara proceder con la inscripción formal en cualquiera de los dos regímenes, se deben cumplir condiciones documentales y biográficas específicas determinadas por el IESS y el Ministerio del Trabajo de Ecuador:\n\n### Para Trabajadoras del Hogar Remuneradas (Relación de Dependencia)\n1. **Cédula de ciudadanía o identidad** vigente de la trabajadora del hogar.\n2. **Cédula de identidad y papeleta de votación** del empleador doméstico.\n3. **Contrato de trabajo escrito** de jornada laboral (completa, parcial o por horas) registrado y validado en el Sistema Único de Trabajo (SUT) del Ministerio del Trabajo.\n4. **Dirección exacta de la vivienda** del empleador y planilla de un servicio básico (agua, luz o teléfono) que valide el domicilio de labores.\n5. **Cuenta bancaria de la trabajadora** debidamente registrada y autorizada en el portal del IESS.\n\n### Para el Trabajo del Hogar No Remunerado (Amas de Casa - Seguro Especial)\n1. **Cédula de identidad ecuatoriana** vigente del solicitante.\n2. **Rango de edad**: Tener entre 15 y 65 años de edad cumplidos a la fecha de la solicitud de afiliación.\n3. **Registro Social del MIES**: Encontrarse registrado en la base de datos de información socioeconómica del Ministerio de Inclusión Económica y Social (MIES) para determinar el nivel de ingresos de su núcleo familiar.\n4. **No registrar afiliación activa** en ningún otro régimen de la seguridad social del IESS, ISSFA, o ISSPOL al momento de realizar la inscripción.\n\n---\n\n## Proceso de registro paso a paso para la afiliación\n\nA continuación, se describen los pasos estructurados que deben realizar los empleadores domésticos y las personas interesadas en afiliarse al seguro especial de amas de casa:\n\n### Paso 1: Registro del Empleador Doméstico en el IESS\nEl empleador que contrata una trabajadora remunerada del hogar debe obtener un número de registro patronal. Para esto, ingrese a [iess.gob.ec](https://www.iess.gob.ec), diríjase a **\"Empleadores\"** -> **\"Registro de Empleador\"** -> **\"Trabajo Doméstico\"**. Ingrese su cédula de identidad y complete el formulario digital para generar su código patronal.\n\n### Paso 2: Registro del Aviso de Entrada de la Trabajadora\nCon su clave patronal generada, acceda al portal de empleadores en línea. Diríjase a la sección de **\"Avisos de Entrada y Salida\"** e ingrese el número de cédula de su trabajadora del hogar. Escriba la fecha de inicio de labores, el sueldo pactado (respetando los mínimos legales de cotización) y el tipo de jornada. Confirme el envío del aviso de entrada. El sistema generará el comprobante digital de afiliación de forma inmediata.\n\n### Paso 3: Inscripción en el Seguro No Remunerado (Amas de Casa)\nSi lo que desea es afiliarse de forma individual al seguro de trabajo del hogar no remunerado:\n1. Ingrese a [iess.gob.ec](https://www.iess.gob.ec) -> **\"Asegurados\"** -> **\"Afiliados\"** -> **\"Trabajo del Hogar No Remunerado\"**.\n2. Digite su número de cédula de ciudadanía de 10 dígitos y su fecha de nacimiento completa.\n3. El sistema cruzará información con el Registro Social del MIES para validar su nivel socioeconómico familiar.\n4. Defina el aporte mensual según la tabla de rangos que despliegue el portal e ingrese su correo electrónico de contacto.\n5. Genere y guarde su comprobante digital de aceptación de afiliación especial.\n\n---\n\n## Costo mensual y cálculo de la aportación en 2026\n\n### 1. Trabajadoras del Hogar Remuneradas (Bajo relación de dependencia)\nPara el año **2026**, se proyecta un Salario Básico Unificado (SBU) de **$482 dólares**. Por consiguiente, la aportación mensual obligatoria mínima para una empleada del sector doméstico contratada a jornada completa se desglosa matemáticamente de la siguiente manera:\n\n* **Sueldo base mínimo cotizable**: $482.00.\n* **Aporte Patronal (11.15%)**: $53.74 dólares asumidos por el empleador por concepto de cotización patronal obligatoria.\n* **Aporte Personal (9.45%)**: $45.55 dólares descontados de la remuneración mensual de la trabajadora.\n* **Monto total consolidado de la planilla mensual**: $99.29 dólares pagados de forma íntegra a través del portal de recaudación del IESS.\n\n### 2. Trabajo del Hogar No Remunerado (Amas de Casa - Seguro Especial)\nEl aporte para las personas dedicadas al trabajo doméstico no remunerado no se calcula sobre el salario personal (pues no existe remuneración), sino que se aplica una escala subsidiada en función de los ingresos del núcleo familiar:\n\n| Nivel de Ingresos de la Familia | Aporte Mensual del Asegurado ($) | Subsidio Financiado por el Estado ($) | Cotización Total Destinada a la Jubilación |\n| :--- | :--- | :--- | :--- |\n| **Bajo la línea de pobreza** | $2.00 dólares mensuales | Financiado por el Estado | Seguro Especial de Invalidez y Vejez |\n| **Ingresos Familiares hasta el 50% de 1 SBU** | $9.64 dólares mensuales | Financiado por el Estado | Seguro Especial de Invalidez y Vejez |\n| **Ingresos Familiares entre el 50% y 1 SBU** | $19.28 dólares mensuales | Financiado por el Estado | Seguro Especial de Invalidez y Vejez |\n| **Ingresos Familiares superiores a 1 SBU** | Proporcional de la escala | Sin subsidio fiscal directo | Seguro Especial de Invalidez y Vejez |\n\n---\n\n## Errores frecuentes al afiliar al sector del hogar y cómo prevenirlos\n\n* **Creer que el aporte patronal del 11.15% se le puede descontar a la trabajadora**: Esto constituye una infracción a las leyes laborales del Ecuador. El aporte patronal debe ser asumido de forma exclusiva por el empleador doméstico, mientras que el descuento permitido en el rol de pagos es únicamente el del 9.45% del aporte personal de la empleada.\n* **No registrar el aviso de salida al finalizar la relación de servicio**: Si la trabajadora del hogar doméstica renuncia o es desvinculada, y el empleador olvida ingresar el aviso de salida en el portal del IESS dentro del plazo máximo de **15 días hábiles**, el sistema continuará generando planillas mensuales de cobro con acumulación de intereses de mora que deberán cancelarse obligatoriamente.\n* **Suponer que el seguro de amas de casa cubre emergencias médicas en hospitales del IESS**: Es sumamente común afiliarse al seguro de trabajo del hogar no remunerado pensando que se obtendrán turnos médicos o cirugías en el IESS. Este seguro especial subsidiado por ley cubre únicamente prestaciones de jubilación por vejez, pensiones por invalidez y muerte (montepío) y auxilios de funerales. La atención de salud de las amas de casa se brinda en la red del Ministerio de Salud Pública (MSP) de forma gratuita.\n\n---\n\n## Ejemplo práctico del costo de afiliación doméstica por jornada parcial en 2026\n\nImaginemos el caso de una trabajadora del hogar que labora para un empleador doméstico de forma parcial, cubriendo exactamente **medio tiempo (4 horas diarias)** de lunes a viernes en el año **2026**.\n\n* **Salario proporcional declarado (Medio tiempo)**: $241.00 dólares mensuales (equivalente al 50% del SBU de $482 proyectado).\n* **Aporte personal (9.45%)**: Se le descuenta de su sueldo la suma de $22.77 dólares.\n* **Aporte patronal (11.15%)**: El empleador asume el pago de $26.87 dólares por concepto de su obligación.\n* **Costo de planilla consolidado**: El empleador cancela de forma mensual la suma de $49.64 dólares en los canales autorizados de recaudación del IESS.\n* **Beneficio acumulado**: La trabajadora acumula imposiciones mensuales válidas para su récord de jubilación futura y cuenta con seguro médico y de cesantía completo en el IESS.\n\n---\n\n## Preguntas Frecuentes sobre la afiliación del trabajo del hogar\n\n### ¿Qué pasa si una empleada doméstica trabaja por horas o días para distintos empleadores?\nEl Reglamento del IESS contempla el esquema de **\"Afiliación por Días o Tiempo Parcial\"**. En este escenario, cada uno de los empleadores domésticos para los cuales presta servicios la trabajadora del hogar debe registrar de forma individual un número patronal y registrar un aviso de entrada, declarando de forma proporcional el número de días que labora al mes y el sueldo percibido. Las aportaciones y salarios de todos los empleadores domésticos se consolidan unificadamente a favor de la trabajadora en su historial laboral del IESS.\n\n### ¿Se tiene derecho al pago de fondos de reserva y décimos en el trabajo doméstico remunerado?\nEfectivamente. Las trabajadoras del hogar remuneradas gozan exactamente de los mismos derechos laborales y de seguridad social que cualquier otro trabajador del régimen general obligatorio de Ecuador. Esto implica el derecho a percibir el décimo tercer sueldo (Bono Navideño), décimo cuarto sueldo (Bono Escolar) y la acumulación o pago mensual de sus fondos de reserva una vez que la trabajadora haya cumplido su primer año completo de labores con el mismo empleador doméstico.\n\n### ¿Se puede afiliar al seguro especial de amas de casa si ya se recibe una pensión de montepío?\nSí, la ley permite la afiliación en el régimen de trabajo del hogar no remunerado para personas que ya perciben una pensión por viudez u orfandad (montepío), siempre y cuando el solicitante se dedique de forma exclusiva a las tareas del hogar no remuneradas en su propio domicilio, cumpla con el rango de edad (entre 15 y 65 años) y no registre una afiliación activa de aportes en relación de dependencia o voluntaria de forma simultánea.\n\n### ¿Qué sanciones existen para un empleador que no afilia a su trabajadora del hogar?\nNo afiliar a los trabajadores de la construcción, trabajadores agrícolas o trabajadoras del hogar desde el primer día de labores constituye una infracción legal muy grave en el Código del Trabajo y en la Ley de Seguridad Social de Ecuador. Además de la acumulación de glosas por mora e intereses, la Fiscalía del Estado puede iniciar procesos penales por el delito de \"Falta de Afiliación del Trabajador a la Seguridad Social\", sancionado con penas privativas de libertad de tres a siete días de acuerdo con las reformas vigentes en la legislación penal de Ecuador.\n\n### ¿Se puede retirar el fondo de cesantía en el seguro especial de amas de casa?\nNo. El seguro de afiliación para el trabajo del hogar no remunerado (amas de casa) se enfoca exclusivamente en la acumulación de aportes para solventar las contingencias de vejez (jubilación), invalidez y muerte. Como consecuencia de su estructura subsidiada por el Estado, este régimen no incluye aportaciones para el fondo de cesantía ni fondos de reserva. Por consiguiente, las amas de casa afiliadas en este seguro especial no cuentan con saldos de cesantía acumulados para retirar del IESS.\n\n---\n\n## Enlaces de interés interno para su trámite\n* Si deja de laborar en el sector doméstico, revise los requisitos para solicitar la [cesantía y seguro de desempleo](/procedimiento/cesantia-desempleo).\n* Antes de afiliar a su trabajadora del hogar, aprenda cómo [Obtener la clave del IESS por primera vez](/blog/como-obtener-clave-iess-primera-vez) para gestionar el módulo patronal en línea.\n* Si desea afiliarse sin empleador, conozca las ventajas y condiciones del régimen de [Afiliación Voluntaria en Ecuador](/procedimiento/afiliacion-voluntaria) del portal.\n* Una vez afiliada la trabajadora del hogar, aprenda a [Consultar aportes e historial laboral](/blog/como-consultar-aportes-iess-historial-laboral) de manera mensual para verificar el pago correcto de sus planillas.\n"
   }
 ];
-

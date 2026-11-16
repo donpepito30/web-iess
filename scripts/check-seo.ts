@@ -1,6 +1,7 @@
 import app from "../server";
 import { Server } from "http";
 import { FACTS } from "../src/data/facts";
+import { BLOG_POSTS } from "../src/data/blogPosts";
 
 const PORT = 3008;
 
@@ -18,6 +19,11 @@ interface CategorizedErrors {
   placeholders: string[];
   ymylFacts: string[];
   cityIndexing: string[];
+  blogWordCount: string[];
+  blogInternalLinks: string[];
+  blogSources: string[];
+  blogOgUnique: string[];
+  sitemapArticleCanonical: string[];
 }
 
 async function runFullSeoCheck() {
@@ -38,7 +44,12 @@ async function runFullSeoCheck() {
     forbiddenOfficiality: [],
     placeholders: [],
     ymylFacts: [],
-    cityIndexing: []
+    cityIndexing: [],
+    blogWordCount: [],
+    blogInternalLinks: [],
+    blogSources: [],
+    blogOgUnique: [],
+    sitemapArticleCanonical: []
   };
 
   const titleMap = new Map<string, string[]>();
@@ -66,6 +77,18 @@ async function runFullSeoCheck() {
 
       if (sitemapUrls.length === 0) {
         errors.http.push("El sitemap no contiene URLs válidas (<loc>).");
+      }
+
+      // 1b. Check that sitemap does not contain /guias-y-articulos/<slug de artículo>
+      const blogArticleSlugs = new Set(BLOG_POSTS.map(p => p.slug));
+      for (const url of sitemapUrls) {
+        for (const slug of blogArticleSlugs) {
+          if (url.includes(`/guias-y-articulos/${slug}`)) {
+            errors.sitemapArticleCanonical.push(
+              `Sitemap contiene URL obsoleta de artículo: "${url}" (debe listar la canonical /blog/${slug})`
+            );
+          }
+        }
       }
 
       // Helper for testing local links and resources
@@ -300,6 +323,33 @@ async function runFullSeoCheck() {
         }
       }
 
+      // 2n. Audit Blog Posts: wordCount >= 1200, internalLinks >= 4, sources >= 2, unique OG images
+      const seenBlogOgImages = new Map<string, string>();
+      for (const post of BLOG_POSTS) {
+        const words = post.content.trim().split(/\s+/).length;
+        if (words < 1200) {
+          errors.blogWordCount.push(`Artículo "${post.slug}": Tiene ${words} palabras (mínimo requerido: 1.200)`);
+        }
+
+        const internalLinks = (post.content.match(/\[([^\]]+)\]\((\/[^\)]+)\)/g) || []).length;
+        if (internalLinks < 4) {
+          errors.blogInternalLinks.push(`Artículo "${post.slug}": Tiene ${internalLinks} enlaces internos (mínimo requerido: 4)`);
+        }
+
+        const sourcesCount = (post.sources || []).length;
+        if (sourcesCount < 2) {
+          errors.blogSources.push(`Artículo "${post.slug}": Tiene ${sourcesCount} fuentes citadas (mínimo requerido: 2)`);
+        }
+
+        if (seenBlogOgImages.has(post.image)) {
+          errors.blogOgUnique.push(
+            `Artículo "${post.slug}": Imagen OG duplicada "${post.image}" (ya utilizada por "${seenBlogOgImages.get(post.image)}")`
+          );
+        } else {
+          seenBlogOgImages.set(post.image, post.slug);
+        }
+      }
+
       // 3. Print Grouped Summary
       const totalErrors =
         errors.http.length +
@@ -314,7 +364,12 @@ async function runFullSeoCheck() {
         errors.forbiddenOfficiality.length +
         errors.placeholders.length +
         errors.ymylFacts.length +
-        errors.cityIndexing.length;
+        errors.cityIndexing.length +
+        errors.blogWordCount.length +
+        errors.blogInternalLinks.length +
+        errors.blogSources.length +
+        errors.blogOgUnique.length +
+        errors.sitemapArticleCanonical.length;
 
       console.log("================================================================================");
       console.log("  RESUMEN DE RESULTADOS DE LA AUDITORÍA SEO");
@@ -346,6 +401,11 @@ async function runFullSeoCheck() {
       printErrorCategory("UNREPLACED_PLACEHOLDER_ERRORS (%SITE_URL%, [COMPLETAR)", errors.placeholders);
       printErrorCategory("YMYL_FACT_ERRORS (aviso obligatorio)", errors.ymylFacts);
       printErrorCategory("CITY_INDEXING_ERRORS (noindex y disclaimer)", errors.cityIndexing);
+      printErrorCategory("BLOG_WORD_COUNT_ERRORS (>= 1.200 palabras)", errors.blogWordCount);
+      printErrorCategory("BLOG_INTERNAL_LINKS_ERRORS (>= 4 enlaces internos)", errors.blogInternalLinks);
+      printErrorCategory("BLOG_SOURCES_ERRORS (>= 2 fuentes citadas)", errors.blogSources);
+      printErrorCategory("BLOG_OG_UNIQUE_ERRORS (imagen OG única por artículo)", errors.blogOgUnique);
+      printErrorCategory("SITEMAP_ARTICLE_CANONICAL_ERRORS (no /guias-y-articulos/<slug>)", errors.sitemapArticleCanonical);
 
       console.log("================================================================================\n");
 

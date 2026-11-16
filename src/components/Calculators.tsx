@@ -770,8 +770,8 @@ export function VerificaQuirografario() {
     logGA4Event("tool_start", { tool_name: "verifica_quirografario" });
   }, []);
 
-  const totalAportes = getFactValue("QUIROGRAFARIO_APORTES_REQ") || 36;
-  const continuos = getFactValue("QUIROGRAFARIO_CONSECUTIVOS_REQ") || 12;
+  const totalAportes = getFactValue("QUIROGRAFARIO_APORTES_REQ") || 12;
+  const continuos = 12;
 
   const qualifies = q1 === "yes" && q2 === "yes" && q3 === "yes" && q4 === "yes" && q5 === "yes" && q6 === "no" && q7 === "yes";
 

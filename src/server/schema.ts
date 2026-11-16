@@ -177,11 +177,34 @@ export function getProcedureGraph(siteUrl: string, proc: any) {
   };
 }
 
+function toIsoEcuador(dateStr: string | undefined, defaultTime = "09:00:00"): string {
+  if (!dateStr) return `2026-01-01T${defaultTime}-05:00`;
+  const trimmed = dateStr.trim();
+  if (trimmed.includes("T")) {
+    if (trimmed.endsWith("Z")) {
+      return trimmed.replace("Z", "-05:00");
+    }
+    if (/[+-]\d{2}:\d{2}$/.test(trimmed)) {
+      return trimmed;
+    }
+    return `${trimmed}-05:00`;
+  }
+  return `${trimmed}T${defaultTime}-05:00`;
+}
+
 export function getArticleGraph(siteUrl: string, post: any) {
   const org = getOrganizationSchema(siteUrl);
   const website = getWebSiteSchema(siteUrl);
   
-  const pageUrl = `${siteUrl}/blog/${post.slug}`;
+  const cleanBase = siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl;
+  const pageUrl = `${cleanBase}/blog/${post.slug}`;
+  const imagePath = post.image?.startsWith('/') ? post.image : `/${post.image || 'og-default.jpg'}`;
+  const absoluteImageUrl = post.image?.startsWith('http') ? post.image : `${cleanBase}${imagePath}`;
+  
+  const datePublished = toIsoEcuador(post.publishDate, "09:00:00");
+  const dateModified = toIsoEcuador(post.dateModified || post.publishDate, "16:00:00");
+  const wordCount = post.content ? post.content.trim().split(/\s+/).filter(Boolean).length : 0;
+  const keywordsStr = Array.isArray(post.keywords) ? post.keywords.join(", ") : (post.keywords || "");
   
   const webpage = {
     "@type": "WebPage",
@@ -190,7 +213,9 @@ export function getArticleGraph(siteUrl: string, post: any) {
     "name": post.title,
     "isPartOf": { "@id": `${siteUrl}/#website` },
     "description": post.metaDescription,
-    "inLanguage": "es-EC"
+    "inLanguage": "es-EC",
+    "datePublished": datePublished,
+    "dateModified": dateModified
   };
   
   const article = {
@@ -199,9 +224,12 @@ export function getArticleGraph(siteUrl: string, post: any) {
     "isPartOf": { "@id": `${pageUrl}/#webpage` },
     "headline": post.title.slice(0, 110),
     "description": post.metaDescription,
-    "image": [post.image],
-    "datePublished": "2026-02-14T09:00:00-05:00",
-    "dateModified": "2026-10-03T16:00:00-05:00",
+    "image": [absoluteImageUrl],
+    "datePublished": datePublished,
+    "dateModified": dateModified,
+    "wordCount": wordCount,
+    "articleSection": post.category,
+    "keywords": keywordsStr,
     "inLanguage": "es-EC",
     "about": {
       "@type": "Thing",
@@ -216,7 +244,9 @@ export function getArticleGraph(siteUrl: string, post: any) {
       "@id": `${siteUrl}/#organization`
     },
     "mainEntityOfPage": `${pageUrl}`,
-    "citation": ["https://www.iess.gob.ec", "https://www.biess.fin.ec"]
+    "citation": post.sources && post.sources.length > 0 
+      ? post.sources.map((s: any) => s.url)
+      : ["https://www.iess.gob.ec", "https://www.biess.fin.ec"]
   };
   
   const breadcrumbs = {
@@ -233,7 +263,7 @@ export function getArticleGraph(siteUrl: string, post: any) {
         "@type": "ListItem",
         "position": 2,
         "name": "Blog",
-        "item": `${siteUrl}/blog`
+        "item": `${cleanBase}/blog`
       },
       {
         "@type": "ListItem",

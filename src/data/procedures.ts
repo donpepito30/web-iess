@@ -214,7 +214,7 @@ export const PROCEDURES_DATA: Procedure[] = [
     category: "Créditos",
     whoCanDo: "Afiliados bajo relación de dependencia, jubilados y pensionistas de montepío.",
     requirements: [
-      `Para afiliados activos: Mínimo ${getFactValue("QUIROGRAFARIO_APORTES_REQ")} aportaciones mensuales en total, de las cuales al menos ${getFactValue("QUIROGRAFARIO_CONSECUTIVOS_REQ")} deben ser consecutivas e inmediatas.`,
+      `Para afiliados activos: Mínimo ${getFactValue("QUIROGRAFARIO_APORTES_REQ")} aportaciones mensuales acumuladas en total.`,
       "No tener obligaciones en mora o vencidas con el BIESS o el IESS.",
       "Mantener valores de garantía acumulados en Fondos de Reserva y/o Cesantía que respalden el 100% del monto solicitado.",
       "Empleador actual sin registrar mora patronal alguna con el IESS.",
@@ -247,7 +247,7 @@ export const PROCEDURES_DATA: Procedure[] = [
       { label: "Portal del BIESS - Manual de Préstamo Quirografario", url: "https://www.biess.fin.ec/quirografarios", accessedAt: "2026-10-01" },
       { label: "Resoluciones de Crédito del Directorio del BIESS", url: "https://www.biess.fin.ec", accessedAt: "2026-10-01" }
     ],
-    factIds: ["QUIROGRAFARIO_APORTES_REQ", "QUIROGRAFARIO_CONSECUTIVOS_REQ"]
+    factIds: ["QUIROGRAFARIO_APORTES_REQ", "QUIROGRAFARIO_MONTO_MAX", "QUIROGRAFARIO_TASA_MIN", "QUIROGRAFARIO_PLAZO_MAX_MESES"]
   },
   {
     id: "prestamo-hipotecario",
@@ -278,14 +278,14 @@ export const PROCEDURES_DATA: Procedure[] = [
       "No verificar con anticipación que el avalúo catastral oficial de la vivienda coincida con el precio real acordado.",
       "Haber cancelado una solicitud de crédito previa pero dejar pendientes pequeños saldos por gastos de escrituración o instrumentación legal (bloquea nuevas peticiones)."
     ],
-    needsMoreHelp: `El BIESS ofrece financiamientos de hasta el 100% para viviendas de hasta USD ${getFactValue("HIPOTECARIO_MONTO_100_COBERTURA")}, con plazos máximos de hasta ${getFactValue("HIPOTECARIO_PLAZO_MAX_ANOS")} años y tasas preferenciales entre el ${getFactValue("TASA_HIPOTECARIO_MIN")}% y el ${getFactValue("TASA_HIPOTECARIO_MAX")}% anual, con tope de USD ${getFactValue("HIPOTECARIO_MONTO_MAX")}.`,
+    needsMoreHelp: `El BIESS ofrece financiamientos con plazos máximos de hasta ${getFactValue("HIPOTECARIO_PLAZO_MAX_ANOS")} años y tasas nominales no preferenciales entre el ${getFactValue("TASA_HIPOTECARIO_MIN")}% y el ${getFactValue("TASA_HIPOTECARIO_MAX")}% anual, además de la línea preferencial Credicasa al ${getFactValue("CREDICASA_TASA")}% para viviendas de hasta USD ${getFactValue("CREDICASA_MONTO_MAX")}.`,
     referenceNorm: "Resoluciones de Vivienda del BIESS.",
     dateModified: "2026-10-01",
     sources: [
       { label: "Banco del IESS (BIESS) - Guías de Préstamos Hipotecarios", url: "https://www.biess.fin.ec/hipotecarios", accessedAt: "2026-10-01" },
       { label: "Superintendencia de Bancos del Ecuador", url: "https://www.superbancos.gob.ec", accessedAt: "2026-10-01" }
     ],
-    factIds: ["TASA_HIPOTECARIO_MIN", "TASA_HIPOTECARIO_MAX", "HIPOTECARIO_PLAZO_MAX_ANOS", "HIPOTECARIO_MONTO_100_COBERTURA", "HIPOTECARIO_MONTO_MAX"]
+    factIds: ["TASA_HIPOTECARIO_MIN", "TASA_HIPOTECARIO_MAX", "HIPOTECARIO_PLAZO_MAX_ANOS", "CREDICASA_TASA", "CREDICASA_MONTO_MAX", "CREDICASA_APORTES_REQ"]
   },
   {
     id: "afiliacion-voluntaria",

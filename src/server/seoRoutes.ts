@@ -10,6 +10,7 @@ export function handleSitemap(req: Request, res: Response) {
   
   const urls: { loc: string; lastmod: string }[] = [
     { loc: `${baseUrl}/`, lastmod: now },
+    { loc: `${baseUrl}/blog`, lastmod: now },
     { loc: `${baseUrl}/oficios`, lastmod: now },
     { loc: `${baseUrl}/iess`, lastmod: now },
     { loc: `${baseUrl}/sobre-nosotros`, lastmod: now },
@@ -21,10 +22,10 @@ export function handleSitemap(req: Request, res: Response) {
     { loc: `${baseUrl}/politica-de-cookies`, lastmod: now },
   ];
 
-  // Blog pages
+  // Blog pages: /blog/page/2, /blog/page/3, etc.
   const blogPagesCount = Math.ceil(BLOG_POSTS.length / 4) || 1;
   for (let i = 2; i <= blogPagesCount; i++) {
-    urls.push({ loc: `${baseUrl}/guias-y-articulos/page/${i}`, lastmod: now });
+    urls.push({ loc: `${baseUrl}/blog/page/${i}`, lastmod: now });
   }
   
   // Procedures
@@ -32,14 +33,16 @@ export function handleSitemap(req: Request, res: Response) {
     urls.push({ loc: `${baseUrl}/procedimiento/${p.id}`, lastmod: now });
   });
 
-  // Articles
+  // Articles: only /blog/:slug with lastmod = post.dateModified
   BLOG_POSTS.forEach(p => {
-    urls.push({ loc: `${baseUrl}/guias-y-articulos/${p.slug}`, lastmod: p.dateModified });
+    urls.push({ loc: `${baseUrl}/blog/${p.slug}`, lastmod: p.dateModified });
   });
 
-  // Categories
+  // Categories (keeping subcategories of guias-y-articulos, but omitting root guias-y-articulos which redirects to /blog)
   SEO_CATEGORIES.forEach(c => {
-    urls.push({ loc: `${baseUrl}/${c.slug}`, lastmod: now });
+    if (c.slug !== "guias-y-articulos") {
+      urls.push({ loc: `${baseUrl}/${c.slug}`, lastmod: now });
+    }
     c.subcategories.forEach(s => {
       urls.push({ loc: `${baseUrl}/${c.slug}/${s.slug}`, lastmod: now });
     });

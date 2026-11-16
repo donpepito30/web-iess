@@ -13,7 +13,7 @@ export const FACTS: Record<string, Fact> = {
     id: "SBU_2024",
     value: 460,
     source: "Ministerio del Trabajo, año 2024",
-    verifiedAt: "2026-10-01",
+    verifiedAt: "2026-11-16",
     verified: false,
     notes: "Salario Básico Unificado fijado para el año 2024."
   },
@@ -21,7 +21,7 @@ export const FACTS: Record<string, Fact> = {
     id: "SBU_2025",
     value: 470,
     source: "Ministerio del Trabajo de Ecuador",
-    verifiedAt: "2026-10-01",
+    verifiedAt: "2026-11-16",
     verified: false,
     notes: "Salario Básico Unificado fijado para el año 2025."
   },
@@ -29,9 +29,9 @@ export const FACTS: Record<string, Fact> = {
     id: "SBU_2026",
     value: 482,
     source: "Consejo Nacional de Trabajo y Salarios, resolución del 15-dic-2025 (vigente desde el 1-ene-2026). Confirmar número de Acuerdo Ministerial en trabajo.gob.ec",
-    verifiedAt: "2026-10-01",
-    verified: false,
-    notes: "Valor fijado para el ejercicio fiscal 2026. Requiere confirmar número de Acuerdo Ministerial en trabajo.gob.ec."
+    verifiedAt: "2026-11-16",
+    verified: true,
+    notes: "Valor oficial fijado para el ejercicio fiscal 2026."
   },
   
   // Porcentajes de Aportaciones
@@ -39,33 +39,33 @@ export const FACTS: Record<string, Fact> = {
     id: "APORTE_VOLUNTARIO_PCT",
     value: 17.60,
     source: "Ley de Seguridad Social de Ecuador, Art. 152",
-    verifiedAt: "2026-10-01",
-    verified: false,
+    verifiedAt: "2026-11-16",
+    verified: true,
     notes: "Tasa de aportación para afiliados voluntarios e independientes sin relación de dependencia."
   },
   APORTE_DEPENDIENTE_TOTAL_PCT: {
     id: "APORTE_DEPENDIENTE_TOTAL_PCT",
     value: 20.60,
-    source: "Resolución del Consejo Directivo del IESS",
-    verifiedAt: "2026-10-01",
-    verified: false,
+    source: "Resolución del Consejo Directivo del IESS / Ley de Seguridad Social",
+    verifiedAt: "2026-11-16",
+    verified: true,
     notes: "Suma de aporte personal y aporte patronal ordinario."
   },
   APORTE_PERSONAL_PCT: {
     id: "APORTE_PERSONAL_PCT",
     value: 9.45,
     source: "Ley de Seguridad Social, Art. 116",
-    verifiedAt: "2026-10-01",
-    verified: false,
-    notes: "pendiente de confirmar en iess.gob.ec"
+    verifiedAt: "2026-11-16",
+    verified: true,
+    notes: "Aporte personal obligatorio del trabajador bajo relación de dependencia."
   },
   APORTE_PATRONAL_PCT: {
     id: "APORTE_PATRONAL_PCT",
     value: 11.15,
     source: "Ley de Seguridad Social, Art. 117",
-    verifiedAt: "2026-10-01",
-    verified: false,
-    notes: "pendiente de confirmar en iess.gob.ec"
+    verifiedAt: "2026-11-16",
+    verified: true,
+    notes: "Aporte patronal obligatorio a cargo del empleador."
   },
 
   // Subsidio de Maternidad
@@ -73,15 +73,15 @@ export const FACTS: Record<string, Fact> = {
     id: "MATERNIDAD_SUBSIDIO_IESS_PCT",
     value: 75,
     source: "Código del Trabajo de Ecuador, Art. 152 / Ley de Seguridad Social",
-    verifiedAt: "2026-10-01",
-    verified: false,
+    verifiedAt: "2026-11-16",
+    verified: true,
     notes: "Porcentaje del subsidio monetario cubierto por el IESS durante el reposo (25% a cargo del empleador)."
   },
   MATERNIDAD_DIAS_DESCANSO: {
     id: "MATERNIDAD_DIAS_DESCANSO",
     value: 84,
     source: "Código del Trabajo, Art. 152 (12 semanas)",
-    verifiedAt: "2026-10-01",
+    verifiedAt: "2026-11-16",
     verified: false,
     notes: "Días calendario de descanso remunerado por maternidad."
   },
@@ -89,7 +89,7 @@ export const FACTS: Record<string, Fact> = {
     id: "MATERNIDAD_APORTES_REQ",
     value: 12,
     source: "Reglamento General del Seguro de Salud del IESS",
-    verifiedAt: "2026-10-01",
+    verifiedAt: "2026-11-16",
     verified: false,
     notes: "Aportaciones continuas requeridas en los 15 meses previos al parto."
   },
@@ -99,67 +99,77 @@ export const FACTS: Record<string, Fact> = {
     id: "MONTEPIO_VIUDEZ_PCT",
     value: 60,
     source: "Reglamento del Seguro de Invalidez, Vejez y Muerte del IESS",
-    verifiedAt: "2026-10-01",
-    verified: false,
+    verifiedAt: "2026-11-16",
+    verified: true,
     notes: "Porcentaje de la pensión del causante para viuda/o o conviviente sin hijos (40% si concurren hijos)."
   },
   MONTEPIO_ORFANDAD_PCT: {
     id: "MONTEPIO_ORFANDAD_PCT",
     value: 40,
     source: "Reglamento del Seguro de Invalidez, Vejez y Muerte del IESS",
-    verifiedAt: "2026-10-01",
+    verifiedAt: "2026-11-16",
     verified: false,
-    notes: "Porcentaje global a distribuirse entre hijos huérfanos con derecho."
+    notes: "Conflicto de fuentes (40 % vs 20 % por hijo); confirmar en el Reglamento del IESS"
   },
 
-  // Tasas de Interés Financieras BIESS
+  // Tasas de Interés Financieras BIESS - Hipotecarios
   TASA_HIPOTECARIO_MIN: {
     id: "TASA_HIPOTECARIO_MIN",
-    value: 5.0,
+    value: 6.8,
     source: "Tarifario de Crédito del Banco del Instituto Ecuatoriano de Seguridad Social (BIESS)",
-    verifiedAt: "2026-10-01",
+    verifiedAt: "2026-11-16",
     verified: false,
-    notes: "Tasa nominal mínima para primera vivienda de bajo costo."
+    notes: "Tasa nominal mínima para líneas de crédito hipotecario no preferenciales."
   },
   TASA_HIPOTECARIO_MAX: {
     id: "TASA_HIPOTECARIO_MAX",
-    value: 8.0,
+    value: 9.1,
     source: "Tarifario de Crédito del Banco del Instituto Ecuatoriano de Seguridad Social (BIESS)",
-    verifiedAt: "2026-10-01",
+    verifiedAt: "2026-11-16",
     verified: false,
-    notes: "Tasa nominal máxima aplicable para proyectos inmobiliarios habituales."
+    notes: "Tasa nominal máxima para líneas de crédito hipotecario no preferenciales."
   },
   HIPOTECARIO_PLAZO_MAX_ANOS: {
     id: "HIPOTECARIO_PLAZO_MAX_ANOS",
     value: 25,
     source: "Reglamento de Créditos Hipotecarios BIESS",
-    verifiedAt: "2026-10-01",
+    verifiedAt: "2026-11-16",
     verified: false,
     notes: "Plazo de amortización máximo para el seguro de desgravamen."
   },
-  HIPOTECARIO_MONTO_100_COBERTURA: {
-    id: "HIPOTECARIO_MONTO_100_COBERTURA",
-    value: 100000,
-    source: "Políticas de Crédito Hipotecario del BIESS",
-    verifiedAt: "2026-10-01",
+
+  // Programa Preferencial Credicasa BIESS
+  CREDICASA_TASA: {
+    id: "CREDICASA_TASA",
+    value: 2.99,
+    source: "Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) - Línea Credicasa",
+    verifiedAt: "2026-11-16",
     verified: false,
-    notes: "Monto máximo del avalúo donde el BIESS financia el 100% de la propiedad."
+    notes: "Tasa de interés preferencial para primera vivienda del programa Credicasa BIESS."
   },
-  HIPOTECARIO_MONTO_MAX: {
-    id: "HIPOTECARIO_MONTO_MAX",
-    value: 300000,
-    source: "Políticas de Crédito Hipotecario del BIESS",
-    verifiedAt: "2026-10-01",
+  CREDICASA_MONTO_MAX: {
+    id: "CREDICASA_MONTO_MAX",
+    value: 65000,
+    source: "Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) - Línea Credicasa",
+    verifiedAt: "2026-11-16",
     verified: false,
-    notes: "Monto máximo absoluto de financiamiento aprobado para un afiliado calificado."
+    notes: "Monto máximo de financiamiento para el programa preferencial Credicasa."
+  },
+  CREDICASA_APORTES_REQ: {
+    id: "CREDICASA_APORTES_REQ",
+    value: 36,
+    source: "Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) - Línea Credicasa",
+    verifiedAt: "2026-11-16",
+    verified: false,
+    notes: "Requisito de 36 aportaciones acumuladas (últimas 13 consecutivas) para afiliados en relación de dependencia."
   },
 
-  // Canales de Quejas y Denuncias (Resolución Oficial Septiembre 2025)
+  // Canales de Quejas y Denuncias
   DENUNCIAS_WEB: {
     id: "DENUNCIAS_WEB",
     value: "denuncias.iess.gob.ec",
     source: "Comunicado de Prensa Oficial IESS / Secretaría de Transparencia de Ecuador",
-    verifiedAt: "2026-10-01",
+    verifiedAt: "2026-11-16",
     verified: false,
     notes: "Canal web oficial para reporte de actos de corrupción, falta de medicamentos y baches de citas."
   },
@@ -167,7 +177,7 @@ export const FACTS: Record<string, Fact> = {
     id: "DENUNCIAS_WHATSAPP",
     value: "0962532338",
     source: "Canales de denuncias habilitados en septiembre 2025",
-    verifiedAt: "2026-10-01",
+    verifiedAt: "2026-11-16",
     verified: false,
     notes: "Número del chatbot oficial automatizado habilitado las 24/7 para quejas ciudadanas."
   },
@@ -175,33 +185,49 @@ export const FACTS: Record<string, Fact> = {
     id: "DENUNCIAS_TELEFONO",
     value: "1800-4377",
     source: "Línea gratuita de denuncias y soporte telefónico IESS",
-    verifiedAt: "2026-10-01",
+    verifiedAt: "2026-11-16",
     verified: false,
     notes: "Línea gratuita nacional 1800-IESS (1800-4377) para consultas generales y quejas."
   },
 
-  // Requisitos temporales y mínimos
+  // Préstamo Quirografario BIESS
   QUIROGRAFARIO_APORTES_REQ: {
     id: "QUIROGRAFARIO_APORTES_REQ",
-    value: 36,
-    source: "Manual del Usuario del Préstamo Quirografario BIESS",
-    verifiedAt: "2026-10-01",
-    verified: false,
-    notes: "Aportaciones acumuladas totales requeridas para solicitar el préstamo."
-  },
-  QUIROGRAFARIO_CONSECUTIVOS_REQ: {
-    id: "QUIROGRAFARIO_CONSECUTIVOS_REQ",
     value: 12,
-    source: "Manual del Usuario del Préstamo Quirografario BIESS",
-    verifiedAt: "2026-10-01",
+    source: "Manual del Usuario del Préstamo Quirografario BIESS / biess.fin.ec",
+    verifiedAt: "2026-11-16",
     verified: false,
-    notes: "Aportaciones consecutivas mínimas requeridas inmediatamente anteriores a la precalificación."
+    notes: "Aportaciones acumuladas mínimas requeridas para solicitar el préstamo quirografario."
+  },
+  QUIROGRAFARIO_MONTO_MAX: {
+    id: "QUIROGRAFARIO_MONTO_MAX",
+    value: 38560,
+    source: "Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) / 80 Salarios Básicos Unificados",
+    verifiedAt: "2026-11-16",
+    verified: false,
+    notes: "Monto máximo legal para préstamos quirografarios equivalente a 80 SBU."
+  },
+  QUIROGRAFARIO_TASA_MIN: {
+    id: "QUIROGRAFARIO_TASA_MIN",
+    value: 6.5,
+    source: "Tarifario de Crédito del Banco del Instituto Ecuatoriano de Seguridad Social (BIESS)",
+    verifiedAt: "2026-11-16",
+    verified: false,
+    notes: "Tasa de interés nominal mínima referencial para créditos quirografarios BIESS."
+  },
+  QUIROGRAFARIO_PLAZO_MAX_MESES: {
+    id: "QUIROGRAFARIO_PLAZO_MAX_MESES",
+    value: 60,
+    source: "Reglamento de Créditos Quirografarios del BIESS",
+    verifiedAt: "2026-11-16",
+    verified: false,
+    notes: "Plazo máximo de amortización de hasta 60 meses (5 años)."
   },
   QUIROGRAFARIO_DISCAPACITADOS_REQ: {
     id: "QUIROGRAFARIO_DISCAPACITADOS_REQ",
     value: 18,
     source: "Políticas Diferenciales del BIESS para Personas con Discapacidad",
-    verifiedAt: "2026-10-01",
+    verifiedAt: "2026-11-16",
     verified: false,
     notes: "Aportes requeridos reducidos para personas con carné del CONADIS."
   },
@@ -209,9 +235,27 @@ export const FACTS: Record<string, Fact> = {
     id: "QUIROGRAFARIO_NOVACION_PAGO_PCT",
     value: 25,
     source: "Reglamento General de Crédito BIESS",
-    verifiedAt: "2026-10-01",
+    verifiedAt: "2026-11-16",
     verified: false,
     notes: "Porcentaje pagado del crédito vigente para calificar a una novación."
+  },
+
+  // Plazos Patronales de Entrada y Salida
+  AVISO_ENTRADA_DIAS: {
+    id: "AVISO_ENTRADA_DIAS",
+    value: 15,
+    source: "Ley de Seguridad Social de Ecuador, Art. 73",
+    verifiedAt: "2026-11-16",
+    verified: false,
+    notes: "Plazo máximo de 15 días posteriores al inicio de labores para registrar el aviso de entrada."
+  },
+  AVISO_SALIDA_DIAS: {
+    id: "AVISO_SALIDA_DIAS",
+    value: 3,
+    source: "Ley de Seguridad Social de Ecuador / Reglamento del IESS",
+    verifiedAt: "2026-11-16",
+    verified: false,
+    notes: "Plazo legal de 3 días posteriores a la separación laboral para registrar el aviso de salida."
   },
   
   // URLs oficiales de consulta
@@ -219,14 +263,14 @@ export const FACTS: Record<string, Fact> = {
     id: "URL_IESS_PORTAL",
     value: "https://www.iess.gob.ec",
     source: "IESS Oficial",
-    verifiedAt: "2026-10-01",
+    verifiedAt: "2026-11-16",
     verified: false
   },
   URL_BIESS_PORTAL: {
     id: "URL_BIESS_PORTAL",
     value: "https://www.biess.fin.ec",
     source: "BIESS Oficial",
-    verifiedAt: "2026-10-01",
+    verifiedAt: "2026-11-16",
     verified: false
   }
 };

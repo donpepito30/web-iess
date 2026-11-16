@@ -1227,8 +1227,8 @@ app.get("/procedimiento/:slug", (req, res) => {
   }
 });
 
-// SSR Helper for Blog & Guías y Artículos Paginated Archive Pages
-function renderGuiasPage(req: express.Request, res: express.Response, requestedPage: number) {
+// SSR Helper for Blog Paginated Archive Pages
+function renderBlogPage(req: express.Request, res: express.Response, requestedPage: number) {
   const baseUrl = getBaseUrl(req);
   const limit = 4;
   const totalPosts = BLOG_POSTS.length;
@@ -1238,31 +1238,28 @@ function renderGuiasPage(req: express.Request, res: express.Response, requestedP
   const safePage = Math.max(1, Math.min(requestedPage, totalPages));
   const isFirstPage = safePage === 1;
 
-  const isLegacy = req.path.startsWith("/blog");
-  const basePath = isLegacy ? "/blog" : "/guias-y-articulos";
-
-  // SEO: Self-referencing canonical URL
-  const canonicalUrl = isFirstPage ? `${baseUrl}${basePath}` : `${baseUrl}${basePath}/page/${safePage}`;
+  // SEO: Self-referencing canonical URL exclusively on /blog
+  const canonicalUrl = isFirstPage ? `${baseUrl}/blog` : `${baseUrl}/blog/page/${safePage}`;
 
   // SEO: Rel prev & next links for crawler pagination traversal
   const prevUrl = safePage === 2
-    ? `${baseUrl}${basePath}`
+    ? `${baseUrl}/blog`
     : safePage > 2
-      ? `${baseUrl}${basePath}/page/${safePage - 1}`
+      ? `${baseUrl}/blog/page/${safePage - 1}`
       : undefined;
 
   const nextUrl = safePage < totalPages
-    ? `${baseUrl}${basePath}/page/${safePage + 1}`
+    ? `${baseUrl}/blog/page/${safePage + 1}`
     : undefined;
 
   // SEO: Dynamic title and description to prevent duplicate metadata
   const title = isFirstPage
-    ? `Guías y Artículos del IESS Ecuador ${CURRENT_YEAR} | IESS Asistente`
-    : `Guías de Seguridad Social IESS - Pág. ${safePage} | IESS Asistente`;
+    ? `Blog de Guías IESS Ecuador ${CURRENT_YEAR} | IESS Asistente`
+    : `Blog de Seguridad Social IESS - Pág. ${safePage} | IESS Asistente`;
 
   const description = isFirstPage
-    ? "Encuentra explicaciones sencillas, normativas vigentes y guías detalladas de jubilaciones, préstamos BIESS y trámites del IESS de Ecuador."
-    : `Página ${safePage} del archivo de guías y normativas del IESS de Ecuador. Información de requisitos y resoluciones del Consejo Directivo.`;
+    ? "Artículos explicativos y guías sobre trámites del IESS de Ecuador. Requisitos de jubilación, préstamos BIESS, cesantías y normativas actualizadas."
+    : `Página ${safePage} del blog de guías y normativas del IESS en Ecuador. Información clara de requisitos, resoluciones y prestaciones de la seguridad social.`;
 
   // SEO: Crawl budget optimization for deep pages (pages > 5 set to noindex, follow)
   const robots = safePage > 5 ? "noindex, follow" : "index, follow";
@@ -1285,9 +1282,9 @@ function renderGuiasPage(req: express.Request, res: express.Response, requestedP
     nextUrl,
     jsonLd,
     dataAttr: "data-tab",
-    dataVal: isLegacy ? "blog" : "guias-y-articulos",
+    dataVal: "blog",
     extraDataAttrs: {
-      [isLegacy ? "data-blog-page" : "data-guias-page"]: String(safePage)
+      "data-blog-page": String(safePage)
     },
     bodyHtml
   });
@@ -1296,62 +1293,53 @@ function renderGuiasPage(req: express.Request, res: express.Response, requestedP
   res.send(html);
 }
 
-// SSR Routing for Blog & Guias Pagination
-app.get(["/blog/page/:page", "/guias-y-articulos/page/:page"], (req, res) => {
-  const rootPath = req.path.startsWith("/blog") ? "/blog" : "/guias-y-articulos";
+// 301 Redirect /guias-y-articulos/page/:page -> /blog/page/:page
+app.get("/guias-y-articulos/page/:page", (req, res) => {
+  const pageNum = parseInt(req.params.page, 10);
+  if (isNaN(pageNum) || pageNum <= 1) {
+    return res.redirect(301, "/blog");
+  }
+  return res.redirect(301, `/blog/page/${pageNum}`);
+});
+
+// 301 Redirect /guias-y-articulos -> /blog
+app.get("/guias-y-articulos", (req, res) => {
+  const queryStr = Object.keys(req.query).length > 0 ? `?${new URLSearchParams(req.query as any).toString()}` : "";
+  return res.redirect(301, `/blog${queryStr}`);
+});
+
+// SSR Routing for Blog Pagination: /blog/page/:page
+app.get("/blog/page/:page", (req, res) => {
   const pageNum = parseInt(req.params.page, 10);
   if (isNaN(pageNum) || pageNum < 1) {
-    return res.redirect(301, rootPath);
+    return res.redirect(301, "/blog");
   }
   if (pageNum === 1) {
-    return res.redirect(301, rootPath);
+    return res.redirect(301, "/blog");
   }
-  renderGuiasPage(req, res, pageNum);
+  renderBlogPage(req, res, pageNum);
 });
 
-// SSR Routing for Blog & Guias Section List: /blog, /guias-y-articulos
-app.get(["/blog", "/guias-y-articulos"], (req, res) => {
+// SSR Routing for Blog Root: /blog
+app.get("/blog", (req, res) => {
   const pageParam = req.query.page ? parseInt(req.query.page as string, 10) : 1;
   const pageNum = isNaN(pageParam) || pageParam < 1 ? 1 : pageParam;
-  renderGuiasPage(req, res, pageNum);
+  renderBlogPage(req, res, pageNum);
 });
 
-// SSR Routing for Blog Articles (for SEO indexability)
-app.get(["/blog/:slug", "/guias-y-articulos/:slug"], (req, res) => {
+// 301 Redirect /guias-y-articulos/:slug -> /blog/:slug (only for BLOG_POSTS slugs)
+// Preserve SEO_CATEGORIES subcategories (/guias-y-articulos/jubilados, /guias-y-articulos/afiliados)
+app.get("/guias-y-articulos/:slug", (req, res, next) => {
   const slug = req.params.slug;
-  const isBlog = req.path.startsWith("/blog");
   const post = BLOG_POSTS.find(p => p.slug === slug || p.id === slug);
-
   if (post) {
-    const baseUrl = getBaseUrl(req);
-    const basePath = isBlog ? "/blog" : "/guias-y-articulos";
-    const url = `${baseUrl}${basePath}/${slug}`;
-    const bodyHtml = generateBlogPostSeoHtml(post);
-    const postTitle = post.seoTitle || post.title;
-    const title = postTitle.includes("| IESS Asistente") ? postTitle : `${postTitle} | IESS Asistente`;
-
-    const html = renderHtml({
-      title,
-      description: post.metaDescription,
-      url,
-      jsonLd: getArticleGraph(baseUrl, post),
-      dataAttr: isBlog ? "data-blog-slug" : "data-guias-slug",
-      dataVal: post.slug,
-      image: post.image,
-      isArticle: true,
-      bodyHtml
-    });
-    res.header('Content-Type', 'text/html');
-    return res.send(html);
+    return res.redirect(301, `/blog/${post.slug}`);
   }
 
-  // Check if it's a subcategory of guias-y-articulos (e.g. /guias-y-articulos/jubilados, /guias-y-articulos/afiliados)
+  // Preserve subcategories of guias-y-articulos (e.g. /guias-y-articulos/jubilados, /guias-y-articulos/afiliados)
   const guiasCat = SEO_CATEGORIES.find(c => c.slug === "guias-y-articulos");
   const sub = guiasCat?.subcategories.find(s => s.slug === slug);
   if (sub) {
-    if (isBlog) {
-      return res.redirect(301, `/guias-y-articulos/${slug}`);
-    }
     const baseUrl = getBaseUrl(req);
     const bodyHtml = generateCategorySeoHtml(guiasCat!, sub.slug);
     const html = renderHtml({
@@ -1363,6 +1351,43 @@ app.get(["/blog/:slug", "/guias-y-articulos/:slug"], (req, res) => {
     });
     res.header("Content-Type", "text/html");
     return res.send(html);
+  }
+
+  return next();
+});
+
+// SSR Routing for Blog Articles: /blog/:slug
+app.get("/blog/:slug", (req, res) => {
+  const slug = req.params.slug;
+  const post = BLOG_POSTS.find(p => p.slug === slug || p.id === slug);
+
+  if (post) {
+    const baseUrl = getBaseUrl(req);
+    const url = `${baseUrl}/blog/${post.slug}`;
+    const bodyHtml = generateBlogPostSeoHtml(post);
+    const postTitle = post.seoTitle || post.title;
+    const title = postTitle.includes("| IESS Asistente") ? postTitle : `${postTitle} | IESS Asistente`;
+
+    const html = renderHtml({
+      title,
+      description: post.metaDescription,
+      url,
+      jsonLd: getArticleGraph(baseUrl, post),
+      dataAttr: "data-blog-slug",
+      dataVal: post.slug,
+      image: post.image,
+      isArticle: true,
+      bodyHtml
+    });
+    res.header('Content-Type', 'text/html');
+    return res.send(html);
+  }
+
+  // If someone requests /blog/jubilados or /blog/afiliados, redirect to /guias-y-articulos/:slug
+  const guiasCat = SEO_CATEGORIES.find(c => c.slug === "guias-y-articulos");
+  const sub = guiasCat?.subcategories.find(s => s.slug === slug);
+  if (sub) {
+    return res.redirect(301, `/guias-y-articulos/${sub.slug}`);
   }
 
   // Not found -> 404 with noindex
