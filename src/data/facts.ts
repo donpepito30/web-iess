@@ -13,7 +13,7 @@ export const FACTS: Record<string, Fact> = {
     id: "SBU_2024",
     value: 460,
     source: "Ministerio del Trabajo, año 2024",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Salario Básico Unificado fijado para el año 2024."
   },
@@ -21,7 +21,7 @@ export const FACTS: Record<string, Fact> = {
     id: "SBU_2025",
     value: 470,
     source: "Ministerio del Trabajo de Ecuador",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Salario Básico Unificado fijado para el año 2025."
   },
@@ -29,7 +29,7 @@ export const FACTS: Record<string, Fact> = {
     id: "SBU_2026",
     value: 482,
     source: "Consejo Nacional de Trabajo y Salarios, resolución del 15-dic-2025 (vigente desde el 1-ene-2026). Confirmar número de Acuerdo Ministerial en trabajo.gob.ec",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: true,
     notes: "Valor oficial fijado para el ejercicio fiscal 2026."
   },
@@ -39,7 +39,7 @@ export const FACTS: Record<string, Fact> = {
     id: "APORTE_VOLUNTARIO_PCT",
     value: 17.60,
     source: "Ley de Seguridad Social de Ecuador, Art. 152",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: true,
     notes: "Tasa de aportación para afiliados voluntarios e independientes sin relación de dependencia."
   },
@@ -47,7 +47,7 @@ export const FACTS: Record<string, Fact> = {
     id: "APORTE_DEPENDIENTE_TOTAL_PCT",
     value: 20.60,
     source: "Resolución del Consejo Directivo del IESS / Ley de Seguridad Social",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: true,
     notes: "Suma de aporte personal y aporte patronal ordinario."
   },
@@ -55,7 +55,7 @@ export const FACTS: Record<string, Fact> = {
     id: "APORTE_PERSONAL_PCT",
     value: 9.45,
     source: "Ley de Seguridad Social, Art. 116",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: true,
     notes: "Aporte personal obligatorio del trabajador bajo relación de dependencia."
   },
@@ -63,7 +63,7 @@ export const FACTS: Record<string, Fact> = {
     id: "APORTE_PATRONAL_PCT",
     value: 11.15,
     source: "Ley de Seguridad Social, Art. 117",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: true,
     notes: "Aporte patronal obligatorio a cargo del empleador."
   },
@@ -73,7 +73,7 @@ export const FACTS: Record<string, Fact> = {
     id: "MATERNIDAD_SUBSIDIO_IESS_PCT",
     value: 75,
     source: "Código del Trabajo de Ecuador, Art. 152 / Ley de Seguridad Social",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: true,
     notes: "Porcentaje del subsidio monetario cubierto por el IESS durante el reposo (25% a cargo del empleador)."
   },
@@ -81,7 +81,7 @@ export const FACTS: Record<string, Fact> = {
     id: "MATERNIDAD_DIAS_DESCANSO",
     value: 84,
     source: "Código del Trabajo, Art. 152 (12 semanas)",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Días calendario de descanso remunerado por maternidad."
   },
@@ -89,7 +89,7 @@ export const FACTS: Record<string, Fact> = {
     id: "MATERNIDAD_APORTES_REQ",
     value: 12,
     source: "Reglamento General del Seguro de Salud del IESS",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Aportaciones continuas requeridas en los 15 meses previos al parto."
   },
@@ -99,7 +99,7 @@ export const FACTS: Record<string, Fact> = {
     id: "MONTEPIO_VIUDEZ_PCT",
     value: 60,
     source: "Reglamento del Seguro de Invalidez, Vejez y Muerte del IESS",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: true,
     notes: "Porcentaje de la pensión del causante para viuda/o o conviviente sin hijos (40% si concurren hijos)."
   },
@@ -107,7 +107,7 @@ export const FACTS: Record<string, Fact> = {
     id: "MONTEPIO_ORFANDAD_PCT",
     value: 40,
     source: "Reglamento del Seguro de Invalidez, Vejez y Muerte del IESS",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Conflicto de fuentes (40 % vs 20 % por hijo); confirmar en el Reglamento del IESS"
   },
@@ -117,7 +117,7 @@ export const FACTS: Record<string, Fact> = {
     id: "TASA_HIPOTECARIO_MIN",
     value: 6.8,
     source: "Tarifario de Crédito del Banco del Instituto Ecuatoriano de Seguridad Social (BIESS)",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Tasa nominal mínima para líneas de crédito hipotecario no preferenciales."
   },
@@ -125,7 +125,7 @@ export const FACTS: Record<string, Fact> = {
     id: "TASA_HIPOTECARIO_MAX",
     value: 9.1,
     source: "Tarifario de Crédito del Banco del Instituto Ecuatoriano de Seguridad Social (BIESS)",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Tasa nominal máxima para líneas de crédito hipotecario no preferenciales."
   },
@@ -133,7 +133,7 @@ export const FACTS: Record<string, Fact> = {
     id: "HIPOTECARIO_PLAZO_MAX_ANOS",
     value: 25,
     source: "Reglamento de Créditos Hipotecarios BIESS",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Plazo de amortización máximo para el seguro de desgravamen."
   },
@@ -143,7 +143,7 @@ export const FACTS: Record<string, Fact> = {
     id: "CREDICASA_TASA",
     value: 2.99,
     source: "Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) - Línea Credicasa",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Tasa de interés preferencial para primera vivienda del programa Credicasa BIESS."
   },
@@ -151,7 +151,7 @@ export const FACTS: Record<string, Fact> = {
     id: "CREDICASA_MONTO_MAX",
     value: 65000,
     source: "Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) - Línea Credicasa",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Monto máximo de financiamiento para el programa preferencial Credicasa."
   },
@@ -159,7 +159,7 @@ export const FACTS: Record<string, Fact> = {
     id: "CREDICASA_APORTES_REQ",
     value: 36,
     source: "Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) - Línea Credicasa",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Requisito de 36 aportaciones acumuladas (últimas 13 consecutivas) para afiliados en relación de dependencia."
   },
@@ -169,7 +169,7 @@ export const FACTS: Record<string, Fact> = {
     id: "DENUNCIAS_WEB",
     value: "denuncias.iess.gob.ec",
     source: "Comunicado de Prensa Oficial IESS / Secretaría de Transparencia de Ecuador",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Canal web oficial para reporte de actos de corrupción, falta de medicamentos y baches de citas."
   },
@@ -177,7 +177,7 @@ export const FACTS: Record<string, Fact> = {
     id: "DENUNCIAS_WHATSAPP",
     value: "0962532338",
     source: "Canales de denuncias habilitados en septiembre 2025",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Número del chatbot oficial automatizado habilitado las 24/7 para quejas ciudadanas."
   },
@@ -185,7 +185,7 @@ export const FACTS: Record<string, Fact> = {
     id: "DENUNCIAS_TELEFONO",
     value: "1800-4377",
     source: "Línea gratuita de denuncias y soporte telefónico IESS",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Línea gratuita nacional 1800-IESS (1800-4377) para consultas generales y quejas."
   },
@@ -195,7 +195,7 @@ export const FACTS: Record<string, Fact> = {
     id: "QUIROGRAFARIO_APORTES_REQ",
     value: 12,
     source: "Manual del Usuario del Préstamo Quirografario BIESS / biess.fin.ec",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Aportaciones acumuladas mínimas requeridas para solicitar el préstamo quirografario."
   },
@@ -203,7 +203,7 @@ export const FACTS: Record<string, Fact> = {
     id: "QUIROGRAFARIO_MONTO_MAX",
     value: 38560,
     source: "Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) / 80 Salarios Básicos Unificados",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Monto máximo legal para préstamos quirografarios equivalente a 80 SBU."
   },
@@ -211,7 +211,7 @@ export const FACTS: Record<string, Fact> = {
     id: "QUIROGRAFARIO_TASA_MIN",
     value: 6.5,
     source: "Tarifario de Crédito del Banco del Instituto Ecuatoriano de Seguridad Social (BIESS)",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Tasa de interés nominal mínima referencial para créditos quirografarios BIESS."
   },
@@ -219,7 +219,7 @@ export const FACTS: Record<string, Fact> = {
     id: "QUIROGRAFARIO_PLAZO_MAX_MESES",
     value: 60,
     source: "Reglamento de Créditos Quirografarios del BIESS",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Plazo máximo de amortización de hasta 60 meses (5 años)."
   },
@@ -227,7 +227,7 @@ export const FACTS: Record<string, Fact> = {
     id: "QUIROGRAFARIO_DISCAPACITADOS_REQ",
     value: 18,
     source: "Políticas Diferenciales del BIESS para Personas con Discapacidad",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Aportes requeridos reducidos para personas con carné del CONADIS."
   },
@@ -235,7 +235,7 @@ export const FACTS: Record<string, Fact> = {
     id: "QUIROGRAFARIO_NOVACION_PAGO_PCT",
     value: 25,
     source: "Reglamento General de Crédito BIESS",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Porcentaje pagado del crédito vigente para calificar a una novación."
   },
@@ -245,7 +245,7 @@ export const FACTS: Record<string, Fact> = {
     id: "AVISO_ENTRADA_DIAS",
     value: 15,
     source: "Ley de Seguridad Social de Ecuador, Art. 73",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Plazo máximo de 15 días posteriores al inicio de labores para registrar el aviso de entrada."
   },
@@ -253,7 +253,7 @@ export const FACTS: Record<string, Fact> = {
     id: "AVISO_SALIDA_DIAS",
     value: 3,
     source: "Ley de Seguridad Social de Ecuador / Reglamento del IESS",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false,
     notes: "Plazo legal de 3 días posteriores a la separación laboral para registrar el aviso de salida."
   },
@@ -263,14 +263,14 @@ export const FACTS: Record<string, Fact> = {
     id: "URL_IESS_PORTAL",
     value: "https://www.iess.gob.ec",
     source: "IESS Oficial",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false
   },
   URL_BIESS_PORTAL: {
     id: "URL_BIESS_PORTAL",
     value: "https://www.biess.fin.ec",
     source: "BIESS Oficial",
-    verifiedAt: "2026-11-16",
+    verifiedAt: "2026-11-23",
     verified: false
   }
 };

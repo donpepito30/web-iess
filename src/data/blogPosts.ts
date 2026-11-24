@@ -44,7 +44,7 @@ export const BLOG_POSTS: BlogPost[] = [
     "readTime": 8,
     "image": "/og/jubilacion-por-vejez-requisitos-2026.jpg",
     "category": "Jubilación",
-    "dateModified": "2026-11-16",
+    "dateModified": "2026-11-23",
     "sources": [
       {
         "label": "Ley de Seguridad Social de Ecuador - Título V de las Pensiones",
@@ -76,7 +76,7 @@ export const BLOG_POSTS: BlogPost[] = [
     "readTime": 8,
     "image": "/og/prestamo-quirografario-biess-requisitos-montos-2026.jpg",
     "category": "Préstamos",
-    "dateModified": "2026-11-16",
+    "dateModified": "2026-11-23",
     "sources": [
       {
         "label": "Banco del IESS - Normativa y Requisitos de Crédito Quirografario",
@@ -182,7 +182,7 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
     "author": "equipo-editorial",
     "publishDate": "2026-01-08",
-    "dateModified": "2026-11-16",
+    "dateModified": "2026-11-23",
     "readTime": 9,
     "readingTime": 9,
     "image": "/og/subsidio-maternidad-iess-requisitos-calculo-2026.jpg",
@@ -262,7 +262,7 @@ export const BLOG_POSTS: BlogPost[] = [
     "image": "/og/prestamo-hipotecario-biess-requisitos-tasas-2026.jpg",
     "imageAlt": "Vivienda y llaves de casa financiada con préstamo hipotecario del BIESS en Ecuador",
     "category": "Préstamos",
-    "dateModified": "2026-11-16",
+    "dateModified": "2026-11-23",
     "sources": [
       {
         "label": "Banco del IESS - Crédito Inmobiliario",

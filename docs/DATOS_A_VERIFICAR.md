@@ -1,7 +1,7 @@
 # Reporte Automatizado de Datos Pendientes de Verificación (YMYL)
 
 > **Documento generado automáticamente por `npm run data:report` (`scripts/verify-report.ts`).**
-> Fecha de generación: 2026-11-16
+> Fecha de generación: 2026-11-24
 >
 > Este reporte consolida rigurosamente todas las cifras salariales, porcentajes de aportación y dependencias físicas locales que se encuentran marcadas con `verified: false` o `verifiedAt: null`. Ningún dato aquí listado se presenta al usuario como definitivo ni verificado hasta ser contrastado documentalmente con resoluciones oficiales del IESS o del Ministerio del Trabajo.
 
@@ -44,145 +44,145 @@ Total de variables no verificadas: **24**
   - **Valor**: `460`
   - **Fuente reportada**: Ministerio del Trabajo, año 2024
   - **Notas editoriales**: Salario Básico Unificado fijado para el año 2024.
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 460 · Fuente: Ministerio del Trabajo, año 2024 · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 460 · Fuente: Ministerio del Trabajo, año 2024 · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`SBU_2025`** (Línea 20):
   - **Valor**: `470`
   - **Fuente reportada**: Ministerio del Trabajo de Ecuador
   - **Notas editoriales**: Salario Básico Unificado fijado para el año 2025.
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 470 · Fuente: Ministerio del Trabajo de Ecuador · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 470 · Fuente: Ministerio del Trabajo de Ecuador · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`MATERNIDAD_DIAS_DESCANSO`** (Línea 80):
   - **Valor**: `84`
   - **Fuente reportada**: Código del Trabajo, Art. 152 (12 semanas)
   - **Notas editoriales**: Días calendario de descanso remunerado por maternidad.
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 84 · Fuente: Código del Trabajo, Art. 152 (12 semanas) · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 84 · Fuente: Código del Trabajo, Art. 152 (12 semanas) · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`MATERNIDAD_APORTES_REQ`** (Línea 88):
   - **Valor**: `12`
   - **Fuente reportada**: Reglamento General del Seguro de Salud del IESS
   - **Notas editoriales**: Aportaciones continuas requeridas en los 15 meses previos al parto.
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 12 · Fuente: Reglamento General del Seguro de Salud del IESS · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 12 · Fuente: Reglamento General del Seguro de Salud del IESS · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`MONTEPIO_ORFANDAD_PCT`** (Línea 106):
   - **Valor**: `40`
   - **Fuente reportada**: Reglamento del Seguro de Invalidez, Vejez y Muerte del IESS
   - **Notas editoriales**: Conflicto de fuentes (40 % vs 20 % por hijo); confirmar en el Reglamento del IESS
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 40 · Fuente: Reglamento del Seguro de Invalidez, Vejez y Muerte del IESS · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 40 · Fuente: Reglamento del Seguro de Invalidez, Vejez y Muerte del IESS · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`TASA_HIPOTECARIO_MIN`** (Línea 116):
   - **Valor**: `6.8`
   - **Fuente reportada**: Tarifario de Crédito del Banco del Instituto Ecuatoriano de Seguridad Social (BIESS)
   - **Notas editoriales**: Tasa nominal mínima para líneas de crédito hipotecario no preferenciales.
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 6.8 · Fuente: Tarifario de Crédito del Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 6.8 · Fuente: Tarifario de Crédito del Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`TASA_HIPOTECARIO_MAX`** (Línea 124):
   - **Valor**: `9.1`
   - **Fuente reportada**: Tarifario de Crédito del Banco del Instituto Ecuatoriano de Seguridad Social (BIESS)
   - **Notas editoriales**: Tasa nominal máxima para líneas de crédito hipotecario no preferenciales.
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 9.1 · Fuente: Tarifario de Crédito del Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 9.1 · Fuente: Tarifario de Crédito del Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`HIPOTECARIO_PLAZO_MAX_ANOS`** (Línea 132):
   - **Valor**: `25`
   - **Fuente reportada**: Reglamento de Créditos Hipotecarios BIESS
   - **Notas editoriales**: Plazo de amortización máximo para el seguro de desgravamen.
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 25 · Fuente: Reglamento de Créditos Hipotecarios BIESS · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 25 · Fuente: Reglamento de Créditos Hipotecarios BIESS · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`CREDICASA_TASA`** (Línea 142):
   - **Valor**: `2.99`
   - **Fuente reportada**: Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) - Línea Credicasa
   - **Notas editoriales**: Tasa de interés preferencial para primera vivienda del programa Credicasa BIESS.
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 2.99 · Fuente: Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) - Línea Credicasa · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 2.99 · Fuente: Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) - Línea Credicasa · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`CREDICASA_MONTO_MAX`** (Línea 150):
   - **Valor**: `65000`
   - **Fuente reportada**: Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) - Línea Credicasa
   - **Notas editoriales**: Monto máximo de financiamiento para el programa preferencial Credicasa.
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 65000 · Fuente: Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) - Línea Credicasa · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 65000 · Fuente: Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) - Línea Credicasa · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`CREDICASA_APORTES_REQ`** (Línea 158):
   - **Valor**: `36`
   - **Fuente reportada**: Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) - Línea Credicasa
   - **Notas editoriales**: Requisito de 36 aportaciones acumuladas (últimas 13 consecutivas) para afiliados en relación de dependencia.
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 36 · Fuente: Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) - Línea Credicasa · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 36 · Fuente: Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) - Línea Credicasa · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`DENUNCIAS_WEB`** (Línea 168):
   - **Valor**: `denuncias.iess.gob.ec`
   - **Fuente reportada**: Comunicado de Prensa Oficial IESS / Secretaría de Transparencia de Ecuador
   - **Notas editoriales**: Canal web oficial para reporte de actos de corrupción, falta de medicamentos y baches de citas.
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: denuncias.iess.gob.ec · Fuente: Comunicado de Prensa Oficial IESS / Secretaría de Transparencia de Ecuador · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: denuncias.iess.gob.ec · Fuente: Comunicado de Prensa Oficial IESS / Secretaría de Transparencia de Ecuador · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`DENUNCIAS_WHATSAPP`** (Línea 176):
   - **Valor**: `0962532338`
   - **Fuente reportada**: Canales de denuncias habilitados en septiembre 2025
   - **Notas editoriales**: Número del chatbot oficial automatizado habilitado las 24/7 para quejas ciudadanas.
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 0962532338 · Fuente: Canales de denuncias habilitados en septiembre 2025 · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 0962532338 · Fuente: Canales de denuncias habilitados en septiembre 2025 · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`DENUNCIAS_TELEFONO`** (Línea 184):
   - **Valor**: `1800-4377`
   - **Fuente reportada**: Línea gratuita de denuncias y soporte telefónico IESS
   - **Notas editoriales**: Línea gratuita nacional 1800-IESS (1800-4377) para consultas generales y quejas.
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 1800-4377 · Fuente: Línea gratuita de denuncias y soporte telefónico IESS · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 1800-4377 · Fuente: Línea gratuita de denuncias y soporte telefónico IESS · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`QUIROGRAFARIO_APORTES_REQ`** (Línea 194):
   - **Valor**: `12`
   - **Fuente reportada**: Manual del Usuario del Préstamo Quirografario BIESS / biess.fin.ec
   - **Notas editoriales**: Aportaciones acumuladas mínimas requeridas para solicitar el préstamo quirografario.
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 12 · Fuente: Manual del Usuario del Préstamo Quirografario BIESS / biess.fin.ec · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 12 · Fuente: Manual del Usuario del Préstamo Quirografario BIESS / biess.fin.ec · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`QUIROGRAFARIO_MONTO_MAX`** (Línea 202):
   - **Valor**: `38560`
   - **Fuente reportada**: Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) / 80 Salarios Básicos Unificados
   - **Notas editoriales**: Monto máximo legal para préstamos quirografarios equivalente a 80 SBU.
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 38560 · Fuente: Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) / 80 Salarios Básicos Unificados · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 38560 · Fuente: Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) / 80 Salarios Básicos Unificados · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`QUIROGRAFARIO_TASA_MIN`** (Línea 210):
   - **Valor**: `6.5`
   - **Fuente reportada**: Tarifario de Crédito del Banco del Instituto Ecuatoriano de Seguridad Social (BIESS)
   - **Notas editoriales**: Tasa de interés nominal mínima referencial para créditos quirografarios BIESS.
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 6.5 · Fuente: Tarifario de Crédito del Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 6.5 · Fuente: Tarifario de Crédito del Banco del Instituto Ecuatoriano de Seguridad Social (BIESS) · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`QUIROGRAFARIO_PLAZO_MAX_MESES`** (Línea 218):
   - **Valor**: `60`
   - **Fuente reportada**: Reglamento de Créditos Quirografarios del BIESS
   - **Notas editoriales**: Plazo máximo de amortización de hasta 60 meses (5 años).
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 60 · Fuente: Reglamento de Créditos Quirografarios del BIESS · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 60 · Fuente: Reglamento de Créditos Quirografarios del BIESS · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`QUIROGRAFARIO_DISCAPACITADOS_REQ`** (Línea 226):
   - **Valor**: `18`
   - **Fuente reportada**: Políticas Diferenciales del BIESS para Personas con Discapacidad
   - **Notas editoriales**: Aportes requeridos reducidos para personas con carné del CONADIS.
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 18 · Fuente: Políticas Diferenciales del BIESS para Personas con Discapacidad · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 18 · Fuente: Políticas Diferenciales del BIESS para Personas con Discapacidad · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`QUIROGRAFARIO_NOVACION_PAGO_PCT`** (Línea 234):
   - **Valor**: `25`
   - **Fuente reportada**: Reglamento General de Crédito BIESS
   - **Notas editoriales**: Porcentaje pagado del crédito vigente para calificar a una novación.
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 25 · Fuente: Reglamento General de Crédito BIESS · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 25 · Fuente: Reglamento General de Crédito BIESS · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`AVISO_ENTRADA_DIAS`** (Línea 244):
   - **Valor**: `15`
   - **Fuente reportada**: Ley de Seguridad Social de Ecuador, Art. 73
   - **Notas editoriales**: Plazo máximo de 15 días posteriores al inicio de labores para registrar el aviso de entrada.
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 15 · Fuente: Ley de Seguridad Social de Ecuador, Art. 73 · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 15 · Fuente: Ley de Seguridad Social de Ecuador, Art. 73 · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`AVISO_SALIDA_DIAS`** (Línea 252):
   - **Valor**: `3`
   - **Fuente reportada**: Ley de Seguridad Social de Ecuador / Reglamento del IESS
   - **Notas editoriales**: Plazo legal de 3 días posteriores a la separación laboral para registrar el aviso de salida.
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 3 · Fuente: Ley de Seguridad Social de Ecuador / Reglamento del IESS · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: 3 · Fuente: Ley de Seguridad Social de Ecuador / Reglamento del IESS · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`URL_IESS_PORTAL`** (Línea 262):
   - **Valor**: `https://www.iess.gob.ec`
   - **Fuente reportada**: IESS Oficial
   - **Notas editoriales**: Pendiente de confirmación
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: https://www.iess.gob.ec · Fuente: IESS Oficial · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: https://www.iess.gob.ec · Fuente: IESS Oficial · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 - **`URL_BIESS_PORTAL`** (Línea 269):
   - **Valor**: `https://www.biess.fin.ec`
   - **Fuente reportada**: BIESS Oficial
   - **Notas editoriales**: Pendiente de confirmación
-  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: https://www.biess.fin.ec · Fuente: BIESS Oficial · Consultado: 2026-11-16 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
+  - **Aviso obligatorio en UI/SSR**: *"Dato referencial: https://www.biess.fin.ec · Fuente: BIESS Oficial · Consultado: 2026-11-23 · Confirma este valor en iess.gob.ec antes de realizar tu trámite"*
 
 
 ---

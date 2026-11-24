@@ -986,8 +986,11 @@ function renderHtml(meta: {
     ? path.join(process.cwd(), "dist", "template.html")
     : path.join(process.cwd(), "index.html");
   if (isProd && !fs.existsSync(htmlPath)) {
+    const cwdTemplatePath = path.join(process.cwd(), "template.html");
     const fallbackPath = path.join(process.cwd(), "dist", "index.html");
-    if (fs.existsSync(fallbackPath)) {
+    if (fs.existsSync(cwdTemplatePath)) {
+      htmlPath = cwdTemplatePath;
+    } else if (fs.existsSync(fallbackPath)) {
       htmlPath = fallbackPath;
     }
   }
@@ -997,37 +1000,52 @@ function renderHtml(meta: {
     html = fs.readFileSync(htmlPath, "utf-8");
   } catch (err) {
     // Basic fallback HTML in case file reading fails
-    html = `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>${meta.title}</title><meta name="description" content="${meta.description}"></head><body><div id="root"></div></body></html>`;
+    html = `<!DOCTYPE html><html lang="es-EC"><head><meta charset="UTF-8"><title>${escapeHtml(meta.title)}</title><meta name="description" content="${escapeHtml(meta.description)}"></head><body><div id="root"></div></body></html>`;
   }
 
+  const siteBase = getSiteUrlServer();
+  const rawUrl = meta.url || `${siteBase}/`;
+  const absoluteUrl =
+    rawUrl.startsWith("http://") || rawUrl.startsWith("https://")
+      ? rawUrl
+      : `${siteBase}${rawUrl.startsWith("/") ? rawUrl : `/${rawUrl}`}`;
+
   // Task 4: Replace site url placeholder first
-  html = html.replace(/%SITE_URL%/g, getSiteUrlServer());
+  html = html.replace(/%SITE_URL%/g, siteBase);
+
+  // Ensure <html lang="es-EC">
+  if (/<html[^>]*\blang=["'][^"']*["'][^>]*>/i.test(html)) {
+    html = html.replace(/<html([^>]*)\blang=["'][^"']*["']([^>]*)>/i, '<html$1lang="es-EC"$2>');
+  } else {
+    html = html.replace(/<html([^>]*)>/i, '<html$1 lang="es-EC">');
+  }
 
   // Remove pre-existing JSON-LD tags to prevent duplicate schemas
   html = html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/gi, "");
 
   // Task 7: Remove pre-existing SEO-related tags to prevent duplication
-  html = html.replace(/<title>.*?<\/title>/gi, "");
-  html = html.replace(/<meta name="description"[^>]*>/gi, "");
-  html = html.replace(/<link rel="canonical"[^>]*>/gi, "");
-  html = html.replace(/<meta property="og:title"[^>]*>/gi, "");
-  html = html.replace(/<meta property="og:description"[^>]*>/gi, "");
-  html = html.replace(/<meta property="og:url"[^>]*>/gi, "");
-  html = html.replace(/<meta name="robots"[^>]*>/gi, "");
-  html = html.replace(/<meta name="twitter:title"[^>]*>/gi, "");
-  html = html.replace(/<meta name="twitter:description"[^>]*>/gi, "");
-  html = html.replace(/<meta name="twitter:url"[^>]*>/gi, "");
-  html = html.replace(/<link rel="prev"[^>]*>/gi, "");
-  html = html.replace(/<link rel="next"[^>]*>/gi, "");
-  html = html.replace(/<meta property="og:image"[^>]*>/gi, "");
-  html = html.replace(/<meta name="twitter:image"[^>]*>/gi, "");
-  html = html.replace(/<meta property="og:locale"[^>]*>/gi, "");
-  html = html.replace(/<meta property="og:type"[^>]*>/gi, "");
+  html = html.replace(/<title>[\s\S]*?<\/title>/gi, "");
+  html = html.replace(/<meta[^>]*name=["']description["'][^>]*>/gi, "");
+  html = html.replace(/<link[^>]*rel=["']canonical["'][^>]*>/gi, "");
+  html = html.replace(/<link[^>]*hreflang=["'][^"']*["'][^>]*>/gi, "");
+  html = html.replace(/<meta[^>]*property=["']og:title["'][^>]*>/gi, "");
+  html = html.replace(/<meta[^>]*property=["']og:description["'][^>]*>/gi, "");
+  html = html.replace(/<meta[^>]*property=["']og:url["'][^>]*>/gi, "");
+  html = html.replace(/<meta[^>]*name=["']robots["'][^>]*>/gi, "");
+  html = html.replace(/<meta[^>]*name=["']twitter:title["'][^>]*>/gi, "");
+  html = html.replace(/<meta[^>]*name=["']twitter:description["'][^>]*>/gi, "");
+  html = html.replace(/<meta[^>]*name=["']twitter:url["'][^>]*>/gi, "");
+  html = html.replace(/<link[^>]*rel=["']prev["'][^>]*>/gi, "");
+  html = html.replace(/<link[^>]*rel=["']next["'][^>]*>/gi, "");
+  html = html.replace(/<meta[^>]*property=["']og:image["'][^>]*>/gi, "");
+  html = html.replace(/<meta[^>]*name=["']twitter:image["'][^>]*>/gi, "");
+  html = html.replace(/<meta[^>]*property=["']og:locale["'][^>]*>/gi, "");
+  html = html.replace(/<meta[^>]*property=["']og:type["'][^>]*>/gi, "");
 
   // Task 7: Escape parameters before injecting them into attributes
   const escTitle = escapeHtml(meta.title);
   const escDesc = escapeHtml(meta.description);
-  const escUrl = escapeHtml(meta.url);
+  const escUrl = escapeHtml(absoluteUrl);
   const escPrev = meta.prevUrl ? escapeHtml(meta.prevUrl) : undefined;
   const escNext = meta.nextUrl ? escapeHtml(meta.nextUrl) : undefined;
   const escImage = meta.image ? escapeHtml(meta.image) : "/og-default.jpg";
@@ -1037,6 +1055,8 @@ function renderHtml(meta: {
   newTags += `<title>${escTitle}</title>\n`;
   newTags += `<meta name="description" content="${escDesc}">\n`;
   newTags += `<link rel="canonical" href="${escUrl}">\n`;
+  newTags += `<link rel="alternate" hreflang="es-EC" href="${escUrl}">\n`;
+  newTags += `<link rel="alternate" hreflang="x-default" href="${escUrl}">\n`;
   
   newTags += `<meta property="og:title" content="${escTitle}">\n`;
   newTags += `<meta property="og:description" content="${escDesc}">\n`;
@@ -1074,12 +1094,12 @@ function renderHtml(meta: {
     "isPartOf": {
       "@type": "WebSite",
       "name": "IESS Asistente",
-      "url": getBaseUrl()
+      "url": siteBase
     }
   };
   newTags += `<script type="application/ld+json">\n${escapeJsonLd(finalJsonLd)}\n</script>\n`;
 
-  html = html.replace("</head>", `${newTags}</head>`);
+  html = html.replace(/<\/head>/i, `${newTags}</head>`);
 
   // Hydrate initial state by putting data-attributes on #root and inject pre-rendered HTML (Task 1)
   let rootAttrs = '';
@@ -1093,7 +1113,7 @@ function renderHtml(meta: {
   }
   
   const rootReplacement = `<div id="root"${rootAttrs}>${meta.bodyHtml || ""}</div>`;
-  html = html.replace('<div id="root"></div>', rootReplacement);
+  html = html.replace(/<div\s+id=["']?root["']?\s*><\/div>/i, rootReplacement);
 
   return html;
 }
@@ -1574,8 +1594,8 @@ app.get("/", (req, res) => {
   const bodyHtml = generateHomeSeoHtml();
 
   const html = renderHtml({
-    title: `IESS Ecuador: trámites y requisitos ${CURRENT_YEAR} | IESS Asistente`,
-    description: "Consulta requisitos de jubilación, préstamos quirografarios, hipotecarios, afiliación voluntaria y genera oficios de ley de forma gratuita.",
+    title: "IESS Ecuador: trámites y requisitos | IESS Asistente",
+    description: "Guía independiente y asistente virtual para trámites IESS en Ecuador. Jubilación, préstamos BIESS, afiliación y turnos médicos con respuesta rápida.",
     url: `${baseUrl}/`,
     jsonLd: getHomeGraph(baseUrl, PROCEDURES_DATA),
     bodyHtml
@@ -1724,12 +1744,12 @@ app.get("/:categoria/:sub", (req, res, next) => {
 const distPath = path.join(process.cwd(), "dist");
 const publicPath = path.join(process.cwd(), "public");
 
-// Serve static assets unconditionally (images, favicon, manifest, etc.)
-app.use(express.static(publicPath));
+// Serve static assets unconditionally (images, favicon, manifest, etc.) with index: false so "/" never serves static index.html
+app.use(express.static(publicPath, { index: false }));
 if (fs.existsSync(distPath)) {
-  app.use(express.static(distPath));
+  app.use(express.static(distPath, { index: false }));
 }
-app.use("/src", express.static(path.join(process.cwd(), "src")));
+app.use("/src", express.static(path.join(process.cwd(), "src"), { index: false }));
 
 if (process.env.NODE_ENV === "production") {
   // Serve precompressed Brotli (.br) files if they exist to optimize performance and bandwidth (Core Web Vitals)

@@ -1,9 +1,13 @@
 import app from "../server";
 import { Server } from "http";
+import { spawn } from "child_process";
+import fs from "fs";
+import path from "path";
 import { FACTS } from "../src/data/facts";
 import { BLOG_POSTS } from "../src/data/blogPosts";
 
 const PORT = 3008;
+const PROD_CHECK_PORT = 3009;
 
 interface CategorizedErrors {
   http: string[];
@@ -24,6 +28,7 @@ interface CategorizedErrors {
   blogSources: string[];
   blogOgUnique: string[];
   sitemapArticleCanonical: string[];
+  prodHomeSsr: string[];
 }
 
 async function runFullSeoCheck() {
@@ -49,7 +54,8 @@ async function runFullSeoCheck() {
     blogInternalLinks: [],
     blogSources: [],
     blogOgUnique: [],
-    sitemapArticleCanonical: []
+    sitemapArticleCanonical: [],
+    prodHomeSsr: []
   };
 
   const titleMap = new Map<string, string[]>();
@@ -350,6 +356,100 @@ async function runFullSeoCheck() {
         }
       }
 
+      // 2o. Production Mode Home ("/") SSR Verification
+      async function verifyProductionHome() {
+        const distServerPath = path.join(process.cwd(), "dist", "server.cjs");
+        const distTemplatePath = path.join(process.cwd(), "dist", "template.html");
+        let homeHtml = "";
+        let homeStatus = 0;
+
+        if (fs.existsSync(distServerPath) && fs.existsSync(distTemplatePath)) {
+          const child = spawn(process.execPath, [distServerPath], {
+            env: {
+              ...process.env,
+              NODE_ENV: "production",
+              PORT: String(PROD_CHECK_PORT)
+            },
+            stdio: ["ignore", "pipe", "pipe"]
+          });
+
+          try {
+            let ready = false;
+            const deadline = Date.now() + 8000;
+            while (Date.now() < deadline && !ready) {
+              try {
+                const res = await fetch(`http://127.0.0.1:${PROD_CHECK_PORT}/`, {
+                  headers: { "User-Agent": "Mozilla/5.0 (compatible; Googlebot/2.1)" }
+                });
+                homeStatus = res.status;
+                homeHtml = await res.text();
+                ready = true;
+              } catch {
+                await new Promise(r => setTimeout(r, 150));
+              }
+            }
+            if (!ready) {
+              errors.prodHomeSsr.push("No se pudo conectar al servidor de producción (dist/server.cjs) en el tiempo límite.");
+              return;
+            }
+          } finally {
+            child.kill("SIGTERM");
+          }
+        } else {
+          const prevEnv = process.env.NODE_ENV;
+          process.env.NODE_ENV = "production";
+          try {
+            const res = await fetch(`http://127.0.0.1:${PORT}/`, {
+              headers: { "User-Agent": "Mozilla/5.0 (compatible; Googlebot/2.1)" }
+            });
+            homeStatus = res.status;
+            homeHtml = await res.text();
+          } finally {
+            process.env.NODE_ENV = prevEnv;
+          }
+        }
+
+        if (homeStatus !== 200) {
+          errors.prodHomeSsr.push(`"/" en modo producción devolvió HTTP ${homeStatus} (se esperaba 200)`);
+          return;
+        }
+        if (homeHtml.includes("%SITE_URL%")) {
+          errors.prodHomeSsr.push(`"/" en modo producción contiene el marcador sin reemplazar "%SITE_URL%"`);
+        }
+        const homeH1Matches = homeHtml.match(/<h1[^>]*>[\s\S]*?<\/h1>/gi) || [];
+        if (homeH1Matches.length === 0) {
+          errors.prodHomeSsr.push(`"/" en modo producción no contiene etiqueta <h1>`);
+        }
+
+        const bodyMatch = homeHtml.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+        const bodyContent = bodyMatch ? bodyMatch[1] : homeHtml;
+        const visibleText = bodyContent
+          .replace(/<script[\s\S]*?<\/script>/gi, " ")
+          .replace(/<style[\s\S]*?<\/style>/gi, " ")
+          .replace(/<noscript[\s\S]*?<\/noscript>/gi, " ")
+          .replace(/<!--[\s\S]*?-->/g, " ")
+          .replace(/<[^>]+>/g, " ")
+          .replace(/\s+/g, " ")
+          .trim();
+        const visibleWords = visibleText ? visibleText.split(" ").filter(Boolean).length : 0;
+        if (visibleWords < 300) {
+          errors.prodHomeSsr.push(`"/" en modo producción tiene ${visibleWords} palabras visibles (mínimo requerido: 300)`);
+        }
+
+        const internalAnchorMatches = [...homeHtml.matchAll(/<a\s+[^>]*href=["'](\/[^"'#\s]*)["']/gi)]
+          .map(m => m[1])
+          .filter(href => !href.startsWith("//"));
+        if (internalAnchorMatches.length < 10) {
+          errors.prodHomeSsr.push(`"/" en modo producción tiene ${internalAnchorMatches.length} enlaces internos (mínimo requerido: 10)`);
+        }
+
+        console.log(
+          `[Prod Home Check] "/" -> HTTP ${homeStatus} | H1: ${homeH1Matches.length} | Palabras visibles: ${visibleWords} | Enlaces internos: ${internalAnchorMatches.length}\n`
+        );
+      }
+
+      await verifyProductionHome();
+
       // 3. Print Grouped Summary
       const totalErrors =
         errors.http.length +
@@ -369,7 +469,8 @@ async function runFullSeoCheck() {
         errors.blogInternalLinks.length +
         errors.blogSources.length +
         errors.blogOgUnique.length +
-        errors.sitemapArticleCanonical.length;
+        errors.sitemapArticleCanonical.length +
+        errors.prodHomeSsr.length;
 
       console.log("================================================================================");
       console.log("  RESUMEN DE RESULTADOS DE LA AUDITORÍA SEO");
@@ -406,6 +507,7 @@ async function runFullSeoCheck() {
       printErrorCategory("BLOG_SOURCES_ERRORS (>= 2 fuentes citadas)", errors.blogSources);
       printErrorCategory("BLOG_OG_UNIQUE_ERRORS (imagen OG única por artículo)", errors.blogOgUnique);
       printErrorCategory("SITEMAP_ARTICLE_CANONICAL_ERRORS (no /guias-y-articulos/<slug>)", errors.sitemapArticleCanonical);
+      printErrorCategory("PROD_HOME_SSR_ERRORS ('/' en modo producción)", errors.prodHomeSsr);
 
       console.log("================================================================================\n");
 

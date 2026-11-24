@@ -111,47 +111,97 @@ function renderSeoFooter(): string {
 
 // 1. HOME HTML BUILDER
 export function generateHomeSeoHtml(): string {
-  const latestPosts = BLOG_POSTS.slice(0, 6);
-  
-  const proceduresListHtml = PROCEDURES_DATA.map(proc => {
+  // Prioritized main procedures (including "Cómo saber si estoy afiliado al IESS" first)
+  const featuredProcConfig: Array<{ id: string; label: string; summary: string }> = [
+    {
+      id: "como-saber-si-estoy-afiliado-al-iess",
+      label: "Cómo saber si estoy afiliado al IESS",
+      summary: "Verifica en línea tu estado de afiliación activa o cesante con tu número de cédula."
+    },
+    {
+      id: "como-obtener-clave-iess-primera-vez",
+      label: "Cómo obtener la clave del IESS por primera vez",
+      summary: "Genera o recupera tu clave personal de acceso para los servicios virtuales."
+    },
+    {
+      id: "como-consultar-aportes-iess-historial-laboral",
+      label: "Consultar aportes e historial laboral IESS",
+      summary: "Revisa tus planillas pagadas, tiempo de servicio y remuneraciones declaradas."
+    },
+    {
+      id: "jubilacion-vejez",
+      label: "Jubilación por vejez en el IESS",
+      summary: "Consulta las combinaciones de edad e imposiciones y cómo enviar la solicitud."
+    },
+    {
+      id: "prestamo-quirografario",
+      label: "Préstamo quirografario del BIESS",
+      summary: "Requisitos de aportes, fondos de garantía y plazos disponibles en línea."
+    },
+    {
+      id: "prestamo-hipotecario",
+      label: "Préstamo hipotecario del BIESS",
+      summary: "Condiciones para financiamiento de vivienda, tasas vigentes y línea Credicasa."
+    },
+    {
+      id: "afiliacion-voluntaria",
+      label: "Afiliación voluntaria al IESS",
+      summary: "Cobertura de salud y jubilación para trabajadores independientes o residentes en el exterior."
+    },
+    {
+      id: "cesantia-desempleo",
+      label: "Retiro de cesantía y seguro de desempleo",
+      summary: "Plazos de espera, aportes exigidos y solicitud de desembolso."
+    }
+  ];
+
+  const proceduresListHtml = featuredProcConfig.map(item => {
+    const proc = PROCEDURES_DATA.find(p => p.id === item.id);
+    if (!proc) return "";
     const slug = proc.id.toLowerCase().replace(/\s+/g, '-');
     return `
       <li class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm hover:border-[#c9a84c] transition-colors">
-        <span class="text-2xl block mb-2">📋</span>
         <h3 class="text-xs sm:text-sm font-bold text-[#0a1f42] mb-1">
-          <a href="/procedimiento/${slug}" class="text-[#0a1f42] hover:text-[#c9a84c] no-underline">${escapeText(proc.title)}</a>
+          <a href="/procedimiento/${slug}" class="text-[#0a1f42] hover:text-[#c9a84c] no-underline">${escapeText(item.label)}</a>
         </h3>
-        <p class="text-[11px] text-slate-500 leading-normal line-clamp-2">${escapeText(proc.whoCanDo)}</p>
+        <p class="text-[11px] text-slate-600 leading-normal">${escapeText(item.summary)}</p>
       </li>
     `;
   }).join('');
 
-  const categoriesListHtml = SEO_CATEGORIES.filter(cat => cat.slug !== "guias-y-articulos" && cat.slug !== "preguntas-frecuentes").map(cat => {
-    return `
-      <li class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm hover:border-[#c9a84c] transition-colors">
-        <span class="text-2xl block mb-2">📂</span>
-        <h3 class="text-xs sm:text-sm font-bold text-[#0a1f42] mb-1">
-          <a href="/${cat.slug}" class="text-[#0a1f42] hover:text-[#c9a84c] no-underline">${escapeText(cat.title)}</a>
-        </h3>
-        <p class="text-[11px] text-slate-500 leading-normal line-clamp-2">${escapeText(cat.description)}</p>
-      </li>
-    `;
-  }).join('');
+  // Top 6 most important articles (starting with "Cómo saber si estoy afiliado al IESS")
+  const topArticleSlugs = [
+    "como-saber-si-estoy-afiliado-al-iess",
+    "como-consultar-aportes-iess-historial-laboral",
+    "jubilacion-por-vejez-requisitos-2026",
+    "prestamo-quirografario-biess-requisitos-montos-2026",
+    "fondos-de-reserva-iess-consulta-acumulacion-retiro-2026",
+    "cesantia-seguro-desempleo-iess-como-retirar-2026"
+  ];
+  const topPosts = topArticleSlugs
+    .map(slug => BLOG_POSTS.find(p => p.slug === slug))
+    .filter((p): p is BlogPost => Boolean(p));
 
-  const latestPostsHtml = latestPosts.map(post => {
+  const topPostsHtml = topPosts.map(post => {
     return `
       <li class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm flex flex-col justify-between hover:border-[#c9a84c] transition-colors">
         <div>
-          <span class="text-[9px] font-mono text-slate-400 block mb-1">📅 ${post.publishDate}</span>
+          <span class="text-[9px] font-mono text-slate-400 block mb-1">${escapeText(post.category)}</span>
           <h3 class="text-xs sm:text-sm font-bold text-[#0a1f42] mb-1.5 leading-snug">
             <a href="/blog/${post.slug}" class="text-[#0a1f42] hover:text-[#c9a84c] no-underline">${escapeText(post.title)}</a>
           </h3>
-          <p class="text-[11px] text-slate-500 leading-normal line-clamp-2 mb-3">${escapeText(post.metaDescription)}</p>
         </div>
-        <a href="/blog/${post.slug}" class="text-xs font-bold text-[#c9a84c] no-underline hover:underline">Leer Guía completa &rarr;</a>
+        <a href="/blog/${post.slug}" class="text-xs font-bold text-[#c9a84c] no-underline hover:underline">Leer guía &rarr;</a>
       </li>
     `;
   }).join('');
+
+  const keyCategories = SEO_CATEGORIES.filter(cat =>
+    ["afiliacion", "jubilacion", "prestamos-biess", "fondos-reserva", "cesantia", "certificados"].includes(cat.slug)
+  );
+  const categoriesLinksHtml = keyCategories.map(cat => {
+    return `<a href="/${cat.slug}" class="px-3 py-1.5 bg-white hover:bg-[#c9a84c]/20 text-[#0a1f42] font-bold rounded-lg border border-slate-200 text-xs no-underline">${escapeText(cat.title)}</a>`;
+  }).join(' ');
 
   const citiesHtml = Object.entries(ECUADOR_LOCATIONS).map(([key, loc]) => {
     return `<a href="/iess/${key}" class="px-3 py-1.5 bg-slate-100 hover:bg-[#c9a84c]/20 hover:text-[#0a1f42] text-slate-700 font-bold rounded-lg border border-slate-200 text-xs no-underline">${loc.fullName}</a>`;
@@ -161,53 +211,69 @@ export function generateHomeSeoHtml(): string {
     <div class="flex flex-col min-h-screen">
       ${renderSeoHeader()}
       
-      <main class="max-w-5xl w-full mx-auto px-4 py-8 space-y-10 flex-grow">
+      <main class="max-w-5xl w-full mx-auto px-4 py-8 space-y-8 flex-grow">
         
         <!-- Hero section -->
         <section class="text-center max-w-3xl mx-auto space-y-4">
           <h1 class="text-xl sm:text-3xl font-black text-[#0a1f42] leading-tight">
-            Guía Profesional del IESS Ecuador: Requisitos, Trámites y Oficios de Ley
+            Trámites del IESS en Ecuador: requisitos, préstamos y afiliación
           </h1>
-          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
-            Bienvenido al portal independiente de asistencia para el Instituto Ecuatoriano de Seguridad Social. Aquí encontrarás explicaciones claras y detalladas sobre jubilación por vejez, préstamos quirografarios e hipotecarios del BIESS, fondos de reserva, cesantías y seguro de desempleo. Accede a nuestros simuladores y generadores de oficios de ley gratuitos para realizar tus gestiones de forma autónoma y sin tramitadores.
+          <p class="text-slate-700 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto text-justify">
+            IESS Asistente es una plataforma de orientación ciudadana independiente dedicada a simplificar la consulta de trámites del IESS en Ecuador. Nuestro portal ayuda a afiliados, jubilados y empleadores a comprender de forma clara y transparente los requisitos indispensables exigidos para cada gestión en la seguridad social ecuatoriana. Explora sin costo las guías actualizadas de afiliación voluntaria, consulta de historia laboral, jubilación por vejez e invalidez, préstamos quirografarios e hipotecarios del BIESS, fondos de reserva, cesantía y seguro de desempleo. Conoce paso a paso cómo completar cada trámite de manera correcta y evita intermediarios o errores frecuentes en tus solicitudes.
+          </p>
+          <p class="text-slate-700 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto text-justify">
+            Asimismo, ponemos a tu disposición herramientas gratuitas como generadores de <a href="/oficios" class="text-[#0a1f42] font-bold underline">oficios de ley</a> y descargo de glosas patronales, además de un centro completo de <a href="/preguntas-frecuentes" class="text-[#0a1f42] font-bold underline">preguntas frecuentes</a> resueltas conforme a las resoluciones vigentes del Consejo Directivo. Nuestro propósito es educar cívicamente sobre los derechos y obligaciones en el IESS Ecuador, garantizando que cada ciudadano acceda a la información necesaria para proteger su bienestar y estabilidad financiera.
+          </p>
+          <p class="text-[11px] sm:text-xs text-amber-900 bg-amber-50 border border-amber-200 rounded-xl px-4 py-2.5">
+            <strong>Sitio informativo independiente:</strong> Esta plataforma no pertenece ni está vinculada al Instituto Ecuatoriano de Seguridad Social (IESS) ni al BIESS. Todas las gestiones formales se ejecutan únicamente en sus portales institucionales.
           </p>
         </section>
 
-        <!-- Cities selector -->
-        <section class="bg-amber-50/30 border border-amber-100 rounded-2xl p-4 text-center space-y-3">
-          <h2 class="text-sm sm:text-base font-extrabold text-[#0a1f42]">📍 Puntos de Atención Local por Ciudad</h2>
-          <div class="flex flex-wrap justify-center gap-2">
-            ${citiesHtml}
-          </div>
-        </section>
-
         <!-- Procedures section -->
-        <section class="space-y-4">
-          <h2 class="text-lg font-extrabold text-[#0a1f42] border-b border-slate-200 pb-2 flex items-center gap-2">
-            <span>🔥</span> Trámites y Guías Paso a Paso
+        <section id="tramites" class="space-y-4">
+          <h2 class="text-lg font-extrabold text-[#0a1f42] border-b border-slate-200 pb-2">
+            Trámites principales del IESS y BIESS
           </h2>
-          <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 list-none pl-0">
+          <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 list-none pl-0">
             ${proceduresListHtml}
           </ul>
         </section>
 
-        <!-- Categories directory -->
+        <!-- Top 6 Articles -->
         <section class="space-y-4">
-          <h2 class="text-lg font-extrabold text-[#0a1f42] border-b border-slate-200 pb-2 flex items-center gap-2">
-            <span>📂</span> Biblioteca Temática de la Seguridad Social
-          </h2>
+          <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+            <h2 class="text-lg font-extrabold text-[#0a1f42]">
+              Guías y artículos destacados del blog
+            </h2>
+            <a href="/blog" class="text-xs font-bold text-[#0a1f42] hover:text-[#c9a84c] underline">Ver todos los artículos &rarr;</a>
+          </div>
           <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 list-none pl-0">
-            ${categoriesListHtml}
+            ${topPostsHtml}
           </ul>
         </section>
 
-        <!-- Latest Articles -->
-        <section class="space-y-4">
-          <h2 class="text-lg font-extrabold text-[#0a1f42] border-b border-slate-200 pb-2 flex items-center gap-2">
-            <span>✍️</span> Últimas Guías Publicadas en el Blog
+        <!-- Categories & Cities compact directory -->
+        <section id="categorias" class="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-4">
+          <h2 class="text-base sm:text-lg font-extrabold text-[#0a1f42]">
+            Categorías temáticas y oficinas por ciudad
           </h2>
-          <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 list-none pl-0">
-            ${latestPostsHtml}
+          <div class="flex flex-wrap gap-2">
+            ${categoriesLinksHtml}
+            ${citiesHtml}
+          </div>
+        </section>
+
+        <!-- Official Sources block -->
+        <section class="bg-white border border-slate-200 rounded-2xl p-5 space-y-3">
+          <h2 class="text-base sm:text-lg font-extrabold text-[#0a1f42]">
+            Fuentes oficiales
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+            Verifica siempre montos, fechas de pago y resoluciones vigentes antes de iniciar cualquier trámite en los canales institucionales del Estado ecuatoriano:
+          </p>
+          <ul class="list-disc pl-5 text-xs sm:text-sm space-y-1.5 text-slate-700">
+            <li><a href="https://www.iess.gob.ec" target="_blank" rel="noopener noreferrer" class="text-[#0a1f42] font-bold underline hover:text-[#c9a84c]">iess.gob.ec — Portal del Instituto Ecuatoriano de Seguridad Social (IESS)</a>: afiliación, certificados, historia laboral, citas médicas y pensiones.</li>
+            <li><a href="https://www.biess.fin.ec" target="_blank" rel="noopener noreferrer" class="text-[#0a1f42] font-bold underline hover:text-[#c9a84c]">biess.fin.ec — Banco del Instituto Ecuatoriano de Seguridad Social (BIESS)</a>: precalificación y solicitud de préstamos quirografarios e hipotecarios.</li>
           </ul>
         </section>
 

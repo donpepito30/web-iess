@@ -31,11 +31,7 @@ export function getSiteUrlServer(): string {
 export function getSiteUrlClient(): string {
   let url = "";
 
-  if (typeof import.meta !== "undefined" && (import.meta as any).env && (import.meta as any).env.VITE_SITE_URL) {
-    url = (import.meta as any).env.VITE_SITE_URL;
-  }
-
-  if (!url && typeof document !== "undefined") {
+  if (typeof document !== "undefined") {
     const canonicalLink = document.querySelector<HTMLLinkElement>("link[rel='canonical']");
     if (canonicalLink && canonicalLink.href) {
       try {
