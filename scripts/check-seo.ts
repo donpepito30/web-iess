@@ -443,6 +443,26 @@ async function runFullSeoCheck() {
           errors.prodHomeSsr.push(`"/" en modo producción tiene ${internalAnchorMatches.length} enlaces internos (mínimo requerido: 10)`);
         }
 
+        // Task 5: Check dist/ directory for forbidden index.html, index.html.br, or html .br files
+        const distDir = path.join(process.cwd(), "dist");
+        if (fs.existsSync(distDir)) {
+          const checkDistFiles = (dir: string) => {
+            const entries = fs.readdirSync(dir, { withFileTypes: true });
+            for (const entry of entries) {
+              const fullPath = path.join(dir, entry.name);
+              if (entry.isDirectory()) {
+                checkDistFiles(fullPath);
+              } else if (entry.isFile()) {
+                const name = entry.name.toLowerCase();
+                if (name === "index.html" || name === "index.html.br" || name.endsWith(".html.br") || (name.endsWith(".br") && fullPath.includes(".html"))) {
+                  errors.prodHomeSsr.push(`Archivo prohibido en dist/: "${path.relative(process.cwd(), fullPath)}" (los archivos HTML o sus .br no deben existir en dist/)`);
+                }
+              }
+            }
+          };
+          checkDistFiles(distDir);
+        }
+
         console.log(
           `[Prod Home Check] "/" -> HTTP ${homeStatus} | H1: ${homeH1Matches.length} | Palabras visibles: ${visibleWords} | Enlaces internos: ${internalAnchorMatches.length}\n`
         );

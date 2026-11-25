@@ -11,7 +11,8 @@ export default defineConfig(() => {
       tailwindcss(),
       compress({
         algorithm: 'brotliCompress',
-        ext: '.br'
+        ext: '.br',
+        filter: /\.(js|mjs|css|svg|json)$/i
       })
     ],
     resolve: {

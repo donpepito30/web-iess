@@ -1600,8 +1600,7 @@ app.get("/", (req, res) => {
     jsonLd: getHomeGraph(baseUrl, PROCEDURES_DATA),
     bodyHtml
   });
-  res.header("Content-Type", "text/html");
-  res.send(html);
+  res.status(200).type("text/html; charset=utf-8").send(html);
 });
 
 // GET /oficios (Task 5)
